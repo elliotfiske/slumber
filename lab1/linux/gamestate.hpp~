@@ -1,0 +1,10 @@
+#include <vector>
+#include "actor.hpp"
+
+class GameState{
+public: 
+   vector<Actor> actors;
+   
+   void update();
+   void draw();
+};

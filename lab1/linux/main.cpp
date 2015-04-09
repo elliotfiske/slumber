@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include "actor.hpp"
 #include "gamestate.hpp"
 #include "camera.hpp"
 
