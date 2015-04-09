@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "actor.hpp"
+#include "gamestate.hpp"
+#include "camera.hpp"
 
 int main(int argc, const char* argv[]) {
 	Actor actor = *new Actor(vec3(1.0, 2.0, 4.0), vec3(1.0, 0.0, 0.0), 1.0, 1.0);

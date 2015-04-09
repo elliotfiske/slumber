@@ -12,5 +12,3 @@ void Actor::step(float dt){
    curChange = (velocityScalar * dt) * direction;
    center += curChange;
 }
-
-
