@@ -1,0 +1,2 @@
+/home/earrolig/cpe476/slumber/lab1/linux/Lab1/CMakeFiles/Lab1.dir
+/home/earrolig/cpe476/slumber/lab1/linux/Lab1/dependencies/glfw/src/CMakeFiles/glfw.dir
