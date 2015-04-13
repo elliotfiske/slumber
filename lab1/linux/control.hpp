@@ -6,4 +6,7 @@ class Control {
 		float forwardVel;
 		float strafeVel;
 		bool exit;
+
+		 void updateControl();
+			
 }
