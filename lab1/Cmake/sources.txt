@@ -7,6 +7,8 @@ set(HEADERS
    actor.hpp
    gamestate.hpp
    windowsetup.hpp
+   camera.hpp
+   control.hpp
 )
 
 # List all .c / .cpp files here

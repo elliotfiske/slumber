@@ -1,4 +1,4 @@
-# Install script for directory: /home/earrolig/cpe476/slumber/lab1/linux/Lab1
+# Install script for directory: /home/earrolig/cpe476/slumber/lab1/Cmake
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,7 +34,7 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/home/earrolig/cpe476/slumber/lab1/linux/Lab1/dependencies/glfw/cmake_install.cmake")
+  INCLUDE("/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glfw/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 
@@ -44,7 +44,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
-FILE(WRITE "/home/earrolig/cpe476/slumber/lab1/linux/Lab1/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/home/earrolig/cpe476/slumber/lab1/Cmake/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/home/earrolig/cpe476/slumber/lab1/linux/Lab1/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/home/earrolig/cpe476/slumber/lab1/Cmake/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

@@ -12,3 +12,11 @@ void Actor::step(float dt){
    curChange = (velocityScalar * dt) * direction;
    center += curChange;
 }
+
+bool Actor::detectIntersect(Actor target) {
+   vec3 relPosition = this->center - target.center;
+   float dist = relPosition.x * relPosition.x + relPosition.y * relPosition.y + relPosition.z * relPosition.z;
+
+   float minDist = this->boundSphereRad + target.boundSphereRad;
+   return dist <= minDist * minDist;
+}
