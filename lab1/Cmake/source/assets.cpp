@@ -67,9 +67,6 @@ bool Assets::installShaders(const std::string &vShaderName, const std::string &f
     h_uMatDif = GLSL::getUniformLocation(ShadeProg, "UdColor");
     h_uMatSpec = GLSL::getUniformLocation(ShadeProg, "UsColor");
     h_uMatShine = GLSL::getUniformLocation(ShadeProg, "Ushine");
-    h_uisTex = GLSL::getUniformLocation(ShadeProg, "uisTex");
-    h_aTexCoord = GLSL::getAttribLocation(ShadeProg,  "aTexCoord");
-    h_uTexUnit = GLSL::getUniformLocation(ShadeProg, "uTexUnit");
    
    assert(glGetError() == GL_NO_ERROR);
    return true;

@@ -167,8 +167,14 @@ CMakeFiles/Lab1.dir/source/actor.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
  dependencies/glad/include/KHR/khrplatform.h
  dependencies/glad/include/glad/glad.h
  dependencies/glfw/include/GLFW/glfw3.h

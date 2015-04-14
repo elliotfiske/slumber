@@ -3,6 +3,7 @@
 #include "assets.hpp"
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp" //value_ptr
 
 Actor::Actor(vec3 center_, vec3 direction_, float velocityScale, float radius) {
    center = center_;
@@ -11,9 +12,9 @@ Actor::Actor(vec3 center_, vec3 direction_, float velocityScale, float radius) {
    boundSphereRad = radius;
 }
 
-void Actor::step(float dt){
+void Actor::step(double dt){
    vec3 curChange;
-   curChange = (velocityScalar * dt) * direction;
+   curChange = (velocityScalar * (float)dt) * direction;
    center += curChange;
 }
 
@@ -25,14 +26,15 @@ bool Actor::detectIntersect(Actor target) {
    return dist <= minDist * minDist;
 }
 
-void Actor::setModel() {
-   glm::mat4 Trans = glm::translate( glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+void Actor::setModel(Assets assets) {
+   glm::mat4 Trans = glm::translate( glm::mat4(1.0f), center);
    glm::mat4 com = Trans;
+   glUniformMatrix4fv(assets.h_uModelMatrix, 1, GL_FALSE, glm::value_ptr(Trans));
 }
 
 void Actor::draw(Assets assets){
 
-
+   setModel(assets);
    GLSL::enableVertexAttribArray(assets.h_aPosition);
    glBindBuffer(GL_ARRAY_BUFFER, assets.pos_sphereID);
    glVertexAttribPointer(assets.h_aPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);

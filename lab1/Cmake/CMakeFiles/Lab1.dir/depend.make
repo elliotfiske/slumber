@@ -166,8 +166,14 @@ CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/glm.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/half_float.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/half_float.inl
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/matrix_transform.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/matrix_transform.inl
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/quaternion.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/quaternion.inl
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/type_ptr.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/type_ptr.inl
 CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glad/include/KHR/khrplatform.h
 CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glad/include/glad/glad.h
 CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glfw/include/GLFW/glfw3.h

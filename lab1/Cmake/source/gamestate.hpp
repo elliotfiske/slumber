@@ -10,6 +10,7 @@ class GameState {
       std::vector<Actor> actors;
       Control control;
       bool completed;
+      double prevTime;
       
       void update();
       void draw();
@@ -21,4 +22,5 @@ class GameState {
       GLFWwindow *window;
 
       void setPerspectiveMat();
+      void setView(); 
 };

@@ -10,11 +10,11 @@ public:
 	float velocityScalar;
 	float boundSphereRad;
 	
-	void step(float dt);
+	void step(double dt);
 	bool detectIntersect(Actor target);
 	void draw(Assets assets);
 private:
-   void setModel();
+   void setModel(Assets assets);
 };
 
 
