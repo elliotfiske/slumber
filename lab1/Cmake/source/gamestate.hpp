@@ -1,15 +1,17 @@
 #include <vector>
-#include "actor.hpp"
 #include "camera.hpp"
 #include "control.hpp"
 
-class GameState{
-public: 
-   std::vector<Actor> actors;
-   Camera camera;
-   Control control;
-   bool completed;
-   
-   void update();
-   void draw();
+class GameState {
+   public: 
+      GameState();
+      std::vector<Actor> actors;
+      Control control;
+      bool completed;
+      
+      void update();
+      void draw();
+      
+   private:
+      std::vector<Camera> camera;
 };

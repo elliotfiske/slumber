@@ -9,4 +9,4 @@ class Control {
 
 		 void updateControl();
 			
-}
+};

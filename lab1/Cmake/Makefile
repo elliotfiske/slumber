@@ -223,6 +223,54 @@ source/actor.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/actor.cpp.s
 .PHONY : source/actor.cpp.s
 
+source/camera.o: source/camera.cpp.o
+.PHONY : source/camera.o
+
+# target to build an object file
+source/camera.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/camera.cpp.o
+.PHONY : source/camera.cpp.o
+
+source/camera.i: source/camera.cpp.i
+.PHONY : source/camera.i
+
+# target to preprocess a source file
+source/camera.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/camera.cpp.i
+.PHONY : source/camera.cpp.i
+
+source/camera.s: source/camera.cpp.s
+.PHONY : source/camera.s
+
+# target to generate assembly for a file
+source/camera.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/camera.cpp.s
+.PHONY : source/camera.cpp.s
+
+source/control.o: source/control.cpp.o
+.PHONY : source/control.o
+
+# target to build an object file
+source/control.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/control.cpp.o
+.PHONY : source/control.cpp.o
+
+source/control.i: source/control.cpp.i
+.PHONY : source/control.i
+
+# target to preprocess a source file
+source/control.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/control.cpp.i
+.PHONY : source/control.cpp.i
+
+source/control.s: source/control.cpp.s
+.PHONY : source/control.s
+
+# target to generate assembly for a file
+source/control.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/control.cpp.s
+.PHONY : source/control.cpp.s
+
 source/gamestate.o: source/gamestate.cpp.o
 .PHONY : source/gamestate.o
 
@@ -341,6 +389,12 @@ help:
 	@echo "... source/actor.o"
 	@echo "... source/actor.i"
 	@echo "... source/actor.s"
+	@echo "... source/camera.o"
+	@echo "... source/camera.i"
+	@echo "... source/camera.s"
+	@echo "... source/control.o"
+	@echo "... source/control.i"
+	@echo "... source/control.s"
 	@echo "... source/gamestate.o"
 	@echo "... source/gamestate.i"
 	@echo "... source/gamestate.s"

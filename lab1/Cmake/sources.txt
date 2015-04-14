@@ -20,4 +20,6 @@ set(SOURCES
    GLSL.cpp
    tiny_obj_loader.cc
    RenderingHelper.cpp
+   camera.cpp
+   control.cpp
 )

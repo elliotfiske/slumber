@@ -1,5 +1,4 @@
 #include "gamestate.hpp"
-//#include "camera.hpp"
 #include "windowsetup.hpp"
 
 int main(int argc, const char* argv[]) {
@@ -16,11 +15,12 @@ int main(int argc, const char* argv[]) {
    printf("intersects with second object: %d\n", actor.detectIntersect(actor2));
 
 
+   window = setupWindow();
+
 	GameState gameState = *new GameState();
-	while(!gameState->completed) {
+	while(!gameState.completed) {
 		gameState.update();
 		gameState.draw();
 	}
 
-   window = setupWindow();
 }

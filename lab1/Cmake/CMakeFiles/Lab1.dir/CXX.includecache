@@ -21,18 +21,14 @@ glm/glm.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
+actor.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
-
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.cpp
-gamestate.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 vector
 -
-actor.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 camera.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 control.hpp
