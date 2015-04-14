@@ -100,8 +100,11 @@ CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.inl
 CMakeFiles/Lab1.dir/source/actor.cpp.o
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.cpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
@@ -164,6 +167,11 @@ CMakeFiles/Lab1.dir/source/actor.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+ dependencies/glad/include/KHR/khrplatform.h
+ dependencies/glad/include/glad/glad.h
+ dependencies/glfw/include/GLFW/glfw3.h
 CMakeFiles/Lab1.dir/source/assets.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
@@ -174,7 +182,10 @@ CMakeFiles/Lab1.dir/source/assets.cpp.o
  dependencies/glad/include/glad/glad.h
  dependencies/glfw/include/GLFW/glfw3.h
 CMakeFiles/Lab1.dir/source/camera.cpp.o
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.cpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
@@ -239,6 +250,9 @@ CMakeFiles/Lab1.dir/source/camera.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+ dependencies/glad/include/KHR/khrplatform.h
+ dependencies/glad/include/glad/glad.h
+ dependencies/glfw/include/GLFW/glfw3.h
 CMakeFiles/Lab1.dir/source/control.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.cpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
@@ -313,6 +327,14 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
  dependencies/glad/include/KHR/khrplatform.h
  dependencies/glad/include/glad/glad.h
  dependencies/glfw/include/GLFW/glfw3.h

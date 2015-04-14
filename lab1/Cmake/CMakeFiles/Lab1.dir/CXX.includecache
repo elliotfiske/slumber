@@ -19,22 +19,8 @@ GLIncludes.h
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 glm/glm.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
-
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp
-tiny_obj_loader.h
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.h
-GLSL.h
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 assets.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
-stdlib.h
--
-stdio.h
--
-string
--
-cassert
--
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 GLSL.h
@@ -53,6 +39,10 @@ gamestate.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 GLSL.h
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
+glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+glm/gtc/type_ptr.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 vector
@@ -428,25 +418,47 @@ core/setup.hpp
 ./core/_swizzle.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/main.cpp
-windowsetup.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
-gamestate.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+../glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+half_float.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
 
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.h
-string
--
-vector
--
-map
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
+
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+../glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+matrix_transform.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+../glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+../gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+quaternion.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+limits
 -
 
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
-stdio.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+../glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+../gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+../gtc/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+cstring
 -
-GLSL.h
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
+type_ptr.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
+
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
 
 dependencies/glad/include/KHR/khrplatform.h
 stdint.h

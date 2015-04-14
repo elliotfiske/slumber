@@ -1,4 +1,5 @@
 #include "glm/glm.hpp"
+#include "assets.hpp"
 using namespace glm;
 
 class Actor {
@@ -11,7 +12,9 @@ public:
 	
 	void step(float dt);
 	bool detectIntersect(Actor target);
-	void draw();
+	void draw(Assets assets);
+private:
+   void setModel();
 };
 
 

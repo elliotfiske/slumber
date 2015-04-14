@@ -8,7 +8,7 @@ GLFWwindow* setupWindow(){
       return NULL;
    }
    
-   window = glfwCreateWindow( 1024, 768, "SLUMBER", NULL, NULL);
+   window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", NULL, NULL);
    if(window == NULL){
       fprintf(stderr, "Failed to initialize window\n");
       glfwTerminate();

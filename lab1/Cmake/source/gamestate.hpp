@@ -19,4 +19,6 @@ class GameState {
    private:
       std::vector<Camera> camera;
       GLFWwindow *window;
+
+      void setPerspectiveMat();
 };

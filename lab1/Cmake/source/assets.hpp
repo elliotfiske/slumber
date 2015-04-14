@@ -1,6 +1,8 @@
+#ifndef actor_h
+#define actor_h
+
 #include "GLSL.h"
 #include <string>
-
 
 class Assets {
    public:
@@ -25,3 +27,5 @@ class Assets {
       GLuint ShadeProg;
       
 };
+
+#endif

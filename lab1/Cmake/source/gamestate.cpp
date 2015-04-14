@@ -1,5 +1,7 @@
 #include "gamestate.hpp"
 #include "GLSL.h"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp" //value_ptr
 
 GameState::GameState(GLFWwindow *window_) {
 	camera.push_back(*new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0));
@@ -16,33 +18,20 @@ void GameState::update(){
    
 }
 
+/* helper function to set projection matrix - don't touch */
+void GameState::setPerspectiveMat() {
+  glm::mat4 Projection = glm::perspective(45.0f, (float)WINDOW_WIDTH/WINDOW_HEIGHT, 0.1f, 200.f);
+  safe_glUniformMatrix4fv(assets.h_uProjMatrix, glm::value_ptr(Projection));
+}
+
 void GameState::draw() {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
    
    glUseProgram(assets.ShadeProg);
    
-   GLSL::enableVertexAttribArray(assets.h_aPosition);
-   glBindBuffer(GL_ARRAY_BUFFER, assets.pos_sphereID);
-   glVertexAttribPointer(assets.h_aPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);
-   
-   GLSL::enableVertexAttribArray(assets.h_aNormal);
-   glBindBuffer(GL_ARRAY_BUFFER, assets.nor_sphereID);
-   glVertexAttribPointer(assets.h_aNormal,
-                           3,
-                           GL_FLOAT,
-                           GL_FALSE,
-                           0,
-                           (void*) 0
-                           );
-   
-   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, assets.ind_sphereID);
-   
-   glDrawElements(
-   GL_TRIANGLES,
-   assets.numVerts_sphere,
-   GL_UNSIGNED_INT,
-   (void*)0
-   );
+   for(int i = 0; i < 10; i++){
+      actors[i].draw(assets);
+   }
    
    glDisableVertexAttribArray(assets.h_aPosition);
    glDisableVertexAttribArray(assets.h_aNormal);

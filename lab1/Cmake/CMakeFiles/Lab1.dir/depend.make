@@ -99,8 +99,11 @@ CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o: source/glm/gtx/transform.inl
 CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o: source/glm/gtx/vector_angle.hpp
 CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o: source/glm/gtx/vector_angle.inl
 
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/GLIncludes.h
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/GLSL.h
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/actor.cpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/actor.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/assets.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/./core/_detail.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/./core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/./core/_swizzle.hpp
@@ -163,6 +166,11 @@ CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/glm.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/matrix_transform.hpp
+CMakeFiles/Lab1.dir/source/actor.cpp.o: source/glm/gtc/matrix_transform.inl
+CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glad/include/KHR/khrplatform.h
+CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glad/include/glad/glad.h
+CMakeFiles/Lab1.dir/source/actor.cpp.o: dependencies/glfw/include/GLFW/glfw3.h
 
 CMakeFiles/Lab1.dir/source/assets.cpp.o: source/GLIncludes.h
 CMakeFiles/Lab1.dir/source/assets.cpp.o: source/GLSL.h
@@ -173,7 +181,10 @@ CMakeFiles/Lab1.dir/source/assets.cpp.o: dependencies/glad/include/KHR/khrplatfo
 CMakeFiles/Lab1.dir/source/assets.cpp.o: dependencies/glad/include/glad/glad.h
 CMakeFiles/Lab1.dir/source/assets.cpp.o: dependencies/glfw/include/GLFW/glfw3.h
 
+CMakeFiles/Lab1.dir/source/camera.cpp.o: source/GLIncludes.h
+CMakeFiles/Lab1.dir/source/camera.cpp.o: source/GLSL.h
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/actor.hpp
+CMakeFiles/Lab1.dir/source/camera.cpp.o: source/assets.hpp
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/camera.cpp
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/camera.hpp
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/./core/_detail.hpp
@@ -238,6 +249,9 @@ CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/glm.hpp
+CMakeFiles/Lab1.dir/source/camera.cpp.o: dependencies/glad/include/KHR/khrplatform.h
+CMakeFiles/Lab1.dir/source/camera.cpp.o: dependencies/glad/include/glad/glad.h
+CMakeFiles/Lab1.dir/source/camera.cpp.o: dependencies/glfw/include/GLFW/glfw3.h
 
 CMakeFiles/Lab1.dir/source/control.cpp.o: source/control.cpp
 CMakeFiles/Lab1.dir/source/control.cpp.o: source/control.hpp
@@ -312,6 +326,14 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/glm.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/half_float.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/half_float.inl
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/matrix_transform.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/matrix_transform.inl
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/quaternion.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/quaternion.inl
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/type_ptr.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/type_ptr.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glad/include/KHR/khrplatform.h
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glad/include/glad/glad.h
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glfw/include/GLFW/glfw3.h

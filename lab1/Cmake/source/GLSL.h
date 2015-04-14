@@ -15,6 +15,9 @@
 #ifndef __GLSL__
 #define __GLSL__
 
+#define WINDOW_WIDTH  1024
+#define WINDOW_HEIGHT 768
+
 namespace GLSL {
 	
 	int printError();
