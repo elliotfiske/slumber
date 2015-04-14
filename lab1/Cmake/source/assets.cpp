@@ -72,37 +72,38 @@ bool Assets::installShaders(const std::string &vShaderName, const std::string &f
    return true;
 }
 
-Assets::Assets() {
-  printf("Loading assets\n");
-  std::vector<tinyobj::shape_t>    shapes;
+void Assets::loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuint *indID, int *numVerts){
+     std::vector<tinyobj::shape_t>    shapes;
   std::vector<tinyobj::material_t> materials;
   
-  std::string err = tinyobj::LoadObj(shapes, materials, "sphere.obj");
+  std::string err = tinyobj::LoadObj(shapes, materials, filename);
   if(!err.empty()) {
     printf("OBJ error: %s\n", err.c_str());
   }
   
-
-    // Send the position array to the GPU
-    const vector<float> &posBuf = shapes[0].mesh.positions;
-    glGenBuffers(1, &pos_sphereID);
-    glBindBuffer(GL_ARRAY_BUFFER, pos_sphereID);
+      const vector<float> &posBuf = shapes[0].mesh.positions;
+    glGenBuffers(1, posID);
+    glBindBuffer(GL_ARRAY_BUFFER, *posID);
     glBufferData(GL_ARRAY_BUFFER, posBuf.size()*sizeof(float), &posBuf[0], GL_STATIC_DRAW);
     
     // Send the normal array to the GPU
     const vector<float> &norBuf = shapes[0].mesh.normals;
-    glGenBuffers(1, &nor_sphereID);
-    glBindBuffer(GL_ARRAY_BUFFER, nor_sphereID);
+    glGenBuffers(1, norID);
+    glBindBuffer(GL_ARRAY_BUFFER, *norID);
     glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
     
     // Send the index array to the GPU
     const vector<unsigned int> &indBuf = shapes[0].mesh.indices;
-    glGenBuffers(1, &ind_sphereID);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ind_sphereID);
+    glGenBuffers(1, indID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *indID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
-    numVerts_sphere = shapes[0].mesh.indices.size();
-    
+    *numVerts = shapes[0].mesh.indices.size();
+}
+
+Assets::Assets() {
+   loadShape("sphere.obj", &pos_sphereID, &nor_sphereID, &ind_sphereID, &numVerts_sphere);
+   loadShape("ground.obj", &pos_groundID, &nor_groundID, &ind_groundID, &numVerts_ground);
     if (!installShaders("vert.glsl", "frag.glsl")) {
       printf("Couldn't load shaders :(\n");
     }

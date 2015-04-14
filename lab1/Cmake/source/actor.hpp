@@ -13,6 +13,9 @@ public:
 	void step(double dt);
 	bool detectIntersect(Actor target);
 	void draw(Assets assets);
+	
+	GLuint posID, norID, indID;
+	int numVerts;
 private:
    void setModel(Assets assets);
 };

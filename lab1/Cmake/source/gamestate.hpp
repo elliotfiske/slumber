@@ -8,6 +8,7 @@ class GameState {
    public: 
       GameState(GLFWwindow *window);
       std::vector<Actor> actors;
+      Actor *groundPlane;
       Control control;
       bool completed;
       double prevTime;
@@ -18,7 +19,7 @@ class GameState {
       Assets assets;
       
    private:
-      std::vector<Camera> camera;
+      Camera *camera;
       GLFWwindow *window;
 
       void setPerspectiveMat();

@@ -9,6 +9,8 @@ class Assets {
       Assets();
       GLuint pos_sphereID, nor_sphereID, ind_sphereID;
       int numVerts_sphere;
+      GLuint pos_groundID, nor_groundID, ind_groundID;
+      int numVerts_ground;
 
       bool installShaders(const std::string &vShaderName, const std::string &fShaderName);
       GLuint h_aPosition;
@@ -21,10 +23,9 @@ class Assets {
       GLuint h_uMatDif;
       GLuint h_uMatSpec;
       GLuint h_uMatShine;
-      GLuint h_uisTex;
-      GLuint h_aTexCoord;
-      GLuint h_uTexUnit;
       GLuint ShadeProg;
+      
+      void loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuint *indID, int *numVerts);
       
 };
 

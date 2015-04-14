@@ -36,11 +36,11 @@ void Actor::draw(Assets assets){
 
    setModel(assets);
    GLSL::enableVertexAttribArray(assets.h_aPosition);
-   glBindBuffer(GL_ARRAY_BUFFER, assets.pos_sphereID);
+   glBindBuffer(GL_ARRAY_BUFFER, posID);
    glVertexAttribPointer(assets.h_aPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);
    
    GLSL::enableVertexAttribArray(assets.h_aNormal);
-   glBindBuffer(GL_ARRAY_BUFFER, assets.nor_sphereID);
+   glBindBuffer(GL_ARRAY_BUFFER, norID);
    glVertexAttribPointer(assets.h_aNormal,
                            3,
                            GL_FLOAT,
@@ -49,11 +49,11 @@ void Actor::draw(Assets assets){
                            (void*) 0
                            );
    
-   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, assets.ind_sphereID);
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indID);
    
    glDrawElements(
    GL_TRIANGLES,
-   assets.numVerts_sphere,
+   numVerts,
    GL_UNSIGNED_INT,
    (void*)0
    );
