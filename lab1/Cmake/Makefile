@@ -223,6 +223,30 @@ source/actor.cpp.s:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/actor.cpp.s
 .PHONY : source/actor.cpp.s
 
+source/assets.o: source/assets.cpp.o
+.PHONY : source/assets.o
+
+# target to build an object file
+source/assets.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/assets.cpp.o
+.PHONY : source/assets.cpp.o
+
+source/assets.i: source/assets.cpp.i
+.PHONY : source/assets.i
+
+# target to preprocess a source file
+source/assets.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/assets.cpp.i
+.PHONY : source/assets.cpp.i
+
+source/assets.s: source/assets.cpp.s
+.PHONY : source/assets.s
+
+# target to generate assembly for a file
+source/assets.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/assets.cpp.s
+.PHONY : source/assets.cpp.s
+
 source/camera.o: source/camera.cpp.o
 .PHONY : source/camera.o
 
@@ -389,6 +413,9 @@ help:
 	@echo "... source/actor.o"
 	@echo "... source/actor.i"
 	@echo "... source/actor.s"
+	@echo "... source/assets.o"
+	@echo "... source/assets.i"
+	@echo "... source/assets.s"
 	@echo "... source/camera.o"
 	@echo "... source/camera.i"
 	@echo "... source/camera.s"

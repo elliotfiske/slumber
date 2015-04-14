@@ -20,6 +20,12 @@ GLIncludes.h
 glm/glm.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
+GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
+string
+-
+
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 actor.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
@@ -41,6 +47,8 @@ control.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 GLSL.h
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
+assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 setup.hpp

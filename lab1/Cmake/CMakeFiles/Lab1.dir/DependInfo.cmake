@@ -12,6 +12,7 @@ SET(CMAKE_DEPENDS_CHECK_CXX
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/GLSL.cpp.o"
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/RenderingHelper.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o"
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/actor.cpp.o"
+  "/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/assets.cpp.o"
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/camera.cpp.o"
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/control.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/control.cpp.o"
   "/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.cpp" "/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir/source/gamestate.cpp.o"

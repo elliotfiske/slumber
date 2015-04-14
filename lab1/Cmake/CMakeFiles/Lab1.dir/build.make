@@ -259,9 +259,32 @@ CMakeFiles/Lab1.dir/source/control.cpp.o.provides: CMakeFiles/Lab1.dir/source/co
 
 CMakeFiles/Lab1.dir/source/control.cpp.o.provides.build: CMakeFiles/Lab1.dir/source/control.cpp.o
 
+CMakeFiles/Lab1.dir/source/assets.cpp.o: CMakeFiles/Lab1.dir/flags.make
+CMakeFiles/Lab1.dir/source/assets.cpp.o: source/assets.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles $(CMAKE_PROGRESS_10)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/Lab1.dir/source/assets.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/Lab1.dir/source/assets.cpp.o -c /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp
+
+CMakeFiles/Lab1.dir/source/assets.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Lab1.dir/source/assets.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp > CMakeFiles/Lab1.dir/source/assets.cpp.i
+
+CMakeFiles/Lab1.dir/source/assets.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Lab1.dir/source/assets.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp -o CMakeFiles/Lab1.dir/source/assets.cpp.s
+
+CMakeFiles/Lab1.dir/source/assets.cpp.o.requires:
+.PHONY : CMakeFiles/Lab1.dir/source/assets.cpp.o.requires
+
+CMakeFiles/Lab1.dir/source/assets.cpp.o.provides: CMakeFiles/Lab1.dir/source/assets.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/assets.cpp.o.provides.build
+.PHONY : CMakeFiles/Lab1.dir/source/assets.cpp.o.provides
+
+CMakeFiles/Lab1.dir/source/assets.cpp.o.provides.build: CMakeFiles/Lab1.dir/source/assets.cpp.o
+
 CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o: CMakeFiles/Lab1.dir/flags.make
 CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o: dependencies/glad/src/glad.c
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles $(CMAKE_PROGRESS_10)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles $(CMAKE_PROGRESS_11)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building C object CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o"
 	/usr/bin/cc  $(C_DEFINES) $(C_FLAGS) -o CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o   -c /home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glad/src/glad.c
 
@@ -293,6 +316,7 @@ Lab1_OBJECTS = \
 "CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o" \
 "CMakeFiles/Lab1.dir/source/camera.cpp.o" \
 "CMakeFiles/Lab1.dir/source/control.cpp.o" \
+"CMakeFiles/Lab1.dir/source/assets.cpp.o" \
 "CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o"
 
 # External object files for target Lab1
@@ -307,6 +331,7 @@ Lab1: CMakeFiles/Lab1.dir/source/tiny_obj_loader.cc.o
 Lab1: CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o
 Lab1: CMakeFiles/Lab1.dir/source/camera.cpp.o
 Lab1: CMakeFiles/Lab1.dir/source/control.cpp.o
+Lab1: CMakeFiles/Lab1.dir/source/assets.cpp.o
 Lab1: CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o
 Lab1: CMakeFiles/Lab1.dir/build.make
 Lab1: dependencies/glfw/src/libglfw3.a
@@ -336,6 +361,7 @@ CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/source/tiny_obj_loader.cc.o.re
 CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/source/RenderingHelper.cpp.o.requires
 CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/source/camera.cpp.o.requires
 CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/source/control.cpp.o.requires
+CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/source/assets.cpp.o.requires
 CMakeFiles/Lab1.dir/requires: CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o.requires
 .PHONY : CMakeFiles/Lab1.dir/requires
 

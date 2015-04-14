@@ -2,6 +2,7 @@
 #include "camera.hpp"
 #include "control.hpp"
 #include "GLSL.h"
+#include "assets.hpp"
 
 class GameState {
    public: 
@@ -12,6 +13,8 @@ class GameState {
       
       void update();
       void draw();
+      
+      Assets assets;
       
    private:
       std::vector<Camera> camera;

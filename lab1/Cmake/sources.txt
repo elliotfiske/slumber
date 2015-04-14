@@ -9,6 +9,7 @@ set(HEADERS
    windowsetup.hpp
    camera.hpp
    control.hpp
+   assets.hpp
 )
 
 # List all .c / .cpp files here
@@ -22,4 +23,5 @@ set(SOURCES
    RenderingHelper.cpp
    camera.cpp
    control.cpp
+   assets.cpp
 )
