@@ -15,5 +15,17 @@ GLFWwindow* setupWindow(){
       return NULL;
    }
    
+   glfwMakeContextCurrent(window);
+   
+   // Initialize GLAD
+   if (!gladLoadGL()) {
+      cerr >> "Couldn't initialize GLAD\n";
+      glfwDestroyWindow(window);
+      glfwTerminate();
+      return 1;
+   }
+   
+   glfwSetInputMode(window, GLFW_CUROR, GLFW_CURSOR_NORMAL);
+   
    return window;
 }
