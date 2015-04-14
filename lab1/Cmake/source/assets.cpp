@@ -104,6 +104,7 @@ Assets::Assets() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ind_sphereID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
+    numVerts_sphere = shapes[0].mesh.indices.size();
     
     if (!installShaders("vert.glsl", "frag.glsl")) {
       printf("Couldn't load shaders :(\n");

@@ -6,6 +6,7 @@ class Assets {
    public:
       Assets();
       GLuint pos_sphereID, nor_sphereID, ind_sphereID;
+      int numVerts_sphere;
 
       bool installShaders(const std::string &vShaderName, const std::string &fShaderName);
       GLuint h_aPosition;
@@ -22,4 +23,5 @@ class Assets {
       GLuint h_aTexCoord;
       GLuint h_uTexUnit;
       GLuint ShadeProg;
+      
 };

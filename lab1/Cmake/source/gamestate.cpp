@@ -39,7 +39,7 @@ void GameState::draw() {
    
    glDrawElements(
    GL_TRIANGLES,
-   9999,
+   assets.numVerts_sphere,
    GL_UNSIGNED_INT,
    (void*)0
    );
