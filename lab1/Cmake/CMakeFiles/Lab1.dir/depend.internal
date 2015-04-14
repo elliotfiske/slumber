@@ -234,6 +234,8 @@ CMakeFiles/Lab1.dir/source/control.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.cpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
+ /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
@@ -301,6 +303,9 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
+ dependencies/glad/include/KHR/khrplatform.h
+ dependencies/glad/include/glad/glad.h
+ dependencies/glfw/include/GLFW/glfw3.h
 CMakeFiles/Lab1.dir/source/main.cpp.o
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
  /home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h

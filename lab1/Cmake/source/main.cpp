@@ -1,5 +1,6 @@
-#include "gamestate.hpp"
+
 #include "windowsetup.hpp"
+#include "gamestate.hpp"
 
 int main(int argc, const char* argv[]) {
    GLFWwindow* window;
@@ -16,8 +17,13 @@ int main(int argc, const char* argv[]) {
 
 
    window = setupWindow();
+   
+   if (window == NULL) {
+      printf("Window was null\n");
+      return 1;
+   }
 
-	GameState gameState = *new GameState();
+	GameState gameState = *new GameState(window);
 	while(!gameState.completed) {
 		gameState.update();
 		gameState.draw();

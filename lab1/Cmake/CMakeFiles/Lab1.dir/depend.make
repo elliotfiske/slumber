@@ -233,6 +233,8 @@ CMakeFiles/Lab1.dir/source/camera.cpp.o: source/glm/glm.hpp
 CMakeFiles/Lab1.dir/source/control.cpp.o: source/control.cpp
 CMakeFiles/Lab1.dir/source/control.cpp.o: source/control.hpp
 
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/GLIncludes.h
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/GLSL.h
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/actor.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/camera.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/control.hpp
@@ -300,6 +302,9 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/_fixes.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/glm.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glad/include/KHR/khrplatform.h
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glad/include/glad/glad.h
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glfw/include/GLFW/glfw3.h
 
 CMakeFiles/Lab1.dir/source/main.cpp.o: source/GLIncludes.h
 CMakeFiles/Lab1.dir/source/main.cpp.o: source/GLSL.h

@@ -19,13 +19,16 @@ GLFWwindow* setupWindow(){
    
    // Initialize GLAD
    if (!gladLoadGL()) {
-      cerr >> "Couldn't initialize GLAD\n";
+      printf("Couldn't initialize GLAD\n");
       glfwDestroyWindow(window);
       glfwTerminate();
-      return 1;
+      return NULL;
    }
    
-   glfwSetInputMode(window, GLFW_CUROR, GLFW_CURSOR_NORMAL);
+   glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
    
+   glEnable(GL_DEPTH_TEST);
+   glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+  
    return window;
 }

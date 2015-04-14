@@ -26,6 +26,12 @@ actor.hpp
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.cpp
+gamestate.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
+GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
+
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 vector
 -
@@ -33,6 +39,8 @@ camera.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 control.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
+GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 setup.hpp
@@ -395,18 +403,6 @@ core/setup.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_noise.hpp
 ./core/_swizzle.hpp
 /home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
-
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/main.cpp
-gamestate.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
-windowsetup.hpp
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
-
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
-stdio.h
--
-GLSL.h
-/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 
 dependencies/glad/include/KHR/khrplatform.h
 stdint.h
