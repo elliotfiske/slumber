@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "camera.hpp"
+#include <math.h>
 
 float pitch;
 float yaw;
@@ -19,6 +20,18 @@ float strafeAccel;
 void handleMouse(GLFWwindow* window, double currX, double currY) {
    yaw += (WINDOW_WIDTH / 2 - currX) / 1000.0;
    pitch += (WINDOW_HEIGHT / 2 - currY) / 1000.0;
+
+   printf("Pitch is %f\n", glm::degrees(pitch));
+
+   if (pitch < glm::radians(-80.0)) {
+      pitch = glm::radians(-80.0);
+      printf("2 LOW Pitch is %f\n", glm::degrees(pitch));
+   }
+
+   if (pitch > glm::radians(80.0)) {
+      pitch = glm::radians(80.0);
+      printf("2 HIGH Pitch is %f\n", glm::degrees(pitch));
+   }
 }
 
 void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,

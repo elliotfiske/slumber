@@ -4,57 +4,68 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
-
 Actor::Actor(vec3 center_, vec3 direction_, float velocityScale, float radius) {
    center = center_;
    direction = direction_;
    velocityScalar = velocityScale;
    boundSphereRad = radius;
+
+   timeToDeath = -1;
 }
 
-void Actor::step(double dt){
+void Actor::step(double dt) {
    vec3 curChange;
-   curChange = (velocityScalar * (float)dt) * direction;
+   curChange = (velocityScalar * (float) dt) * direction;
    center += curChange;
+
+   collisionCooldown--;
+   timeToDeath--;
 }
 
-bool Actor::detectIntersect(Actor target) {
-   vec3 relPosition = this->center - target.center;
-   float dist = relPosition.x * relPosition.x + relPosition.y * relPosition.y + relPosition.z * relPosition.z;
+bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
+   if (collisionCooldown > 0 && !overrideCooldown) {
+      return false;
+   }
+
+   float dist = glm::distance(center, target.center);
+
+   printf("Distance: %f\n", dist);
 
    float minDist = this->boundSphereRad + target.boundSphereRad;
-   return dist <= minDist * minDist;
+   bool result = dist <= minDist;
+
+   if (result) {
+      collisionCooldown = 18;
+   }
+
+   return result;
+}
+
+void Actor::die() {
+   direction = vec3(0.0, 1.0, 0.0);
+   velocityScalar = 2.0;
+
+   timeToDeath = 1200;
 }
 
 void Actor::setModel(Assets assets) {
-   glm::mat4 Trans = glm::translate( glm::mat4(1.0f), center);
+   glm::mat4 Trans = glm::translate(glm::mat4(1.0f), center);
    glm::mat4 com = Trans;
    glUniformMatrix4fv(assets.h_uModelMatrix, 1, GL_FALSE, glm::value_ptr(Trans));
 }
 
-void Actor::draw(Assets assets){
+void Actor::draw(Assets assets) {
 
    setModel(assets);
    GLSL::enableVertexAttribArray(assets.h_aPosition);
    glBindBuffer(GL_ARRAY_BUFFER, posID);
    glVertexAttribPointer(assets.h_aPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);
-   
+
    GLSL::enableVertexAttribArray(assets.h_aNormal);
    glBindBuffer(GL_ARRAY_BUFFER, norID);
-   glVertexAttribPointer(assets.h_aNormal,
-                           3,
-                           GL_FLOAT,
-                           GL_FALSE,
-                           0,
-                           (void*) 0
-                           );
-   
+   glVertexAttribPointer(assets.h_aNormal, 3, GL_FLOAT, GL_FALSE, 0, (void*) 0);
+
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indID);
-   
-   glDrawElements(
-   GL_TRIANGLES,
-   numVerts,
-   GL_UNSIGNED_INT,
-   (void*)0
-   );
+
+   glDrawElements(GL_TRIANGLES, numVerts, GL_UNSIGNED_INT, (void*) 0);
 }

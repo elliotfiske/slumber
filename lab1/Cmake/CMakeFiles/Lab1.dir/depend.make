@@ -6,6 +6,7 @@ CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o: dependencies/glad/include/KH
 CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o: dependencies/glad/include/glad/glad.h
 
 CMakeFiles/Lab1.dir/source/util.c.o: source/util.c
+CMakeFiles/Lab1.dir/source/util.c.o: source/util.h
 
 CMakeFiles/Lab1.dir/source/GLSL.cpp.o: source/GLIncludes.h
 CMakeFiles/Lab1.dir/source/GLSL.cpp.o: source/GLSL.cpp
@@ -404,6 +405,7 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/./core/type_vec3.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/./core/type_vec4.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/./core/type_vec4.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/_fixes.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/_vectorize.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/core/setup.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/glm.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/half_float.hpp
@@ -412,6 +414,8 @@ CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/matrix_transform.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/matrix_transform.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/quaternion.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/quaternion.inl
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/random.hpp
+CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/random.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/type_ptr.hpp
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: source/glm/gtc/type_ptr.inl
 CMakeFiles/Lab1.dir/source/gamestate.cpp.o: dependencies/glad/include/KHR/khrplatform.h

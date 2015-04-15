@@ -28,7 +28,7 @@ GLFWwindow* setupWindow(){
    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
    
    glEnable(GL_DEPTH_TEST);
-   glClearColor(1.0f, 0.0f, 0.0f, 0.0f);
+   glClearColor(.051f, .447f, .60f, 0.0f);
   
    return window;
 }

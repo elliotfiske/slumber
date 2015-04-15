@@ -11,13 +11,18 @@ public:
 	float boundSphereRad;
 	
 	void step(double dt);
-	bool detectIntersect(Actor target);
+	bool detectIntersect(Actor target, bool oc);
 	void draw(Assets assets);
 	
 	GLuint posID, norID, indID;
 	int numVerts;
+
+	void die();
+   int timeToDeath;
+
 private:
    void setModel(Assets assets);
+   int collisionCooldown;
 };
 
 

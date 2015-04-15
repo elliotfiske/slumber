@@ -3,6 +3,9 @@
 #include "GLSL.h"
 #include "assets.hpp"
 
+#define XMAX 19.0
+#define ZMAX 19.0
+
 class GameState {
    public: 
       GameState(GLFWwindow *window);
@@ -24,4 +27,7 @@ class GameState {
       void setView(); 
 
       double timeToNextSphere;
+
+      void spawnSphere();
+      void checkCollisions();
 };
