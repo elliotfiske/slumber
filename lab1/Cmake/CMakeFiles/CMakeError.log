@@ -144,3 +144,76 @@ gmake[1]: Leaving directory `/home/efiske/slumber/lab1/Cmake/CMakeFiles/CMakeTmp
 gmake: *** [cmTryCompileExec3795937801/fast] Error 2
 
 
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1864298440/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1864298440.dir/build.make CMakeFiles/cmTryCompileExec1864298440.dir/build
+gmake[1]: Entering directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1864298440.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec1864298440.dir/CheckSymbolExists.c.o   -c /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTryCompileExec1864298440
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1864298440.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec1864298440.dir/CheckSymbolExists.c.o  -o cmTryCompileExec1864298440 -rdynamic 
+CMakeFiles/cmTryCompileExec1864298440.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0xc): undefined reference to `pthread_create'
+collect2: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec1864298440] Error 1
+gmake[1]: Leaving directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec1864298440/fast] Error 2
+
+File /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec637826491/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec637826491.dir/build.make CMakeFiles/cmTryCompileExec637826491.dir/build
+gmake[1]: Entering directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec637826491.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec637826491.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec637826491
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec637826491.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec637826491.dir/CheckFunctionExists.c.o  -o cmTryCompileExec637826491 -rdynamic -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec637826491] Error 1
+gmake[1]: Leaving directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec637826491/fast] Error 2
+
+
+Determining if the function glXGetProcAddressEXT exists failed with the following output:
+Change Dir: /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3722344250/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3722344250.dir/build.make CMakeFiles/cmTryCompileExec3722344250.dir/build
+gmake[1]: Entering directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3722344250.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT   -o CMakeFiles/cmTryCompileExec3722344250.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3722344250
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3722344250.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressEXT    CMakeFiles/cmTryCompileExec3722344250.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3722344250 -rdynamic -lGL 
+CMakeFiles/cmTryCompileExec3722344250.dir/CheckFunctionExists.c.o: In function `main':
+CheckFunctionExists.c:(.text+0x15): undefined reference to `glXGetProcAddressEXT'
+collect2: ld returned 1 exit status
+gmake[1]: *** [cmTryCompileExec3722344250] Error 1
+gmake[1]: Leaving directory `/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/CMakeTmp'
+gmake: *** [cmTryCompileExec3722344250/fast] Error 2
+
+

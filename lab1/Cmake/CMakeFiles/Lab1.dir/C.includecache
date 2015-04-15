@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/efiske/slumber/lab1/Cmake/dependencies/glad/src/glad.c
+/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glad/src/glad.c
 stdio.h
 -
 string.h

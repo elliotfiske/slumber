@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/home/efiske/slumber/lab1/Cmake/source/GLIncludes.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
 glad/glad.h
 -
 GLFW/glfw3.h
 -
 
-/home/efiske/slumber/lab1/Cmake/source/GLSL.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.cpp
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 iostream
 -
 stdio.h
@@ -24,61 +24,61 @@ stdlib.h
 string.h
 -
 
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 GLIncludes.h
-/home/efiske/slumber/lab1/Cmake/source/GLIncludes.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLIncludes.h
 
-/home/efiske/slumber/lab1/Cmake/source/RenderingHelper.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/RenderingHelper.cpp
 RenderingHelper.h
-/home/efiske/slumber/lab1/Cmake/source/RenderingHelper.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/RenderingHelper.h
 glm/gtx/transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/RenderingHelper.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/RenderingHelper.h
 stack
 -
 glm/glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 glm/gtx/vector_angle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/vector_angle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.hpp
 glm/gtx/component_wise.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/component_wise.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/component_wise.hpp
 glm/gtc/matrix_access.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_access.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_access.hpp
 glm/gtc/matrix_integer.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_integer.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_integer.hpp
 glm/gtc/matrix_inverse.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.hpp
 glm/gtc/matrix_transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/actor.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.cpp
 actor.hpp
-/home/efiske/slumber/lab1/Cmake/source/actor.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 assets.hpp
-/home/efiske/slumber/lab1/Cmake/source/assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 glm/glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 glm/gtc/matrix_transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/actor.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 glm/glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 assets.hpp
-/home/efiske/slumber/lab1/Cmake/source/assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/assets.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.cpp
 tiny_obj_loader.h
-/home/efiske/slumber/lab1/Cmake/source/tiny_obj_loader.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.h
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 assets.hpp
-/home/efiske/slumber/lab1/Cmake/source/assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 stdlib.h
 -
 stdio.h
@@ -88,141 +88,141 @@ string
 cassert
 -
 
-/home/efiske/slumber/lab1/Cmake/source/assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 string
 -
 
-/home/efiske/slumber/lab1/Cmake/source/camera.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.cpp
 camera.hpp
-/home/efiske/slumber/lab1/Cmake/source/camera.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/camera.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 actor.hpp
-/home/efiske/slumber/lab1/Cmake/source/actor.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/actor.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/control.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/control.cpp
 control.hpp
-/home/efiske/slumber/lab1/Cmake/source/control.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/control.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/gamestate.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.cpp
 gamestate.hpp
-/home/efiske/slumber/lab1/Cmake/source/gamestate.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 glm/gtc/matrix_transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
 glm/gtc/type_ptr.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/gamestate.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 vector
 -
 camera.hpp
-/home/efiske/slumber/lab1/Cmake/source/camera.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/camera.hpp
 control.hpp
-/home/efiske/slumber/lab1/Cmake/source/control.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/control.hpp
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 assets.hpp
-/home/efiske/slumber/lab1/Cmake/source/assets.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/assets.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 setup.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/setup.hpp
 cassert
 -
 cstdint
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_fixes.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_fixes.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 _swizzle_func.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle_func.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle_func.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle_func.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle_func.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_common.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_common.hpp
 _fixes.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_fixes.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_fixes.hpp
 func_common.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_common.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_common.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_common.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_common.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_exponential.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_exponential.hpp
 func_exponential.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_exponential.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_exponential.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_exponential.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_exponential.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_geometric.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_geometric.hpp
 func_geometric.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_geometric.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_geometric.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_geometric.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_geometric.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_integer.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_integer.hpp
 func_integer.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_integer.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_integer.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_integer.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_integer.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 intrin.h
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_matrix.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_matrix.hpp
 func_matrix.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_matrix.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_matrix.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_matrix.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_matrix.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_noise.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_noise.hpp
 func_noise.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_noise.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_noise.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_noise.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_noise.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_packing.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_packing.hpp
 func_packing.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_packing.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_packing.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_packing.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_packing.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.hpp
 func_trigonometric.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.inl
 _vectorize.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_vectorize.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.hpp
 _detail.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 func_vector_relational.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/setup.hpp
 TargetConditionals.h
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/TargetConditionals.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/TargetConditionals.h
 immintrin.h
 -
 pmmintrin.h
@@ -230,221 +230,221 @@ pmmintrin.h
 emmintrin.h
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type.hpp
 type_half.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
 type_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_int.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 type_gentype.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
 type_vec1.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec1.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec1.hpp
 type_vec2.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec2.hpp
 type_vec3.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec3.hpp
 type_vec4.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec4.hpp
 type_mat2x2.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.hpp
 type_mat2x3.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.hpp
 type_mat2x4.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.hpp
 type_mat3x2.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.hpp
 type_mat3x3.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.hpp
 type_mat3x4.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.hpp
 type_mat4x2.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.hpp
 type_mat4x3.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.hpp
 type_mat4x4.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_half.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
 setup.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/setup.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
 type_size.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_half.hpp
 cstdlib
 -
 type_half.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_half.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_half.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_half.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_half.inl
 _detail.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 setup.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/setup.hpp
 _detail.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_gentype.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat2x2.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat2x3.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat2x4.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat2x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat3x2.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat3x3.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat3x4.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat3x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat4x2.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat4x3.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.hpp
 type_mat.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat.hpp
 type_mat4x4.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_mat4x4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 cstdlib
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
 type_gentype.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_gentype.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec1.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec1.hpp
 type_vec.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
 type_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_int.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 type_size.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 _swizzle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 type_vec1.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec1.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec1.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec1.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec1.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec2.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec2.hpp
 type_vec.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
 type_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_int.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 type_size.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 _swizzle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 type_vec2.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec2.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec2.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec3.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec3.hpp
 type_vec.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
 type_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_int.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 type_size.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 _swizzle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 type_vec3.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec3.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec3.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec4.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec4.hpp
 type_vec.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec.hpp
 type_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_float.hpp
 type_int.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_int.hpp
 type_size.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_size.hpp
 _swizzle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 type_vec4.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type_vec4.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type_vec4.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
 TargetConditionals.h
-/home/efiske/slumber/lab1/Cmake/source/glm/core/TargetConditionals.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/TargetConditionals.h
 immintrin.h
 -
 pmmintrin.h
@@ -452,9 +452,9 @@ pmmintrin.h
 emmintrin.h
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 core/_fixes.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/_fixes.hpp
 cmath
 -
 climits
@@ -466,167 +466,167 @@ limits
 cstdio
 -
 core/setup.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/core/setup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/core/setup.hpp
 ./core/_detail.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_detail.hpp
 ./core/type.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/type.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/type.hpp
 ./core/func_trigonometric.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_trigonometric.hpp
 ./core/func_exponential.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_exponential.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_exponential.hpp
 ./core/func_common.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_common.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_common.hpp
 ./core/func_packing.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_packing.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_packing.hpp
 ./core/func_geometric.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_geometric.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_geometric.hpp
 ./core/func_matrix.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_matrix.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_matrix.hpp
 ./core/func_vector_relational.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_vector_relational.hpp
 ./core/func_integer.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_integer.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_integer.hpp
 ./core/func_noise.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/func_noise.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/func_noise.hpp
 ./core/_swizzle.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/./core/_swizzle.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 half_float.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_access.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_access.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 matrix_access.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_access.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_access.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_access.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_access.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_integer.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_integer.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 matrix_inverse.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_inverse.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 matrix_transform.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtc/half_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
 quaternion.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.inl
 limits
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtc/half_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
 ../gtc/quaternion.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
 cstring
 -
 type_ptr.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/type_ptr.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/component_wise.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/component_wise.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 component_wise.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/component_wise.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/component_wise.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/component_wise.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/component_wise.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/epsilon.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/epsilon.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtc/half_float.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/half_float.hpp
 ../gtc/quaternion.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
 epsilon.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/epsilon.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/epsilon.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/epsilon.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/epsilon.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/quaternion.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtc/quaternion.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/quaternion.hpp
 quaternion.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/quaternion.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/quaternion.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/quaternion.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/quaternion.inl
 limits
 -
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtx/transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
 rotate_vector.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/transform.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtc/matrix_transform.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtc/matrix_transform.hpp
 transform.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/transform.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/transform.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/transform.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/transform.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/vector_angle.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.hpp
 ../glm.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/glm.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/glm.hpp
 ../gtx/epsilon.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/epsilon.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/epsilon.hpp
 ../gtx/quaternion.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/quaternion.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/quaternion.hpp
 ../gtx/rotate_vector.hpp
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/rotate_vector.hpp
 vector_angle.inl
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/vector_angle.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.inl
 
-/home/efiske/slumber/lab1/Cmake/source/glm/gtx/vector_angle.inl
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/glm/gtx/vector_angle.inl
 
-/home/efiske/slumber/lab1/Cmake/source/main.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/main.cpp
 windowsetup.hpp
-/home/efiske/slumber/lab1/Cmake/source/windowsetup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
 gamestate.hpp
-/home/efiske/slumber/lab1/Cmake/source/gamestate.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/gamestate.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/tiny_obj_loader.cc
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.cc
 cstdlib
 -
 cstring
@@ -644,9 +644,9 @@ fstream
 sstream
 -
 tiny_obj_loader.h
-/home/efiske/slumber/lab1/Cmake/source/tiny_obj_loader.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.h
 
-/home/efiske/slumber/lab1/Cmake/source/tiny_obj_loader.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/tiny_obj_loader.h
 string
 -
 vector
@@ -654,15 +654,15 @@ vector
 map
 -
 
-/home/efiske/slumber/lab1/Cmake/source/windowsetup.cpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.cpp
 windowsetup.hpp
-/home/efiske/slumber/lab1/Cmake/source/windowsetup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
 
-/home/efiske/slumber/lab1/Cmake/source/windowsetup.hpp
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/windowsetup.hpp
 stdio.h
 -
 GLSL.h
-/home/efiske/slumber/lab1/Cmake/source/GLSL.h
+/home/earrolig/cpe476/slumber/lab1/Cmake/source/GLSL.h
 
 dependencies/glad/include/KHR/khrplatform.h
 stdint.h
