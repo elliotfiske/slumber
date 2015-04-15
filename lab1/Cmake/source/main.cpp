@@ -15,9 +15,10 @@ int main(int argc, const char* argv[]) {
 	printf("hello world center is %f, %f, %f\n", actor.center.x, actor.center.y, actor.center.z);
    printf("intersects with second object: %d\n", actor.detectIntersect(actor2));
 
+   // Test this test that
 
    window = setupWindow();
-   
+
    if (window == NULL) {
       printf("Window was null\n");
       return 1;
