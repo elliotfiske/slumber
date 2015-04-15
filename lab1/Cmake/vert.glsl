@@ -3,7 +3,6 @@ attribute vec3 aNormal;
 uniform mat4 uProjMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uModelMatrix;
-uniform vec3 uLightPos;
 uniform vec3 UaColor;
 uniform vec3 UdColor;
 uniform vec3 UsColor;

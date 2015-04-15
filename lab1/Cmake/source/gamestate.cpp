@@ -20,6 +20,8 @@ GameState::GameState(GLFWwindow *window_) {
 
    prevTime = glfwGetTime();
    timeToNextSphere = 0;
+   numCurSpheres = 0;
+   numSpheresHit = 0;
 }
 
 void GameState::spawnSphere() {
@@ -37,6 +39,7 @@ void GameState::spawnSphere() {
    newActor->indID = assets.ind_sphereID;
    newActor->numVerts = assets.numVerts_sphere;
    actors.push_back(*newActor);
+   numCurSpheres++;
 }
 
 void GameState::checkCollisions() {
@@ -56,8 +59,8 @@ void GameState::checkCollisions() {
 
    for (int i = actors.size() - 1; i >= 0; i--) {
 
-      printf("Hi\n");
       if (camera->detectIntersect(actors[i], true)) {
+         actors[i].velocityScalar = 0;
          actors[i].die();
       }
 
@@ -82,6 +85,8 @@ void GameState::checkCollisions() {
       }
 
       if (actors[i].timeToDeath == 0) {
+         numCurSpheres--;
+         numSpheresHit++;
          actors.erase(actors.begin() + i);
       }
    }
@@ -111,6 +116,22 @@ void GameState::update() {
          * getForwardVelocity();
    glm::vec3 right = glm::cross(camera->direction, glm::vec3(0.0, 1.0, 0.0));
    camera->center += right * (float) elapsedTime * getStrafeVelocity();
+   if(camera->center.y <= 0){
+      camera->center.y = 0;
+   }
+   if(camera->center.x >= XMAX){
+      camera->center.x = XMAX;
+   }
+   if(camera->center.x <= -XMAX){
+      camera->center.x = -XMAX;
+   }
+   if(camera->center.z >= ZMAX){
+      camera->center.z = ZMAX;
+   }
+   if(camera->center.z <= -ZMAX){
+      camera->center.z = -ZMAX;
+   }
+   printf("Current num of spheres is %d and Current num hit is %d\n", numCurSpheres, numSpheresHit);
 }
 
 void GameState::setView() {

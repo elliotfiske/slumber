@@ -29,8 +29,6 @@ bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
 
    float dist = glm::distance(center, target.center);
 
-   printf("Distance: %f\n", dist);
-
    float minDist = this->boundSphereRad + target.boundSphereRad;
    bool result = dist <= minDist;
 
@@ -43,9 +41,9 @@ bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
 
 void Actor::die() {
    direction = vec3(0.0, 1.0, 0.0);
-   velocityScalar = 2.0;
+   velocityScalar = 3.0;
 
-   timeToDeath = 1200;
+   timeToDeath = 60;
 }
 
 void Actor::setModel(Assets assets) {

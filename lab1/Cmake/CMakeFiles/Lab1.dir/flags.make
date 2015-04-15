@@ -3,11 +3,11 @@
 
 # compile C with /usr/bin/cc
 # compile CXX with /usr/bin/c++
-C_FLAGS = -I//home/efiske/slumber/lab1/Cmake/dependencies/glfw/include -I//home/efiske/slumber/lab1/Cmake/dependencies/glad/include   
+C_FLAGS = -I/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glfw/include -I/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glad/include   
 
 C_DEFINES = 
 
-CXX_FLAGS = -I//home/efiske/slumber/lab1/Cmake/dependencies/glfw/include -I//home/efiske/slumber/lab1/Cmake/dependencies/glad/include   
+CXX_FLAGS = -I/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glfw/include -I/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glad/include   
 
 CXX_DEFINES = 
 

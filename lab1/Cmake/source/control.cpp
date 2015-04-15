@@ -14,23 +14,19 @@ float strafeVel;
 float forwardAccel;
 float strafeAccel;
 
-#define ACCEL 10.0
+#define ACCEL 5.0
 #define FRICTION 1.2
 
 void handleMouse(GLFWwindow* window, double currX, double currY) {
    yaw += (WINDOW_WIDTH / 2 - currX) / 1000.0;
    pitch += (WINDOW_HEIGHT / 2 - currY) / 1000.0;
 
-   printf("Pitch is %f\n", glm::degrees(pitch));
-
    if (pitch < glm::radians(-80.0)) {
       pitch = glm::radians(-80.0);
-      printf("2 LOW Pitch is %f\n", glm::degrees(pitch));
    }
 
    if (pitch > glm::radians(80.0)) {
       pitch = glm::radians(80.0);
-      printf("2 HIGH Pitch is %f\n", glm::degrees(pitch));
    }
 }
 

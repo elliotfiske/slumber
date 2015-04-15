@@ -13,6 +13,8 @@ class GameState {
       Actor *groundPlane;
       bool completed;
       double prevTime;
+      int numCurSpheres;
+      int numSpheresHit;
       
       void update();
       void draw();
