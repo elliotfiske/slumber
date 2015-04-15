@@ -1,2 +1,2 @@
-/home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/Lab1.dir
-/home/earrolig/cpe476/slumber/lab1/Cmake/dependencies/glfw/src/CMakeFiles/glfw.dir
+//home/efiske/slumber/lab1/Cmake/CMakeFiles/Lab1.dir
+//home/efiske/slumber/lab1/Cmake/dependencies/glfw/src/CMakeFiles/glfw.dir

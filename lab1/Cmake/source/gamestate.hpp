@@ -1,6 +1,5 @@
 #include <vector>
 #include "camera.hpp"
-#include "control.hpp"
 #include "GLSL.h"
 #include "assets.hpp"
 
@@ -9,7 +8,6 @@ class GameState {
       GameState(GLFWwindow *window);
       std::vector<Actor> actors;
       Actor *groundPlane;
-      Control control;
       bool completed;
       double prevTime;
       
@@ -24,4 +22,6 @@ class GameState {
 
       void setPerspectiveMat();
       void setView(); 
+
+      double timeToNextSphere;
 };

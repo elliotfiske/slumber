@@ -1,12 +1,13 @@
-class Control {
-	public:
-		
-		float pitch;
-		float yaw;
-		float forwardVel;
-		float strafeVel;
-		bool exit;
+#include "GLSL.h"
 
-		 void updateControl();
-			
-};
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "camera.hpp"
+
+void updateCamera(Camera *camera);
+void updateControl(GLFWwindow *window);
+void setupCallbacks(GLFWwindow *window);
+
+float getForwardVelocity();
+float getStrafeVelocity();
+

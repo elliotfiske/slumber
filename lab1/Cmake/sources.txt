@@ -10,6 +10,7 @@ set(HEADERS
    camera.hpp
    control.hpp
    assets.hpp
+   util.h
 )
 
 # List all .c / .cpp files here
@@ -24,4 +25,5 @@ set(SOURCES
    camera.cpp
    control.cpp
    assets.cpp
+   util.c
 )

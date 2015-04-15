@@ -9,6 +9,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/Lab1.dir/source/camera.cpp.o"
   "CMakeFiles/Lab1.dir/source/control.cpp.o"
   "CMakeFiles/Lab1.dir/source/assets.cpp.o"
+  "CMakeFiles/Lab1.dir/source/util.c.o"
   "CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.o"
   "Lab1.pdb"
   "Lab1"

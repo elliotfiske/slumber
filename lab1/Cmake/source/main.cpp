@@ -25,9 +25,10 @@ int main(int argc, const char* argv[]) {
    }
 
 	GameState gameState = *new GameState(window);
-	while(!gameState.completed) {
+	while(window) {
 		gameState.update();
 		gameState.draw();
 	}
 
+	printf("Done yo\n");
 }

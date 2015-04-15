@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/earrolig/cpe476/slumber/lab1/Cmake
+CMAKE_SOURCE_DIR = //home/efiske/slumber/lab1/Cmake
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/earrolig/cpe476/slumber/lab1/Cmake
+CMAKE_BINARY_DIR = //home/efiske/slumber/lab1/Cmake
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start //home/efiske/slumber/lab1/Cmake/CMakeFiles //home/efiske/slumber/lab1/Cmake/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/earrolig/cpe476/slumber/lab1/Cmake/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start //home/efiske/slumber/lab1/Cmake/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -367,6 +367,30 @@ source/tiny_obj_loader.cc.s:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/tiny_obj_loader.cc.s
 .PHONY : source/tiny_obj_loader.cc.s
 
+source/util.o: source/util.c.o
+.PHONY : source/util.o
+
+# target to build an object file
+source/util.c.o:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/util.c.o
+.PHONY : source/util.c.o
+
+source/util.i: source/util.c.i
+.PHONY : source/util.i
+
+# target to preprocess a source file
+source/util.c.i:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/util.c.i
+.PHONY : source/util.c.i
+
+source/util.s: source/util.c.s
+.PHONY : source/util.s
+
+# target to generate assembly for a file
+source/util.c.s:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/util.c.s
+.PHONY : source/util.c.s
+
 source/windowsetup.o: source/windowsetup.cpp.o
 .PHONY : source/windowsetup.o
 
@@ -431,6 +455,9 @@ help:
 	@echo "... source/tiny_obj_loader.o"
 	@echo "... source/tiny_obj_loader.i"
 	@echo "... source/tiny_obj_loader.s"
+	@echo "... source/util.o"
+	@echo "... source/util.i"
+	@echo "... source/util.s"
 	@echo "... source/windowsetup.o"
 	@echo "... source/windowsetup.i"
 	@echo "... source/windowsetup.s"
