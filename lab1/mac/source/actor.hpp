@@ -2,7 +2,7 @@
 #include "assets.hpp"
 using namespace glm;
 
-class Actor {
+class Actor {    
 public:
 	Actor(vec3 center_, vec3 direction_, float velocityScale, float radius);
 	vec3 center;

@@ -103,6 +103,10 @@ void GameState::update() {
    for (int i = 0; i < actors.size(); i++) {
       actors[i].step(elapsedTime);
    }
+    
+   double fps = 1/elapsedTime;
+   fps = ceil(fps);
+   printf("FPS: %.0f -- ", fps);
 
    if (curTime > timeToNextSphere) {
       timeToNextSphere = curTime + 0.5;
@@ -131,7 +135,7 @@ void GameState::update() {
    if(camera->center.z <= -ZMAX){
       camera->center.z = -ZMAX;
    }
-   printf("Current num of spheres is %d and Current num hit is %d\n", numCurSpheres, numSpheresHit);
+   printf("# SPHERES: %d and SCORE: %d\n", numCurSpheres, numSpheresHit);
 }
 
 void GameState::setView() {
