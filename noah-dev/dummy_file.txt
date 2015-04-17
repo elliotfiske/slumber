@@ -1,0 +1,3 @@
+Git doesn't recognize a directory if it's empty, so here's a little bit of text for the folder.
+
+Nice.
