@@ -136,6 +136,7 @@ void GameState::update() {
       camera->center.z = -ZMAX;
    }
    printf("# SPHERES: %d and SCORE: %d\n", numCurSpheres, numSpheresHit);
+   printf("CURR COMMAND: %d\n", system("python client.py"));
 }
 
 void GameState::setView() {
