@@ -1,0 +1,22 @@
+# List all .h files here
+set(HEADERS
+)
+
+# List all .c / .cpp files here
+set(SOURCES
+   main.cpp
+   actor.cpp
+   gamestate.cpp
+   windowsetup.cpp
+   GLSL.cpp
+   tiny_obj_loader.cc
+   RenderingHelper.cpp
+   camera.cpp
+   control.cpp
+   assets.cpp
+   util.c
+   MatrixStack.cpp
+   Texture.cpp
+   HUD.cpp
+
+)
