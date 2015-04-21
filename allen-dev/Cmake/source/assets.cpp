@@ -103,7 +103,7 @@ void Assets::loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuin
 
 Assets::Assets() {
    loadShape("sphere.obj", &pos_sphereID, &nor_sphereID, &ind_sphereID, &numVerts_sphere);
-   loadShape("ground.obj", &pos_groundID, &nor_groundID, &ind_groundID, &numVerts_ground);
+   loadShape("room.obj", &pos_groundID, &nor_groundID, &ind_groundID, &numVerts_ground);
     if (!installShaders("vert.glsl", "frag.glsl")) {
       printf("Couldn't load shaders :(\n");
     }

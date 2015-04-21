@@ -9,6 +9,8 @@ Actor::Actor(vec3 center_, vec3 direction_, float velocityScale, float radius) {
    direction = direction_;
    velocityScalar = velocityScale;
    boundSphereRad = radius;
+    
+   scale = vec3(1.0, 1.0, 1.0);
 
    timeToDeath = -1;
 }
@@ -47,9 +49,10 @@ void Actor::die() {
 }
 
 void Actor::setModel(Assets assets) {
+   glm::mat4 Scale = glm::scale(glm::mat4(1.0f), scale);
    glm::mat4 Trans = glm::translate(glm::mat4(1.0f), center);
-   glm::mat4 com = Trans;
-   glUniformMatrix4fv(assets.h_uModelMatrix, 1, GL_FALSE, glm::value_ptr(Trans));
+   glm::mat4 com = Trans * Scale;
+   glUniformMatrix4fv(assets.h_uModelMatrix, 1, GL_FALSE, glm::value_ptr(com));
 }
 
 void Actor::draw(Assets assets) {

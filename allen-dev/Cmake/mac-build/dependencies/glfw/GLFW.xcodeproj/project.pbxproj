@@ -1,0 +1,754 @@
+// !$*UTF8*$!
+{
+       archiveVersion = 1;
+       classes = {
+       };
+       objectVersion = 46;
+       objects = {
+
+/* Begin PBXAggregateTarget section */
+              27C104059DB04215AAC3C46F /* ALL_BUILD */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = 8825CD98C6314F3784E3F055 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+                     buildPhases = (
+                            3EBC84851576446F92C584CA /* CMake Rules */,
+                     );
+                     dependencies = (
+                            9BF8D73EEBEA4780B61C1113 /* PBXTargetDependency */,
+                            A9E9BC4CB51947FBA19FB27C /* PBXTargetDependency */,
+                     );
+                     name = ALL_BUILD;
+                     productName = ALL_BUILD;
+              };
+              A877E0DDD4324F5D82496398 /* ZERO_CHECK */ = {
+                     isa = PBXAggregateTarget;
+                     buildConfigurationList = 53870931DF1B421195C75F86 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+                     buildPhases = (
+                            B518DFBD83A9494EB40ED74B /* CMake Rules */,
+                     );
+                     dependencies = (
+                     );
+                     name = ZERO_CHECK;
+                     productName = ZERO_CHECK;
+              };
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+AA19F34CEA9E44D9A5D1C41D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXBuildFile; fileRef = A83ECACC1F4A46108AD651FA /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3.h */; settings = { COMPILER_FLAGS = ""; }; };
+40E26408F0284A049D024937 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXBuildFile; fileRef = 2A9B3204A0864A7A801ECE5D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3native.h */; settings = { COMPILER_FLAGS = ""; }; };
+A06BF0CD79864355A27CD38C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = CB5B389613384BF6AFA0CD8C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/CMakeLists.txt */; settings = { COMPILER_FLAGS = ""; }; };
+4E1E52B723AC493EAF90E95C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXBuildFile; fileRef = 1444EFD8C1464958B0C07F03 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_init.m */; settings = { COMPILER_FLAGS = ""; }; };
+BD88C1B392C24521A22DCF42 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXBuildFile; fileRef = 21E25CF220E64B5692BEB068 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_monitor.m */; settings = { COMPILER_FLAGS = ""; }; };
+61C9BC92A5894EBA90E08D38 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXBuildFile; fileRef = A329A3FF2C22443EBB580271 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_platform.h */; settings = { COMPILER_FLAGS = ""; }; };
+E088376D17DF4EFC830C8661 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXBuildFile; fileRef = FACF45F2DF8D43DF97125C41 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_window.m */; settings = { COMPILER_FLAGS = ""; }; };
+C494E3F87E724AEF85A6EB9C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/context.c */ = {isa = PBXBuildFile; fileRef = 044B1DCD96F743AB853B403B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/context.c */; settings = { COMPILER_FLAGS = ""; }; };
+B54FB1D43A9048B8B9F54462 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/init.c */ = {isa = PBXBuildFile; fileRef = AE78D53C571B4D71BFAF1FF2 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/init.c */; settings = { COMPILER_FLAGS = ""; }; };
+B7A484C8C8AC45F7B7E60B86 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/input.c */ = {isa = PBXBuildFile; fileRef = 051E11CC8DB34961972888ED /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/input.c */; settings = { COMPILER_FLAGS = ""; }; };
+4A4086C6D35C4F3B810AFB3C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/internal.h */ = {isa = PBXBuildFile; fileRef = C1D5B85C8D4E4915BB627E89 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/internal.h */; settings = { COMPILER_FLAGS = ""; }; };
+9395005574BB4203AF92A3F9 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXBuildFile; fileRef = 960FF8863981434C9E7403E4 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.h */; settings = { COMPILER_FLAGS = ""; }; };
+1CEE3753C9FC422CBF97864C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXBuildFile; fileRef = 3E7C6F388C9B4F47AF82D8CE /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.m */; settings = { COMPILER_FLAGS = ""; }; };
+8F7F73FF211543B78DE80E7A /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/mach_time.c */ = {isa = PBXBuildFile; fileRef = 7942C5E2A5174EAE9180E83D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/mach_time.c */; settings = { COMPILER_FLAGS = ""; }; };
+7B97FB0090194356855DDDAF /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/monitor.c */ = {isa = PBXBuildFile; fileRef = DA60B0B359C845CD9AEF3D82 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/monitor.c */; settings = { COMPILER_FLAGS = ""; }; };
+FC83E2A54D3144AB99493FF6 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXBuildFile; fileRef = 49162D200C6F4899A1497272 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.h */; settings = { COMPILER_FLAGS = ""; }; };
+2AF0E90B0C40472F98F4C9E7 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXBuildFile; fileRef = B6B462F0EE45428E94FC0A76 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.m */; settings = { COMPILER_FLAGS = ""; }; };
+A1B672E3BA5948EAAB16EA9B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.c */ = {isa = PBXBuildFile; fileRef = C0173A3330084D0FA3DA3FA5 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.c */; settings = { COMPILER_FLAGS = ""; }; };
+1D0C8D580D34434A91D61A7B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.h */ = {isa = PBXBuildFile; fileRef = 923E1FFD5A7248EFA72BABDD /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.h */; settings = { COMPILER_FLAGS = ""; }; };
+74CCBA62CC75410287943F56 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/window.c */ = {isa = PBXBuildFile; fileRef = AEFFD12D7E834253A79C78BB /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/window.c */; settings = { COMPILER_FLAGS = ""; }; };
+95054CC790A845668ACEBFA5 /* /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src/glfw_config.h */ = {isa = PBXBuildFile; fileRef = 8B2F7DA8914847DCB9DB3C31 /* /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src/glfw_config.h */; settings = { COMPILER_FLAGS = ""; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+              9B5801AE1ED543718C6D745F /*  */ = {
+                     isa = PBXBuildStyle;
+              };
+              E840726DA8684134A26BCE4A /* Debug */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Debug;
+              };
+              7C9B96B7C87E498D8B50524B /* Release */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = Release;
+              };
+              AC6E33EE8A244A3F866FAB88 /* MinSizeRel */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = MinSizeRel;
+              };
+              A79B9C6863724B648B466944 /* RelWithDebInfo */ = {
+                     isa = PBXBuildStyle;
+                     buildSettings = {
+                            COPY_PHASE_STRIP = NO;
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+              5224EA2AC72B42CAA7D1B776 /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = 04C74F2F413E491A90F388F5 /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = A877E0DDD4324F5D82496398;
+                     remoteInfo = ZERO_CHECK;
+              };
+              6DF460235DEC45A4A214DC2D /* PBXContainerItemProxy */ = {
+                     isa = PBXContainerItemProxy;
+                     containerPortal = 04C74F2F413E491A90F388F5 /* Project object */;
+                     proxyType = 1;
+                     remoteGlobalIDString = 3F14D25F77E84D3EAD81606C;
+                     remoteInfo = glfw;
+              };
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+83CC518A2671492BAB0577A8 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+6AF2E4B7ACF945CDAB199B1D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+A83ECACC1F4A46108AD651FA /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3.h"; path = "include/GLFW/glfw3.h"; sourceTree = SOURCE_ROOT; };
+2A9B3204A0864A7A801ECE5D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3native.h"; path = "include/GLFW/glfw3native.h"; sourceTree = SOURCE_ROOT; };
+CB5B389613384BF6AFA0CD8C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "src/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+1444EFD8C1464958B0C07F03 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_init.m"; path = "src/cocoa_init.m"; sourceTree = SOURCE_ROOT; };
+21E25CF220E64B5692BEB068 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_monitor.m"; path = "src/cocoa_monitor.m"; sourceTree = SOURCE_ROOT; };
+A329A3FF2C22443EBB580271 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "cocoa_platform.h"; path = "src/cocoa_platform.h"; sourceTree = SOURCE_ROOT; };
+FACF45F2DF8D43DF97125C41 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_window.m"; path = "src/cocoa_window.m"; sourceTree = SOURCE_ROOT; };
+044B1DCD96F743AB853B403B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/context.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "context.c"; path = "src/context.c"; sourceTree = SOURCE_ROOT; };
+AE78D53C571B4D71BFAF1FF2 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/init.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "init.c"; path = "src/init.c"; sourceTree = SOURCE_ROOT; };
+051E11CC8DB34961972888ED /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/input.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "input.c"; path = "src/input.c"; sourceTree = SOURCE_ROOT; };
+C1D5B85C8D4E4915BB627E89 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/internal.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "internal.h"; path = "src/internal.h"; sourceTree = SOURCE_ROOT; };
+960FF8863981434C9E7403E4 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "iokit_joystick.h"; path = "src/iokit_joystick.h"; sourceTree = SOURCE_ROOT; };
+3E7C6F388C9B4F47AF82D8CE /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "iokit_joystick.m"; path = "src/iokit_joystick.m"; sourceTree = SOURCE_ROOT; };
+7942C5E2A5174EAE9180E83D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/mach_time.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "mach_time.c"; path = "src/mach_time.c"; sourceTree = SOURCE_ROOT; };
+DA60B0B359C845CD9AEF3D82 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/monitor.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "monitor.c"; path = "src/monitor.c"; sourceTree = SOURCE_ROOT; };
+49162D200C6F4899A1497272 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "nsgl_context.h"; path = "src/nsgl_context.h"; sourceTree = SOURCE_ROOT; };
+B6B462F0EE45428E94FC0A76 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "nsgl_context.m"; path = "src/nsgl_context.m"; sourceTree = SOURCE_ROOT; };
+C0173A3330084D0FA3DA3FA5 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "posix_tls.c"; path = "src/posix_tls.c"; sourceTree = SOURCE_ROOT; };
+923E1FFD5A7248EFA72BABDD /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "posix_tls.h"; path = "src/posix_tls.h"; sourceTree = SOURCE_ROOT; };
+AEFFD12D7E834253A79C78BB /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/window.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "window.c"; path = "src/window.c"; sourceTree = SOURCE_ROOT; };
+8B2F7DA8914847DCB9DB3C31 /* /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src/glfw_config.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw_config.h"; path = "../../mac-build/dependencies/glfw/src/glfw_config.h"; sourceTree = SOURCE_ROOT; };
+68E1C182DA1F4C08A451AA7A /* glfw */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "libglfw3.a"; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+              6A32EBD872944C0DBC41A84B  = {
+                     isa = PBXGroup;
+                     children = (
+                            178B28BB18BD43F489C098D4 /* Sources */,
+                            2DDA79FB7B534C87AB876CAE /* Resources */,
+                            A5F398F2521343C79AADA747 /* Products */,
+                     );
+                     sourceTree = "<group>";
+              };
+              178B28BB18BD43F489C098D4 /* Sources */ = {
+                     isa = PBXGroup;
+                     children = (
+                            3D0D7C885886446284263FBA /* ALL_BUILD */,
+                            3E717797919C4D84B2590C0F /* ZERO_CHECK */,
+                            230D6A95406E48F491515CEA /* GLFW3 */,
+                     );
+                     name = Sources;
+                     sourceTree = "<group>";
+              };
+              2DDA79FB7B534C87AB876CAE /* Resources */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = Resources;
+                     sourceTree = "<group>";
+              };
+              3D0D7C885886446284263FBA /* ALL_BUILD */ = {
+                     isa = PBXGroup;
+                     children = (
+                            5E078E132BC74179BD8E0FC4 /* CMake Rules */,
+                            83CC518A2671492BAB0577A8 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/CMakeLists.txt */,
+                     );
+                     name = ALL_BUILD;
+                     sourceTree = "<group>";
+              };
+              5E078E132BC74179BD8E0FC4 /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              3E717797919C4D84B2590C0F /* ZERO_CHECK */ = {
+                     isa = PBXGroup;
+                     children = (
+                            D8924834708F417FA887FFDF /* CMake Rules */,
+                            6AF2E4B7ACF945CDAB199B1D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/CMakeLists.txt */,
+                     );
+                     name = ZERO_CHECK;
+                     sourceTree = "<group>";
+              };
+              D8924834708F417FA887FFDF /* CMake Rules */ = {
+                     isa = PBXGroup;
+                     children = (
+                     );
+                     name = "CMake Rules";
+                     sourceTree = "<group>";
+              };
+              230D6A95406E48F491515CEA /* GLFW3 */ = {
+                     isa = PBXGroup;
+                     children = (
+                            F7A99A56AB04478D8422DCD9 /* glfw */,
+                     );
+                     name = GLFW3;
+                     sourceTree = "<group>";
+              };
+              F7A99A56AB04478D8422DCD9 /* glfw */ = {
+                     isa = PBXGroup;
+                     children = (
+                            48942DDD7A394335A98438AE /* Source Files */,
+                            3DF6B717A1BB440A8A42B705 /* Header Files */,
+                            CB5B389613384BF6AFA0CD8C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/CMakeLists.txt */,
+                     );
+                     name = glfw;
+                     sourceTree = "<group>";
+              };
+              48942DDD7A394335A98438AE /* Source Files */ = {
+                     isa = PBXGroup;
+                     children = (
+                            1444EFD8C1464958B0C07F03 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_init.m */,
+                            21E25CF220E64B5692BEB068 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_monitor.m */,
+                            FACF45F2DF8D43DF97125C41 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_window.m */,
+                            044B1DCD96F743AB853B403B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/context.c */,
+                            AE78D53C571B4D71BFAF1FF2 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/init.c */,
+                            051E11CC8DB34961972888ED /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/input.c */,
+                            3E7C6F388C9B4F47AF82D8CE /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.m */,
+                            7942C5E2A5174EAE9180E83D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/mach_time.c */,
+                            DA60B0B359C845CD9AEF3D82 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/monitor.c */,
+                            B6B462F0EE45428E94FC0A76 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.m */,
+                            C0173A3330084D0FA3DA3FA5 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.c */,
+                            AEFFD12D7E834253A79C78BB /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/window.c */,
+                     );
+                     name = "Source Files";
+                     sourceTree = "<group>";
+              };
+              3DF6B717A1BB440A8A42B705 /* Header Files */ = {
+                     isa = PBXGroup;
+                     children = (
+                            A83ECACC1F4A46108AD651FA /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3.h */,
+                            2A9B3204A0864A7A801ECE5D /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/include/GLFW/glfw3native.h */,
+                            A329A3FF2C22443EBB580271 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_platform.h */,
+                            C1D5B85C8D4E4915BB627E89 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/internal.h */,
+                            960FF8863981434C9E7403E4 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.h */,
+                            49162D200C6F4899A1497272 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.h */,
+                            923E1FFD5A7248EFA72BABDD /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.h */,
+                            8B2F7DA8914847DCB9DB3C31 /* /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src/glfw_config.h */,
+                     );
+                     name = "Header Files";
+                     sourceTree = "<group>";
+              };
+              A5F398F2521343C79AADA747 /* Products */ = {
+                     isa = PBXGroup;
+                     children = (
+                            68E1C182DA1F4C08A451AA7A /* glfw */,
+                     );
+                     name = Products;
+                     sourceTree = "<group>";
+              };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+              3F14D25F77E84D3EAD81606C /* glfw */ = {
+                     isa = PBXNativeTarget;
+                     buildConfigurationList = 77F671930E904966B7EC99D2 /* Build configuration list for PBXNativeTarget "glfw" */;
+                     buildPhases = (
+                            EFE1C85764164C6A97C7B4D1 /* Sources */,
+                     );
+                     buildRules = (
+                     );
+                     dependencies = (
+                     );
+                     name = glfw;
+                     productName = glfw;
+                     productReference = 68E1C182DA1F4C08A451AA7A /* glfw */;
+                     productType = "com.apple.product-type.library.static";
+              };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+              04C74F2F413E491A90F388F5 /* Project object */ = {
+                     isa = PBXProject;
+                     attributes = {
+                            BuildIndependentTargetsInParallel = YES;
+                     };
+                     buildConfigurationList = 1037ACBC357948D2BB5425C5 /* Build configuration list for PBXProject  "GLFW" */;
+                     buildSettings = {
+                     };
+                     buildStyles = (
+                            E840726DA8684134A26BCE4A /* Debug */,
+                            7C9B96B7C87E498D8B50524B /* Release */,
+                            AC6E33EE8A244A3F866FAB88 /* MinSizeRel */,
+                            A79B9C6863724B648B466944 /* RelWithDebInfo */,
+                     );
+                     compatibilityVersion = "Xcode 3.2";
+                     hasScannedForEncodings = 0;
+                     mainGroup = 6A32EBD872944C0DBC41A84B;
+                     projectDirPath = "../../../dependencies/glfw";
+                     projectRoot = "";
+                     targets = (
+                            27C104059DB04215AAC3C46F /* ALL_BUILD */,
+                            A877E0DDD4324F5D82496398 /* ZERO_CHECK */,
+                            3F14D25F77E84D3EAD81606C /* glfw */,
+                     );
+              };
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+              54E76F30364644D087A5C824 /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              3EBC84851576446F92C584CA /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw -f /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+              8B38B35FBC2345C0836CFE51 /*  */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     inputPaths = (
+                     );
+                     outputPaths = (
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "# shell script goes here
+exit 0";
+                     showEnvVarsInLog = 0;
+              };
+              B518DFBD83A9494EB40ED74B /* CMake Rules */ = {
+                     isa = PBXShellScriptBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                     );
+                     name = "CMake Rules";
+                     runOnlyForDeploymentPostprocessing = 0;
+                     shellPath = /bin/sh;
+                     shellScript = "make -C /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw -f /Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+                     showEnvVarsInLog = 0;
+              };
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+              EFE1C85764164C6A97C7B4D1 /* Sources */ = {
+                     isa = PBXSourcesBuildPhase;
+                     buildActionMask = 2147483647;
+                     files = (
+                            4E1E52B723AC493EAF90E95C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_init.m */,
+                            BD88C1B392C24521A22DCF42 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_monitor.m */,
+                            E088376D17DF4EFC830C8661 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/cocoa_window.m */,
+                            C494E3F87E724AEF85A6EB9C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/context.c */,
+                            B54FB1D43A9048B8B9F54462 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/init.c */,
+                            B7A484C8C8AC45F7B7E60B86 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/input.c */,
+                            1CEE3753C9FC422CBF97864C /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/iokit_joystick.m */,
+                            8F7F73FF211543B78DE80E7A /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/mach_time.c */,
+                            7B97FB0090194356855DDDAF /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/monitor.c */,
+                            2AF0E90B0C40472F98F4C9E7 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/nsgl_context.m */,
+                            A1B672E3BA5948EAAB16EA9B /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/posix_tls.c */,
+                            74CCBA62CC75410287943F56 /* /Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src/window.c */,
+                     );
+                     runOnlyForDeploymentPostprocessing = 0;
+              };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+              9BF8D73EEBEA4780B61C1113 /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = A877E0DDD4324F5D82496398 /* ZERO_CHECK */;
+                     targetProxy = 5224EA2AC72B42CAA7D1B776 /* PBXContainerItemProxy */;
+              };
+              A9E9BC4CB51947FBA19FB27C /* PBXTargetDependency */ = {
+                     isa = PBXTargetDependency;
+                     target = 3F14D25F77E84D3EAD81606C /* glfw */;
+                     targetProxy = 6DF460235DEC45A4A214DC2D /* PBXContainerItemProxy */;
+              };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+              4880B668C86D47F5BC968268 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/build";
+                     };
+                     name = Debug;
+              };
+              FB2A17A8D3234708883F0E71 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/build";
+                     };
+                     name = Release;
+              };
+              FE571CDCB84D4D919C92CCC2 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/build";
+                     };
+                     name = MinSizeRel;
+              };
+              7F16EB8B169D4F5FB423330A /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+                            ONLY_ACTIVE_ARCH = YES;
+                            SDKROOT = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/build";
+                     };
+                     name = RelWithDebInfo;
+              };
+              C54B1E6B731C4ADE8F6FD03A /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              2B077B5A9C324220958CE298 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              406F8A90AF5E4DB8AA346378 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              0883144AD2B84A5C9A66E2AB /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ALL_BUILD;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              363DE1BC5D6B42B88C1C55A7 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              97A73CD9ACE34D39B5781503 /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              7F644E0E334448C0B71B191B /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              9EA9DEDE51024C4A96873740 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            INSTALL_PATH = "";
+                            OTHER_CFLAGS = "   -Wall";
+                            OTHER_LDFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = ZERO_CHECK;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+              C01CA5630F1141A5B55ECC72 /* Debug */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = lib;
+                            EXECUTABLE_SUFFIX = ".a";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 0;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", _GLFW_USE_CONFIG_H, );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            HEADER_SEARCH_PATHS = ("/Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src", "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src", );
+                            INSTALL_PATH = "";
+                            LIBRARY_STYLE = STATIC;
+                            OTHER_CFLAGS = "   -fPIC   -Wall";
+                            OTHER_LIBTOOLFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = glfw3;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Debug;
+              };
+              0F7AD5AEA9F944E5A9C1D51E /* Release */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = lib;
+                            EXECUTABLE_SUFFIX = ".a";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 3;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", _GLFW_USE_CONFIG_H, );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            HEADER_SEARCH_PATHS = ("/Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src", "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src", );
+                            INSTALL_PATH = "";
+                            LIBRARY_STYLE = STATIC;
+                            OTHER_CFLAGS = "    -DNDEBUG -fPIC   -Wall";
+                            OTHER_LIBTOOLFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = glfw3;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = Release;
+              };
+              0A20B216A45D4A77B92C69A0 /* MinSizeRel */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = lib;
+                            EXECUTABLE_SUFFIX = ".a";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = s;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", _GLFW_USE_CONFIG_H, );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            HEADER_SEARCH_PATHS = ("/Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src", "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src", );
+                            INSTALL_PATH = "";
+                            LIBRARY_STYLE = STATIC;
+                            OTHER_CFLAGS = "    -DNDEBUG -fPIC   -Wall";
+                            OTHER_LIBTOOLFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = glfw3;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = MinSizeRel;
+              };
+              4577CA6D2C9545DAA8FAE0C1 /* RelWithDebInfo */ = {
+                     isa = XCBuildConfiguration;
+                     buildSettings = {
+                            COMBINE_HIDPI_IMAGES = YES;
+                            EXECUTABLE_PREFIX = lib;
+                            EXECUTABLE_SUFFIX = ".a";
+                            GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+                            GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+                            GCC_OPTIMIZATION_LEVEL = 2;
+                            GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'", _GLFW_USE_CONFIG_H, );
+                            GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+                            HEADER_SEARCH_PATHS = ("/Users/elliotfiske/slumber/allen-dev/Cmake/dependencies/glfw/src", "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src", );
+                            INSTALL_PATH = "";
+                            LIBRARY_STYLE = STATIC;
+                            OTHER_CFLAGS = "       -DNDEBUG -fPIC   -Wall";
+                            OTHER_LIBTOOLFLAGS = " ";
+                            OTHER_REZFLAGS = "";
+                            PRODUCT_NAME = glfw3;
+                            SECTORDER_FLAGS = "";
+                            SYMROOT = "/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src";
+                            USE_HEADERMAP = NO;
+                            WARNING_CFLAGS = ("-Wmost", "-Wno-four-char-constants", "-Wno-unknown-pragmas", );
+                     };
+                     name = RelWithDebInfo;
+              };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+              1037ACBC357948D2BB5425C5 /* Build configuration list for PBXProject  "GLFW" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            4880B668C86D47F5BC968268 /* Debug */,
+                            FB2A17A8D3234708883F0E71 /* Release */,
+                            FE571CDCB84D4D919C92CCC2 /* MinSizeRel */,
+                            7F16EB8B169D4F5FB423330A /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              8825CD98C6314F3784E3F055 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            C54B1E6B731C4ADE8F6FD03A /* Debug */,
+                            2B077B5A9C324220958CE298 /* Release */,
+                            406F8A90AF5E4DB8AA346378 /* MinSizeRel */,
+                            0883144AD2B84A5C9A66E2AB /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              53870931DF1B421195C75F86 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            363DE1BC5D6B42B88C1C55A7 /* Debug */,
+                            97A73CD9ACE34D39B5781503 /* Release */,
+                            7F644E0E334448C0B71B191B /* MinSizeRel */,
+                            9EA9DEDE51024C4A96873740 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+              77F671930E904966B7EC99D2 /* Build configuration list for PBXNativeTarget "glfw" */ = {
+                     isa = XCConfigurationList;
+                     buildConfigurations = (
+                            C01CA5630F1141A5B55ECC72 /* Debug */,
+                            0F7AD5AEA9F944E5A9C1D51E /* Release */,
+                            0A20B216A45D4A77B92C69A0 /* MinSizeRel */,
+                            4577CA6D2C9545DAA8FAE0C1 /* RelWithDebInfo */,
+                     );
+                     defaultConfigurationIsVisible = 0;
+                     defaultConfigurationName = Debug;
+              };
+/* End XCConfigurationList section */
+       };
+       rootObject = 04C74F2F413E491A90F388F5;
+}

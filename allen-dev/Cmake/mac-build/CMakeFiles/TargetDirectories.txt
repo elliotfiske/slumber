@@ -1,0 +1,4 @@
+/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/CMakeFiles/ALL_BUILD.dir
+/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/CMakeFiles/Lab1.dir
+/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/CMakeFiles/ZERO_CHECK.dir
+/Users/elliotfiske/slumber/allen-dev/Cmake/mac-build/dependencies/glfw/src/CMakeFiles/glfw.dir

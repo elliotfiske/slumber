@@ -7,6 +7,7 @@ public:
 	Actor(vec3 center_, vec3 direction_, float velocityScale, float radius);
 	vec3 center;
 	vec3 direction;
+    vec3 scale;
 	float velocityScalar;
 	float boundSphereRad;
 	

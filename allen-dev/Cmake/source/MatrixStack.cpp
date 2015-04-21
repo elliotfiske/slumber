@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <vector>
 
-
+/*
 MatrixStack::MatrixStack()
 {
 	mstack.push(glm::mat4::Identity());
@@ -159,3 +159,4 @@ void MatrixStack::printStack() const
 		tempStack.pop();
 	}
 }
+*/

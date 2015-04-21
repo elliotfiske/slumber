@@ -30,6 +30,19 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
    }
 }
 
+void handleScroll(GLFWwindow *window, double scrollX, double scrollY) {
+    yaw += (scrollX) / 100.0;
+    pitch += (scrollY) / 100.0;
+    
+    if (pitch < glm::radians(-80.0)) {
+        pitch = glm::radians(-80.0);
+    }
+    
+    if (pitch > glm::radians(80.0)) {
+        pitch = glm::radians(80.0);
+    }
+}
+
 void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
       int mods) {
    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
@@ -82,7 +95,9 @@ void setupCallbacks(GLFWwindow *window) {
    glfwSetCursorPos(window, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
    glfwSetCursorPosCallback(window, handleMouse);
 
-   glfwSetKeyCallback(window, handleKeypress);
+    glfwSetKeyCallback(window, handleKeypress);
+    glfwSetScrollCallback(window, handleScroll);
+
 
    pitch = 0;
    yaw = 0;

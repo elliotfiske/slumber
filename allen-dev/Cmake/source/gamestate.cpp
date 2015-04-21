@@ -13,6 +13,7 @@ GameState::GameState(GLFWwindow *window_) {
    groundPlane->norID = assets.nor_groundID;
    groundPlane->indID = assets.ind_groundID;
    groundPlane->numVerts = assets.numVerts_ground;
+   groundPlane->scale = vec3(2.0, 2.0, 2.0);
 
    window = window_;
 
@@ -116,22 +117,23 @@ void GameState::update() {
          * getForwardVelocity();
    glm::vec3 right = glm::cross(camera->direction, glm::vec3(0.0, 1.0, 0.0));
    camera->center += right * (float) elapsedTime * getStrafeVelocity();
-   if(camera->center.y <= 0){
-      camera->center.y = 0;
-   }
-   if(camera->center.x >= XMAX){
-      camera->center.x = XMAX;
-   }
-   if(camera->center.x <= -XMAX){
-      camera->center.x = -XMAX;
-   }
-   if(camera->center.z >= ZMAX){
-      camera->center.z = ZMAX;
-   }
-   if(camera->center.z <= -ZMAX){
-      camera->center.z = -ZMAX;
-   }
-   printf("Current num of spheres is %d and Current num hit is %d\n", numCurSpheres, numSpheresHit);
+//   if(camera->center.y <= 0){
+//      camera->center.y = 0;
+//   }
+//   if(camera->center.x >= XMAX){
+//      camera->center.x = XMAX;
+//   }
+//   if(camera->center.x <= -XMAX){
+//      camera->center.x = -XMAX;
+//   }
+//   if(camera->center.z >= ZMAX){
+//      camera->center.z = ZMAX;
+//   }
+//   if(camera->center.z <= -ZMAX){
+//      camera->center.z = -ZMAX;
+//   }
+    // lowest y: -4.619024
+    printf("CAmear position: %f, %f, %f\n", camera->center.x, camera->center.y, camera->center.z);
 }
 
 void GameState::setView() {
