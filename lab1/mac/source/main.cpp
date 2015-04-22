@@ -1,5 +1,23 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
+#include <thread>
+
+using namespace std;
+
+GameState *gameState;
+
+void checkServer() {
+   int currPossession = 0;
+   while (1) {
+      int newPossession = system("python client.py") / 256;
+      printf("Possessing clock #%d\n", newPossession);
+
+      if (currPossession != newPossession) {
+         currPossession = newPossession;
+         gameState->bed->ambientColor.x = (float) currPossession / 10.0;
+      }
+   }
+}
 
 int main(int argc, const char* argv[]) {
    GLFWwindow* window;
@@ -13,10 +31,13 @@ int main(int argc, const char* argv[]) {
       printf("Window was null\n");
       return 1;
    }
+   thread t(checkServer);
 
-	GameState gameState = *new GameState(window);
+	gameState = new GameState(window);
 	while(window) {
-		gameState.update();
-		gameState.draw();
+		gameState->update();
+		gameState->draw();
 	}
+   
+   t.join();
 }

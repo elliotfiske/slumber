@@ -9,9 +9,15 @@ class Assets {
       Assets();
       GLuint pos_sphereID, nor_sphereID, ind_sphereID;
       int numVerts_sphere;
-      GLuint pos_groundID, nor_groundID, ind_groundID;
-      int numVerts_ground;
-
+      GLuint pos_roomID, nor_roomID, ind_roomID;
+      int numVerts_room;
+   
+      GLuint pos_bedID, nor_bedID, ind_bedID;
+      int numVerts_bed;
+      
+      GLuint pos_clockID, nor_clockID, ind_clockID;
+      int numVerts_clock;
+   
       bool installShaders(const std::string &vShaderName, const std::string &fShaderName);
       GLuint h_aPosition;
       GLuint h_aNormal;

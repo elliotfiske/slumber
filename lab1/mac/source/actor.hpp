@@ -9,6 +9,12 @@ public:
 	vec3 direction;
 	float velocityScalar;
 	float boundSphereRad;
+   
+   /** Material properties */
+   vec3 diffuseColor;
+   vec3 ambientColor;
+   vec3 specularColor;
+   float shininess;
 	
 	void step(double dt);
 	bool detectIntersect(Actor target, bool oc);
@@ -17,11 +23,9 @@ public:
 	GLuint posID, norID, indID;
 	int numVerts;
 
-	void die();
-   int timeToDeath;
-
 private:
    void setModel(Assets assets);
+   void setMaterial(Assets assets);
    int collisionCooldown;
 };
 

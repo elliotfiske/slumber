@@ -99,7 +99,7 @@ void setupCallbacks(GLFWwindow *window) {
    glfwSetKeyCallback(window, handleKeypress);
 
    pitch = 0;
-   yaw = 0;
+   yaw = M_PI;
    forwardVel = 0;
    strafeVel = 0;
    forwardAccel = 0;

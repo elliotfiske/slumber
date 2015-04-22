@@ -764,7 +764,10 @@
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lthread",
+					"-lcurl",
+				);
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk;
 				SYMROOT = /Users/elliotfiske/slumber/lab1/mac/built/build;
 			};
@@ -890,7 +893,10 @@
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lthread",
+					"-lcurl",
+				);
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk;
 				SYMROOT = /Users/elliotfiske/slumber/lab1/mac/built/build;
 			};
@@ -977,7 +983,10 @@
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lthread",
+					"-lcurl",
+				);
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk;
 				SYMROOT = /Users/elliotfiske/slumber/lab1/mac/built/build;
 			};
@@ -1074,7 +1083,10 @@
 			buildSettings = {
 				CLANG_CXX_LIBRARY = "compiler-default";
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-lcurl";
+				OTHER_LDFLAGS = (
+					"-lthread",
+					"-lcurl",
+				);
 				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk;
 				SYMROOT = /Users/elliotfiske/slumber/lab1/mac/built/build;
 			};

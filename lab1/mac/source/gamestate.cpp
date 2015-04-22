@@ -5,18 +5,48 @@
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
 
-GameState::GameState(GLFWwindow *window_) {
-   camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
+void GameState::initAssets() {
+   groundPlane = new Actor(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
+   groundPlane->posID = assets.pos_roomID;
+   groundPlane->norID = assets.nor_roomID;
+   groundPlane->indID = assets.ind_roomID;
+   groundPlane->numVerts = assets.numVerts_room;
+   
+   groundPlane->diffuseColor = vec3(0.1, 0.1, 0.3);
+   groundPlane->ambientColor = vec3(0.05, 0.05, 0.3);
+   groundPlane->specularColor = vec3(0.1, 0.1, 0.1);
+   groundPlane->shininess = 0;
+   
+   bed = new Actor(vec3(0.0, -1.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
+   bed->posID = assets.pos_bedID;
+   bed->norID = assets.nor_bedID;
+   bed->indID = assets.ind_bedID;
+   bed->numVerts = assets.numVerts_bed;
+   
+   bed->diffuseColor = vec3(0.1, 0.2, 0.3);
+   bed->ambientColor = vec3(0.15, 0.06, 0.07);
+   bed->specularColor = vec3(0.1, 0.1, 0.1);
+   bed->shininess = 20;
+   
+   clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
+   clock->posID = assets.pos_clockID;
+   clock->norID = assets.nor_clockID;
+   clock->indID = assets.ind_clockID;
+   clock->numVerts = assets.numVerts_clock;
+   
+   clock->diffuseColor = vec3(0.4, 0.21, 0.3);
+   clock->ambientColor = vec3(0.15, 0.06, 0.17);
+   clock->specularColor = vec3(0.1, 0.1, 0.1);
+   clock->shininess = 10;
+}
 
-   groundPlane = new Actor(vec3(0.0, -1.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
-   groundPlane->posID = assets.pos_groundID;
-   groundPlane->norID = assets.nor_groundID;
-   groundPlane->indID = assets.ind_groundID;
-   groundPlane->numVerts = assets.numVerts_ground;
+GameState::GameState(GLFWwindow *window_) {
+   camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
 
    window = window_;
 
    setupCallbacks(window);
+   initAssets();
 
    prevTime = glfwGetTime();
    timeToNextSphere = 0;
@@ -61,7 +91,6 @@ void GameState::checkCollisions() {
 
       if (camera->detectIntersect(actors[i], true)) {
          actors[i].velocityScalar = 0;
-         actors[i].die();
       }
 
       if (actors[i].center.x < -XMAX) {
@@ -83,12 +112,6 @@ void GameState::checkCollisions() {
          actors[i].center.z = ZMAX;
          actors[i].direction.z = -actors[i].direction.z;
       }
-
-      if (actors[i].timeToDeath == 0) {
-         numCurSpheres--;
-         numSpheresHit++;
-         actors.erase(actors.begin() + i);
-      }
    }
 }
 
@@ -106,37 +129,33 @@ void GameState::update() {
     
    double fps = 1/elapsedTime;
    fps = ceil(fps);
-   printf("FPS: %.0f -- ", fps);
 
-   if (curTime > timeToNextSphere) {
-      timeToNextSphere = curTime + 0.5;
-
-      spawnSphere();
-   }
-
-   checkCollisions();
+//   checkCollisions();
 
    camera->center += camera->direction * (float) elapsedTime
          * getForwardVelocity();
    glm::vec3 right = glm::cross(camera->direction, glm::vec3(0.0, 1.0, 0.0));
    camera->center += right * (float) elapsedTime * getStrafeVelocity();
-   if(camera->center.y <= 0){
-      camera->center.y = 0;
-   }
-   if(camera->center.x >= XMAX){
-      camera->center.x = XMAX;
-   }
-   if(camera->center.x <= -XMAX){
-      camera->center.x = -XMAX;
-   }
-   if(camera->center.z >= ZMAX){
-      camera->center.z = ZMAX;
-   }
-   if(camera->center.z <= -ZMAX){
-      camera->center.z = -ZMAX;
-   }
-   printf("# SPHERES: %d and SCORE: %d\n", numCurSpheres, numSpheresHit);
-   printf("CURR COMMAND: %d\n", system("python client.py"));
+    if(camera->center.y <= 0.0){
+        camera->center.y = 0.0;
+    }
+    if(camera->center.y >= 10.4){
+        camera->center.y = 10.4;
+    }
+    
+    if(camera->center.x >= 13.5){
+        camera->center.x = 13.5;
+    }
+    if(camera->center.x <= -13.5){
+        camera->center.x = -13.5;
+    }
+    if(camera->center.z >= 2.5){
+        camera->center.z = 2.5;
+    }
+    if(camera->center.z <= -46){
+        camera->center.z = -46;
+    }
+//   printf("CURR COMMAND: %d\n", system("python client.py"));
 }
 
 void GameState::setView() {
@@ -158,24 +177,11 @@ void GameState::draw() {
    glUseProgram(assets.ShadeProg);
    setView();
    setPerspectiveMat();
-   for (int i = 0; i < actors.size(); i++) {
-      if (actors[i].timeToDeath > 0) {
-         glUniform3f(assets.h_uMatAmb, 0.1, 0.0, 0.0);
-         glUniform3f(assets.h_uMatDif, 0.1, 0.0, 0.0);
-      } else {
-         glUniform3f(assets.h_uMatAmb, .988, .776, .255);
-         glUniform3f(assets.h_uMatDif, .988, .776, .255);
-         glUniform3f(assets.h_uMatSpec, 0.14, 0.14, 0.4);
-         glUniform1f(assets.h_uMatShine, 120.0);
-      }
-      actors[i].draw(assets);
-   }
-
-   glUniform3f(assets.h_uMatAmb, .584, .102, 0);
-   glUniform3f(assets.h_uMatDif, .012, .271, .369);
-   glUniform3f(assets.h_uMatSpec, 0.02, 0.02, 0.04);
-   glUniform1f(assets.h_uMatShine, 120.0);
+   
    groundPlane->draw(assets);
+   bed->draw(assets);
+   clock->draw(assets);
+   
    glDisableVertexAttribArray(assets.h_aPosition);
    glDisableVertexAttribArray(assets.h_aNormal);
 
