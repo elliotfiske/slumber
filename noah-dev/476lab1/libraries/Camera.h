@@ -26,6 +26,7 @@ public:
 	void applyViewMatrix(MatrixStack *MV) const;
 	float getYaw() const { return yawRotation; }
 	float getPitch() const { return pitchRotation; }
+	float getAspect() const { return aspect; }
 	Eigen::Vector3f getPosition() const { return position; }
 	
 private:

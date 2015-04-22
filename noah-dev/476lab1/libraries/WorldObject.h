@@ -15,6 +15,7 @@
 #include "../libraries/Shape.h"
 #include "../libraries/Program.h"
 #include "../libraries/CollisionBox.h"
+#include "../libraries/Light.h"
 
 class WorldObject {
 public:
@@ -23,7 +24,7 @@ public:
 
 	void init(void);
 	void checkBounds(CollisionBox arena);
-	void draw(MatrixStack &MV, Program *prog) const;
+	void draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1) const;
 	void update(float dt, std::vector<WorldObject> &objects);
 	void buildTexMatrix(float, float);
 	Eigen::Matrix3f &getTexMatrix() { return texMat; }

@@ -25,14 +25,15 @@ void Scene::spawnObject() {
 
 	CollisionBox *box = objects.at(0).getBox();
 	Eigen::Vector3f s;
-	s(0) = randomFloat(10.0f, 40.0f);
-	s(1) = randomFloat(10.0f, 40.0f);
-	s(2) = randomFloat(10.0f, 40.0f);
+	float scale = randomFloat(0.5f, 2.0f);
+	s(0) = scale;
+	s(1) = scale;
+	s(2) = scale;
 
 	Eigen::Vector3f x;
-	x(0) = randomFloat(box->getMinX(), box->getMaxX());
-	x(1) = s(1) / 2.0f;
-	x(2) = randomFloat(box->getMinZ(), box->getMaxZ());
+	x(0) = randomFloat(-10.0f, 10.0f);
+	x(1) = 1.0f;
+	x(2) = randomFloat(-10.0f, 10.0f);
 
 	Eigen::Vector3f v;
 	v(0) = rand() < 0.5 ? randomFloat(-100.0f, 50.0f) : randomFloat(50.0f, 100.0f);
@@ -44,9 +45,9 @@ void Scene::spawnObject() {
 	objects.push_back(newObj);
 }
 
-void Scene::draw(MatrixStack &MV, Program *prog) {
+void Scene::draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1) {
 	for (int i = 0; i < (int)objects.size(); i++) {
-		objects.at(i).draw(MV, prog);
+		objects.at(i).draw(MV, prog, light, isShadowPass1);
 	}
 }
 
@@ -59,14 +60,14 @@ void Scene::update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::
 
 	player.update(keys, mouse, center, dt, objects);
 
-	for (int i = 1; i < (int)objects.size(); i++) {
+	/*for (int i = 1; i < (int)objects.size(); i++) {
 		std::vector<WorldObject> objsCopy;
 		for (int j = 0; j < (int)objects.size(); j++) {
 			if (i != j)
 				objsCopy.push_back(objects.at(j));
 		}
 		objects.at(i).update(dt, objsCopy);
-	}
+	}*/
 }
 
 void Scene::init() {
@@ -107,6 +108,13 @@ void Scene::load() {
 	WorldObject newObj(&shapes.at(0), S, T, Eigen::Vector3f(0.0f, 0.0f, 0.0f));
 
 	objects.push_back(newObj);
+
+	T << 0.0f, 1.0f, 0.0f;
+	S << 1.0f, 1.0f, 1.0f;
+
+	WorldObject newObj2(&shapes.at(0), S, T, Eigen::Vector3f(0.0f, 0.0f, 0.0f));
+
+	objects.push_back(newObj2);
 }
 
 int Scene::getNumUncollectedObjects() {

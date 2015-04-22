@@ -6,6 +6,7 @@
 #include <Eigen/Dense>
 #include "Shape.h"
 #include "../libraries/Player.h"
+#include "../libraries/Light.h"
 
 class Scene {
 public:
@@ -13,7 +14,7 @@ public:
 	virtual ~Scene();
 
 	void load();
-	void draw(MatrixStack &MV, Program *prog);
+	void draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1);
 	void update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::Vector2f &center, float dt);
 	void init();
 	Player getPlayer() { return player; }

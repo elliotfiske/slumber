@@ -37,18 +37,36 @@ WorldObject::~WorldObject()
 	
 }
 
-void WorldObject::draw(MatrixStack &MV, Program *prog) const {
+void WorldObject::draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1) const {
+	MatrixStack lightP, lightMV; // light matrices
+	lightP.pushMatrix();
+	light.applyProjectionMatrix(&lightP);
+	lightMV.pushMatrix();
+	light.applyViewMatrix(&lightMV);
+	lightMV.translate(position);
+	lightMV.rotate(yaw - (float)M_PI/2, Eigen::Vector3f(0.0f, 1.0f, 0.0f));
+	lightMV.scale(scale);
+
+	Eigen::Matrix4f lightMVP = lightP.topMatrix() * lightMV.topMatrix();
+
+	if (isShadowPass1) {
+		glUniformMatrix4fv(prog->getUniform("MVP"), 1, GL_FALSE, lightMVP.data());
+		shape->draw(prog->getAttribute("vertPos"), -1, -1);
+		return;
+	}
+
 	MV.pushMatrix();
 	MV.translate(position);
 	MV.rotate(yaw - (float)M_PI/2, Eigen::Vector3f(0.0f, 1.0f, 0.0f));
 	MV.scale(scale);
-
+	glUniformMatrix4fv(prog->getUniform("lightMVP"), 1, GL_FALSE, lightMVP.data());
 	glUniform3fv(prog->getUniform("kd"),  1, diffuse.data());
 	glUniformMatrix4fv(prog->getUniform("MV"), 1, GL_FALSE, MV.topMatrix().data());
-	glUniformMatrix3fv(prog->getUniform("T1"), 1, GL_TRUE, texMat.data());
+	glUniformMatrix3fv(prog->getUniform("T1"), 1, GL_TRUE, texMat.data());	
 	shape->draw(prog->getAttribute("vertPos"), prog->getAttribute("vertNor"), prog->getAttribute("vertTex"));
-
 	MV.popMatrix();
+	lightMV.popMatrix();
+	lightP.popMatrix();
 }
 
 void WorldObject::update(float dt, std::vector<WorldObject> &objects) {
