@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
             endingLineNumber = "183"
-            landmarkName = "GameState::draw()"
+            landmarkName = "GameState::update()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
