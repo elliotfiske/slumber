@@ -5,7 +5,12 @@
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
 
+using namespace std;
+
+int inClock = 0;
+
 void GameState::initAssets() {
+  
    groundPlane = new Actor(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
    groundPlane->posID = assets.pos_roomID;
    groundPlane->norID = assets.nor_roomID;
@@ -28,16 +33,39 @@ void GameState::initAssets() {
    bed->specularColor = vec3(0.1, 0.1, 0.1);
    bed->shininess = 20;
    
-   clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
-   clock->posID = assets.pos_clockID;
-   clock->norID = assets.nor_clockID;
-   clock->indID = assets.ind_clockID;
-   clock->numVerts = assets.numVerts_clock;
+   for(int i = 0; i < 5; i++){ 
+      clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
+      clock->posID = assets.pos_clockID;
+      clock->norID = assets.nor_clockID;
+      clock->indID = assets.ind_clockID;
+      clock->numVerts = assets.numVerts_clock;
    
-   clock->diffuseColor = vec3(0.4, 0.21, 0.3);
-   clock->ambientColor = vec3(0.15, 0.06, 0.17);
-   clock->specularColor = vec3(0.1, 0.1, 0.1);
-   clock->shininess = 10;
+      clock->diffuseColor = vec3(0.4, 0.21, 0.3);
+      clock->ambientColor = vec3(0.15, 0.06, 0.17);
+      clock->specularColor = vec3(0.1, 0.1, 0.1);
+      clock->shininess = 10;
+      
+      clocks.push_back(*clock);
+   }
+   clocks[0].center.x = 12.5;
+   clocks[0].center.y = -2.0;
+   clocks[0].center.z = 0.0;
+   
+   clocks[1].center.x = -12.5;
+   clocks[1].center.y = -2.0;
+   clocks[1].center.z = 0.0;
+   
+   clocks[2].center.x = 12.5;
+   clocks[2].center.y = -2.0;
+   clocks[2].center.z = -32.5;
+   
+   clocks[3].center.x =  -12.5;
+   clocks[3].center.y = -2.0;
+   clocks[3].center.z =  -32.5;
+   
+   clocks[4].center.x = 0;
+   clocks[4].center.y = -2.0;
+   clocks[4].center.z = -42.5;
 }
 
 GameState::GameState(GLFWwindow *window_) {
@@ -73,50 +101,60 @@ void GameState::spawnSphere() {
 }
 
 void GameState::checkCollisions() {
-   for (int i = 0; i < actors.size() - 1; i++) {
-      for (int j = i + 1; j < actors.size(); j++) {
-         if (actors[i].detectIntersect(actors[j], false)) {
-            actors[i].direction.x = -actors[i].direction.x;
-            actors[i].direction.z = -actors[i].direction.z;
-            actors[i].velocityScalar++;
+   char wget_command[500];
 
-            actors[j].direction.x = -actors[j].direction.x;
-            actors[j].direction.z = -actors[j].direction.z;
-            actors[j].velocityScalar++;
+   int hitAnyClocks = 0;
+
+   for(int i = 0; i < clocks.size(); i++){
+      if(camera->center.x > clocks[i].center.x - 2 &&
+         camera->center.x < clocks[i].center.x + 2 &&
+         camera->center.z > clocks[i].center.z - 2 &&
+         camera->center.z < clocks[i].center.z + 2){
+      
+         hitAnyClocks = 1;
+      
+         if(inClock == 0){
+            inClock = 1;
+            
+            sprintf(wget_command, "wget elliotfiske.com/slumber.py?command=%d &", i + 1);
+            
+            system(wget_command);
          }
+         clocks[i].ambientColor.y -= 0.01;
+         clocks[i].ambientColor.z -= 0.01;
+      }
+      else {
+         clocks[i].ambientColor.y += 0.01;
+         clocks[i].ambientColor.z += 0.01;  
+      }  
+      
+      if (clocks[i].ambientColor.y < 0) {
+         clocks[i].ambientColor.y = 0;
+      }
+      
+      if (clocks[i].ambientColor.y > 1) {
+         clocks[i].ambientColor.y = 1;
+      }
+      
+      if (clocks[i].ambientColor.z < 0) {
+         clocks[i].ambientColor.z = 0;
+      }
+      
+      if (clocks[i].ambientColor.z > 1) {
+         clocks[i].ambientColor.z = 1;
+      }
+   }  
+     
+   if (hitAnyClocks == 0) {
+      if(inClock == 1) {
+         inClock = 0;
+         system("wget elliotfiske.com/slumber.py?command=0 &");
       }
    }
-
-   for (int i = actors.size() - 1; i >= 0; i--) {
-
-      if (camera->detectIntersect(actors[i], true)) {
-         actors[i].velocityScalar = 0;
-      }
-
-      if (actors[i].center.x < -XMAX) {
-         actors[i].center.x = -XMAX;
-         actors[i].direction.x = -actors[i].direction.x;
-      }
-
-      if (actors[i].center.x > XMAX) {
-         actors[i].center.x = XMAX;
-         actors[i].direction.x = -actors[i].direction.x;
-      }
-
-      if (actors[i].center.z < -ZMAX) {
-         actors[i].center.z = -ZMAX;
-         actors[i].direction.z = -actors[i].direction.z;
-      }
-
-      if (actors[i].center.z > ZMAX) {
-         actors[i].center.z = ZMAX;
-         actors[i].direction.z = -actors[i].direction.z;
-      }
-   }
+    
 }
 
 void GameState::update() {
-
    updateControl(window);
    updateCamera(camera);
 
@@ -130,7 +168,7 @@ void GameState::update() {
    double fps = 1/elapsedTime;
    fps = ceil(fps);
 
-//   checkCollisions();
+   checkCollisions();
 
    camera->center += camera->direction * (float) elapsedTime
          * getForwardVelocity();
@@ -180,8 +218,9 @@ void GameState::draw() {
    
    groundPlane->draw(assets);
    bed->draw(assets);
-   clock->draw(assets);
-   
+   for(int i = 0; i < clocks.size(); i++){
+      clocks[i].draw(assets);
+   }
    glDisableVertexAttribArray(assets.h_aPosition);
    glDisableVertexAttribArray(assets.h_aNormal);
 

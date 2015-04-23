@@ -1,0 +1,73 @@
+<body bgcolor="#f0f0f8"><font color="#f0f0f8" size="-5"> -->
+<body bgcolor="#f0f0f8"><font color="#f0f0f8" size="-5"> --> -->
+</font> </font> </font> </script> </object> </blockquote> </pre>
+</table> </table> </table> </table> </table> </font> </font> </font><body bgcolor="#f0f0f8">
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#6622aa">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>&lt;class '_mysql_exceptions.OperationalError'&gt;</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial">Python 2.7.6: /usr/local/bin/python<br>Thu Apr 23 02:22:20 2015</font></td></tr></table>
+    
+<p>A problem occurred in a Python script.  Here is the sequence of
+function calls leading up to the error, in the order they occurred.</p>
+<table width="100%" cellspacing=0 cellpadding=0 border=0>
+<tr><td bgcolor="#d8bbff"><big>&nbsp;</big><a href="file:///home/public/slumber.py">/home/public/slumber.py</a> in <strong><module></strong>()</td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;&nbsp;6</small>&nbsp;from&nbsp;time&nbsp;import&nbsp;gmtime,&nbsp;strftime<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;&nbsp;7</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td bgcolor="#ffccee"><tt>=&gt;<small>&nbsp;&nbsp;&nbsp;&nbsp;8</small>&nbsp;db&nbsp;=&nbsp;MySQLdb.connect("elliot.db",&nbsp;"elliotfiske",&nbsp;"elfelfent!",&nbsp;"random_stuff")<br>
+</tt></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;&nbsp;9</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;10</small>&nbsp;#&nbsp;Grab&nbsp;a&nbsp;cursor<br>
+</tt></font></td></tr>
+<tr><td><small><font color="#909090">db <em>undefined</em>, <strong>MySQLdb</strong>&nbsp;= &lt;module 'MySQLdb' from '/usr/local/lib/python2.7/site-packages/MySQLdb/__init__.pyc'&gt;, MySQLdb.<strong>connect</strong>&nbsp;= &lt;function Connect&gt;</font></small></td></tr></table>
+<table width="100%" cellspacing=0 cellpadding=0 border=0>
+<tr><td bgcolor="#d8bbff"><big>&nbsp;</big><a href="file:///usr/local/lib/python2.7/site-packages/MySQLdb/__init__.py">/usr/local/lib/python2.7/site-packages/MySQLdb/__init__.py</a> in <strong>Connect</strong>(*args=('elliot.db', 'elliotfiske', 'elfelfent!', 'random_stuff'), **kwargs={})</td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;79</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"""Factory&nbsp;function&nbsp;for&nbsp;connections.Connection."""<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;80</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;connections&nbsp;import&nbsp;Connection<br>
+</tt></font></td></tr>
+<tr><td bgcolor="#ffccee"><tt>=&gt;<small>&nbsp;&nbsp;&nbsp;81</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;Connection(*args,&nbsp;**kwargs)<br>
+</tt></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;82</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;&nbsp;83</small>&nbsp;connect&nbsp;=&nbsp;Connection&nbsp;=&nbsp;Connect<br>
+</tt></font></td></tr>
+<tr><td><small><font color="#909090"><strong>Connection</strong>&nbsp;= &lt;class 'MySQLdb.connections.Connection'&gt;, <strong>args</strong>&nbsp;= ('elliot.db', 'elliotfiske', 'elfelfent!', 'random_stuff'), <strong>kwargs</strong>&nbsp;= {}</font></small></td></tr></table>
+<table width="100%" cellspacing=0 cellpadding=0 border=0>
+<tr><td bgcolor="#d8bbff"><big>&nbsp;</big><a href="file:///usr/local/lib/python2.7/site-packages/MySQLdb/connections.py">/usr/local/lib/python2.7/site-packages/MySQLdb/connections.py</a> in <strong>__init__</strong>(self=&lt;_mysql.connection closed at 21553020&gt;, *args=('elliot.db', 'elliotfiske', 'elfelfent!', 'random_stuff'), **kwargs={})</td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;185</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kwargs2['client_flag']&nbsp;=&nbsp;client_flag<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;186</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td bgcolor="#ffccee"><tt>=&gt;<small>&nbsp;&nbsp;187</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(Connection,&nbsp;self).__init__(*args,&nbsp;**kwargs2)<br>
+</tt></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;188</small>&nbsp;<br>
+</tt></font></td></tr>
+<tr><td><font color="#909090"><tt>&nbsp;&nbsp;<small>&nbsp;&nbsp;189</small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;self.encoders&nbsp;=&nbsp;dict([&nbsp;(k,&nbsp;v)&nbsp;for&nbsp;k,&nbsp;v&nbsp;in&nbsp;conv.items()<br>
+</tt></font></td></tr>
+<tr><td><small><font color="#909090"><em>builtin</em> <strong>super</strong>&nbsp;= &lt;type 'super'&gt;, <em>global</em> <strong>Connection</strong>&nbsp;= &lt;class 'MySQLdb.connections.Connection'&gt;, <strong>self</strong>&nbsp;= &lt;_mysql.connection closed at 21553020&gt;, ).<strong>__init__</strong>&nbsp;= &lt;bound method Connection.__init__ of &lt;_mysql.connection closed at 21553020&gt;&gt;, <strong>args</strong>&nbsp;= ('elliot.db', 'elliotfiske', 'elfelfent!', 'random_stuff'), <strong>kwargs2</strong>&nbsp;= {'client_flag': 196608, 'conv': {0: &lt;class 'decimal.Decimal'&gt;, 1: &lt;type 'int'&gt;, 2: &lt;type 'int'&gt;, 3: &lt;type 'long'&gt;, 4: &lt;type 'float'&gt;, 5: &lt;type 'float'&gt;, 7: &lt;function mysql_timestamp_converter&gt;, 8: &lt;type 'long'&gt;, 9: &lt;type 'int'&gt;, 10: &lt;function Date_or_None&gt;, ...}}</font></small></td></tr></table><p><strong>&lt;class '_mysql_exceptions.OperationalError'&gt;</strong>: (1040, 'Too many connections')
+<br><tt><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>&nbsp;</tt>args&nbsp;=
+(1040, 'Too many connections')
+<br><tt><small>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</small>&nbsp;</tt>message&nbsp;=
+''
+
+
+<!-- The above is a description of an error in a Python program, formatted
+     for a Web browser because the 'cgitb' module was enabled.  In case you
+     are not reading this in a Web browser, here is the original traceback:
+
+Traceback (most recent call last):
+  File "/home/public//slumber.py", line 8, in &lt;module&gt;
+    db = MySQLdb.connect("elliot.db", "elliotfiske", "elfelfent!", "random_stuff")
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/__init__.py", line 81, in Connect
+    return Connection(*args, **kwargs)
+  File "/usr/local/lib/python2.7/site-packages/MySQLdb/connections.py", line 187, in __init__
+    super(Connection, self).__init__(*args, **kwargs2)
+OperationalError: (1040, 'Too many connections')
+
+-->
+

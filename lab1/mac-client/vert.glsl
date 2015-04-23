@@ -10,7 +10,7 @@ uniform float Ushine;
 
 varying vec3 vPos;
 varying vec3 vNor;
-varying vec3 vLight;
+varying vec3 vLight, vLight2;
 varying vec3 vCol;
 varying vec3 vH;
 
@@ -20,16 +20,18 @@ void main()
 	gl_Position = uProjMatrix * MV * vec4(aPosition, 1.0);
 
 	vec3 newNorm;
-	vec3 newLight;
+	vec3 newLight, newLight2;
 	vec3 newPos;
 	newPos = normalize(vec3(MV * vec4(aPosition, 0.0)));
 	newNorm = normalize(vec3(MV * vec4(aNormal, 0.0)));
-	newLight = normalize(vec3(uViewMatrix * vec4(0.0, 5.0, 0.0, 0.0)));
+	newLight =  normalize(vec3(uViewMatrix * vec4(-0.2, -0.7, 2.0, 0.0)));
+    newLight2 = normalize(vec3(uViewMatrix * vec4( 0.2, -0.7, 2.0, 0.0)));
 	
 	vec3 V = normalize(vec3(0.0, 0.0, 0.0) - newPos);
 	vec3 H = normalize(newLight + V);
 
 	vNor = newNorm;
-	vLight = newLight;
+    vLight = newLight;
+    vLight2 = newLight2;
 	vH = H;
 }
