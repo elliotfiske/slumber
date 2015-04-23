@@ -9,7 +9,8 @@
 class GameState {
 public:
    GameState(GLFWwindow *window);
-   std::vector<Actor> actors;
+    std::vector<Actor> actors;
+    std::vector<Actor> clocks;
    Actor *groundPlane, *bed, *clock;
    bool completed;
    double prevTime;

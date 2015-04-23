@@ -7,17 +7,20 @@ using namespace std;
 GameState *gameState;
 
 void checkServer() {
-   int currPossession = 0;
-   while (1) {
-      int newPossession = system("python client.py") / 256;
-      printf("Possessing clock #%d\n", newPossession);
-
-      if (currPossession != newPossession) {
-         currPossession = newPossession;
-         gameState->bed->ambientColor.x = (float) currPossession / 10.0;
-         gameState->clock->jiggly = 1;
-      }
-   }
+    int currPossession = 0;
+    while (1) {
+        int newPossession = system("python client.py") / 256;
+        printf("Possessing clock #%d\n", newPossession);
+        
+        if (currPossession != newPossession) {
+            gameState->clocks[currPossession - 1].jiggly = 0;
+            gameState->clocks[currPossession - 1].ambientColor.x = 0;
+            currPossession = newPossession;
+            gameState->bed->ambientColor.x = (float) currPossession / 10.0;
+            gameState->clocks[currPossession - 1].jiggly = 1;
+            gameState->clocks[currPossession - 1].ambientColor.x = 1;
+        }
+    }
 }
 
 int main(int argc, const char* argv[]) {

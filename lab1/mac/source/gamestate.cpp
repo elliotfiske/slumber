@@ -28,17 +28,40 @@ void GameState::initAssets() {
    bed->specularColor = vec3(0.1, 0.1, 0.1);
    bed->shininess = 20;
    
-   
-   clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
-   clock->posID = assets.pos_clockID;
-   clock->norID = assets.nor_clockID;
-   clock->indID = assets.ind_clockID;
-   clock->numVerts = assets.numVerts_clock;
-   
-   clock->diffuseColor = vec3(0.4, 0.21, 0.3);
-   clock->ambientColor = vec3(0.15, 0.06, 0.17);
-   clock->specularColor = vec3(0.1, 0.1, 0.1);
-   clock->shininess = 10;
+    
+    for(int i = 0; i < 5; i++){
+        clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
+        clock->posID = assets.pos_clockID;
+        clock->norID = assets.nor_clockID;
+        clock->indID = assets.ind_clockID;
+        clock->numVerts = assets.numVerts_clock;
+        
+        clock->diffuseColor = vec3(0.4, 0.21, 0.3);
+        clock->ambientColor = vec3(0.15, 0.06, 0.17);
+        clock->specularColor = vec3(0.1, 0.1, 0.1);
+        clock->shininess = 10;
+        
+        clocks.push_back(*clock);
+    }
+    clocks[0].center.x = 12.5;
+    clocks[0].center.y = -2.0;
+    clocks[0].center.z = 0.0;
+    
+    clocks[1].center.x = -12.5;
+    clocks[1].center.y = -2.0;
+    clocks[1].center.z = 0.0;
+    
+    clocks[2].center.x = 12.5;
+    clocks[2].center.y = -2.0;
+    clocks[2].center.z = -32.5;
+    
+    clocks[3].center.x =  -12.5;
+    clocks[3].center.y = -2.0;
+    clocks[3].center.z =  -32.5;
+    
+    clocks[4].center.x = 0;
+    clocks[4].center.y = -2.0;
+    clocks[4].center.z = -42.5;
 }
 
 GameState::GameState(GLFWwindow *window_) {
@@ -181,7 +204,11 @@ void GameState::draw() {
    
    groundPlane->draw(assets);
    bed->draw(assets);
-   clock->draw(assets);
+    
+    
+    for(int i = 0; i < clocks.size(); i++){
+        clocks[i].draw(assets);
+    }
    
    glDisableVertexAttribArray(assets.h_aPosition);
    glDisableVertexAttribArray(assets.h_aNormal);

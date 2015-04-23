@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "1EA7D50E7D1443F987D83A21"
+               BlueprintIdentifier = "8C2CBDE024024668A8185A71"
                BuildableName = "libglfw3.a"
                BlueprintName = "glfw"
                ReferencedContainer = "container:built/Lab1.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1EA7D50E7D1443F987D83A21"
+            BlueprintIdentifier = "8C2CBDE024024668A8185A71"
             BuildableName = "libglfw3.a"
             BlueprintName = "glfw"
             ReferencedContainer = "container:built/Lab1.xcodeproj">
@@ -60,7 +60,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "1EA7D50E7D1443F987D83A21"
+            BlueprintIdentifier = "8C2CBDE024024668A8185A71"
             BuildableName = "libglfw3.a"
             BlueprintName = "glfw"
             ReferencedContainer = "container:built/Lab1.xcodeproj">

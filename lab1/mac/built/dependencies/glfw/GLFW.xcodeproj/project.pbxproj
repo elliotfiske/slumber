@@ -7,24 +7,24 @@
        objects = {
 
 /* Begin PBXAggregateTarget section */
-              60566E58D7914CE9A02FED64 /* ALL_BUILD */ = {
+              A617C2B75A3C4D1580760C0D /* ALL_BUILD */ = {
                      isa = PBXAggregateTarget;
-                     buildConfigurationList = 4D780B0057444CFBB97C5BF1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+                     buildConfigurationList = 09CBCA0AD43F4FFA8910C4FB /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
                      buildPhases = (
-                            FAA79303A847431080A38FEB /* CMake Rules */,
+                            EE66E9A1C0C44CFABA0E3620 /* CMake Rules */,
                      );
                      dependencies = (
-                            03E1B32F7D254E24989CE1CC /* PBXTargetDependency */,
-                            2B61DB28771140CE8853E49B /* PBXTargetDependency */,
+                            7951668C8DB94F79BAE881EB /* PBXTargetDependency */,
+                            1C5D90BB63CB49D898BAAD26 /* PBXTargetDependency */,
                      );
                      name = ALL_BUILD;
                      productName = ALL_BUILD;
               };
-              BE9D318647C14DE98CD3AF63 /* ZERO_CHECK */ = {
+              D82E16D92BDF40DCAFEE7BD3 /* ZERO_CHECK */ = {
                      isa = PBXAggregateTarget;
-                     buildConfigurationList = 02B09E7593A1419FB2AECCA4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+                     buildConfigurationList = FFF363F57DB04591B1615680 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
                      buildPhases = (
-                            0BE0B5AB4C11498EAED848B7 /* CMake Rules */,
+                            BF77482EEEA64409BEAA8359 /* CMake Rules */,
                      );
                      dependencies = (
                      );
@@ -34,55 +34,55 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-03B1D580FC354AE58E400B0C /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */ = {isa = PBXBuildFile; fileRef = 2CA6DF145EAE4B75B2196E5A /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */; settings = { COMPILER_FLAGS = ""; }; };
-2006BCED6CFA4144850A9AE9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXBuildFile; fileRef = F91BB53D6283447EA582FA3A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */; settings = { COMPILER_FLAGS = ""; }; };
-20EE93E55B844164A9D993CC /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXBuildFile; fileRef = 01D2B44694E9486F89DCF23C /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */; settings = { COMPILER_FLAGS = ""; }; };
-CCFC79A0C36C4D32B57CBDD7 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = C29B269303234BF7AD2DD234 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */; settings = { COMPILER_FLAGS = ""; }; };
-93092191C6954304BC00766A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXBuildFile; fileRef = 9D28963FFC4943FA949F59D9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */; settings = { COMPILER_FLAGS = ""; }; };
-7E7660DADC4C4F39A78B31A3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXBuildFile; fileRef = F011E3292B6249C1BF4C8025 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */; settings = { COMPILER_FLAGS = ""; }; };
-11F25ED6898F4DBC9701A9F2 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXBuildFile; fileRef = D79DFA5DB8A042F9847FD750 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */; settings = { COMPILER_FLAGS = ""; }; };
-6CE77CE5CC654D4086452BF9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXBuildFile; fileRef = D37C8DE7B63348549822AB56 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */; settings = { COMPILER_FLAGS = ""; }; };
-681A08F04A264D53ADD08286 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */ = {isa = PBXBuildFile; fileRef = ACB255894BD24709815F0BDD /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */; settings = { COMPILER_FLAGS = ""; }; };
-2AB1E514CAB64359B3CD2308 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */ = {isa = PBXBuildFile; fileRef = 1AB123CAF4A545DBA566B115 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */; settings = { COMPILER_FLAGS = ""; }; };
-FCC27EE7FF7F4D9C856CC166 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */ = {isa = PBXBuildFile; fileRef = C6FB71F248FC4317B11F61BF /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */; settings = { COMPILER_FLAGS = ""; }; };
-A6818E8190954472A23B720F /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */ = {isa = PBXBuildFile; fileRef = 72FDDA7B569F457390B85AA9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */; settings = { COMPILER_FLAGS = ""; }; };
-BF49630159E741F4ACA0EA75 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXBuildFile; fileRef = C5D69F5697A34CE6B429DF6E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */; settings = { COMPILER_FLAGS = ""; }; };
-6FEF2DDFD50345748899C470 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXBuildFile; fileRef = 2DF9255443A3490C9742C608 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */; settings = { COMPILER_FLAGS = ""; }; };
-0CC452BFCD384895924574E5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */ = {isa = PBXBuildFile; fileRef = 61449B23643847F3ADD6A9D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */; settings = { COMPILER_FLAGS = ""; }; };
-BEF68A1F9A43401381E1C8B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */ = {isa = PBXBuildFile; fileRef = D5666EF1B479462BAC376FCB /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */; settings = { COMPILER_FLAGS = ""; }; };
-5D4305389DE84662896A9716 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXBuildFile; fileRef = CC85E260DE8B4C7CAD3B553E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */; settings = { COMPILER_FLAGS = ""; }; };
-98A0E6228A55430389A13356 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXBuildFile; fileRef = 996DF076CCED4471B41B4C4A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */; settings = { COMPILER_FLAGS = ""; }; };
-68D051F42ADF494B8C981329 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */ = {isa = PBXBuildFile; fileRef = 6332BD2AA92641A096A279B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */; settings = { COMPILER_FLAGS = ""; }; };
-2607D59A17DD4CA2A7935A05 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */ = {isa = PBXBuildFile; fileRef = AC8F261FE04F4657B45AAA7D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */; settings = { COMPILER_FLAGS = ""; }; };
-5FF462C7E2064677A9AB8A20 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */ = {isa = PBXBuildFile; fileRef = AF4D1AD7D7D24B589243487A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */; settings = { COMPILER_FLAGS = ""; }; };
+8EC849E477DE468790910544 /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */ = {isa = PBXBuildFile; fileRef = 465EFB2D1D5342A2A9B657C2 /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */; settings = { COMPILER_FLAGS = ""; }; };
+7AABFB06F018433D918BB8A3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXBuildFile; fileRef = DCDABBECBB3F4A05BEA0A29B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */; settings = { COMPILER_FLAGS = ""; }; };
+6444C436F0764F5094BE5D4C /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXBuildFile; fileRef = D4429AE4DD71402B98B16523 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */; settings = { COMPILER_FLAGS = ""; }; };
+E6B82B7FACC740BBAF5E342A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = B24A418BF2F149F0A9B4FCB6 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */; settings = { COMPILER_FLAGS = ""; }; };
+675123790BD44E2D924A26D3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXBuildFile; fileRef = 152ADA6B58494CE7AFD43B4D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */; settings = { COMPILER_FLAGS = ""; }; };
+80A131A0194048FEA4C177D9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXBuildFile; fileRef = DF2110D4B97144AD96EC73AE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */; settings = { COMPILER_FLAGS = ""; }; };
+0C2C600D45424770A77AE170 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXBuildFile; fileRef = F5893DA40B524F6198D5A398 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */; settings = { COMPILER_FLAGS = ""; }; };
+AD362DDDC4AC40BB9117810D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXBuildFile; fileRef = D9A357E268D644C7987BF1B3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */; settings = { COMPILER_FLAGS = ""; }; };
+7BBD690C6BD9445B8E7D4A35 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */ = {isa = PBXBuildFile; fileRef = 8A99AA87DDF147D19A275F02 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */; settings = { COMPILER_FLAGS = ""; }; };
+E9F196BD23034B19BFE6F28D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */ = {isa = PBXBuildFile; fileRef = E1E59D57A86543E594A3587E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */; settings = { COMPILER_FLAGS = ""; }; };
+180B2C4B35854F15A33D5EE1 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */ = {isa = PBXBuildFile; fileRef = DA7B17FDC5BB41B2B28A99A4 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */; settings = { COMPILER_FLAGS = ""; }; };
+D505FD45B1E34A74AB134161 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */ = {isa = PBXBuildFile; fileRef = 44087663AA414CBAA1FB0382 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */; settings = { COMPILER_FLAGS = ""; }; };
+3C11B3325EB8448497C87204 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXBuildFile; fileRef = C98C5EA1084141008362FE64 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */; settings = { COMPILER_FLAGS = ""; }; };
+120F2FC027D74511BE293176 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXBuildFile; fileRef = ADDBF6990A904FAEA4A51345 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */; settings = { COMPILER_FLAGS = ""; }; };
+DC5434DD1DEA4BB29D78EECE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */ = {isa = PBXBuildFile; fileRef = B67FAA389B6E41C7B9C28B90 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */; settings = { COMPILER_FLAGS = ""; }; };
+7317673C60C746BBA7986DA7 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */ = {isa = PBXBuildFile; fileRef = 598CAC9060A844C986C9B4D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */; settings = { COMPILER_FLAGS = ""; }; };
+7791978783A64157BC942F69 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXBuildFile; fileRef = 89CCE2A099474142925F7D14 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */; settings = { COMPILER_FLAGS = ""; }; };
+C1125ACC1C6848488CB0D160 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXBuildFile; fileRef = F9F22A59397544388BDC5D58 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */; settings = { COMPILER_FLAGS = ""; }; };
+2FC019076F6149D59B0BC9BE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */ = {isa = PBXBuildFile; fileRef = 4062434DF5D64BB18587194B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */; settings = { COMPILER_FLAGS = ""; }; };
+4D759BE62B8C4BD0BC83CB04 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */ = {isa = PBXBuildFile; fileRef = 8509E1FE2DED41B688C6A909 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */; settings = { COMPILER_FLAGS = ""; }; };
+689121DA97AE4950A42B616A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */ = {isa = PBXBuildFile; fileRef = F25F1224EA01469999ED389B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */; settings = { COMPILER_FLAGS = ""; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildStyle section */
-              FFB219660D3E4B36A64E94DF /*  */ = {
+              FD02A86CD5074F7B9F81CE50 /*  */ = {
                      isa = PBXBuildStyle;
               };
-              60EF1927CDBD4B808168BDF5 /* Debug */ = {
+              1D9E732323FB44C39AB953F2 /* Debug */ = {
                      isa = PBXBuildStyle;
                      buildSettings = {
                             COPY_PHASE_STRIP = NO;
                      };
                      name = Debug;
               };
-              A47CB8B4BE2F4631BC80F965 /* Release */ = {
+              2E8F41605F3B414FA86A9088 /* Release */ = {
                      isa = PBXBuildStyle;
                      buildSettings = {
                             COPY_PHASE_STRIP = NO;
                      };
                      name = Release;
               };
-              9E108FD68AF34F7C9C1F0914 /* MinSizeRel */ = {
+              0FC9FD838BA74F78B650B948 /* MinSizeRel */ = {
                      isa = PBXBuildStyle;
                      buildSettings = {
                             COPY_PHASE_STRIP = NO;
                      };
                      name = MinSizeRel;
               };
-              C7303F2358A94FCE99CDE6A3 /* RelWithDebInfo */ = {
+              73526F865A774940A29D9520 /* RelWithDebInfo */ = {
                      isa = PBXBuildStyle;
                      buildSettings = {
                             COPY_PHASE_STRIP = NO;
@@ -92,164 +92,164 @@ BEF68A1F9A43401381E1C8B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glf
 /* End PBXBuildStyle section */
 
 /* Begin PBXContainerItemProxy section */
-              459A65A4F61846B984D9BF05 /* PBXContainerItemProxy */ = {
+              57D445E5DB274103B5F97828 /* PBXContainerItemProxy */ = {
                      isa = PBXContainerItemProxy;
-                     containerPortal = BB73419587D84361A0794A80 /* Project object */;
+                     containerPortal = A7615E7410EB4D7181BDD6CB /* Project object */;
                      proxyType = 1;
-                     remoteGlobalIDString = BE9D318647C14DE98CD3AF63;
+                     remoteGlobalIDString = D82E16D92BDF40DCAFEE7BD3;
                      remoteInfo = ZERO_CHECK;
               };
-              713CB57130004356BFEBCD15 /* PBXContainerItemProxy */ = {
+              175315A2C85D4B0DBA7989D5 /* PBXContainerItemProxy */ = {
                      isa = PBXContainerItemProxy;
-                     containerPortal = BB73419587D84361A0794A80 /* Project object */;
+                     containerPortal = A7615E7410EB4D7181BDD6CB /* Project object */;
                      proxyType = 1;
-                     remoteGlobalIDString = 1EA7D50E7D1443F987D83A21;
+                     remoteGlobalIDString = 8C2CBDE024024668A8185A71;
                      remoteInfo = glfw;
               };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-4EB569EE71B547B0B0E83722 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
-9F15C003346940AB8F08C9F4 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
-2CA6DF145EAE4B75B2196E5A /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw_config.h"; path = "../../built/dependencies/glfw/src/glfw_config.h"; sourceTree = SOURCE_ROOT; };
-F91BB53D6283447EA582FA3A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3.h"; path = "include/GLFW/glfw3.h"; sourceTree = SOURCE_ROOT; };
-01D2B44694E9486F89DCF23C /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3native.h"; path = "include/GLFW/glfw3native.h"; sourceTree = SOURCE_ROOT; };
-C29B269303234BF7AD2DD234 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "src/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
-9D28963FFC4943FA949F59D9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_init.m"; path = "src/cocoa_init.m"; sourceTree = SOURCE_ROOT; };
-F011E3292B6249C1BF4C8025 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_monitor.m"; path = "src/cocoa_monitor.m"; sourceTree = SOURCE_ROOT; };
-D79DFA5DB8A042F9847FD750 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "cocoa_platform.h"; path = "src/cocoa_platform.h"; sourceTree = SOURCE_ROOT; };
-D37C8DE7B63348549822AB56 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_window.m"; path = "src/cocoa_window.m"; sourceTree = SOURCE_ROOT; };
-ACB255894BD24709815F0BDD /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "context.c"; path = "src/context.c"; sourceTree = SOURCE_ROOT; };
-1AB123CAF4A545DBA566B115 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "init.c"; path = "src/init.c"; sourceTree = SOURCE_ROOT; };
-C6FB71F248FC4317B11F61BF /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "input.c"; path = "src/input.c"; sourceTree = SOURCE_ROOT; };
-72FDDA7B569F457390B85AA9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "internal.h"; path = "src/internal.h"; sourceTree = SOURCE_ROOT; };
-C5D69F5697A34CE6B429DF6E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "iokit_joystick.h"; path = "src/iokit_joystick.h"; sourceTree = SOURCE_ROOT; };
-2DF9255443A3490C9742C608 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "iokit_joystick.m"; path = "src/iokit_joystick.m"; sourceTree = SOURCE_ROOT; };
-61449B23643847F3ADD6A9D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "mach_time.c"; path = "src/mach_time.c"; sourceTree = SOURCE_ROOT; };
-D5666EF1B479462BAC376FCB /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "monitor.c"; path = "src/monitor.c"; sourceTree = SOURCE_ROOT; };
-CC85E260DE8B4C7CAD3B553E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "nsgl_context.h"; path = "src/nsgl_context.h"; sourceTree = SOURCE_ROOT; };
-996DF076CCED4471B41B4C4A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "nsgl_context.m"; path = "src/nsgl_context.m"; sourceTree = SOURCE_ROOT; };
-6332BD2AA92641A096A279B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "posix_tls.c"; path = "src/posix_tls.c"; sourceTree = SOURCE_ROOT; };
-AC8F261FE04F4657B45AAA7D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "posix_tls.h"; path = "src/posix_tls.h"; sourceTree = SOURCE_ROOT; };
-AF4D1AD7D7D24B589243487A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "window.c"; path = "src/window.c"; sourceTree = SOURCE_ROOT; };
-D9D81BC95DDB4029833AA550 /* glfw */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "libglfw3.a"; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
+3DB56B9453E7466E9DE08AEC /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+2E6F2A10BD29441BA875FC95 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+465EFB2D1D5342A2A9B657C2 /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw_config.h"; path = "../../built/dependencies/glfw/src/glfw_config.h"; sourceTree = SOURCE_ROOT; };
+DCDABBECBB3F4A05BEA0A29B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3.h"; path = "include/GLFW/glfw3.h"; sourceTree = SOURCE_ROOT; };
+D4429AE4DD71402B98B16523 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "glfw3native.h"; path = "include/GLFW/glfw3native.h"; sourceTree = SOURCE_ROOT; };
+B24A418BF2F149F0A9B4FCB6 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = "sourcecode.text"; fileEncoding = 4; name = "CMakeLists.txt"; path = "src/CMakeLists.txt"; sourceTree = SOURCE_ROOT; };
+152ADA6B58494CE7AFD43B4D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_init.m"; path = "src/cocoa_init.m"; sourceTree = SOURCE_ROOT; };
+DF2110D4B97144AD96EC73AE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_monitor.m"; path = "src/cocoa_monitor.m"; sourceTree = SOURCE_ROOT; };
+F5893DA40B524F6198D5A398 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "cocoa_platform.h"; path = "src/cocoa_platform.h"; sourceTree = SOURCE_ROOT; };
+D9A357E268D644C7987BF1B3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "cocoa_window.m"; path = "src/cocoa_window.m"; sourceTree = SOURCE_ROOT; };
+8A99AA87DDF147D19A275F02 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "context.c"; path = "src/context.c"; sourceTree = SOURCE_ROOT; };
+E1E59D57A86543E594A3587E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "init.c"; path = "src/init.c"; sourceTree = SOURCE_ROOT; };
+DA7B17FDC5BB41B2B28A99A4 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "input.c"; path = "src/input.c"; sourceTree = SOURCE_ROOT; };
+44087663AA414CBAA1FB0382 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "internal.h"; path = "src/internal.h"; sourceTree = SOURCE_ROOT; };
+C98C5EA1084141008362FE64 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "iokit_joystick.h"; path = "src/iokit_joystick.h"; sourceTree = SOURCE_ROOT; };
+ADDBF6990A904FAEA4A51345 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "iokit_joystick.m"; path = "src/iokit_joystick.m"; sourceTree = SOURCE_ROOT; };
+B67FAA389B6E41C7B9C28B90 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "mach_time.c"; path = "src/mach_time.c"; sourceTree = SOURCE_ROOT; };
+598CAC9060A844C986C9B4D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "monitor.c"; path = "src/monitor.c"; sourceTree = SOURCE_ROOT; };
+89CCE2A099474142925F7D14 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "nsgl_context.h"; path = "src/nsgl_context.h"; sourceTree = SOURCE_ROOT; };
+F9F22A59397544388BDC5D58 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.objc"; fileEncoding = 4; name = "nsgl_context.m"; path = "src/nsgl_context.m"; sourceTree = SOURCE_ROOT; };
+4062434DF5D64BB18587194B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "posix_tls.c"; path = "src/posix_tls.c"; sourceTree = SOURCE_ROOT; };
+8509E1FE2DED41B688C6A909 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.h"; fileEncoding = 4; name = "posix_tls.h"; path = "src/posix_tls.h"; sourceTree = SOURCE_ROOT; };
+F25F1224EA01469999ED389B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */ = {isa = PBXFileReference; explicitFileType = "sourcecode.c.c"; fileEncoding = 4; name = "window.c"; path = "src/window.c"; sourceTree = SOURCE_ROOT; };
+A501CE4BF24945778813B8C3 /* glfw */ = {isa = PBXFileReference; explicitFileType = "archive.ar"; path = "libglfw3.a"; refType = 0; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
-              55844432406945B8A0B2D685  = {
+              B782FCFF992E4DA49A0925D4  = {
                      isa = PBXGroup;
                      children = (
-                            0C52EE83E2D24DBCAD5ED61A /* Sources */,
-                            92C19CEDE008495080EE052E /* Resources */,
-                            088836C8C08449B79A104EE6 /* Products */,
+                            C0237014C5F6421691E8AF61 /* Sources */,
+                            A07429C4D1E7435894E1E282 /* Resources */,
+                            295FD4A94662452781B8FCE8 /* Products */,
                      );
                      sourceTree = "<group>";
               };
-              0C52EE83E2D24DBCAD5ED61A /* Sources */ = {
+              C0237014C5F6421691E8AF61 /* Sources */ = {
                      isa = PBXGroup;
                      children = (
-                            1F9D32F4CC744F4480F35626 /* ALL_BUILD */,
-                            363618EA86F4487C8E3A1C8B /* ZERO_CHECK */,
-                            9C137424AA8A4AE0A892C6FD /* GLFW3 */,
+                            40015E19F820455FBECB875C /* ALL_BUILD */,
+                            429E64E4AEC44DA49841A369 /* ZERO_CHECK */,
+                            10E3975B7EF84710A4850E81 /* GLFW3 */,
                      );
                      name = Sources;
                      sourceTree = "<group>";
               };
-              92C19CEDE008495080EE052E /* Resources */ = {
+              A07429C4D1E7435894E1E282 /* Resources */ = {
                      isa = PBXGroup;
                      children = (
                      );
                      name = Resources;
                      sourceTree = "<group>";
               };
-              1F9D32F4CC744F4480F35626 /* ALL_BUILD */ = {
+              40015E19F820455FBECB875C /* ALL_BUILD */ = {
                      isa = PBXGroup;
                      children = (
-                            0C9C243236DE476B8F7BC062 /* CMake Rules */,
-                            4EB569EE71B547B0B0E83722 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */,
+                            B875A9FA54B3474D89A0DFDD /* CMake Rules */,
+                            3DB56B9453E7466E9DE08AEC /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */,
                      );
                      name = ALL_BUILD;
                      sourceTree = "<group>";
               };
-              0C9C243236DE476B8F7BC062 /* CMake Rules */ = {
+              B875A9FA54B3474D89A0DFDD /* CMake Rules */ = {
                      isa = PBXGroup;
                      children = (
                      );
                      name = "CMake Rules";
                      sourceTree = "<group>";
               };
-              363618EA86F4487C8E3A1C8B /* ZERO_CHECK */ = {
+              429E64E4AEC44DA49841A369 /* ZERO_CHECK */ = {
                      isa = PBXGroup;
                      children = (
-                            8047BD8164444F1789DD3928 /* CMake Rules */,
-                            9F15C003346940AB8F08C9F4 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */,
+                            26FA1BD16E614ACAA04D76D7 /* CMake Rules */,
+                            2E6F2A10BD29441BA875FC95 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/CMakeLists.txt */,
                      );
                      name = ZERO_CHECK;
                      sourceTree = "<group>";
               };
-              8047BD8164444F1789DD3928 /* CMake Rules */ = {
+              26FA1BD16E614ACAA04D76D7 /* CMake Rules */ = {
                      isa = PBXGroup;
                      children = (
                      );
                      name = "CMake Rules";
                      sourceTree = "<group>";
               };
-              9C137424AA8A4AE0A892C6FD /* GLFW3 */ = {
+              10E3975B7EF84710A4850E81 /* GLFW3 */ = {
                      isa = PBXGroup;
                      children = (
-                            EC0B1EF0D9804394A825B7E5 /* glfw */,
+                            803905CB995646189B476E3F /* glfw */,
                      );
                      name = GLFW3;
                      sourceTree = "<group>";
               };
-              EC0B1EF0D9804394A825B7E5 /* glfw */ = {
+              803905CB995646189B476E3F /* glfw */ = {
                      isa = PBXGroup;
                      children = (
-                            1E56ED363B7F40DD9E167FAD /* Source Files */,
-                            D42B594A1DB74CE2BF8CF2B2 /* Header Files */,
-                            C29B269303234BF7AD2DD234 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */,
+                            E1FD29387E5F463FA004942C /* Source Files */,
+                            CD097177D0E844238A7CB3F0 /* Header Files */,
+                            B24A418BF2F149F0A9B4FCB6 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/CMakeLists.txt */,
                      );
                      name = glfw;
                      sourceTree = "<group>";
               };
-              1E56ED363B7F40DD9E167FAD /* Source Files */ = {
+              E1FD29387E5F463FA004942C /* Source Files */ = {
                      isa = PBXGroup;
                      children = (
-                            9D28963FFC4943FA949F59D9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */,
-                            F011E3292B6249C1BF4C8025 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */,
-                            D37C8DE7B63348549822AB56 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */,
-                            ACB255894BD24709815F0BDD /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */,
-                            1AB123CAF4A545DBA566B115 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */,
-                            C6FB71F248FC4317B11F61BF /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */,
-                            2DF9255443A3490C9742C608 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */,
-                            61449B23643847F3ADD6A9D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */,
-                            D5666EF1B479462BAC376FCB /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */,
-                            996DF076CCED4471B41B4C4A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */,
-                            6332BD2AA92641A096A279B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */,
-                            AF4D1AD7D7D24B589243487A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */,
+                            152ADA6B58494CE7AFD43B4D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */,
+                            DF2110D4B97144AD96EC73AE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */,
+                            D9A357E268D644C7987BF1B3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */,
+                            8A99AA87DDF147D19A275F02 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */,
+                            E1E59D57A86543E594A3587E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */,
+                            DA7B17FDC5BB41B2B28A99A4 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */,
+                            ADDBF6990A904FAEA4A51345 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */,
+                            B67FAA389B6E41C7B9C28B90 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */,
+                            598CAC9060A844C986C9B4D5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */,
+                            F9F22A59397544388BDC5D58 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */,
+                            4062434DF5D64BB18587194B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */,
+                            F25F1224EA01469999ED389B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */,
                      );
                      name = "Source Files";
                      sourceTree = "<group>";
               };
-              D42B594A1DB74CE2BF8CF2B2 /* Header Files */ = {
+              CD097177D0E844238A7CB3F0 /* Header Files */ = {
                      isa = PBXGroup;
                      children = (
-                            2CA6DF145EAE4B75B2196E5A /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */,
-                            F91BB53D6283447EA582FA3A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */,
-                            01D2B44694E9486F89DCF23C /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */,
-                            D79DFA5DB8A042F9847FD750 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */,
-                            72FDDA7B569F457390B85AA9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */,
-                            C5D69F5697A34CE6B429DF6E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */,
-                            CC85E260DE8B4C7CAD3B553E /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */,
-                            AC8F261FE04F4657B45AAA7D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */,
+                            465EFB2D1D5342A2A9B657C2 /* /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/glfw_config.h */,
+                            DCDABBECBB3F4A05BEA0A29B /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h */,
+                            D4429AE4DD71402B98B16523 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3native.h */,
+                            F5893DA40B524F6198D5A398 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_platform.h */,
+                            44087663AA414CBAA1FB0382 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/internal.h */,
+                            C98C5EA1084141008362FE64 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.h */,
+                            89CCE2A099474142925F7D14 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.h */,
+                            8509E1FE2DED41B688C6A909 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.h */,
                      );
                      name = "Header Files";
                      sourceTree = "<group>";
               };
-              088836C8C08449B79A104EE6 /* Products */ = {
+              295FD4A94662452781B8FCE8 /* Products */ = {
                      isa = PBXGroup;
                      children = (
-                            D9D81BC95DDB4029833AA550 /* glfw */,
+                            A501CE4BF24945778813B8C3 /* glfw */,
                      );
                      name = Products;
                      sourceTree = "<group>";
@@ -257,11 +257,11 @@ D9D81BC95DDB4029833AA550 /* glfw */ = {isa = PBXFileReference; explicitFileType 
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-              1EA7D50E7D1443F987D83A21 /* glfw */ = {
+              8C2CBDE024024668A8185A71 /* glfw */ = {
                      isa = PBXNativeTarget;
-                     buildConfigurationList = 015FCAA3739943EEACAD6BBB /* Build configuration list for PBXNativeTarget "glfw" */;
+                     buildConfigurationList = F315F32A62CD48FABC83ED2B /* Build configuration list for PBXNativeTarget "glfw" */;
                      buildPhases = (
-                            BDCBF68616204C57B8BFDA37 /* Sources */,
+                            98C27B91E37A4067A57C51AE /* Sources */,
                      );
                      buildRules = (
                      );
@@ -269,41 +269,41 @@ D9D81BC95DDB4029833AA550 /* glfw */ = {isa = PBXFileReference; explicitFileType 
                      );
                      name = glfw;
                      productName = glfw;
-                     productReference = D9D81BC95DDB4029833AA550 /* glfw */;
+                     productReference = A501CE4BF24945778813B8C3 /* glfw */;
                      productType = "com.apple.product-type.library.static";
               };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-              BB73419587D84361A0794A80 /* Project object */ = {
+              A7615E7410EB4D7181BDD6CB /* Project object */ = {
                      isa = PBXProject;
                      attributes = {
                             BuildIndependentTargetsInParallel = YES;
                      };
-                     buildConfigurationList = A2B7AC4616D34C13BAE809EE /* Build configuration list for PBXProject  "GLFW" */;
+                     buildConfigurationList = 91CC548BBE354D69AFB4AFF7 /* Build configuration list for PBXProject  "GLFW" */;
                      buildSettings = {
                      };
                      buildStyles = (
-                            60EF1927CDBD4B808168BDF5 /* Debug */,
-                            A47CB8B4BE2F4631BC80F965 /* Release */,
-                            9E108FD68AF34F7C9C1F0914 /* MinSizeRel */,
-                            C7303F2358A94FCE99CDE6A3 /* RelWithDebInfo */,
+                            1D9E732323FB44C39AB953F2 /* Debug */,
+                            2E8F41605F3B414FA86A9088 /* Release */,
+                            0FC9FD838BA74F78B650B948 /* MinSizeRel */,
+                            73526F865A774940A29D9520 /* RelWithDebInfo */,
                      );
                      compatibilityVersion = "Xcode 3.2";
                      hasScannedForEncodings = 0;
-                     mainGroup = 55844432406945B8A0B2D685;
+                     mainGroup = B782FCFF992E4DA49A0925D4;
                      projectDirPath = "../../../dependencies/glfw";
                      projectRoot = "";
                      targets = (
-                            60566E58D7914CE9A02FED64 /* ALL_BUILD */,
-                            BE9D318647C14DE98CD3AF63 /* ZERO_CHECK */,
-                            1EA7D50E7D1443F987D83A21 /* glfw */,
+                            A617C2B75A3C4D1580760C0D /* ALL_BUILD */,
+                            D82E16D92BDF40DCAFEE7BD3 /* ZERO_CHECK */,
+                            8C2CBDE024024668A8185A71 /* glfw */,
                      );
               };
 /* End PBXProject section */
 
 /* Begin PBXShellScriptBuildPhase section */
-              6769E4C0CD264B01A28D8149 /*  */ = {
+              C3C4491487BD484AADEEEC08 /*  */ = {
                      isa = PBXShellScriptBuildPhase;
                      buildActionMask = 2147483647;
                      files = (
@@ -318,7 +318,7 @@ D9D81BC95DDB4029833AA550 /* glfw */ = {isa = PBXFileReference; explicitFileType 
 exit 0";
                      showEnvVarsInLog = 0;
               };
-              FAA79303A847431080A38FEB /* CMake Rules */ = {
+              EE66E9A1C0C44CFABA0E3620 /* CMake Rules */ = {
                      isa = PBXShellScriptBuildPhase;
                      buildActionMask = 2147483647;
                      files = (
@@ -329,7 +329,7 @@ exit 0";
                      shellScript = "make -C /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw -f /Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
                      showEnvVarsInLog = 0;
               };
-              1829EABEA4AC453ABA9EFA80 /*  */ = {
+              71F23A45665B4C518EF1B6D8 /*  */ = {
                      isa = PBXShellScriptBuildPhase;
                      buildActionMask = 2147483647;
                      files = (
@@ -344,7 +344,7 @@ exit 0";
 exit 0";
                      showEnvVarsInLog = 0;
               };
-              0BE0B5AB4C11498EAED848B7 /* CMake Rules */ = {
+              BF77482EEEA64409BEAA8359 /* CMake Rules */ = {
                      isa = PBXShellScriptBuildPhase;
                      buildActionMask = 2147483647;
                      files = (
@@ -358,42 +358,42 @@ exit 0";
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-              BDCBF68616204C57B8BFDA37 /* Sources */ = {
+              98C27B91E37A4067A57C51AE /* Sources */ = {
                      isa = PBXSourcesBuildPhase;
                      buildActionMask = 2147483647;
                      files = (
-                            93092191C6954304BC00766A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */,
-                            7E7660DADC4C4F39A78B31A3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */,
-                            6CE77CE5CC654D4086452BF9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */,
-                            681A08F04A264D53ADD08286 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */,
-                            2AB1E514CAB64359B3CD2308 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */,
-                            FCC27EE7FF7F4D9C856CC166 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */,
-                            6FEF2DDFD50345748899C470 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */,
-                            0CC452BFCD384895924574E5 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */,
-                            BEF68A1F9A43401381E1C8B8 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */,
-                            98A0E6228A55430389A13356 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */,
-                            68D051F42ADF494B8C981329 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */,
-                            5FF462C7E2064677A9AB8A20 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */,
+                            675123790BD44E2D924A26D3 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_init.m */,
+                            80A131A0194048FEA4C177D9 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_monitor.m */,
+                            AD362DDDC4AC40BB9117810D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/cocoa_window.m */,
+                            7BBD690C6BD9445B8E7D4A35 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/context.c */,
+                            E9F196BD23034B19BFE6F28D /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/init.c */,
+                            180B2C4B35854F15A33D5EE1 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/input.c */,
+                            120F2FC027D74511BE293176 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/iokit_joystick.m */,
+                            DC5434DD1DEA4BB29D78EECE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/mach_time.c */,
+                            7317673C60C746BBA7986DA7 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/monitor.c */,
+                            C1125ACC1C6848488CB0D160 /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/nsgl_context.m */,
+                            2FC019076F6149D59B0BC9BE /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/posix_tls.c */,
+                            689121DA97AE4950A42B616A /* /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/src/window.c */,
                      );
                      runOnlyForDeploymentPostprocessing = 0;
               };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-              03E1B32F7D254E24989CE1CC /* PBXTargetDependency */ = {
+              7951668C8DB94F79BAE881EB /* PBXTargetDependency */ = {
                      isa = PBXTargetDependency;
-                     target = BE9D318647C14DE98CD3AF63 /* ZERO_CHECK */;
-                     targetProxy = 459A65A4F61846B984D9BF05 /* PBXContainerItemProxy */;
+                     target = D82E16D92BDF40DCAFEE7BD3 /* ZERO_CHECK */;
+                     targetProxy = 57D445E5DB274103B5F97828 /* PBXContainerItemProxy */;
               };
-              2B61DB28771140CE8853E49B /* PBXTargetDependency */ = {
+              1C5D90BB63CB49D898BAAD26 /* PBXTargetDependency */ = {
                      isa = PBXTargetDependency;
-                     target = 1EA7D50E7D1443F987D83A21 /* glfw */;
-                     targetProxy = 713CB57130004356BFEBCD15 /* PBXContainerItemProxy */;
+                     target = 8C2CBDE024024668A8185A71 /* glfw */;
+                     targetProxy = 175315A2C85D4B0DBA7989D5 /* PBXContainerItemProxy */;
               };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-              499B5F1FCBC94BC8913F45E1 /* Debug */ = {
+              0E3A105867E64AB1BB107891 /* Debug */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -403,7 +403,7 @@ exit 0";
                      };
                      name = Debug;
               };
-              75DD70A2D1EC401A8C0D6333 /* Release */ = {
+              E426690D73DC42C6B111636E /* Release */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -413,7 +413,7 @@ exit 0";
                      };
                      name = Release;
               };
-              63354624578A4D8BAEC5BC2E /* MinSizeRel */ = {
+              1A0B565D937D4EC9A9888D6B /* MinSizeRel */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -423,7 +423,7 @@ exit 0";
                      };
                      name = MinSizeRel;
               };
-              FE35F1BA90104CDAA2FE7AF7 /* RelWithDebInfo */ = {
+              613D381EB356410D9C990C93 /* RelWithDebInfo */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
@@ -433,7 +433,7 @@ exit 0";
                      };
                      name = RelWithDebInfo;
               };
-              DD7E7E0D5FAA4DD69D9AAAED /* Debug */ = {
+              C85411D9A0B7499BBDC660BC /* Debug */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -454,7 +454,7 @@ exit 0";
                      };
                      name = Debug;
               };
-              B12AA47F68DC418FB20A940E /* Release */ = {
+              EA8B43D1C1F7419B8673D2E3 /* Release */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -475,7 +475,7 @@ exit 0";
                      };
                      name = Release;
               };
-              92F07B63FA6E471482E373E5 /* MinSizeRel */ = {
+              9991285912504E2E849752A0 /* MinSizeRel */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -496,7 +496,7 @@ exit 0";
                      };
                      name = MinSizeRel;
               };
-              81DCC073761A4486B1B6BED1 /* RelWithDebInfo */ = {
+              24FF217B2CF348E9944BC2B1 /* RelWithDebInfo */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -517,7 +517,7 @@ exit 0";
                      };
                      name = RelWithDebInfo;
               };
-              A3266DDA2C7C4CB09B9A54E5 /* Debug */ = {
+              3C9C2A85433B42E58B7AF3A1 /* Debug */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -538,7 +538,7 @@ exit 0";
                      };
                      name = Debug;
               };
-              B044100CDB9244079A28C57F /* Release */ = {
+              79268D594B114739A950B6F8 /* Release */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -559,7 +559,7 @@ exit 0";
                      };
                      name = Release;
               };
-              7EDAF0FC81464A5BA35063B7 /* MinSizeRel */ = {
+              7C0F23D82FBA46DD909D6C2E /* MinSizeRel */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -580,7 +580,7 @@ exit 0";
                      };
                      name = MinSizeRel;
               };
-              419D8A582BCB40268CC0937E /* RelWithDebInfo */ = {
+              7B7B2E51A7384879B791FF9A /* RelWithDebInfo */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -601,7 +601,7 @@ exit 0";
                      };
                      name = RelWithDebInfo;
               };
-              921B884947D8491EA4408E66 /* Debug */ = {
+              670E56F77EC74B4AA73D7433 /* Debug */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -626,7 +626,7 @@ exit 0";
                      };
                      name = Debug;
               };
-              B44B351F4031450788490E73 /* Release */ = {
+              71B8766828694CC39FC04CBC /* Release */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -651,7 +651,7 @@ exit 0";
                      };
                      name = Release;
               };
-              09C158334B954A85BF488F72 /* MinSizeRel */ = {
+              476CC1523C2244048B117869 /* MinSizeRel */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -676,7 +676,7 @@ exit 0";
                      };
                      name = MinSizeRel;
               };
-              A17162A739244501A824EBD6 /* RelWithDebInfo */ = {
+              7E4C9ED7D27D4925ADB52F0D /* RelWithDebInfo */ = {
                      isa = XCBuildConfiguration;
                      buildSettings = {
                             COMBINE_HIDPI_IMAGES = YES;
@@ -704,51 +704,51 @@ exit 0";
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-              A2B7AC4616D34C13BAE809EE /* Build configuration list for PBXProject  "GLFW" */ = {
+              91CC548BBE354D69AFB4AFF7 /* Build configuration list for PBXProject  "GLFW" */ = {
                      isa = XCConfigurationList;
                      buildConfigurations = (
-                            499B5F1FCBC94BC8913F45E1 /* Debug */,
-                            75DD70A2D1EC401A8C0D6333 /* Release */,
-                            63354624578A4D8BAEC5BC2E /* MinSizeRel */,
-                            FE35F1BA90104CDAA2FE7AF7 /* RelWithDebInfo */,
+                            0E3A105867E64AB1BB107891 /* Debug */,
+                            E426690D73DC42C6B111636E /* Release */,
+                            1A0B565D937D4EC9A9888D6B /* MinSizeRel */,
+                            613D381EB356410D9C990C93 /* RelWithDebInfo */,
                      );
                      defaultConfigurationIsVisible = 0;
                      defaultConfigurationName = Debug;
               };
-              4D780B0057444CFBB97C5BF1 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+              09CBCA0AD43F4FFA8910C4FB /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
                      isa = XCConfigurationList;
                      buildConfigurations = (
-                            DD7E7E0D5FAA4DD69D9AAAED /* Debug */,
-                            B12AA47F68DC418FB20A940E /* Release */,
-                            92F07B63FA6E471482E373E5 /* MinSizeRel */,
-                            81DCC073761A4486B1B6BED1 /* RelWithDebInfo */,
+                            C85411D9A0B7499BBDC660BC /* Debug */,
+                            EA8B43D1C1F7419B8673D2E3 /* Release */,
+                            9991285912504E2E849752A0 /* MinSizeRel */,
+                            24FF217B2CF348E9944BC2B1 /* RelWithDebInfo */,
                      );
                      defaultConfigurationIsVisible = 0;
                      defaultConfigurationName = Debug;
               };
-              02B09E7593A1419FB2AECCA4 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+              FFF363F57DB04591B1615680 /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
                      isa = XCConfigurationList;
                      buildConfigurations = (
-                            A3266DDA2C7C4CB09B9A54E5 /* Debug */,
-                            B044100CDB9244079A28C57F /* Release */,
-                            7EDAF0FC81464A5BA35063B7 /* MinSizeRel */,
-                            419D8A582BCB40268CC0937E /* RelWithDebInfo */,
+                            3C9C2A85433B42E58B7AF3A1 /* Debug */,
+                            79268D594B114739A950B6F8 /* Release */,
+                            7C0F23D82FBA46DD909D6C2E /* MinSizeRel */,
+                            7B7B2E51A7384879B791FF9A /* RelWithDebInfo */,
                      );
                      defaultConfigurationIsVisible = 0;
                      defaultConfigurationName = Debug;
               };
-              015FCAA3739943EEACAD6BBB /* Build configuration list for PBXNativeTarget "glfw" */ = {
+              F315F32A62CD48FABC83ED2B /* Build configuration list for PBXNativeTarget "glfw" */ = {
                      isa = XCConfigurationList;
                      buildConfigurations = (
-                            921B884947D8491EA4408E66 /* Debug */,
-                            B44B351F4031450788490E73 /* Release */,
-                            09C158334B954A85BF488F72 /* MinSizeRel */,
-                            A17162A739244501A824EBD6 /* RelWithDebInfo */,
+                            670E56F77EC74B4AA73D7433 /* Debug */,
+                            71B8766828694CC39FC04CBC /* Release */,
+                            476CC1523C2244048B117869 /* MinSizeRel */,
+                            7E4C9ED7D27D4925ADB52F0D /* RelWithDebInfo */,
                      );
                      defaultConfigurationIsVisible = 0;
                      defaultConfigurationName = Debug;
               };
 /* End XCConfigurationList section */
        };
-       rootObject = BB73419587D84361A0794A80;
+       rootObject = A7615E7410EB4D7181BDD6CB;
 }

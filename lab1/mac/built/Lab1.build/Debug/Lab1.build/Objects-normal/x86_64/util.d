@@ -1,2 +1,2 @@
-dependencies: /Users/elliotfiske/slumber/lab1/mac-client/source/util.c \
-  /Users/elliotfiske/slumber/lab1/mac-client/source/util.h
+dependencies: /Users/elliotfiske/slumber/lab1/mac/source/util.c \
+  /Users/elliotfiske/slumber/lab1/mac/source/util.h
