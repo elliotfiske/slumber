@@ -1,6 +1,5 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
-#include <thread>
 
 using namespace std;
 
@@ -31,7 +30,6 @@ int main(int argc, const char* argv[]) {
       printf("Window was null\n");
       return 1;
    }
-   thread t(checkServer);
 
 	gameState = new GameState(window);
 	while(window) {
@@ -39,5 +37,4 @@ int main(int argc, const char* argv[]) {
 		gameState->draw();
 	}
    
-   t.join();
 }

@@ -1,2 +1,0 @@
-/Users/elliotfiske/slumber/lab1/mac-client/CMakeFiles/Lab1.dir
-/Users/elliotfiske/slumber/lab1/mac-client/dependencies/glfw/src/CMakeFiles/glfw.dir
