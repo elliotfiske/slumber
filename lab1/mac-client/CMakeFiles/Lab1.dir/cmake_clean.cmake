@@ -1,4 +1,4 @@
-FILE(REMOVE_RECURSE
+file(REMOVE_RECURSE
   "CMakeFiles/Lab1.dir/source/main.cpp.o"
   "CMakeFiles/Lab1.dir/source/actor.cpp.o"
   "CMakeFiles/Lab1.dir/source/gamestate.cpp.o"
@@ -16,6 +16,6 @@ FILE(REMOVE_RECURSE
 )
 
 # Per-language clean rules from dependency scanning.
-FOREACH(lang C CXX)
-  INCLUDE(CMakeFiles/Lab1.dir/cmake_clean_${lang}.cmake OPTIONAL)
-ENDFOREACH(lang)
+foreach(lang C CXX)
+  include(CMakeFiles/Lab1.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
