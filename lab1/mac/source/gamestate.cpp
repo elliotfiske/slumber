@@ -28,6 +28,7 @@ void GameState::initAssets() {
    bed->specularColor = vec3(0.1, 0.1, 0.1);
    bed->shininess = 20;
    
+   
    clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
    clock->posID = assets.pos_clockID;
    clock->norID = assets.nor_clockID;

@@ -2,6 +2,8 @@
 #include "assets.hpp"
 using namespace glm;
 
+
+
 class Actor {    
 public:
 	Actor(vec3 center_, vec3 direction_, float velocityScale, float radius);
@@ -22,11 +24,13 @@ public:
 	
 	GLuint posID, norID, indID;
 	int numVerts;
+   int jiggly = 0;
 
 private:
    void setModel(Assets assets);
    void setMaterial(Assets assets);
    int collisionCooldown;
+   
 };
 
 

@@ -15,6 +15,7 @@ void checkServer() {
       if (currPossession != newPossession) {
          currPossession = newPossession;
          gameState->bed->ambientColor.x = (float) currPossession / 10.0;
+         gameState->clock->jiggly = 1;
       }
    }
 }
@@ -31,6 +32,7 @@ int main(int argc, const char* argv[]) {
       printf("Window was null\n");
       return 1;
    }
+    
    thread t(checkServer);
 
 	gameState = new GameState(window);

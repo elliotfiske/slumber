@@ -74,4 +74,7 @@ dependencies: /Users/elliotfiske/slumber/lab1/mac/source/actor.cpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/half_float.inl \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/../gtc/quaternion.hpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/quaternion.inl \
-  /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/type_ptr.inl
+  /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/type_ptr.inl \
+  /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/random.hpp \
+  /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/random.inl \
+  /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/../core/_vectorize.hpp
