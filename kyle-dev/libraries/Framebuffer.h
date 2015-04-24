@@ -35,6 +35,6 @@ private:
 	GLuint tex_id;
 	GLuint width, height;
 	GLint unit;
-}
+};
 
 #endif//_FRAMEBUFFER_H_

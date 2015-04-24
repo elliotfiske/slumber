@@ -53,6 +53,8 @@ void Shape::load(const string &meshName)
 		posBuf[i+1] = (posBuf[i+1] - center(1)) * scale;
 		posBuf[i+2] = (posBuf[i+2] - center(2)) * scale;
 	}
+
+	bounds.init(posBuf);
 }
 
 void Shape::init()
@@ -82,7 +84,7 @@ void Shape::init()
 	} else {
 		texBufID = 0;
 	}
-	
+
 	// Send the index array to the GPU
 	const vector<unsigned int> &indBuf = shapes[0].mesh.indices;
 	glGenBuffers(1, &indBufID);
@@ -123,6 +125,7 @@ void Shape::draw(GLint h_pos, GLint h_nor, GLint h_tex)
 	
 	// Draw
 	glDrawElements(GL_TRIANGLES, nIndices, GL_UNSIGNED_INT, 0);
+	bounds.drawOutline();
 	
 	// Disable and unbind
 	if(texBufID && h_tex >= 0) {

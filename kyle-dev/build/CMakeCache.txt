@@ -381,7 +381,7 @@ X11_xf86vmode_INCLUDE_PATH:PATH=/usr/include
 lab1_BINARY_DIR:STATIC=/home/whykalo/Documents/programming/slumber/kyle-dev/build
 
 //Value Computed by CMake
-lab1_SOURCE_DIR:STATIC=/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build
+lab1_SOURCE_DIR:STATIC=/home/whykalo/Documents/programming/slumber/kyle-dev/build
 
 
 ########################
@@ -466,7 +466,7 @@ CMAKE_HAVE_REMOVE:INTERNAL=1
 CMAKE_HAVE_SHMAT:INTERNAL=1
 //Start directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/whykalo/Documents/programming/slumber/kyle-dev/build
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //Have library ICE

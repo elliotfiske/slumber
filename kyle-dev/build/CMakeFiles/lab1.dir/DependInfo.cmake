@@ -4,22 +4,24 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o"
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o"
+  "/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc" "/home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -34,7 +36,7 @@ SET(CMAKE_TARGET_LINKED_INFO_FILES
 
 # The include file search paths:
 SET(CMAKE_C_TARGET_INCLUDE_PATH
-  "/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build/../public"
+  "../public"
   "/usr/bin/Eigen"
   )
 SET(CMAKE_CXX_TARGET_INCLUDE_PATH ${CMAKE_C_TARGET_INCLUDE_PATH})

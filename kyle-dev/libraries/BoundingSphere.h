@@ -1,21 +1,27 @@
+#ifndef _BOUNDING_SPHERE_H_
+#define _BOUNDING_SPHERE_H_
+
 #include "tiny_obj_loader.h"
 #include <vector>
+#include <Eigen/Dense>
 
 using namespace std;
-using namespace Eigen;
 
 class BoundingSphere {
 public:
-	BoundingSphere(Vector3f center, float radius);
+	BoundingSphere();
 	~BoundingSphere();
-	Eigen::Vector3f getCenter() { return _center; }
-	float getRadius() { return radius; }
-	bool contains(Vector3f point);
 
 	// use tiny_obj_loader::shape_t.mesh.positions
-	static BoundingSphere generate(vector<float> positions);
+	void init(vector<float> positions);
+	Eigen::Vector3f getCenter() { return _center; }
+	float getRadius() { return _radius; }
+	bool contains(Eigen::Vector3f point);
+	void drawOutline();
 
 private:
 	Eigen::Vector3f _center;
-	float radius;
-}
+	float _radius;
+};
+
+#endif

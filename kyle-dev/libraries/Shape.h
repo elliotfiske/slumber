@@ -9,6 +9,7 @@
 #include <GL/glut.h>
 #endif
 #include "tiny_obj_loader.h"
+#include "BoundingSphere.h"
 
 class Shape
 {
@@ -25,6 +26,7 @@ private:
 	GLuint norBufID;
 	GLuint texBufID;
 	GLuint indBufID;
+	BoundingSphere bounds;
 };
 
 #endif

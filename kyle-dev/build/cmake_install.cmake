@@ -1,4 +1,4 @@
-# Install script for directory: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build
+# Install script for directory: /home/whykalo/Documents/programming/slumber/kyle-dev/build
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)

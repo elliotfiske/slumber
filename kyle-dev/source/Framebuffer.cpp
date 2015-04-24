@@ -1,8 +1,8 @@
-#include "Framebuffer.h"
+#include "../libraries/Framebuffer.h"
 
 Framebuffer::Framebuffer() :
 	id(0),
-	text_id(0),
+	tex_id(0),
 	width(0),
 	height(0)
 {
@@ -11,13 +11,12 @@ Framebuffer::Framebuffer() :
 Framebuffer::~Framebuffer() {
 }
 
-bool Framebuffer::generate() {
+void Framebuffer::generate() {
 	glGenFramebuffers(1, &id);
-	return glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE);
 }
 
 bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {
-	GLuint tmp = 0, tmp_tex = 0;
+	GLint tmp = 0, tmp_tex = 0;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &tmp);
 	glGetIntegerv(GL_TEXTURE_BINDING_2D, &tmp_tex);
 
@@ -52,22 +51,14 @@ bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {
 	return check_status;
 }
 
-void Framebuffer::bind(GLint unit) {
+void Framebuffer::bind() {
 	glBindFramebuffer(GL_FRAMEBUFFER, id);
-
-	if (tex_id != 0) {
-		glActiveTexture(GL_TEXTURE0 + unit);
-		glBindTexture(GL_TEXTURE_2D, tid);
-
-		// store unit for unbind
-		this->unit = unit;
-	}
 }
 
 void Framebuffer::bindTexture(GLint handle, GLint unit) {
 	if (tex_id != 0) {
 		glActiveTexture(GL_TEXTURE0 + unit);
-		glBindTexture(GL_TEXTURE_2D, tid);
+		glBindTexture(GL_TEXTURE_2D, tex_id);
 		glUniform1i(handle, unit);
 		this->unit = unit;
 	}

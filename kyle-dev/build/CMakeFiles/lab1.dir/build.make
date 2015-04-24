@@ -38,7 +38,7 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build
+CMAKE_SOURCE_DIR = /home/whykalo/Documents/programming/slumber/kyle-dev/build
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/whykalo/Documents/programming/slumber/kyle-dev/build
@@ -52,412 +52,462 @@ include CMakeFiles/lab1.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/lab1.dir/flags.make
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_1)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_2)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_4)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_5)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_6)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_7)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_8)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_9)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_10)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_11)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_12)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_13)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_14)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_15)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o: CMakeFiles/lab1.dir/flags.make
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o: /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp
 	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_16)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o -c /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.i
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.i
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.s
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.s
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.requires:
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.requires
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.requires
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.requires
-	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.provides.build
-.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.provides
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.provides
 
-CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.i
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.s
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.requires
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.provides
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_18)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.i
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.s
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.requires
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.provides
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o
 
 # Object files for target lab1
 lab1_OBJECTS = \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o" \
-"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o"
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o"
 
 # External object files for target lab1
 lab1_EXTERNAL_OBJECTS =
 
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o
-lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o
 lab1: CMakeFiles/lab1.dir/build.make
 lab1: /usr/lib/i386-linux-gnu/libGLU.so
 lab1: /usr/lib/i386-linux-gnu/libGL.so
@@ -476,22 +526,24 @@ lab1: CMakeFiles/lab1.dir/link.txt
 CMakeFiles/lab1.dir/build: lab1
 .PHONY : CMakeFiles/lab1.dir/build
 
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Image.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Program.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/CollisionBox.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Rand.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Texture.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/HUD.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/main.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Shape.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/WorldObject.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Scene.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Light.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Camera.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/MatrixStack.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/GLSL.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/Player.cpp.o.requires
-CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/noah-dev/476lab1/source/tiny_obj_loader.cc.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Image.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Program.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Framebuffer.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/BoundingSphere.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/CollisionBox.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Rand.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Texture.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/HUD.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/main.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o.requires
 .PHONY : CMakeFiles/lab1.dir/requires
 
 CMakeFiles/lab1.dir/clean:
@@ -499,6 +551,6 @@ CMakeFiles/lab1.dir/clean:
 .PHONY : CMakeFiles/lab1.dir/clean
 
 CMakeFiles/lab1.dir/depend:
-	cd /home/whykalo/Documents/programming/slumber/kyle-dev/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build /home/whykalo/Documents/programming/slumber/noah-dev/476lab1/build /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/whykalo/Documents/programming/slumber/kyle-dev/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles/lab1.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lab1.dir/depend
 
