@@ -1,0 +1,2 @@
+/home/awong59/cpe476/slumber/allen-dev/Cmake-1/CMakeFiles/Lab1.dir
+/home/awong59/cpe476/slumber/allen-dev/Cmake-1/dependencies/glfw/src/CMakeFiles/glfw.dir

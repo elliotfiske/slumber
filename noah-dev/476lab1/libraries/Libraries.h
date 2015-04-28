@@ -26,5 +26,6 @@
 #include "Scene.h"
 #include "Player.h"
 #include "HUD.h"
+#include "Light.h"
 
 using namespace std;
