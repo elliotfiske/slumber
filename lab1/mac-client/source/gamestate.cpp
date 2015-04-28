@@ -116,7 +116,7 @@ void GameState::checkCollisions() {
          if(inClock == 0){
             inClock = 1;
             
-            sprintf(wget_command, "wget elliotfiske.com/slumber.py?command=%d &", i + 1);
+            sprintf(wget_command, "wget elliotfiske.com/slumber.py?command=%d -O /dev/null &", i + 1);
             
             system(wget_command);
          }
