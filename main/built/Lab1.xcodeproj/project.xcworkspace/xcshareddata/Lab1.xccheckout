@@ -14,11 +14,11 @@
 		<string>https://github.com/elliotfiske/slumber.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>lab1/mac/built/Lab1.xcodeproj</string>
+	<string>main/built/Lab1.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>44B57E427A1E0724BE94F7FACFBD2119283E7473</key>
-		<string>../../../../..</string>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/elliotfiske/slumber.git</string>

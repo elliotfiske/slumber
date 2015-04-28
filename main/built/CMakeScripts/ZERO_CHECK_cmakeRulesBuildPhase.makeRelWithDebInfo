@@ -2,9 +2,9 @@
 # Custom rules for ZERO_CHECK
 .SUFFIXES: 
 all: \
-	/Users/elliotfiske/slumber/lab1/mac/built/CMakeFiles/ZERO_CHECK
+	/Users/elliotfiske/slumber/main/built/CMakeFiles/ZERO_CHECK
 
 
-/Users/elliotfiske/slumber/lab1/mac/built/CMakeFiles/ZERO_CHECK: 
+/Users/elliotfiske/slumber/main/built/CMakeFiles/ZERO_CHECK: 
 	echo ""
-	make -f /Users/elliotfiske/slumber/lab1/mac/built/CMakeScripts/ReRunCMake.make
+	make -f /Users/elliotfiske/slumber/main/built/CMakeScripts/ReRunCMake.make

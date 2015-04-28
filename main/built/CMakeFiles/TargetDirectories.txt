@@ -1,4 +1,4 @@
-/Users/elliotfiske/slumber/lab1/mac/built/CMakeFiles/ALL_BUILD.dir
-/Users/elliotfiske/slumber/lab1/mac/built/CMakeFiles/Lab1.dir
-/Users/elliotfiske/slumber/lab1/mac/built/CMakeFiles/ZERO_CHECK.dir
-/Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/src/CMakeFiles/glfw.dir
+/Users/elliotfiske/slumber/main/built/CMakeFiles/ALL_BUILD.dir
+/Users/elliotfiske/slumber/main/built/CMakeFiles/Lab1.dir
+/Users/elliotfiske/slumber/main/built/CMakeFiles/ZERO_CHECK.dir
+/Users/elliotfiske/slumber/main/built/dependencies/glfw/src/CMakeFiles/glfw.dir

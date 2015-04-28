@@ -29,7 +29,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/elliotfiske/slumber/lab1/mac/built/dependencies/glfw/cmake_install.cmake")
+  include("/Users/elliotfiske/slumber/main/built/dependencies/glfw/cmake_install.cmake")
 
 endif()
 
@@ -39,7 +39,7 @@ else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-file(WRITE "/Users/elliotfiske/slumber/lab1/mac/built/${CMAKE_INSTALL_MANIFEST}" "")
+file(WRITE "/Users/elliotfiske/slumber/main/built/${CMAKE_INSTALL_MANIFEST}" "")
 foreach(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  file(APPEND "/Users/elliotfiske/slumber/lab1/mac/built/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  file(APPEND "/Users/elliotfiske/slumber/main/built/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 endforeach()
