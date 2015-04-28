@@ -68,4 +68,5 @@ dependencies: /Users/elliotfiske/slumber/lab1/mac/source/main.cpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/core/func_integer.inl \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/./core/func_noise.hpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/core/func_noise.inl \
-  /Users/elliotfiske/slumber/lab1/mac/source/assets.hpp
+  /Users/elliotfiske/slumber/lab1/mac/source/assets.hpp \
+  /Users/elliotfiske/slumber/lab1/mac/source/Framebuffer.h

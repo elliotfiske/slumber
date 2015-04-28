@@ -68,6 +68,7 @@ dependencies: /Users/elliotfiske/slumber/lab1/mac/source/gamestate.cpp \
   /Users/elliotfiske/slumber/lab1/mac/dependencies/glad/include/glad/glad.h \
   /Users/elliotfiske/slumber/lab1/mac/dependencies/glad/include/KHR/khrplatform.h \
   /Users/elliotfiske/slumber/lab1/mac/dependencies/glfw/include/GLFW/glfw3.h \
+  /Users/elliotfiske/slumber/lab1/mac/source/Framebuffer.h \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/matrix_transform.hpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/../glm.hpp \
   /Users/elliotfiske/slumber/lab1/mac/source/glm/gtc/matrix_transform.inl \

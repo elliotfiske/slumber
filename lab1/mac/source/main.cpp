@@ -1,48 +1,26 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
-#include <thread>
 
 using namespace std;
 
 GameState *gameState;
 
-void checkServer() {
-    int currPossession = 0;
-    while (1) {
-        int newPossession = system("python client.py") / 256;
-        printf("Possessing clock #%d\n", newPossession);
-        
-        if (currPossession != newPossession) {
-            gameState->clocks[currPossession - 1].jiggly = 0;
-            gameState->clocks[currPossession - 1].ambientColor.x = 0;
-            currPossession = newPossession;
-            gameState->bed->ambientColor.x = (float) currPossession / 10.0;
-            gameState->clocks[currPossession - 1].jiggly = 1;
-            gameState->clocks[currPossession - 1].ambientColor.x = 1;
-        }
-    }
-}
-
 int main(int argc, const char* argv[]) {
-   GLFWwindow* window;
-
-   // Test this test that
-    printf("It's at %s btw\n", *argv);
-
-   window = setupWindow();
-
-   if (window == NULL) {
-      printf("Window was null\n");
-      return 1;
-   }
+    GLFWwindow* window;
     
-   thread t(checkServer);
-
-	gameState = new GameState(window);
-	while(window) {
-		gameState->update();
-		gameState->draw();
-	}
-   
-   t.join();
+    // Test this test that
+    printf("It's at %s btw\n", *argv);
+    
+    window = setupWindow();
+    
+    if (window == NULL) {
+        printf("Window was null\n");
+        return 1;
+    }
+    
+    gameState = new GameState(window);
+    while(window) {
+        gameState->update();
+        gameState->draw();
+    }
 }

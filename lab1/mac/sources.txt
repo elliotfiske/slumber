@@ -11,6 +11,7 @@ set(HEADERS
    control.hpp
    assets.hpp
    util.h
+   Framebuffer.h
 )
 
 # List all .c / .cpp files here
@@ -26,4 +27,5 @@ set(SOURCES
    control.cpp
    assets.cpp
    util.c
+   Framebuffer.cpp
 )
