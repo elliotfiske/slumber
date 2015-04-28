@@ -1,0 +1,2 @@
+/home/earrolig/cpe476/slumber/lab1/mac/CMakeFiles/Lab1.dir
+/home/earrolig/cpe476/slumber/lab1/mac/dependencies/glfw/src/CMakeFiles/glfw.dir
