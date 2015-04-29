@@ -27,7 +27,13 @@
 *.app
 
 *~
+*.swp
 
 # XCode stuff
 UserInterfaceState.xcuserstate
 dgph
+
+# CMake built stuff
+build/
+CMakeFiles/
+Makefile
