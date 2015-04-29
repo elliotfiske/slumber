@@ -37,3 +37,4 @@ dgph
 build/
 CMakeFiles/
 Makefile
+CMakeCache.txt
