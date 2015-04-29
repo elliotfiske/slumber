@@ -48,5 +48,7 @@ foreach(SOURCE ${SOURCES})
 endforeach(SOURCE)
 
 include_directories(${INCLUDES})
-add_executable(${PROJECT_NAME} ${ABS_SOURCES} ${ABS_HEADERS} ${LIB_SOURCES})
+add_executable(${PROJECT_NAME} ${ABS_SOURCES} ${ABS_HEADERS} ${LIB_SOURCES}
+	
+)
 target_link_libraries(${PROJECT_NAME} ${LIBS})
