@@ -28,7 +28,7 @@ public:
     
     GLuint posID, norID, indID;
     int numVerts;
-    int jiggly = 0;
+    int jiggly;
     
 private:
     void setModel(Assets assets);
