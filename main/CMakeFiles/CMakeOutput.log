@@ -1139,3 +1139,153 @@ Linking C executable cmTryCompileExec270558682
 gmake[1]: Leaving directory `/home/earrolig/cpe476/slumber/lab1/mac/CMakeFiles/CMakeTmp'
 
 
+Determining if the function XOpenDisplay exists in the /usr/lib64/libX11.so;/usr/lib64/libXext.so passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec4118125431/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec4118125431.dir/build.make CMakeFiles/cmTryCompileExec4118125431.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec4118125431.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay   -o CMakeFiles/cmTryCompileExec4118125431.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec4118125431
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec4118125431.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=XOpenDisplay    CMakeFiles/cmTryCompileExec4118125431.dir/CheckFunctionExists.c.o  -o cmTryCompileExec4118125431 -rdynamic -lX11 -lXext 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function gethostbyname exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3007414469/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3007414469.dir/build.make CMakeFiles/cmTryCompileExec3007414469.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3007414469.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname   -o CMakeFiles/cmTryCompileExec3007414469.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3007414469
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3007414469.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=gethostbyname    CMakeFiles/cmTryCompileExec3007414469.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3007414469 -rdynamic 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function connect exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2410349404/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2410349404.dir/build.make CMakeFiles/cmTryCompileExec2410349404.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2410349404.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect   -o CMakeFiles/cmTryCompileExec2410349404.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2410349404
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2410349404.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=connect    CMakeFiles/cmTryCompileExec2410349404.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2410349404 -rdynamic 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function remove exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3159790686/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3159790686.dir/build.make CMakeFiles/cmTryCompileExec3159790686.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3159790686.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove   -o CMakeFiles/cmTryCompileExec3159790686.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec3159790686
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3159790686.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=remove    CMakeFiles/cmTryCompileExec3159790686.dir/CheckFunctionExists.c.o  -o cmTryCompileExec3159790686 -rdynamic 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function shmat exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1689885620/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1689885620.dir/build.make CMakeFiles/cmTryCompileExec1689885620.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1689885620.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat   -o CMakeFiles/cmTryCompileExec1689885620.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1689885620
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1689885620.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=shmat    CMakeFiles/cmTryCompileExec1689885620.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1689885620 -rdynamic 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function IceConnectionNumber exists in the ICE passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec2339367438/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec2339367438.dir/build.make CMakeFiles/cmTryCompileExec2339367438.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec2339367438.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber   -o CMakeFiles/cmTryCompileExec2339367438.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec2339367438
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec2339367438.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=IceConnectionNumber    CMakeFiles/cmTryCompileExec2339367438.dir/CheckFunctionExists.c.o  -o cmTryCompileExec2339367438 -rdynamic -lICE 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if files pthread.h exist passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec3039523240/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec3039523240.dir/build.make CMakeFiles/cmTryCompileExec3039523240.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec3039523240.dir/CheckIncludeFiles.c.o
+/usr/bin/cc    -o CMakeFiles/cmTryCompileExec3039523240.dir/CheckIncludeFiles.c.o   -c //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CheckIncludeFiles.c
+Linking C executable cmTryCompileExec3039523240
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec3039523240.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTryCompileExec3039523240.dir/CheckIncludeFiles.c.o  -o cmTryCompileExec3039523240 -rdynamic 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec564696522/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec564696522.dir/build.make CMakeFiles/cmTryCompileExec564696522.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec564696522.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTryCompileExec564696522.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec564696522
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec564696522.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTryCompileExec564696522.dir/CheckFunctionExists.c.o  -o cmTryCompileExec564696522 -rdynamic -lpthread 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function glXGetProcAddress exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1108095064/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1108095064.dir/build.make CMakeFiles/cmTryCompileExec1108095064.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1108095064.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddress   -o CMakeFiles/cmTryCompileExec1108095064.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1108095064
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1108095064.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddress    CMakeFiles/cmTryCompileExec1108095064.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1108095064 -rdynamic -lGL 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+
+Determining if the function glXGetProcAddressARB exists passed with the following output:
+Change Dir: //home/efiske/slumber/main/CMakeFiles/CMakeTmp
+
+Run Build Command:/usr/bin/gmake "cmTryCompileExec1206700675/fast"
+/usr/bin/gmake -f CMakeFiles/cmTryCompileExec1206700675.dir/build.make CMakeFiles/cmTryCompileExec1206700675.dir/build
+gmake[1]: Entering directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+/usr/bin/cmake -E cmake_progress_report //home/efiske/slumber/main/CMakeFiles/CMakeTmp/CMakeFiles 1
+Building C object CMakeFiles/cmTryCompileExec1206700675.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressARB   -o CMakeFiles/cmTryCompileExec1206700675.dir/CheckFunctionExists.c.o   -c /usr/share/cmake/Modules/CheckFunctionExists.c
+Linking C executable cmTryCompileExec1206700675
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTryCompileExec1206700675.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=glXGetProcAddressARB    CMakeFiles/cmTryCompileExec1206700675.dir/CheckFunctionExists.c.o  -o cmTryCompileExec1206700675 -rdynamic -lGL 
+gmake[1]: Leaving directory `/home/efiske/slumber/main/CMakeFiles/CMakeTmp'
+
+

@@ -42,10 +42,10 @@ EQUALS = =
 CMAKE_EDIT_COMMAND = /usr/bin/ccmake
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/earrolig/cpe476/slumber/lab1/mac
+CMAKE_SOURCE_DIR = //home/efiske/slumber/main
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/earrolig/cpe476/slumber/lab1/mac
+CMAKE_BINARY_DIR = //home/efiske/slumber/main
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -72,9 +72,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/earrolig/cpe476/slumber/lab1/mac/CMakeFiles /home/earrolig/cpe476/slumber/lab1/mac/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start //home/efiske/slumber/main/CMakeFiles //home/efiske/slumber/main/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/earrolig/cpe476/slumber/lab1/mac/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start //home/efiske/slumber/main/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -150,6 +150,30 @@ dependencies/glad/src/glad.s: dependencies/glad/src/glad.c.s
 dependencies/glad/src/glad.c.s:
 	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/dependencies/glad/src/glad.c.s
 .PHONY : dependencies/glad/src/glad.c.s
+
+source/Framebuffer.o: source/Framebuffer.cpp.o
+.PHONY : source/Framebuffer.o
+
+# target to build an object file
+source/Framebuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/Framebuffer.cpp.o
+.PHONY : source/Framebuffer.cpp.o
+
+source/Framebuffer.i: source/Framebuffer.cpp.i
+.PHONY : source/Framebuffer.i
+
+# target to preprocess a source file
+source/Framebuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/Framebuffer.cpp.i
+.PHONY : source/Framebuffer.cpp.i
+
+source/Framebuffer.s: source/Framebuffer.cpp.s
+.PHONY : source/Framebuffer.s
+
+# target to generate assembly for a file
+source/Framebuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/Lab1.dir/build.make CMakeFiles/Lab1.dir/source/Framebuffer.cpp.s
+.PHONY : source/Framebuffer.cpp.s
 
 source/GLSL.o: source/GLSL.cpp.o
 .PHONY : source/GLSL.o
@@ -428,6 +452,9 @@ help:
 	@echo "... dependencies/glad/src/glad.o"
 	@echo "... dependencies/glad/src/glad.i"
 	@echo "... dependencies/glad/src/glad.s"
+	@echo "... source/Framebuffer.o"
+	@echo "... source/Framebuffer.i"
+	@echo "... source/Framebuffer.s"
 	@echo "... source/GLSL.o"
 	@echo "... source/GLSL.i"
 	@echo "... source/GLSL.s"
