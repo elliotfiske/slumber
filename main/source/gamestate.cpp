@@ -143,14 +143,14 @@ void GameState::update() {
     if(camera->center.y <= 0.0){
         camera->center.y = 0.0;
     }
-    if(camera->center.y >= 10.4){
+    if(camera->center.y >= 10.4) {
         camera->center.y = 10.4;
     }
     
-    if(camera->center.x >= 13.5){
+    if(camera->center.x >= 13.5) {
         camera->center.x = 13.5;
     }
-    if(camera->center.x <= -13.5){
+    if(camera->center.x <= -13.5) {
         camera->center.x = -13.5;
     }
     if(camera->center.z >= 2.5){
@@ -176,15 +176,13 @@ void GameState::setPerspectiveMat() {
 }
 
 void GameState::draw() {
+
     
-//    framebuffer->unbindTexture();
-//    framebuffer->bind();
+    framebuffer->bind();
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(assets.ShadeProg);
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    
-    
     
     setView();
     setPerspectiveMat();
@@ -199,39 +197,35 @@ void GameState::draw() {
     glDisableVertexAttribArray(assets.h_aPosition);
     glDisableVertexAttribArray(assets.h_aNormal);
     
-//    framebuffer->unbind();
+    framebuffer->unbind();
     
+    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     
+    // Clear the screen
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-//    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-//    
-//    // Clear the screen
-//    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-//    
-//    glUseProgram(assets.FrameBufferProg);
-//    framebuffer->bindTexture(assets.texID);
-//    
-//    glEnableVertexAttribArray(0);
-//    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
-//    glVertexAttribPointer(
-//                          assets.quad_vertexPosition_modelspace, // attribute
-//                          3,                              // size
-//                          GL_FLOAT,                       // type
-//                          GL_FALSE,                       // normalized?
-//                          0,                              // stride
-//                          (void*)0                        // array buffer offset
-//                          );
-//    
-//    // Draw the triangles !
-//    glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
-//    
-//    glDisableVertexAttribArray(0);
-//    
-//    framebuffer->unbindTexture();
+    glUseProgram(assets.FrameBufferProg);
+    framebuffer->bindTexture(assets.texID);
+    
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
+    glVertexAttribPointer(
+                          assets.quad_vertexPosition_modelspace, // attribute
+                          3,                              // size
+                          GL_FLOAT,                       // type
+                          GL_FALSE,                       // normalized?
+                          0,                              // stride
+                          (void*)0                        // array buffer offset
+                          );
+    
+    // Draw the triangles !
+    glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
+    
+    glDisableVertexAttribArray(0);
+    
+    framebuffer->unbindTexture();
     
     
     glfwSwapBuffers(window);
     glfwPollEvents();
-    
-    
 }

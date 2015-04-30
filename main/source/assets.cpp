@@ -164,14 +164,10 @@ void Assets::readLevelData(string filename) {
 
 
 Assets::Assets() {
-    
-    
-    
-    
-    loadShape("sphere.obj", &pos_sphereID, &nor_sphereID, &ind_sphereID, &numVerts_sphere);
-    loadShape("room.obj", &pos_roomID, &nor_roomID, &ind_roomID, &numVerts_room);
-    loadShape("sheet.obj", &pos_bedID, &nor_bedID, &ind_bedID, &numVerts_bed);
-    loadShape("clock.obj", &pos_clockID, &nor_clockID, &ind_clockID, &numVerts_clock);
+//    loadShape("sphere.obj", &pos_sphereID, &nor_sphereID, &ind_sphereID, &numVerts_sphere);
+    loadShape("models/room.obj", &pos_roomID, &nor_roomID, &ind_roomID, &numVerts_room);
+    loadShape("models/sheet.obj", &pos_bedID, &nor_bedID, &ind_bedID, &numVerts_bed);
+    loadShape("models/clock.obj", &pos_clockID, &nor_clockID, &ind_clockID, &numVerts_clock);
     
     if (!installShaders("vert.glsl", "frag.glsl")) {
         printf("Couldn't load shaders :(\n");
