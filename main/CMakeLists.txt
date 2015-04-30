@@ -52,3 +52,18 @@ add_executable(${PROJECT_NAME} ${ABS_SOURCES} ${ABS_HEADERS} ${LIB_SOURCES}
 	
 )
 target_link_libraries(${PROJECT_NAME} ${LIBS})
+
+# Copy over .obj's, .mtl's, etc.'
+
+
+# if (${CMAKE_GENERATOR} MATCHES "Xcode" )
+
+add_custom_target(
+    Resources ALL
+    ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/Debug
+    SOURCES ${Resources}
+)
+
+# endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
+
+add_dependencies(slumber Resources)
