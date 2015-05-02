@@ -27,8 +27,6 @@ public:
     void update();
     void draw();
     
-    Assets assets;
-    
     // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     

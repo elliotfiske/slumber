@@ -116,7 +116,7 @@ void updateControl(GLFWwindow *window) {
    strafeVel /= FRICTION;
 }
 
-void updateCamera(Camera *camera) {
+void updateCamDirection(Camera *camera) {
    glm::vec3
          direction(cos(pitch) * sin(yaw), sin(pitch), cos(pitch) * cos(yaw));
 
