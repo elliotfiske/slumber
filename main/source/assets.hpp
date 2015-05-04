@@ -19,8 +19,8 @@ public:
         return instance;
     }
     
-    LightingShader lightingShader;
-    FBOShader      darkeningShader;
+    LightingShader *lightingShader;
+    FBOShader      *darkeningShader;
     
     Actor actorFromName(string actorName);
     

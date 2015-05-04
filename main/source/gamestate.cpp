@@ -123,25 +123,23 @@ void GameState::update() {
 void GameState::setView() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
-    CurrAssets->lightingShader.setViewMatrix(cam);
+    CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
 /* helper function to set projection matrix - don't touch */
 void GameState::setPerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
-    CurrAssets->lightingShader.setProjectionMatrix(Projection);
+    CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
 
-void drawToScreenTriangles() {
-    
-}
-
-void GameState::draw() {
-    framebuffer->bind();
-    
+/**
+ * Actually draws each of the 3D objects in the scene
+ */
+void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glUseProgram(assets.ShadeProg);
+    CurrAssets->lightingShader->startUsingShader();
+    
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     
     setView();
@@ -154,23 +152,24 @@ void GameState::draw() {
         clocks[i].draw();
     }
     
-    
-    CurrAssets->lightingShader.disableAttribArrays();
-    
-    framebuffer->unbind();
-    
-    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    
+    CurrAssets->lightingShader->disableAttribArrays();
+}
+
+/**
+ * Render a texture to a square that covers the whole screen.
+ */
+void GameState::renderFrameBuffer() {
     // Clear the screen
+    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->darkeningShader.fbo_progrmaID);
-    framebuffer->bindTexture(assets.texID);
+    glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          assets.quad_vertexPosition_modelspace, // attribute
+                          CurrAssets->darkeningShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?
@@ -182,6 +181,15 @@ void GameState::draw() {
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);
+}
+
+
+void GameState::draw() {
+    framebuffer->bind();
+    renderScene();
+    framebuffer->unbind();
+    
+    renderFrameBuffer();
     framebuffer->unbindTexture();
     
     glfwSwapBuffers(window);

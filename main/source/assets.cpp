@@ -16,8 +16,8 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
-    lightingShader = LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
-    darkeningShader = FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
+    lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
+    darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     
     // Populate the levelDict variable
     readLevelData("level.txt");
@@ -78,7 +78,7 @@ void Assets::loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuin
  *  OBJ data and position
  */
 Actor Assets::actorFromName(string actorName) {
-    
+    return Actor(vec3(0, 0, 0));
 }
 
 

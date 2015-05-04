@@ -28,23 +28,23 @@ void Actor::setModel() {
     
     glm::mat4 Composite = Trans * RotX * RotY * RotZ;
     
-    CurrAssets->lightingShader.setModelMatrix(Composite);
+    CurrAssets->lightingShader->setModelMatrix(Composite);
 }
 
 void Actor::setMaterial() {
-    CurrAssets->lightingShader.setAmbientMaterial(ambientColor);
-    CurrAssets->lightingShader.setDiffuseMaterial(diffuseColor);
-    CurrAssets->lightingShader.setSpecularMaterial(specularColor);
-    CurrAssets->lightingShader.setShininess(shininess);
+    CurrAssets->lightingShader->setAmbientColor(ambientColor);
+    CurrAssets->lightingShader->setDiffuseColor(diffuseColor);
+    CurrAssets->lightingShader->setSpecularColor(specularColor);
+    CurrAssets->lightingShader->setShininess(shininess);
 }
 
 void Actor::draw() {
     setModel();
     setMaterial();
     
-    CurrAssets->lightingShader.setPositionArray(posID);
-    CurrAssets->lightingShader.setNormalArray(norID);
-    CurrAssets->lightingShader.setIndexArray(indID);
+    CurrAssets->lightingShader->setPositionArray(posID);
+    CurrAssets->lightingShader->setNormalArray(norID);
+    CurrAssets->lightingShader->setIndexArray(indID);
     
     glDrawElements(GL_TRIANGLES, numVerts, GL_UNSIGNED_INT, (void*) 0);
 }

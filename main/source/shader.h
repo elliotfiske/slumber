@@ -20,18 +20,19 @@ public:
     LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
     GLuint lighting_ProgramID;
+    void startUsingShader();
     
     void setPositionArray(GLuint arrayID);
     void setNormalArray(GLuint arrayID);
     void setIndexArray(GLuint arrayID);
     
     void setProjectionMatrix(glm::mat4 projectionMatrix);
-    void setViewMatrix(glm::mat4 viewMatrix);
     void setModelMatrix(glm::mat4 modelMatrix);
+    void setViewMatrix(glm::mat4 viewMatrix);
     void setLightPos(glm::vec3 lightPos); // NOTE: doesn't actually work, yet
-    void setAmbientMaterial(glm::vec3 color);
-    void setDiffuseMaterial(glm::vec3 color);
-    void setSpecularMaterial(glm::vec3 color);
+    void setAmbientColor(glm::vec3 color);
+    void setDiffuseColor(glm::vec3 color);
+    void setSpecularColor(glm::vec3 color);
     void setShininess(float shininess);
     
     // Clean-up

@@ -109,6 +109,10 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
 
 
 // --------- LIGHTING SHADER SETTERS -----------
+void LightingShader::startUsingShader() {
+    glUseProgram(lighting_ProgramID);
+}
+
 void LightingShader::setPositionArray(GLuint arrayID) {
     GLSL::enableVertexAttribArray(position_AttributeID);
     glBindBuffer(GL_ARRAY_BUFFER, arrayID);
@@ -133,23 +137,23 @@ void LightingShader::setViewMatrix(mat4 viewMatrix) {
     glUniformMatrix4fv(viewMatrix_UniformID, 1, GL_FALSE, value_ptr(viewMatrix));
 }
 
-void LightingShader::setModelMatrix(glm::mat4 modelMatrix) {
+void LightingShader::setModelMatrix(mat4 modelMatrix) {
     glUniformMatrix4fv(modelMatrix_UniformID, 1, GL_FALSE, value_ptr(modelMatrix));
 }
 
-void LightingShader::setLightPos(glm::vec3 lightPos) {
+void LightingShader::setLightPos(vec3 lightPos) {
     printf("setting light position doesn't actually do anything! yet.\n");
 }
 
-void LightingShader::setAmbientMaterial(glm::vec3 color) {
+void LightingShader::setAmbientColor(vec3 color) {
     glUniform3f(ambientMaterial_uniformID, color.x, color.y, color.z);
 }
 
-void LightingShader::setDiffuseMaterial(glm::vec3 color) {
+void LightingShader::setDiffuseColor(vec3 color) {
     glUniform3f(diffuseMaterial_UniformID, color.x, color.y, color.z);
 }
 
-void LightingShader::setSpecularMaterial(glm::vec3 color) {
+void LightingShader::setSpecularColor(glm::vec3 color) {
     glUniform3f(specularMaterial_UniformID, color.x, color.y, color.z);
 }
 

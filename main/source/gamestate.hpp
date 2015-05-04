@@ -36,6 +36,8 @@ private:
     
     void setPerspectiveMat();
     void setView();
+    void renderScene();
+    void renderFrameBuffer();
     
     double timeToNextSphere;
     
