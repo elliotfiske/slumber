@@ -15,7 +15,7 @@ public:
     GameState(GLFWwindow *window);
     std::vector<Actor> actors;
     std::vector<Actor> clocks;
-    Actor *groundPlane, *bed, *clock;
+    Actor *room, *bed, *clock;
     
     Framebuffer *framebuffer;
     
