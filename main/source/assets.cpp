@@ -84,7 +84,7 @@ Actor* Assets::actorFromName(string actorName) {
     Actor *result;
     
     result = new Actor(levelDict[actorName]);
-    loadShape(actorName + ".obj", result);
+    loadShape("models/" + actorName + ".obj", result);
     
     return result;
 }
