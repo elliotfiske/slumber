@@ -27,8 +27,6 @@ public:
     void update();
     void draw();
     
-    Assets assets;
-    
     // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
@@ -38,6 +36,8 @@ private:
     
     void setPerspectiveMat();
     void setView();
+    void renderScene();
+    void renderFrameBuffer();
     
     double timeToNextSphere;
     
