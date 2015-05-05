@@ -35,7 +35,6 @@ public:
     
     GLuint posID, norID, indID;
     int numVerts;
-    int jiggly;
     
 private:
     void setModel();

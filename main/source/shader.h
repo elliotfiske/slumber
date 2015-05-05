@@ -16,7 +16,6 @@
 
 class LightingShader {
 public:
-    LightingShader();
     LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
     GLuint lighting_ProgramID;

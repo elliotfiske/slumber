@@ -19,7 +19,6 @@ Assets::Assets() {
     lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     
-    // Populate the levelDict variable
     readLevelData("level.txt");
 }
 
@@ -44,41 +43,50 @@ void Assets::readLevelData(string filename) {
     }
 }
 
-void Assets::loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuint *indID, int *numVerts) {
+/**
+ * Sends .OBJ data to the GPU and tells the actor what its
+ *  array IDs are.
+ */
+void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename);
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str());
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }
     
     const vector<float> &posBuf = shapes[0].mesh.positions;
-    glGenBuffers(1, posID);
-    glBindBuffer(GL_ARRAY_BUFFER, *posID);
+    glGenBuffers(1, &actor->posID);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->posID);
     glBufferData(GL_ARRAY_BUFFER, posBuf.size()*sizeof(float), &posBuf[0], GL_STATIC_DRAW);
     
     // Send the normal array to the GPU
     const vector<float> &norBuf = shapes[0].mesh.normals;
-    glGenBuffers(1, norID);
-    glBindBuffer(GL_ARRAY_BUFFER, *norID);
+    glGenBuffers(1, &actor->norID);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->posID);
     glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
     
     // Send the index array to the GPU
     const vector<unsigned int> &indBuf = shapes[0].mesh.indices;
-    glGenBuffers(1, indID);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, *indID);
+    glGenBuffers(1, &actor->indID);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, actor->indID);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
-    *numVerts = shapes[0].mesh.indices.size();
+    actor->numVerts = shapes[0].mesh.indices.size();
 }
 
 /**
  * Uses the levelDict to create an actor with the correct
  *  OBJ data and position
  */
-Actor Assets::actorFromName(string actorName) {
-    return Actor(vec3(0, 0, 0));
+Actor* Assets::actorFromName(string actorName) {
+    Actor *result;
+    
+    result = new Actor(levelDict[actorName]);
+    loadShape(actorName + ".obj", result);
+    
+    return result;
 }
 
 

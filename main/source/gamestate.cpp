@@ -8,63 +8,24 @@
 using namespace glm;
 
 void GameState::initAssets() {
-//    groundPlane = new Actor(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
-//    Assets *assets = Assets::instance();
-//    groundPlane->posID = assets->pos_roomID;
-//    groundPlane->norID = assets.nor_roomID;
-//    groundPlane->indID = assets.ind_roomID;
-//    groundPlane->numVerts = assets.numVerts_room;
-//    
-//    groundPlane->diffuseColor = vec3(0.31, 0.082, 0.212);
-//    groundPlane->ambientColor = vec3(1.0, 0.05, 0.3);
-//    groundPlane->specularColor = vec3(0.1, 0.1, 0.1);
-//    groundPlane->shininess = 0;
-//    
-//    bed = new Actor(vec3(0.0, -1.0, 0.0), vec3(0.0, 0.0, 0.0), 0.0, 0.0);
-//    bed->posID = assets.pos_bedID;
-//    bed->norID = assets.nor_bedID;
-//    bed->indID = assets.ind_bedID;
-//    bed->numVerts = assets.numVerts_bed;
-//    
-//    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-//    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-//    bed->specularColor = vec3(0.1, 0.1, 0.1);
-//    bed->shininess = 20;
-//    
-//    for(int i = 0; i < 5; i++){
-//        clock = new Actor(vec3(12.5, -2.0, 0.0), vec3(0.0, 180.0, 0.0), 0.0, 0.0);
-//        clock->posID = assets.pos_clockID;
-//        clock->norID = assets.nor_clockID;
-//        clock->indID = assets.ind_clockID;
-//        clock->numVerts = assets.numVerts_clock;
-//        
-//        clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-//        clock->ambientColor = vec3(0.1, 0.06, 0.17);
-//        clock->specularColor = vec3(0.1, 0.1, 0.1);
-//        clock->shininess = 10;
-//        
-//        clocks.push_back(*clock);
-//    }
-//    
-//    clocks[0].center.x = 12.5;
-//    clocks[0].center.y = -2.0;
-//    clocks[0].center.z = 0.0;
-//    
-//    clocks[1].center.x = -12.5;
-//    clocks[1].center.y = -2.0;
-//    clocks[1].center.z = 0.0;
-//    
-//    clocks[2].center.x = 12.5;
-//    clocks[2].center.y = -2.0;
-//    clocks[2].center.z = -32.5;
-//    
-//    clocks[3].center.x =  -12.5;
-//    clocks[3].center.y = -2.0;
-//    clocks[3].center.z =  -32.5;
-//    
-//    clocks[4].center.x = 0;
-//    clocks[4].center.y = -2.0;
-//    clocks[4].center.z = -42.5;
+    Assets *assets = Assets::instance();
+    groundPlane = assets->actorFromName("room");
+    groundPlane->diffuseColor = vec3(0.31, 0.082, 0.212);
+    groundPlane->ambientColor = vec3(1.0, 0.05, 0.3);
+    groundPlane->specularColor = vec3(0.1, 0.1, 0.1);
+    groundPlane->shininess = 0;
+    
+    bed = assets->actorFromName("sheet");
+    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
+    bed->ambientColor = vec3(0.15, 0.06, 0.07);
+    bed->specularColor = vec3(0.1, 0.1, 0.1);
+    bed->shininess = 20;
+    
+    clock = assets->actorFromName("clock");
+    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
+    clock->ambientColor = vec3(0.1, 0.06, 0.17);
+    clock->specularColor = vec3(0.1, 0.1, 0.1);
+    clock->shininess = 10;
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -83,7 +44,6 @@ void GameState::initAssets() {
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
-
 }
 
 GameState::GameState(GLFWwindow *window_) {
@@ -139,18 +99,17 @@ void GameState::setPerspectiveMat() {
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     CurrAssets->lightingShader->startUsingShader();
-    
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     
     setView();
     setPerspectiveMat();
     
-    groundPlane->draw();
     bed->draw();
+//    groundPlane->draw();
     
-    for(int i = 0; i < clocks.size(); i++){
-        clocks[i].draw();
-    }
+//    for(int i = 0; i < clocks.size(); i++){
+//        clocks[i].draw();
+//    }
     
     CurrAssets->lightingShader->disableAttribArrays();
 }
@@ -185,12 +144,12 @@ void GameState::renderFrameBuffer() {
 
 
 void GameState::draw() {
-    framebuffer->bind();
+//    framebuffer->bind();
     renderScene();
-    framebuffer->unbind();
-    
-    renderFrameBuffer();
-    framebuffer->unbindTexture();
+//    framebuffer->unbind();
+//    
+//    renderFrameBuffer();
+//    framebuffer->unbindTexture();
     
     glfwSwapBuffers(window);
     glfwPollEvents();

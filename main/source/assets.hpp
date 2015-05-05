@@ -22,11 +22,11 @@ public:
     LightingShader *lightingShader;
     FBOShader      *darkeningShader;
     
-    Actor actorFromName(string actorName);
+    Actor* actorFromName(string actorName);
     
 private:
     Assets();
-    void loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuint *indID, int *numVerts);
+    void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     
     // A simple dictionary where the key is the OBJ name and the

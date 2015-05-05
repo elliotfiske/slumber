@@ -76,14 +76,14 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     normal_AttributeID   = GLSL::getAttribLocation(lighting_ProgramID, "aNormal");
     
     // Make handles to uniforms
-    projectionMatrix_UniformID  = GLSL::getUniformLocation(lighting_ProgramID, "uProjMatrix");
-    viewMatrix_UniformID        = GLSL::getUniformLocation(lighting_ProgramID, "uViewMatrix");
-    modelMatrix_UniformID       = GLSL::getUniformLocation(lighting_ProgramID, "uModelMatrix");
-    lightPos_UniformID          = GLSL::getUniformLocation(lighting_ProgramID, "uLightPos");
+    projectionMatrix_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "uProjMatrix");
+    viewMatrix_UniformID       = GLSL::getUniformLocation(lighting_ProgramID, "uViewMatrix");
+    modelMatrix_UniformID      = GLSL::getUniformLocation(lighting_ProgramID, "uModelMatrix");
+//    lightPos_UniformID          = GLSL::getUniformLocation(lighting_ProgramID, "uLightPos");
     ambientMaterial_uniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UaColor");
-    diffuseMaterial_UniformID   = GLSL::getUniformLocation(lighting_ProgramID, "UdColor");
-    specularMaterial_UniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UsColor");
-    shininess_UniformID         = GLSL::getUniformLocation(lighting_ProgramID, "Ushine");
+    diffuseMaterial_UniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UdColor");
+    specularMaterial_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "UsColor");
+    shininess_UniformID        = GLSL::getUniformLocation(lighting_ProgramID, "Ushine");
     
     assert(glGetError() == GL_NO_ERROR);
 }
@@ -96,7 +96,7 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     fbo_ProgramID = linkProgram(vertexShaderFile, fragmentShaderFile);
     
     // Make handles to attribute data
-    position_AttributeID = GLSL::getUniformLocation(fbo_ProgramID, "aPosition");
+    position_AttributeID = GLSL::getAttribLocation(fbo_ProgramID, "aPosition");
     
     // Make handles to uniforms
     textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
