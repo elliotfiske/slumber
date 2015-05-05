@@ -55,13 +55,10 @@ GameState::GameState(GLFWwindow *window_) {
     initAssets();
     
     prevTime = glfwGetTime();
-    timeToNextSphere = 0;
-    numCurSpheres = 0;
-    numSpheresHit = 0;
 }
 
 void GameState::checkCollisions() {
-    
+    // TODO: meb
 }
 
 void GameState::update() {
@@ -73,9 +70,6 @@ void GameState::update() {
     camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
     
     prevTime = curTime;
-    for (int i = 0; i < actors.size(); i++) {
-        actors[i].step(elapsedTime);
-    }
     
     checkCollisions();
 }

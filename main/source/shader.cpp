@@ -167,5 +167,4 @@ void LightingShader::disableAttribArrays() {
 }
 
 
-
 // ----------- 
