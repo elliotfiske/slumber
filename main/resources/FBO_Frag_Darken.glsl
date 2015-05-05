@@ -4,7 +4,7 @@ varying vec2 UV;
 uniform sampler2D uTex;
 
 float tunnelVision() {
-    float darkening = length(0.5 - UV) * 2;
+    float darkening = length(0.5 - UV) * 1;
     return darkening;
 }
 

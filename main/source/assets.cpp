@@ -64,7 +64,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     // Send the normal array to the GPU
     const vector<float> &norBuf = shapes[0].mesh.normals;
     glGenBuffers(1, &actor->norID);
-    glBindBuffer(GL_ARRAY_BUFFER, actor->posID);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->norID);
     glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
     
     // Send the index array to the GPU

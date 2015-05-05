@@ -7,14 +7,6 @@
 using namespace glm;
 using namespace std;
 
-/**
- * Holds on to the ID for an actor's position, normal and index buffer.
- */
-typedef struct ActorInfo {
-    GLuint posID, norID, indID;
-} ActorInfo;
-
-
 class Actor {
 public:
     Actor(vec3 center_);
@@ -39,7 +31,6 @@ public:
 private:
     void setModel();
     void setMaterial();
-    
 };
 
 #endif

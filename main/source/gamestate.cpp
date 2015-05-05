@@ -9,11 +9,11 @@ using namespace glm;
 
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-    groundPlane = assets->actorFromName("room");
-    groundPlane->diffuseColor = vec3(0.31, 0.082, 0.212);
-    groundPlane->ambientColor = vec3(1.0, 0.05, 0.3);
-    groundPlane->specularColor = vec3(0.1, 0.1, 0.1);
-    groundPlane->shininess = 0;
+    room = assets->actorFromName("room");
+    room->diffuseColor = vec3(0.31, 0.082, 0.212);
+    room->ambientColor = vec3(1.0, 0.05, 0.3);
+    room->specularColor = vec3(0.1, 0.1, 0.1);
+    room->shininess = 0;
     
     bed = assets->actorFromName("sheet");
     bed->diffuseColor = vec3(0.1, 0.2, 0.3);
@@ -55,13 +55,10 @@ GameState::GameState(GLFWwindow *window_) {
     initAssets();
     
     prevTime = glfwGetTime();
-    timeToNextSphere = 0;
-    numCurSpheres = 0;
-    numSpheresHit = 0;
 }
 
 void GameState::checkCollisions() {
-    
+    // TODO: meb
 }
 
 void GameState::update() {
@@ -73,9 +70,6 @@ void GameState::update() {
     camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
     
     prevTime = curTime;
-    for (int i = 0; i < actors.size(); i++) {
-        actors[i].step(elapsedTime);
-    }
     
     checkCollisions();
 }
@@ -105,11 +99,8 @@ void GameState::renderScene() {
     setPerspectiveMat();
     
     bed->draw();
-//    groundPlane->draw();
-    
-//    for(int i = 0; i < clocks.size(); i++){
-//        clocks[i].draw();
-//    }
+    room->draw();
+    clock->draw();
     
     CurrAssets->lightingShader->disableAttribArrays();
 }
@@ -136,7 +127,7 @@ void GameState::renderFrameBuffer() {
                           (void*)0                        // array buffer offset
                           );
     
-    // Draw the triangles !
+    // Draw the triangles that cover the screen
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);
@@ -144,12 +135,12 @@ void GameState::renderFrameBuffer() {
 
 
 void GameState::draw() {
-//    framebuffer->bind();
+    framebuffer->bind();
     renderScene();
-//    framebuffer->unbind();
-//    
-//    renderFrameBuffer();
-//    framebuffer->unbindTexture();
+    framebuffer->unbind();
+    
+    renderFrameBuffer();
+    framebuffer->unbindTexture();
     
     glfwSwapBuffers(window);
     glfwPollEvents();
