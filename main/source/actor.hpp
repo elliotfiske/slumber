@@ -2,15 +2,14 @@
 #define actor_h
 
 #include "glm/glm.hpp"
-#include "assets.hpp"
+#include "GLSL.h"
 
 using namespace glm;
 using namespace std;
 
 class Actor {
 public:
-    Actor(vec3 center_, vec3 direction_, float velocityScale, float radius);
-    Actor(string actorName);
+    Actor(vec3 center_);
     vec3 center;
     vec3 direction;
     float velocityScalar;
@@ -24,16 +23,14 @@ public:
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
-    void draw(Assets assets);
+    void draw();
     
     GLuint posID, norID, indID;
     int numVerts;
-    int jiggly;
     
 private:
-    void setModel(Assets assets);
-    void setMaterial(Assets assets);
-    
+    void setModel();
+    void setMaterial();
 };
 
 #endif

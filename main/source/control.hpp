@@ -4,7 +4,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "camera.hpp"
 
-void updateCamera(Camera *camera);
+void updateCamDirection(Camera *camera);
 void updateControl(GLFWwindow *window);
 void setupCallbacks(GLFWwindow *window);
 

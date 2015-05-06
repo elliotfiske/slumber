@@ -37,6 +37,12 @@ list(APPEND LIBS
    ${CMAKE_DL_LIBS}
 )
 
+# pthread libs
+find_package (Threads)
+list(APPEND LIBS
+   ${CMAKE_THREAD_LIBS_INIT}
+)
+
 foreach(HEADER ${HEADERS})
    list(APPEND ABS_HEADERS
       "${SRC_DIR}/${HEADER}"

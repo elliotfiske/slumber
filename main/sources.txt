@@ -12,6 +12,8 @@ set(HEADERS
    assets.hpp
    util.h
    Framebuffer.h
+   shader.h
+   network.h
 )
 
 # List all .c / .cpp files here
@@ -28,4 +30,6 @@ set(SOURCES
    assets.cpp
    util.c
    Framebuffer.cpp
+   shader.cpp
+   network.cpp
 )
