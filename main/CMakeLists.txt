@@ -71,6 +71,7 @@ add_custom_target(
     ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/Debug
     SOURCES ${Resources}
 )
+add_definitions(-DTHREADS)
 
 else()
 

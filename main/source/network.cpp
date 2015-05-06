@@ -13,6 +13,7 @@
 #include <unistd.h>
 #include <sys/select.h>
 #include <algorithm>
+#include <cstring>
 
 #define BUFF_SIZE 100
 
