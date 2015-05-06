@@ -1,5 +1,6 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
+#include "network.h"
 #include <thread>
 
 using namespace std;
@@ -23,7 +24,14 @@ int main(int argc, const char* argv[]) {
         return 1;
     }
     
-    thread t1(doNetworking);
+    thread *t1;
+    
+    if (argc > 1) {
+        t1 = new thread(doClientNetworking);
+    }
+    else {
+        t1 = new thread(doGhostNetworking);
+    }
     
     gameState = new GameState(window);
     while(window) {
@@ -31,5 +39,5 @@ int main(int argc, const char* argv[]) {
         gameState->draw();
     }
     
-    t1.join();
+    t1->join();
 }
