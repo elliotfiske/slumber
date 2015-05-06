@@ -127,7 +127,7 @@ void GameState::renderFrameBuffer() {
                           (void*)0                        // array buffer offset
                           );
     
-    // Draw the triangles that cover the screen
+    // Draw the triangles that cover the screenp
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);

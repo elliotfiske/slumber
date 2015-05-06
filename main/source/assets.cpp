@@ -26,7 +26,7 @@ Assets::Assets() {
  * Populate the levelDict with information from the level file
  */
 void Assets::readLevelData(string filename) {
-    ifstream levelFile(filename);
+    ifstream levelFile(filename.c_str());
     if (!levelFile.is_open()) {
         cerr << "Couldn't open level data with filename " << filename << endl;
         return;

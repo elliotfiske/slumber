@@ -1,9 +1,18 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
+#include "network.h"
+
+#ifdef THREADS
+    #include <thread>
+#endif
 
 using namespace std;
 
 GameState *gameState;
+
+void doNetworking() {
+    
+}
 
 int main(int argc, const char* argv[]) {
     GLFWwindow* window;
@@ -18,9 +27,24 @@ int main(int argc, const char* argv[]) {
         return 1;
     }
     
+#ifdef THREADS
+    thread *t1;
+    
+    if (argc > 1) {
+        t1 = new thread(doClientNetworking);
+    }
+    else {
+        t1 = new thread(doGhostNetworking);
+    }
+#endif
+    
     gameState = new GameState(window);
     while(window) {
         gameState->update();
         gameState->draw();
     }
+    
+#ifdef THREADS
+    t1->join();
+#endif
 }

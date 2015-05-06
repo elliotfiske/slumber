@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(slumber)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/source")
 set(DEP_DIR "${PROJECT_SOURCE_DIR}/dependencies")
 
@@ -35,6 +37,12 @@ list(APPEND LIBS
    ${CMAKE_DL_LIBS}
 )
 
+# pthread libs
+find_package (Threads)
+list(APPEND LIBS
+   ${CMAKE_THREAD_LIBS_INIT}
+)
+
 foreach(HEADER ${HEADERS})
    list(APPEND ABS_HEADERS
       "${SRC_DIR}/${HEADER}"
@@ -56,14 +64,23 @@ target_link_libraries(${PROJECT_NAME} ${LIBS})
 # Copy over .obj's, .mtl's, etc.'
 
 
-# if (${CMAKE_GENERATOR} MATCHES "Xcode" )
+if (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 add_custom_target(
     Resources ALL
     ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/Debug
     SOURCES ${Resources}
 )
+add_definitions(-DTHREADS)
 
-# endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
+else()
+
+add_custom_target(
+    Resources ALL
+    ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/bin
+    SOURCES ${Resources}
+)
+
+endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 add_dependencies(slumber Resources)
