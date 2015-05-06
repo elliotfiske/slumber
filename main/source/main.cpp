@@ -1,9 +1,14 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
+#include <thread>
 
 using namespace std;
 
 GameState *gameState;
+
+void doNetworking() {
+    
+}
 
 int main(int argc, const char* argv[]) {
     GLFWwindow* window;
@@ -18,9 +23,13 @@ int main(int argc, const char* argv[]) {
         return 1;
     }
     
+    thread t1(doNetworking);
+    
     gameState = new GameState(window);
     while(window) {
         gameState->update();
         gameState->draw();
     }
+    
+    t1.join();
 }
