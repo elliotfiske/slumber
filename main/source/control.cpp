@@ -15,6 +15,8 @@ float strafeVel;
 float forwardAccel;
 float strafeAccel;
 
+float xLightVel, yLightVel, zLightVel;
+
 #define ACCEL 5.0
 #define FRICTION 1.2
 
@@ -91,6 +93,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             strafeAccel = 0;
         }
     }
+<<<<<<< HEAD
     
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
@@ -99,6 +102,16 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         sprintf(num, "%d", keyVal);
         
         sendData(num);
+=======
+    if (key == GLFW_KEY_X) {
+        if (action == GLFW_PRESS) {
+            xLightVel = 0.1f;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            xLightVel = 0.0f;
+        }
+>>>>>>> master
     }
 }
 
@@ -132,6 +145,12 @@ void updateCamDirection(Camera *camera) {
     direction(cos(pitch) * sin(yaw), sin(pitch), cos(pitch) * cos(yaw));
     
     camera->direction = direction;
+}
+
+void updateLightPosition(Light *light) {
+    glm::vec3 lightPos = light->getPosition();
+    lightPos.x += xLightVel;
+    light->setPosition(lightPos);
 }
 
 float getForwardVelocity() {

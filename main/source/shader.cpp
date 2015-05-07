@@ -74,16 +74,18 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     // Make handles to attribute data
     position_AttributeID = GLSL::getAttribLocation(lighting_ProgramID, "aPosition");
     normal_AttributeID   = GLSL::getAttribLocation(lighting_ProgramID, "aNormal");
+    textureToDisplay_ID = GLSL::getUniformLocation(lighting_ProgramID, "shadowMap");
     
     // Make handles to uniforms
     projectionMatrix_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "uProjMatrix");
     viewMatrix_UniformID       = GLSL::getUniformLocation(lighting_ProgramID, "uViewMatrix");
     modelMatrix_UniformID      = GLSL::getUniformLocation(lighting_ProgramID, "uModelMatrix");
-//    lightPos_UniformID          = GLSL::getUniformLocation(lighting_ProgramID, "uLightPos");
+    lightPos_UniformID          = GLSL::getUniformLocation(lighting_ProgramID, "lightPos");
     ambientMaterial_uniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UaColor");
     diffuseMaterial_UniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UdColor");
     specularMaterial_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "UsColor");
     shininess_UniformID        = GLSL::getUniformLocation(lighting_ProgramID, "Ushine");
+    lightMVP_UniformID         = GLSL::getUniformLocation(lighting_ProgramID, "lightMVP");
     
     assert(glGetError() == GL_NO_ERROR);
 }
@@ -104,8 +106,40 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     assert(glGetError() == GL_NO_ERROR);
 }
 
+/**
+ * Initialize and link a vertex and fragment shadow shader
+ *  from the specified file names.
+ */
+ShadowShader::ShadowShader(std::string vertexShaderFile, std::string fragmentShaderFile) {
+    shadow_ProgramID = linkProgram(vertexShaderFile, fragmentShaderFile);
+    
+    // Make handles to attribute data
+    position_AttributeID = GLSL::getAttribLocation(shadow_ProgramID, "vertPos");
+    
+    // Make handles to uniforms
+    MVP_UniformID = GLSL::getUniformLocation(shadow_ProgramID, "MVP");
+    
+    assert(glGetError() == GL_NO_ERROR);
+}
 
+// --------- SHADOW SHADER SETTERS ------------
+void ShadowShader::startUsingShader() {
+    glUseProgram(shadow_ProgramID);
+}
 
+void ShadowShader::setPositionArray(GLuint arrayID) {
+    GLSL::enableVertexAttribArray(position_AttributeID);
+    glBindBuffer(GL_ARRAY_BUFFER, arrayID);
+    glVertexAttribPointer(position_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
+}
+
+void ShadowShader::setMVPmatrix(mat4 MVPmatrix) {
+    glUniformMatrix4fv(MVP_UniformID, 1, GL_FALSE, value_ptr(MVPmatrix));
+}
+
+void ShadowShader::disableAttribArrays() {
+    glDisableVertexAttribArray(position_AttributeID);
+}
 
 
 // --------- LIGHTING SHADER SETTERS -----------
@@ -142,7 +176,7 @@ void LightingShader::setModelMatrix(mat4 modelMatrix) {
 }
 
 void LightingShader::setLightPos(vec3 lightPos) {
-    printf("setting light position doesn't actually do anything! yet.\n");
+    glUniform3fv(lightPos_UniformID, 1, value_ptr(lightPos));
 }
 
 void LightingShader::setAmbientColor(vec3 color) {
@@ -159,6 +193,10 @@ void LightingShader::setSpecularColor(glm::vec3 color) {
 
 void LightingShader::setShininess(float shininess) {
     glUniform1f(shininess_UniformID, shininess);
+}
+
+void LightingShader::setLightMVP(mat4 lightMVP) {
+    glUniformMatrix4fv(lightMVP_UniformID, 1, GL_FALSE, value_ptr(lightMVP));
 }
 
 void LightingShader::disableAttribArrays() {

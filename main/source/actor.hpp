@@ -3,6 +3,7 @@
 
 #include "glm/glm.hpp"
 #include "GLSL.h"
+#include "Light.h"
 
 using namespace glm;
 using namespace std;
@@ -23,7 +24,8 @@ public:
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
-    void draw();
+    void draw(Light *light);
+    void drawShadows(Light *light);
     
     GLuint posID, norID, indID;
     int numVerts;
@@ -31,6 +33,7 @@ public:
 private:
     void setModel();
     void setMaterial();
+    void setLightMVP(Light *light, bool isShadowShader);
 };
 
 #endif

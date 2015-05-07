@@ -19,6 +19,7 @@ public:
     LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
     GLuint lighting_ProgramID;
+    GLuint textureToDisplay_ID;
     void startUsingShader();
     
     void setPositionArray(GLuint arrayID);
@@ -33,6 +34,7 @@ public:
     void setDiffuseColor(glm::vec3 color);
     void setSpecularColor(glm::vec3 color);
     void setShininess(float shininess);
+    void setLightMVP(glm::mat4 lightMVP);
     
     // Clean-up
     void disableAttribArrays();
@@ -49,6 +51,7 @@ private:
     GLuint diffuseMaterial_UniformID;
     GLuint specularMaterial_UniformID;
     GLuint shininess_UniformID;
+    GLuint lightMVP_UniformID;
 };
 
 class FBOShader {
@@ -60,6 +63,22 @@ public:
     
     GLuint position_AttributeID;
     GLuint textureToDisplay_ID;
+};
+
+class ShadowShader {
+public:
+    ShadowShader(std::string vertexShaderFile, std::string fragmentShaderFile);
+    void startUsingShader();
+    void setPositionArray(GLuint arrayID);
+    void setMVPmatrix(glm::mat4 MVPmatrix);
+
+    // Clean-up
+    void disableAttribArrays();
+
+    GLuint shadow_ProgramID;
+    
+    GLuint position_AttributeID;
+    GLuint MVP_UniformID;
 };
 
 #endif /* defined(__slumber__shader__) */

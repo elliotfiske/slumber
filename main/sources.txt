@@ -15,6 +15,7 @@ set(HEADERS
    shader.h
    network.h
    network_setup.h
+   Light.h
 )
 
 # List all .c / .cpp files here
@@ -34,4 +35,5 @@ set(SOURCES
    shader.cpp
    network.cpp
    network_setup.cpp
+   Light.cpp
 )

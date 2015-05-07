@@ -14,6 +14,7 @@ public:
 	// generates and attaches a texture to this framebuffer
 	// returns status ok flag
 	bool generateTexture(GLuint width, GLuint height, bool clamp = true);
+	bool generateShadowTexture(GLuint width, GLuint height, bool clamp = true);
 
 	void bind();
 
