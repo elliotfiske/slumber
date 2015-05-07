@@ -86,5 +86,7 @@ int tcpClientSetup(char *hostName, char *port) {
         exit(-1);
     }
     
+    printf("SUCCESSFULLY CONNECTED\n");
+    
     return socketNum;
 }

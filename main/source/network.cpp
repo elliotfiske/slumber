@@ -53,7 +53,7 @@ void doGhostNetworking() {
 void doClientNetworking() {
     int serverSocket = 0;
     
-    char *host = (char *)"192.168.1.27";
+    char *host = (char *)"129.65.101.238";
     char *port = (char *)"4444";
     
     serverSocket = tcpClientSetup(host, port);
