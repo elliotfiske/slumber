@@ -2,18 +2,28 @@ cmake_minimum_required(VERSION 2.8)
 project(slumber)
 
 # Determine if C++11 is supported
-#include(CheckCXXCompilerFlag)
-#CHECK_CXX_COMPILER_FLAG(“-std=c++11” COMPILER_SUPPORTS_CXX11)
-#CHECK_CXX_COMPILER_FLAG(“-std=c++0x” COMPILER_SUPPORTS_CXX0X)
-#if(COMPILER_SUPPORTS_CXX11)
-#	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-#elseif(COMPILER_SUPPORTS_CXX0X)
-#	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-#else()
-#        message(STATUS "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Oh well!  Networking is disabled.“)
-#endif()
+include(CheckCXXCompilerFlag)
+CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
+CHECK_CXX_COMPILER_FLAG("-std=c++0x" COMPILER_SUPPORTS_CXX0X)
 
-#MESSAGE( STATUS “Cmake cxx flags: ${CMAKE_CXX_FLAGS}" )
+# Compiler-specific C++11 activation.
+if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
+    execute_process(
+    COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
+    if (NOT (GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7))
+        message(STATUS "****NOTE: C++11 compiler not found.  Disabling Networking!!!")
+    else()
+    message(STATUS "I see you have GCC 4.8 or above! nice. Enabling networking.")
+        add_definitions(-DTHREADS)
+    endif ()
+
+elseif ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    message(STATUS "I see you're on a mac!  Or using Clang otherwise.  Networking enabled!")
+    add_definitions(-DTHREADS)
+else ()
+    message(STATUS "****NOTE: C++11 compiler not found.  Disabling Networking!!!")
+endif ()
 
 if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -85,8 +95,6 @@ add_custom_target(
     ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/Debug
     SOURCES ${Resources}
 )
-
-add_definitions(-DTHREADS)
 
 else()
 
