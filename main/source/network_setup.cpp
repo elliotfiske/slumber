@@ -1,4 +1,4 @@
-//
+2//
 //  network_setup.cpp
 //  slumber
 //
@@ -12,8 +12,6 @@
 #include <netdb.h>
 #include <unistd.h>
 #include <sys/select.h>
-
-
 
 int tcpSetup() {
     int server_socket = 0;

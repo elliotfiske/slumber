@@ -20,29 +20,11 @@
 
 using namespace std;
 
-void doClientNetworking() {
-    int serverSocket = 0;
-    
-    char *host = (char *)"localhost";
-    char *port = (char *)"4444";
-    
-    char *data = (char *)"client sez hi";
-    
-    serverSocket = tcpClientSetup(host, port);
-    
-    while (1) {
-        clientListen(serverSocket);
-        send(serverSocket, data, strlen(data) + 1, 0);
-    }
-    
-    close(serverSocket);
-}
+int partnersSocket = 0;
 
-int clientSocket = 0;
 
 void doGhostNetworking() {
     int serverSocket = 0;
-    char *data = (char *)"big ol booty";
     
     // create the server socket
     serverSocket = tcpSetup();
@@ -60,13 +42,37 @@ void doGhostNetworking() {
         exit(-1);
     }
     
+    partnersSocket = clientSocket;
+    
     while (1) {
-        send(clientSocket, data, strlen(data) + 1, 0);
-        recvFromClient(clientSocket);
+        receiveData(clientSocket);
+        printf(" from the poor guy I'm haunting!\n");
     }
 }
 
-void recvFromClient(int serverSocket) {
+void doClientNetworking() {
+    int serverSocket = 0;
+    
+    char *host = (char *)"192.168.1.27";
+    char *port = (char *)"4444";
+    
+    serverSocket = tcpClientSetup(host, port);
+    
+    partnersSocket = serverSocket;
+    
+    while (1) {
+        receiveData(serverSocket);
+        printf(" from A SPOOKY GHOST\n");
+    }
+    
+    close(serverSocket);
+}
+
+void sendData(char *data) {
+    send(partnersSocket, data, strlen(data) + 1, 0);
+}
+
+void receiveData(int serverSocket) {
     char buf[BUFF_SIZE]; // Buffer for receiving data from the player
     
     long messageLen = recv(serverSocket, buf, BUFF_SIZE, 0);
@@ -75,31 +81,15 @@ void recvFromClient(int serverSocket) {
     }
     else if (messageLen == 0) {
         printf("Client disconnected!!\n");
-    }
-    else {
-        printf("Server got packet: ");
-        processIncomingPacket(buf, messageLen, serverSocket);
-    }
-}
-
-void clientListen(int socket) {
-    char data[BUFF_SIZE];
-    
-    long messageLen = recv(socket, data, BUFF_SIZE, 0);
-    if (messageLen < 0) {
-        perror("recv call MESSED UP: ");
-    }
-    else if (messageLen == 0) {
-        printf("Server terminated.\n");
         exit(0);
     }
     else {
-        printf("Client got packet: ");
-        processIncomingPacket(data, messageLen, 0);
+        printf("Received packet with data: ");
+        processIncomingPacket(buf, messageLen, serverSocket);
     }
 }
 
 void processIncomingPacket(char entirePacket[], long dataLen, int clientSocket) {
     entirePacket[dataLen] = '\0';
-    printf("Packet: %s\n", entirePacket);
+    printf("%s", entirePacket);
 }
