@@ -72,6 +72,7 @@ void GameState::update() {
     
     updateControl(window);
     updateCamDirection(camera);
+    updateLightPosition(light);
     camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
     
     prevTime = curTime;
@@ -103,9 +104,9 @@ void GameState::renderShadowBuffer() {
 
     CurrAssets->shadowShader->startUsingShader();
 
-    bed->drawShadows(light);
-    room->drawShadows(light);
-    clock->drawShadows(light);
+    //bed->drawShadows(light);
+    //room->drawShadows(light);
+    //clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
