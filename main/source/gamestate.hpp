@@ -2,7 +2,7 @@
 #include "camera.hpp"
 #include "GLSL.h"
 #include "assets.hpp"
-
+#include "Light.h"
 #include "Framebuffer.h"
 
 
@@ -11,8 +11,10 @@ public:
     GameState(GLFWwindow *window);
     std::vector<Actor> actors;
     Actor *room, *bed, *clock;
+    Light *light;
     
     Framebuffer *framebuffer;
+    Framebuffer *shadowfbo;
     
     double prevTime;
     void update();
@@ -28,6 +30,7 @@ private:
     void setPerspectiveMat();
     void setView();
     void renderScene();
+    void renderShadowBuffer();
     void renderFrameBuffer();
     
     void checkCollisions();

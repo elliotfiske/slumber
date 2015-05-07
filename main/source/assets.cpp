@@ -18,6 +18,7 @@ using namespace std;
 Assets::Assets() {
     lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
+    shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
     readLevelData("level.txt");
 }
