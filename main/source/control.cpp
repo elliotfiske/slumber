@@ -93,7 +93,6 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             strafeAccel = 0;
         }
     }
-<<<<<<< HEAD
     
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
@@ -102,7 +101,8 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         sprintf(num, "%d", keyVal);
         
         sendData(num);
-=======
+    }
+
     if (key == GLFW_KEY_X) {
         if (action == GLFW_PRESS) {
             xLightVel = 0.1f;
@@ -111,7 +111,6 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         if (action == GLFW_RELEASE) {
             xLightVel = 0.0f;
         }
->>>>>>> master
     }
 }
 
