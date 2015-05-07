@@ -34,6 +34,8 @@ void GameState::initAssets() {
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateTexture(2048, 2048);
+
+    light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
         -1.0f, -1.0f,  0.0f,
