@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.8)
 project(slumber)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+endif (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
 
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/source")
 set(DEP_DIR "${PROJECT_SOURCE_DIR}/dependencies")
