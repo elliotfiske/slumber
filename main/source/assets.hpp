@@ -19,6 +19,7 @@ public:
         return instance;
     }
     
+    ShadowShader   *shadowShader;
     LightingShader *lightingShader;
     FBOShader      *darkeningShader;
     

@@ -30,7 +30,10 @@ void GameState::initAssets() {
     framebuffer = new Framebuffer();
     framebuffer->generate();
     framebuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
-    
+
+    shadowfbo = new Framebuffer();
+    shadowfbo->generate();
+    shadowfbo->generateTexture(2048, 2048);
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
         -1.0f, -1.0f,  0.0f,
@@ -87,22 +90,46 @@ void GameState::setPerspectiveMat() {
     CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
 
+
+
+void GameState::renderShadowBuffer() {
+    shadowfbo->bind();
+
+    glViewport(0, 0, 2048, 2048);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glCullFace(GL_FRONT);
+
+    CurrAssets->shadowShader->startUsingShader();
+
+    bed->drawShadows(light);
+    room->drawShadows(light);
+    clock->drawShadows(light);
+
+    CurrAssets->shadowShader->disableAttribArrays();
+
+    shadowfbo->unbind();
+}
+
 /**
  * Actually draws each of the 3D objects in the scene
  */
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glCullFace(GL_BACK);
     CurrAssets->lightingShader->startUsingShader();
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     
     setView();
     setPerspectiveMat();
+
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-    bed->draw();
-    room->draw();
-    clock->draw();
+    bed->draw(light);
+    room->draw(light);
+    clock->draw(light);
     
     CurrAssets->lightingShader->disableAttribArrays();
+    shadowfbo->unbindTexture();
 }
 
 /**
@@ -131,16 +158,21 @@ void GameState::renderFrameBuffer() {
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);
+    framebuffer->unbindTexture();
 }
 
 
 void GameState::draw() {
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_CULL_FACE);
+
+    renderShadowBuffer();
+
     framebuffer->bind();
     renderScene();
     framebuffer->unbind();
     
     renderFrameBuffer();
-    framebuffer->unbindTexture();
     
     glfwSwapBuffers(window);
     glfwPollEvents();
