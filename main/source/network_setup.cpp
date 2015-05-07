@@ -13,6 +13,9 @@
 #include <unistd.h>
 #include <sys/select.h>
 
+/**
+ * Set up for the spooky ghost, who acts as the server.
+ */
 int tcpSetup() {
     int server_socket = 0;
     struct sockaddr_in local;      /* socket address for local side  */
@@ -50,6 +53,9 @@ int tcpSetup() {
     return server_socket;
 }
 
+/**
+ * Set up for the person getting spooked.
+ */
 int tcpClientSetup(char *hostName, char *port) {
     int socketNum;
     struct sockaddr_in remote;       // socket address for remote side
