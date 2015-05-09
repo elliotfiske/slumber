@@ -1,34 +1,26 @@
+#version 120
 attribute vec3 aPosition;
 attribute vec3 aNormal;
 uniform mat4 uProjMatrix;
 uniform mat4 uViewMatrix;
 uniform mat4 uModelMatrix;
-uniform vec3 UaColor;
-uniform vec3 UdColor;
-uniform vec3 UsColor;
-uniform float Ushine;
+uniform mat4 lightMVP;
+uniform vec3 lightPos;
 
 varying vec3 vPos;
 varying vec3 vNor;
+varying vec4 shadowClip;
 varying vec3 vLight;
-varying vec3 vCol;
-varying vec3 vH;
 
 void main() {
     mat4 MV = uViewMatrix * uModelMatrix;
+
+    vLight = vec3(MV * vec4(lightPos, 1.0));
+    vPos = vec3(MV * vec4(aPosition, 1.0));
+
 	gl_Position = uProjMatrix * MV * vec4(aPosition, 1.0);
 
-	vec3 newNorm;
-	vec3 newLight;
-	vec3 newPos;
-	newPos   = normalize(vec3(MV * vec4(aPosition, 0.0)));
-	newNorm  = normalize(vec3(MV * vec4(aNormal, 0.0)));
-	newLight = normalize(vec3(uViewMatrix * vec4(0.0, 5.0, 0.0, 0.0)));
-	
-	vec3 V = normalize(vec3(0.0, 0.0, 0.0) - newPos);
-	vec3 H = normalize(newLight + V);
+	vNor  = normalize(vec3(MV * vec4(aNormal, 0.0)));
 
-	vNor = newNorm;
-	vLight = newLight;
-	vH = H;
+    shadowClip = lightMVP * vec4(aPosition, 1.0);
 }

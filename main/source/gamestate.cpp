@@ -67,15 +67,15 @@ void GameState::checkCollisions() {
 }
 
 void GameState::update() {
-    double curTime = glfwGetTime();
-    double elapsedTime = curTime - prevTime;
+    currTime = glfwGetTime();
+    double elapsedTime = currTime - prevTime;
     
     updateControl(window);
     updateCamDirection(camera);
     updateLightPosition(light);
     camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
     
-    prevTime = curTime;
+    prevTime = currTime;
     
     checkCollisions();
 }
@@ -98,7 +98,7 @@ void GameState::setPerspectiveMat() {
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, 2048, 2048);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
@@ -143,13 +143,15 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
+    
+    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->darkeningShader->position_AttributeID, // attribute
+                          CurrAssets->motionBlurShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?

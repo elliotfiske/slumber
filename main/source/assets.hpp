@@ -22,6 +22,7 @@ public:
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
     FBOShader      *darkeningShader;
+    FBOShader      *motionBlurShader;
     
     Actor* actorFromName(string actorName);
     

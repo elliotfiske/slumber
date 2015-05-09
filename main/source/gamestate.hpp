@@ -16,7 +16,6 @@ public:
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    double prevTime;
     void update();
     void draw();
     
@@ -26,6 +25,9 @@ public:
 private:
     Camera *camera;
     GLFWwindow *window;
+    
+    double prevTime;
+    double currTime;
     
     void setPerspectiveMat();
     void setView();

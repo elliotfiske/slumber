@@ -1,6 +1,7 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
 #include "network.h"
+#include <iostream>
 
 #ifdef THREADS
     #include <thread>

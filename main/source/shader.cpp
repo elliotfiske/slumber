@@ -80,7 +80,7 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     projectionMatrix_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "uProjMatrix");
     viewMatrix_UniformID       = GLSL::getUniformLocation(lighting_ProgramID, "uViewMatrix");
     modelMatrix_UniformID      = GLSL::getUniformLocation(lighting_ProgramID, "uModelMatrix");
-    lightPos_UniformID          = GLSL::getUniformLocation(lighting_ProgramID, "lightPos");
+    lightPos_UniformID         = GLSL::getUniformLocation(lighting_ProgramID, "lightPos");
     ambientMaterial_uniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UaColor");
     diffuseMaterial_UniformID  = GLSL::getUniformLocation(lighting_ProgramID, "UdColor");
     specularMaterial_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "UsColor");
@@ -102,6 +102,7 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     
     // Make handles to uniforms
     textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
+    intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
     
     assert(glGetError() == GL_NO_ERROR);
 }
@@ -205,4 +206,13 @@ void LightingShader::disableAttribArrays() {
 }
 
 
-// ----------- 
+// ----------- FBO SHADER SETTERS ------------
+void FBOShader::setIntensity(float intensity) {
+    glUniform1f(intensity_UniformID, intensity);
+}
+
+void FBOShader::animateIntensity(float min, float max, double currTime, float slowFactor) {
+    float newIntensity = sin(currTime * slowFactor) * (max - min) + min;
+    setIntensity(newIntensity);
+}
+
