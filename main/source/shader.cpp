@@ -17,9 +17,12 @@ using namespace glm;
  * Do the actual compiling + linking of the shader
  */
 GLuint linkProgram(string vertexShaderFile, string fragmentShaderFile) {
+    vertexShaderFile   = "resources/" + vertexShaderFile;
+    fragmentShaderFile = "resources/" + fragmentShaderFile;
+    
     GLint error_flag;
     GLuint new_ProgramID;
-    
+
     // Create shader handles
     GLuint VS = glCreateShader(GL_VERTEX_SHADER);
     GLuint FS = glCreateShader(GL_FRAGMENT_SHADER);
