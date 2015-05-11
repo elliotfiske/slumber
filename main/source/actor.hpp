@@ -22,6 +22,8 @@ public:
     vec3 specularColor;
     float shininess;
     
+    material_t currMaterial;
+    
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
     void draw(Light *light);

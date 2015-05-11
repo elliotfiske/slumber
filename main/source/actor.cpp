@@ -44,6 +44,7 @@ void Actor::draw(Light *light) {
     setLightMVP(light, false);
     
     CurrAssets->lightingShader->setPositionArray(posID);
+    CurrAssets->lightingShader->setUVArray(uvID);
     CurrAssets->lightingShader->setNormalArray(norID);
     CurrAssets->lightingShader->setIndexArray(indID);
     

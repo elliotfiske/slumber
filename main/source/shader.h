@@ -20,9 +20,13 @@ public:
     
     GLuint lighting_ProgramID;
     GLuint textureToDisplay_ID;
+    GLuint uv_AttributeID;
+    GLuint diffuseTexture_UniformID;
+    
     void startUsingShader();
     
     void setPositionArray(GLuint arrayID);
+    void setUVArray(GLuint arrayID);
     void setNormalArray(GLuint arrayID);
     void setIndexArray(GLuint arrayID);
     
@@ -52,6 +56,7 @@ private:
     GLuint specularMaterial_UniformID;
     GLuint shininess_UniformID;
     GLuint lightMVP_UniformID;
+    
 };
 
 class FBOShader {

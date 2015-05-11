@@ -16,6 +16,8 @@ set(HEADERS
    network.h
    network_setup.h
    Light.h
+   stb_image.h
+   Texture.h
 )
 
 # List all .c / .cpp files here
@@ -36,4 +38,5 @@ set(SOURCES
    network.cpp
    network_setup.cpp
    Light.cpp
+   Texture.cpp
 )

@@ -82,7 +82,8 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     // Make handles to attribute data
     position_AttributeID = GLSL::getAttribLocation(lighting_ProgramID, "aPosition");
     normal_AttributeID   = GLSL::getAttribLocation(lighting_ProgramID, "aNormal");
-    textureToDisplay_ID = GLSL::getUniformLocation(lighting_ProgramID, "shadowMap");
+    uv_AttributeID       = GLSL::getAttribLocation(lighting_ProgramID, "aUV");
+    textureToDisplay_ID  = GLSL::getUniformLocation(lighting_ProgramID, "shadowMap");
     
     // Make handles to uniforms
     projectionMatrix_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "uProjMatrix");
@@ -94,6 +95,8 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     specularMaterial_UniformID = GLSL::getUniformLocation(lighting_ProgramID, "UsColor");
     shininess_UniformID        = GLSL::getUniformLocation(lighting_ProgramID, "Ushine");
     lightMVP_UniformID         = GLSL::getUniformLocation(lighting_ProgramID, "lightMVP");
+    
+    diffuseTexture_UniformID   = GLSL::getUniformLocation(lighting_ProgramID, "diffuseTextureSampler");
     
     assert(glGetError() == GL_NO_ERROR);
 }
@@ -160,6 +163,12 @@ void LightingShader::setPositionArray(GLuint arrayID) {
     GLSL::enableVertexAttribArray(position_AttributeID);
     glBindBuffer(GL_ARRAY_BUFFER, arrayID);
     glVertexAttribPointer(position_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
+}
+
+void LightingShader::setUVArray(GLuint arrayID) {
+    GLSL::enableVertexAttribArray(uv_AttributeID);
+    glBindBuffer(GL_ARRAY_BUFFER, arrayID);
+    glVertexAttribPointer(uv_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
 }
 
 void LightingShader::setNormalArray(GLuint arrayID) {

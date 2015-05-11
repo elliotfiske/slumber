@@ -43,6 +43,10 @@ void GameState::initAssets() {
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateTexture(2048, 2048);
+    
+    bedWood = new Texture();
+    bedWood->setFilename("../resources/models/wood.jpg");
+    bedWood->init();
 
     light = new Light();
     
@@ -157,6 +161,8 @@ void GameState::renderScene() {
 //    bed->draw(light);
 //    room->draw(light);
 //    clock->draw(light);
+    
+    bedWood->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 3);
     real_bed->draw(light);
     
     CurrAssets->lightingShader->disableAttribArrays();

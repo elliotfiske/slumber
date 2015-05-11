@@ -4,7 +4,7 @@
 #include "assets.hpp"
 #include "Light.h"
 #include "Framebuffer.h"
-
+#include "Texture.h"
 
 class GameState {
 public:
@@ -18,6 +18,8 @@ public:
     
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
+    
+    Texture *bedWood;
     
     void update();
     void draw();

@@ -4,4 +4,4 @@ room 0 0 0
 
 sheet 0 0 0
 
-real_bed 0 0 -4
+real_bed 0 -1 -4
