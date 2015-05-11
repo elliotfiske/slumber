@@ -29,14 +29,14 @@ int main(int argc, const char* argv[]) {
     }
     
 #ifdef THREADS
-    thread *t1;
-    
-    if (argc > 1) {
-        t1 = new thread(doClientNetworking);
-    }
-    else {
-        t1 = new thread(doGhostNetworking);
-    }
+//    thread *t1;
+//    
+//    if (argc > 1) {
+//        t1 = new thread(doClientNetworking);
+//    }
+//    else {
+//        t1 = new thread(doGhostNetworking);
+//    }
 #endif
     
     bool isGhost = true;
@@ -51,6 +51,6 @@ int main(int argc, const char* argv[]) {
     }
     
 #ifdef THREADS
-    t1->join();
+//    t1->join();
 #endif
 }

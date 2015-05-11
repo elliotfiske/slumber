@@ -5,6 +5,9 @@ uniform vec3 UsColor;
 uniform float Ushine;
 uniform sampler2D shadowMap;
 
+uniform sampler2D diffuseTextureSampler;
+varying vec2 UV;
+
 varying vec3 vPos;
 varying vec3 vNor;
 varying vec4 shadowClip;
@@ -43,8 +46,10 @@ void main() {
     float cs = pow(max(0.0, dot(n, h)), Ushine);
     float attenuation = 1.0 / (1.0 + 0.02 * distToLight + 0.02 * distToLight * distToLight);
 
+    vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
+    
     vec3 lAmbientColor  = UaColor * attenuation;
-    vec3 lDiffuseColor  = cd * UdColor * attenuation;
+    vec3 lDiffuseColor  = cd * textureColor * attenuation;
     vec3 lSpecularColor = cs * UsColor * attenuation;
 
     // Shadowing
