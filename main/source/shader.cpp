@@ -72,7 +72,7 @@ GLuint linkProgram(string vertexShaderFile, string fragmentShaderFile) {
  *  from the specified file names.
  */
 LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFile) {
-    lighting_ProgramID = linkProgram("resources/" + vertexShaderFile, "resources/" + fragmentShaderFile);
+    lighting_ProgramID = linkProgram(vertexShaderFile, fragmentShaderFile);
     
     // Make handles to attribute data
     position_AttributeID = GLSL::getAttribLocation(lighting_ProgramID, "aPosition");
