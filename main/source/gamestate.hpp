@@ -13,7 +13,7 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock;
+    Actor *room, *bed, *clock, *real_bed;
     Light *light;
     
     Framebuffer *framebuffer;

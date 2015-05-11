@@ -46,3 +46,7 @@ slumber
 CMakeScripts/
 slumber.*/
 
+# Eclipse stuff
+.cproject
+.project
+.metadata/

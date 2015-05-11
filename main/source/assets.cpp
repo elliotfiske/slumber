@@ -59,7 +59,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str());
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), "resources/models/bed.mtl");
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }
@@ -82,6 +82,9 @@ void Assets::loadShape(string filename, Actor *actor) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
     actor->numVerts = shapes[0].mesh.indices.size();
+
+    printf("Ambient color: %f, %f, %f\n", materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
+//    actor->ambientColor = vec3(materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
 }
 
 /**

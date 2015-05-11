@@ -27,6 +27,10 @@ void GameState::initAssets() {
     clock->ambientColor = vec3(0.1, 0.06, 0.17);
     clock->specularColor = vec3(0.1, 0.1, 0.1);
     clock->shininess = 10;
+
+   real_bed = assets->actorFromName("bed");
+
+
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -146,9 +150,10 @@ void GameState::renderScene() {
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-    bed->draw(light);
+//    bed->draw(light);
     room->draw(light);
     clock->draw(light);
+    real_bed->draw(light);
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
