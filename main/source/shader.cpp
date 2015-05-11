@@ -20,6 +20,11 @@ GLuint linkProgram(string vertexShaderFile, string fragmentShaderFile) {
     vertexShaderFile   = "resources/" + vertexShaderFile;
     fragmentShaderFile = "resources/" + fragmentShaderFile;
     
+#ifdef XCODE_IS_TERRIBLE
+    vertexShaderFile   = "../" + vertexShaderFile;
+    fragmentShaderFile = "../" + fragmentShaderFile;
+#endif
+    
     GLint error_flag;
     GLuint new_ProgramID;
 

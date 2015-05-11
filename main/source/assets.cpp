@@ -21,7 +21,13 @@ Assets::Assets() {
     motionBlurShader = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
-    readLevelData("level.txt");
+    string levelDataName = "resources/level.txt";
+    
+#ifdef XCODE_IS_TERRIBLE
+    levelDataName = "../" + levelDataName;
+#endif
+    
+    readLevelData(levelDataName);
 }
 
 /**
@@ -86,7 +92,13 @@ Actor* Assets::actorFromName(string actorName) {
     Actor *result;
     
     result = new Actor(levelDict[actorName]);
-    loadShape("resources/models/" + actorName + ".obj", result);
+    string objFilename("resources/models/" + actorName + ".obj");
+    
+#ifdef XCODE_IS_TERRIBLE
+    objFilename = "../" + objFilename;
+#endif
+    
+    loadShape(objFilename, result);
     
     return result;
 }

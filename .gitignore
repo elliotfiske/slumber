@@ -32,6 +32,8 @@
 # XCode stuff
 UserInterfaceState.xcuserstate
 dgph
+.DS_Store
+*.xcodeproj
 
 # CMake built stuff
 build/
@@ -41,3 +43,6 @@ CMakeCache.txt
 cmake_install.cmake
 Makefile
 slumber
+CMakeScripts/
+slumber.*/
+
