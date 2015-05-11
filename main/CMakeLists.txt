@@ -27,10 +27,6 @@ else ()
     message(STATUS "****NOTE: C++11 compiler not found.  Disabling Networking!!!")
 endif ()
 
-if (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-endif (NOT ${CMAKE_GENERATOR} MATCHES "Xcode" )
-
 set(SRC_DIR "${PROJECT_SOURCE_DIR}/source")
 set(DEP_DIR "${PROJECT_SOURCE_DIR}/dependencies")
 
@@ -89,22 +85,9 @@ add_executable(${PROJECT_NAME} ${ABS_SOURCES} ${ABS_HEADERS} ${LIB_SOURCES}
 )
 target_link_libraries(${PROJECT_NAME} ${LIBS})
 
-# Copy over .obj's, .mtl's, etc.'
+# Any stuff that's XCode specific.  Not really anything right now.
 if (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
-add_custom_target(
-    Resources ALL
-    ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/Debug
-    SOURCES ${Resources}
-)
-
-else()
-
-add_custom_target(
-    Resources ALL
-    ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/resources ${PROJECT_BINARY_DIR}/bin
-    SOURCES ${Resources}
-)
 
 endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
