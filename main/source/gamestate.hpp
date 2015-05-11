@@ -8,7 +8,10 @@
 
 class GameState {
 public:
-    GameState(GLFWwindow *window);
+    GameState(GLFWwindow *window, bool isGhost);
+    
+    bool isGhost;
+    
     std::vector<Actor> actors;
     Actor *room, *bed, *clock;
     Light *light;
@@ -38,4 +41,6 @@ private:
     void checkCollisions();
     
     void initAssets();
+    
+    void tellClientWhereGhostIs();
 };

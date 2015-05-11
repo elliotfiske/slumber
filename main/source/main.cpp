@@ -18,7 +18,7 @@ void doNetworking() {
 int main(int argc, const char* argv[]) {
     GLFWwindow* window;
     
-    // Test this test that
+    // Print out executable location 'cuz it often gets put in a weird place
     printf("It's at %s btw\n", *argv);
     
     window = setupWindow();
@@ -39,7 +39,12 @@ int main(int argc, const char* argv[]) {
     }
 #endif
     
-    gameState = new GameState(window);
+    bool isGhost = true;
+    if (argc > 1) {
+        isGhost = false;
+    }
+    
+    gameState = new GameState(window, isGhost);
     while(window) {
         gameState->update();
         gameState->draw();

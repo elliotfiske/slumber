@@ -4,6 +4,7 @@
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
+#include "network.h"
 
 using namespace glm;
 
@@ -51,10 +52,11 @@ void GameState::initAssets() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
 }
 
-GameState::GameState(GLFWwindow *window_) {
+GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     
     window = window_;
+    isGhost = isGhost_;
     
     setupCallbacks(window);
     initAssets();
@@ -63,7 +65,20 @@ GameState::GameState(GLFWwindow *window_) {
 }
 
 void GameState::checkCollisions() {
-    // TODO: meb
+    // TODO: me!!!
+}
+
+int countdown = 60;
+
+void GameState::tellClientWhereGhostIs() {
+#ifdef THREADS
+    countdown--;
+    
+    if (countdown == 0) {
+        sendGhostPosition(5, 3, 8);
+        countdown = 60;
+    }
+#endif
 }
 
 void GameState::update() {
@@ -73,7 +88,11 @@ void GameState::update() {
     updateControl(window);
     updateCamDirection(camera);
     updateLightPosition(light);
-    camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
+    
+    if (isGhost) {
+        camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
+        tellClientWhereGhostIs();
+    }
     
     prevTime = currTime;
     
