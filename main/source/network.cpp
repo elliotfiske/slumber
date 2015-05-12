@@ -55,7 +55,7 @@ void doGhostNetworking() {
 void doClientNetworking() {
     int serverSocket = 0;
     
-    char *host = (char *)"192.168.0.2";
+    char *host = (char *)"192.168.0.1";
     char *port = (char *)"4444";
     
     serverSocket = tcpClientSetup(host, port);
@@ -64,7 +64,6 @@ void doClientNetworking() {
     
     while (1) {
         receiveData(serverSocket);
-        printf(" from A SPOOKY GHOST\n");
     }
     
     close(serverSocket);
@@ -102,7 +101,7 @@ void receiveData(int serverSocket) {
 }
 
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
-    cout << "Received packet: " << entirePacket << endl;
+//    cout << "Received packet: " << entirePacket << endl;
     int flag;
     float x, y, z;
     sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);

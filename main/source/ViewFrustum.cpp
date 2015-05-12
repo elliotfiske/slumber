@@ -6,35 +6,56 @@ ViewFrustum::~ViewFrustum() {}
 
 void ViewFrustum::extractPlanes(glm::mat4 comboMatrix, bool normalize){
    // Left clipping plane
-   planes[0].setCoefficients(comboMatrix[3][0] + comboMatrix[0][0],
-      comboMatrix[3][1] + comboMatrix[0][1],
-      comboMatrix[3][2] + comboMatrix[0][2],
-      comboMatrix[3][3] + comboMatrix[0][3]);
-   // Right clipping plane
-   planes[1].setCoefficients(comboMatrix[3][0] - comboMatrix[0][0],
-      comboMatrix[3][1] - comboMatrix[0][1],
-      comboMatrix[3][2] - comboMatrix[0][2],
-      comboMatrix[3][3] - comboMatrix[0][3]);
+//   leftPlane.setCoefficients(comboMatrix[3][0] + comboMatrix[0][0],
+//                             comboMatrix[3][1] + comboMatrix[0][1],
+//                             comboMatrix[3][2] + comboMatrix[0][2],
+//                             comboMatrix[3][3] + comboMatrix[0][3]);
+//   // Right clipping plane
+//   rightPlane.setCoefficients(comboMatrix[3][0] - comboMatrix[0][0],
+//                              comboMatrix[3][1] - comboMatrix[0][1],
+//                              comboMatrix[3][2] - comboMatrix[0][2],
+//                              comboMatrix[3][3] - comboMatrix[0][3]);
+    
+    leftPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][0],
+                              comboMatrix[1][3] + comboMatrix[1][0],
+                              comboMatrix[2][3] + comboMatrix[2][0],
+                              comboMatrix[3][3] + comboMatrix[3][0]);
+    // Right clipping plane
+    rightPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][0],
+                               comboMatrix[1][3] - comboMatrix[1][0],
+                               comboMatrix[2][3] - comboMatrix[2][0],
+                               comboMatrix[3][3] - comboMatrix[3][0]);
+
+    
    // Top clipping plane
-   planes[2].setCoefficients(comboMatrix[3][0] - comboMatrix[1][0],
-      comboMatrix[3][1] - comboMatrix[1][1],
-      comboMatrix[3][2] - comboMatrix[1][2],
-      comboMatrix[3][3] - comboMatrix[1][3]);
+   topPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][1],
+                            comboMatrix[1][3] - comboMatrix[1][1],
+                            comboMatrix[2][3] - comboMatrix[2][1],
+                            comboMatrix[3][3] - comboMatrix[3][1]);
    // Bottom clipping plane
-   planes[3].setCoefficients(comboMatrix[3][0] + comboMatrix[1][0],
-      comboMatrix[3][1] + comboMatrix[1][1],
-      comboMatrix[3][2] + comboMatrix[1][2],
-      comboMatrix[3][3] + comboMatrix[1][3]);
+   bottomPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][1],
+                              comboMatrix[1][3] + comboMatrix[1][1],
+                              comboMatrix[2][3] + comboMatrix[2][1],
+                              comboMatrix[3][3] + comboMatrix[3][1]);
    // Near clipping plane
-   planes[4].setCoefficients(comboMatrix[3][0] + comboMatrix[2][0],
-      comboMatrix[3][1] + comboMatrix[2][1],
-      comboMatrix[3][2] + comboMatrix[2][2],
-      comboMatrix[3][3] + comboMatrix[2][3]);
+   nearPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][2],
+                             comboMatrix[1][3] + comboMatrix[1][2],
+                             comboMatrix[2][3] + comboMatrix[2][2],
+                             comboMatrix[3][3] + comboMatrix[3][2]);
    // Far clipping plane
-   planes[0].setCoefficients(comboMatrix[3][0] - comboMatrix[2][0],
-      comboMatrix[3][1] - comboMatrix[2][1],
-      comboMatrix[3][2] - comboMatrix[2][2],
-      comboMatrix[3][3] - comboMatrix[2][3]);
+   farPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][2],
+                            comboMatrix[1][3] - comboMatrix[1][2],
+                            comboMatrix[2][3] - comboMatrix[2][2],
+                            comboMatrix[3][3] - comboMatrix[3][2]);
+    
+    leftPlane.makeNormal();
+    rightPlane.makeNormal();
+    topPlane.makeNormal();
+    bottomPlane.makeNormal();
+    nearPlane.makeNormal();
+    farPlane.makeNormal();
+    
+    
    // Normalize the plane equations, if requested
    if (normalize == true){
       planes[0].makeNormal();
@@ -49,15 +70,44 @@ void ViewFrustum::extractPlanes(glm::mat4 comboMatrix, bool normalize){
 int ViewFrustum::sphereIsInside(glm::vec3 point, int radius){
    float distance;
    int result = INSIDE;
+    
+    float leftDistance = leftPlane.distance(point);
+    float rightDistance = rightPlane.distance(point);
+    
+    float nearDistance = nearPlane.distance(point);
+    float farDistance = farPlane.distance(point);
+    
+    float topDistance = topPlane.distance(point);
+    float bottomDistance = bottomPlane.distance(point);
 
+//    printf("left dist: %f right dist: %f near: %f far: %f bottom: %f top %f\n", leftDistance, rightDistance, nearDistance, farDistance, bottomDistance, topDistance);
+    
    for(int i=0; i < 6; i++) {
+       
       distance = planes[i].distance(point);
       if (distance < -radius){
-         return OUTSIDE;
+//         return OUTSIDE;
       }
       else if (distance < radius){
-         result = INTERSECT;
+//         result = INTERSECT;
       }
    }
-   return result;
+//   return result;
+    if (leftDistance < -2.0) {
+        return OUTSIDE;
+    }
+
+    if (leftDistance < -2.0) {
+        return OUTSIDE;
+    }
+    if (rightDistance < -2.0) {
+        return OUTSIDE;
+    }
+    if (topDistance < -2.0) {
+        return OUTSIDE;
+    }
+    if (bottomDistance < -2.0) {
+        return OUTSIDE;
+    }
+    return INSIDE;
 }
