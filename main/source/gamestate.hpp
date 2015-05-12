@@ -15,6 +15,7 @@ public:
     std::vector<Actor> actors;
     Actor *room, *bed, *clock, *enemy;
     Actor *lamp;
+    Actor *sphere1, *sphere2, *sphere3, *sphere4, *sphere5;
     
     Light *light;
     

@@ -9,6 +9,16 @@
 
 using namespace glm;
 
+bool collected1 = false;
+bool collected2 = false;
+bool collected3 = false;
+bool collected4 = false;
+bool collected5 = false;
+
+float sphereTicks = 0;
+
+vector<vec3> spherePlaces;
+
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
@@ -17,6 +27,18 @@ void GameState::initAssets() {
     enemy = assets->actorFromName("enemy");
     lamp = assets->actorFromName("lamp-table");
     room = assets->actorFromName("room");
+    
+    sphere1 = assets->actorFromName("collect");
+    sphere2 = assets->actorFromName("collect");
+    sphere3 = assets->actorFromName("collect");
+    sphere4 = assets->actorFromName("collect");
+    sphere5 = assets->actorFromName("collect");
+    
+    spherePlaces.push_back(vec3(-40.6, 28.7, -103.52));
+    spherePlaces.push_back(vec3(36.57, 26.8, -39.52));
+    spherePlaces.push_back(vec3(-15.98, 9.77, -82.9));
+    spherePlaces.push_back(vec3(-45.7, 88, -30.5));
+    spherePlaces.push_back(vec3(21.7, 18.5, 0.5));
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -94,16 +116,16 @@ void GameState::update() {
         enemy->center.z = ghostPos.z;
     }
     
-    float enemyYaw = atan2(enemy->center.y, enemy->center.x);
-    float sqrtTerm = sqrt(enemy->center.x * enemy->center.x + enemy->center.y * enemy->center.y);
-    float enemyPitch = atan2(sqrtTerm, enemy->center.z);
-    
-//    printf("yawdiff: %f pitchdiff: %f\n", enemyYaw - getYaw() + 1.59, enemyPitch - getPitch() - 2.68);
-    
-    
     prevTime = currTime;
     
     checkCollisions();
+    
+    float enemyDist = distance(vec3(0, 0, 0), enemy->center);
+    
+    // Reduce by 0.1 if enemy is outside walls
+    
+    sphereTicks += 1/(enemyDist*enemyDist);
+    printf("Sphere ticks: %f\n", sphereTicks);
 }
 
 void GameState::setView() {
@@ -156,10 +178,10 @@ void GameState::viewFrustumCulling(Actor curActor){
    vf->extractPlanes(comboMatrix, true);
    result = vf->sphereIsInside(curActor.center, 1);
    if(result == INSIDE || result == INTERSECT){
-       printf("BOOGA BOOGA BOOGA\n");
+//       printf("BOOGA BOOGA BOOGA\n");
    }
    else {
-       printf("Naw man :(\n");
+//       printf("Naw man :(\n");
    }
    curActor.draw(light);
 }
