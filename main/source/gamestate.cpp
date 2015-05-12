@@ -88,7 +88,7 @@ int numCollected = 0;
 
 void GameState::checkCollisions() {
     
-    
+    if (!isGhost) {
     if (sphereTicks > 10) {
         if (!collected1) {
             collected1 = vf->gotLight(sphere1->center, 1.0);
@@ -133,6 +133,15 @@ void GameState::checkCollisions() {
                 numCollected++;
             }
         }
+    }
+    
+    if (numCollected == 5) {
+        printf("YOU WINN!!!!!!!\n");
+        printf("YOU WINN!!!!!!!\n");
+        printf("YOU WINN!!!!!!!\n");
+        printf("YOU WINN!!!!!!!\n");
+        printf("YOU WINN!!!!!!!\n");
+    }
     }
 }
 
@@ -183,13 +192,20 @@ void GameState::update() {
     }
     
     prevTime = currTime;
-    
-    float enemyDist = distance(vec3(0, 0, 0), enemy->center);
+    float enemyDist = 10910192309120;
+    if (isGhost) {
+        enemyDist = distance(vec3(0, 0, 0), camera->center);
+    }
+    else {
+        if (enemy->center.x < 0.01) {
+            enemyDist = distance(vec3(0, 0, 0), enemy->center);
+        }
+    }
     
     // Reduce by 0.1 if enemy is outside walls
     
-    sphereTicks += 1/(enemyDist*enemyDist*25);
-//    printf("Sphereticks: %f\n", sphereTicks);
+    sphereTicks += 1/(enemyDist*enemyDist*2) * 120;
+    printf("Sphereticks: %f\n", sphereTicks);
     
     if (sphereTicks > 9999999999999) {
         sphereTicks = 0;
