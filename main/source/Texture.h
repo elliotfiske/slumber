@@ -20,9 +20,9 @@ public:
     void init();
     void bind(GLint handle, GLint unit);
     void unbind(GLint unit);
+    std::string filename;
     
 private:
-    std::string filename;
     int width;
     int height;
     GLuint tid;

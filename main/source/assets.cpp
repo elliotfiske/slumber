@@ -51,6 +51,8 @@ void Assets::readLevelData(string filename) {
     }
 }
 
+vector<Texture *> existingTextures;
+
 /**
  * Takes a shape and buffers the position, normals, index and 
  *  UV's (if they exist) to the GPU
@@ -82,19 +84,30 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
         glBindBuffer(GL_ARRAY_BUFFER, actor->uvID[shapeNdx]);
         glBufferData(GL_ARRAY_BUFFER, uvBuf.size()*sizeof(float), &uvBuf[0], GL_STATIC_DRAW);
         
-        actor->texture[shapeNdx] = new Texture();
-#ifdef XCODE_IS_TERRIBLE
-        actor->texture[shapeNdx]->setFilename("../resources/models/" + material.diffuse_texname);
-#else
-        actor->texture[shapeNdx]->setFilename("resources/models/" + material.diffuse_texname);
-#endif
-        actor->texture[shapeNdx]->init();
-        actor->textureUnit[shapeNdx] = textureUnit++;
+        // If we already loaded a texture, don't load it again!
+        bool textureAlreadyLoaded = false;
+        for (int ndx = 0; ndx < existingTextures.size(); ndx++) {
+            if (existingTextures[ndx]->filename == RESOURCE_FOLDER + material.diffuse_texname) {
+                actor->texture[shapeNdx] = existingTextures[ndx];
+                textureAlreadyLoaded = true;
+            }
+        }
+        
+        if (!textureAlreadyLoaded) {
+            actor->texture[shapeNdx] = new Texture();
+            actor->texture[shapeNdx]->setFilename(RESOURCE_FOLDER + material.diffuse_texname);
+            actor->texture[shapeNdx]->init();
+            actor->textureUnit[shapeNdx] = textureUnit++;
+            
+            existingTextures.push_back(actor->texture[shapeNdx]);
+        }
     }
     
     actor->numVerts[shapeNdx] = shape.mesh.indices.size();
     actor->material[shapeNdx] = material;
 }
+
+
 
 /**
  * Sends .OBJ data to the GPU and tells the actor what its
