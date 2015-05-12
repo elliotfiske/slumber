@@ -8,24 +8,32 @@
 
 class GameState {
 public:
-    GameState(GLFWwindow *window);
+    GameState(GLFWwindow *window, bool isGhost);
+    
+    bool isGhost;
+    
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock;
+    Actor *room, *bed, *clock, *real_bed;
     Light *light;
     
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    double prevTime;
     void update();
     void draw();
     
     // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
+    mat4 perspectiveMat;
+    mat4 viewMat;
+    
 private:
     Camera *camera;
     GLFWwindow *window;
+    
+    double prevTime;
+    double currTime;
     
     void setPerspectiveMat();
     void setView();
@@ -36,4 +44,7 @@ private:
     void checkCollisions();
     
     void initAssets();
+    
+    void viewFrustumCulling(Actor curActor);
+    void tellClientWhereGhostIs();
 };
