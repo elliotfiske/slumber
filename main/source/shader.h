@@ -20,9 +20,13 @@ public:
     
     GLuint lighting_ProgramID;
     GLuint textureToDisplay_ID;
+    GLuint uv_AttributeID;
+    GLuint diffuseTexture_UniformID;
+    
     void startUsingShader();
     
     void setPositionArray(GLuint arrayID);
+    void setUVArray(GLuint arrayID);
     void setNormalArray(GLuint arrayID);
     void setIndexArray(GLuint arrayID);
     
@@ -30,9 +34,9 @@ public:
     void setModelMatrix(glm::mat4 modelMatrix);
     void setViewMatrix(glm::mat4 viewMatrix);
     void setLightPos(glm::vec3 lightPos); // NOTE: doesn't actually work, yet
-    void setAmbientColor(glm::vec3 color);
-    void setDiffuseColor(glm::vec3 color);
-    void setSpecularColor(glm::vec3 color);
+    void setAmbientColor(float color[]);
+    void setDiffuseColor(float color[]);
+    void setSpecularColor(float color[]);
     void setShininess(float shininess);
     void setLightMVP(glm::mat4 lightMVP);
     
@@ -52,6 +56,7 @@ private:
     GLuint specularMaterial_UniformID;
     GLuint shininess_UniformID;
     GLuint lightMVP_UniformID;
+    
 };
 
 class FBOShader {
@@ -74,6 +79,7 @@ public:
     ShadowShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     void startUsingShader();
     void setPositionArray(GLuint arrayID);
+    void setIndexArray(GLuint arrayID);
     void setMVPmatrix(glm::mat4 MVPmatrix);
 
     // Clean-up

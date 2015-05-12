@@ -4,7 +4,7 @@
 #include "assets.hpp"
 #include "Light.h"
 #include "Framebuffer.h"
-
+#include "Texture.h"
 
 class GameState {
 public:
@@ -13,11 +13,14 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *real_bed;
+    Actor *room, *bed, *clock, *real_bed, *enemy;
+    Actor *lamp;
     Light *light;
     
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
+    
+    Texture *bedWood;
     
     void update();
     void draw();

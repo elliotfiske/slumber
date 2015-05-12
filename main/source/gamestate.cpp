@@ -12,30 +12,10 @@ using namespace glm;
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-    
     real_bed = assets->actorFromName("bed");
-    
-    
+    enemy = assets->actorFromName("enemy");
 //    room = assets->actorFromName("room");
-//    room->diffuseColor = vec3(0.31, 0.082, 0.212);
-//    room->ambientColor = vec3(1.0, 0.05, 0.3);
-//    room->specularColor = vec3(0.1, 0.1, 0.1);
-//    room->shininess = 0;
-//    
-//    bed = assets->actorFromName("sheet");
-//    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-//    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-//    bed->specularColor = vec3(0.1, 0.1, 0.1);
-//    bed->shininess = 20;
-//    
-//    clock = assets->actorFromName("clock");
-//    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-//    clock->ambientColor = vec3(0.1, 0.06, 0.17);
-//    clock->specularColor = vec3(0.1, 0.1, 0.1);
-//    clock->shininess = 10;
-
-
-
+    lamp = assets->actorFromName("lamp-table");
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -43,7 +23,7 @@ void GameState::initAssets() {
 
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
-    shadowfbo->generateTexture(2048, 2048);
+    shadowfbo->generateShadowTexture(2048, 2048);
 
     light = new Light();
     
@@ -77,15 +57,19 @@ void GameState::checkCollisions() {
     // TODO: me!!!
 }
 
-int countdown = 60;
+float lastX, lastY, lastZ;
 
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
-    countdown--;
+    float x = camera->center.x;
+    float y = camera->center.y;
+    float z = camera->center.z;
     
-    if (countdown == 0) {
-//        sendGhostPosition(5, 3, 8);
-        countdown = 60;
+    if (lastX != x || lastY != y || lastZ != z) {
+        lastX = camera->center.x;
+        lastY = camera->center.y;
+        lastZ = camera->center.z;
+        sendGhostPosition(lastX, lastY, lastZ);
     }
 #endif
 }
@@ -101,6 +85,13 @@ void GameState::update() {
     if (isGhost) {
         camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
         tellClientWhereGhostIs();
+    }
+    else {
+        Position ghostPos = getGhostPosition();
+        printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
+        enemy->center.x = ghostPos.x;
+        enemy->center.y = ghostPos.y;
+        enemy->center.z = ghostPos.z;
     }
     
     prevTime = currTime;
@@ -135,10 +126,13 @@ void GameState::renderShadowBuffer() {
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-
-    //bed->drawShadows(light);
-    //room->drawShadows(light);
-    //clock->drawShadows(light);
+    mat4 cam = lookAt(camera->center, camera->center
+                                + camera->direction, vec3(0.0, 1.0, 0.0));
+    real_bed->drawShadows(light);
+    lamp->drawShadows(light);
+    enemy->drawShadows(light);
+//    room->drawShadows(light);
+//    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -163,20 +157,22 @@ void GameState::viewFrustumCulling(Actor curActor){
  */
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glCullFace(GL_BACK);
-    CurrAssets->lightingShader->startUsingShader();
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+    glCullFace(GL_BACK);
     
+    CurrAssets->lightingShader->startUsingShader();
     setView();
     setPerspectiveMat();
 
+
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-    viewFrustumCulling(*bed);
-    viewFrustumCulling(*room);
-    viewFrustumCulling(*clock);
-    viewFrustrumCulling(*real_bed);
-    
+//    viewFrustumCulling(*real_bed);
+//    viewFrustumCulling(*enemy);
+    real_bed->draw(light);
+    enemy->draw(light);
+    lamp->draw(light);
+
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
 }

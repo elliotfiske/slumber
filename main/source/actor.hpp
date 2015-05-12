@@ -4,9 +4,13 @@
 #include "glm/glm.hpp"
 #include "GLSL.h"
 #include "Light.h"
+#include "tiny_obj_loader.h"
+#include "Texture.h"
 
 using namespace glm;
 using namespace std;
+
+#define NUM_SHAPES 100
 
 class Actor {
 public:
@@ -16,25 +20,25 @@ public:
     float velocityScalar;
     float boundSphereRad;
     
-    /** Material properties */
-    vec3 diffuseColor;
-    vec3 ambientColor;
-    vec3 specularColor;
-    float shininess;
+    int numShapes;
+    
+    tinyobj::material_t material[NUM_SHAPES];
+    Texture *texture[NUM_SHAPES];
+    GLuint textureUnit[NUM_SHAPES];
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
     void draw(Light *light);
     void drawShadows(Light *light);
     
-    GLuint posID, norID, indID, uvID;
-    int numVerts;
+    GLuint posID[NUM_SHAPES], norID[NUM_SHAPES], indID[NUM_SHAPES], uvID[NUM_SHAPES];
+    int numVerts[NUM_SHAPES];
     
     mat4 modelMat;
     
 private:
     void setModel();
-    void setMaterial();
+    void setMaterial(tinyobj::material_t material);
     void setLightMVP(Light *light, bool isShadowShader);
 };
 
