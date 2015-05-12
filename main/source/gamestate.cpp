@@ -16,6 +16,7 @@ void GameState::initAssets() {
     enemy = assets->actorFromName("enemy");
 //    room = assets->actorFromName("room");
     lamp = assets->actorFromName("lamp-table");
+    sphere = assets->actorFromName("sphere");
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -55,6 +56,9 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
 
 void GameState::checkCollisions() {
     // TODO: me!!!
+   if(camera->checkLight(sphere)) {
+       printf("collect light here");
+   }
 }
 
 float lastX, lastY, lastZ;
