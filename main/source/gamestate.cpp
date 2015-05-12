@@ -16,6 +16,7 @@ bool collected4 = false;
 bool collected5 = false;
 
 float sphereTicks = 0;
+float spookyspooky = 0;
 
 vector<vec3> spherePlaces;
 ViewFrustum *vf;
@@ -205,13 +206,11 @@ void GameState::setPerspectiveMat() {
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    glViewport(0, 0, 2048, 2048);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-    mat4 cam = lookAt(camera->center, camera->center
-                                + camera->direction, vec3(0.0, 1.0, 0.0));
     
     bed->drawShadows(light);
     lamp->drawShadows(light);
@@ -236,9 +235,11 @@ void GameState::viewFrustumCulling(Actor curActor){
    result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
    if(result == INSIDE || result == INTERSECT){
 //       printf("BOOGA BOOGA BOOGA\n");
+spookyspooky = 7;
    }
    else {
 //       printf("Naw man :(\n");
+spookyspooky = 0;
    }
    curActor.draw(light);
 }
@@ -255,8 +256,8 @@ void GameState::renderScene() {
     setView();
     setPerspectiveMat();
 
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
-    
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+
     bed->draw(light);
     lamp->draw(light);
     room->draw(light);
@@ -310,10 +311,12 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
+    if (spookyspooky > 0) {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(spookyspooky/3, spookyspooky, currTime, 15);
+}
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);

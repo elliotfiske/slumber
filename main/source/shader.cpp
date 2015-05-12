@@ -237,7 +237,7 @@ void FBOShader::setIntensity(float intensity) {
 }
 
 void FBOShader::animateIntensity(float min, float max, double currTime, float slowFactor) {
-    float newIntensity = sin(currTime * slowFactor) * (max - min) + min;
+    float newIntensity = sin(currTime * slowFactor) * (max - min) + min*2;
     setIntensity(newIntensity);
 }
 

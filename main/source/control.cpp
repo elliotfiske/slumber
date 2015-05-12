@@ -105,7 +105,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
 
     if (key == GLFW_KEY_X) {
         if (action == GLFW_PRESS) {
-            xLightVel = 0.1f;
+            xLightVel = 0.5f;
         }
         
         if (action == GLFW_RELEASE) {
@@ -114,7 +114,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
     }
     if (key == GLFW_KEY_Z) {
         if (action == GLFW_PRESS) {
-            zLightVel = 0.1f;
+            zLightVel = 0.5f;
         }
         
         if (action == GLFW_RELEASE) {
@@ -123,7 +123,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
     }
     if (key == GLFW_KEY_Y) {
         if (action == GLFW_PRESS) {
-            yLightVel = 0.1f;
+            yLightVel = 0.5f;
         }
         
         if (action == GLFW_RELEASE) {
@@ -168,8 +168,8 @@ void updateLightPosition(Light *light) {
     glm::vec3 lightPos = light->getPosition();
     lightPos.x += xLightVel;
     lightPos.y += yLightVel;
-    lightPos.z -= zLightVel;
-//    printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
+    lightPos.z += zLightVel;
+    //printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
     light->setPosition(lightPos);
 }
 
