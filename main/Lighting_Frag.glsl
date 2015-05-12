@@ -41,7 +41,7 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + 0.02 * distToLight + 0.02 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + 0.005 * distToLight + 0.005 * distToLight * distToLight);
 
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * UdColor * attenuation;
@@ -55,8 +55,11 @@ void main() {
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
 
     // Sample the shadow map N times
-    float bias = 0.005 * tan(acos(dot(n, l)));
-    float blur = 0.001;
+    float bias = 0.00001;
+	float blur = 0.001;
+    //float bias = 0.005 * tan(acos(dot(n, l)));
+    //bias = clamp(bias, 0.0, 0.01);
+    //float blur = 0.001;
     float visibility = 1.0;
     if(shadowCoords.w > 0.0 &&
         shadowCoords.x > 0.0 && shadowCoords.x < 1.0 &&
@@ -75,5 +78,5 @@ void main() {
 
 
 
-    gl_FragColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
+    gl_FragColor.rgb = lAmbientColor + visibility * (lDiffuseColor + lSpecularColor);
 }

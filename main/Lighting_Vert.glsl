@@ -1,5 +1,5 @@
 #version 120
-attribute vec3 aPosition;
+attribute vec4 aPosition;
 attribute vec3 aNormal;
 uniform mat4 uProjMatrix;
 uniform mat4 uViewMatrix;
@@ -14,13 +14,14 @@ varying vec3 vLight;
 
 void main() {
     mat4 MV = uViewMatrix * uModelMatrix;
+    vec4 pos_cam = MV * aPosition;
+    
+    vLight = (MV * vec4(lightPos, 1.0)).xyz;
+    vPos = pos_cam.xyz;
 
-    vLight = vec3(MV * vec4(lightPos, 1.0));
-    vPos = vec3(MV * vec4(aPosition, 1.0));
+	gl_Position = uProjMatrix * pos_cam;
 
-	gl_Position = uProjMatrix * MV * vec4(aPosition, 1.0);
+	vNor  = normalize((MV * vec4(aNormal, 0.0)).xyz);
 
-	vNor  = normalize(vec3(MV * vec4(aNormal, 0.0)));
-
-    shadowClip = lightMVP * vec4(aPosition, 1.0);
+    shadowClip = lightMVP * aPosition;
 }

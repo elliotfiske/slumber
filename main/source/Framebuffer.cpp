@@ -21,29 +21,23 @@ bool Framebuffer::generateShadowTexture(GLuint width, GLuint height, bool clamp)
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &tmp);
 	glGetIntegerv(GL_TEXTURE_BINDING_2D, &tmp_tex);
 
+	glBindFramebuffer(GL_FRAMEBUFFER, id);
+
 	this->width = width;
 	this->height = height;
 
 	glGenTextures(1, &tex_id);
-	glBindFramebuffer(GL_FRAMEBUFFER, id);
 	glBindTexture(GL_TEXTURE_2D, tex_id);
     
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-	if (clamp) {
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	}
-	else {
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	}
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, tex_id, 0);
 	glDrawBuffer(GL_NONE);
-	glReadBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
 
 	bool check_status = glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
 
@@ -53,43 +47,7 @@ bool Framebuffer::generateShadowTexture(GLuint width, GLuint height, bool clamp)
 	return check_status;
 }
 
-bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {
-//	GLint tmp = 0, tmp_tex = 0;
-//	glGetIntegerv(GL_FRAMEBUFFER_BINDING, &tmp);
-//	glGetIntegerv(GL_TEXTURE_BINDING_2D, &tmp_tex);
-//
-//	this->width = width;
-//	this->height = height;
-//
-//	glGenTextures(1, &tex_id);
-//	glBindFramebuffer(GL_FRAMEBUFFER, id);
-//	glBindTexture(GL_TEXTURE_2D, tex_id);
-//    
-//	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, 0);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-//	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-//
-//	if (clamp) {
-//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-//	}
-//	else {
-//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-//		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-//	}
-//
-//	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, tex_id, 0);
-//	glDrawBuffer(GL_NONE);
-//	glReadBuffer(GL_NONE);
-//
-//	bool check_status = glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
-//
-//	glBindTexture(GL_TEXTURE_2D, tmp_tex);
-//	glBindFramebuffer(GL_FRAMEBUFFER, tmp);
-//
-//	return check_status;
-    
-    
+bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {    
     this->width = width;
     this->height = height;
     

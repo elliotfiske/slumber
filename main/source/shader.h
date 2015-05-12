@@ -70,6 +70,7 @@ public:
     ShadowShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     void startUsingShader();
     void setPositionArray(GLuint arrayID);
+    void setIndexArray(GLuint arrayID);
     void setMVPmatrix(glm::mat4 MVPmatrix);
 
     // Clean-up

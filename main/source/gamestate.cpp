@@ -11,7 +11,7 @@ void GameState::initAssets() {
     Assets *assets = Assets::instance();
     room = assets->actorFromName("room");
     room->diffuseColor = vec3(0.31, 0.082, 0.212);
-    room->ambientColor = vec3(1.0, 0.05, 0.3);
+    room->ambientColor = vec3(0.3, 0.05, 0.3);
     room->specularColor = vec3(0.1, 0.1, 0.1);
     room->shininess = 0;
     
@@ -33,7 +33,7 @@ void GameState::initAssets() {
 
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
-    shadowfbo->generateTexture(2048, 2048);
+    shadowfbo->generateShadowTexture(2048, 2048);
 
     light = new Light();
     
@@ -103,10 +103,11 @@ void GameState::renderShadowBuffer() {
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-
-    //bed->drawShadows(light);
-    //room->drawShadows(light);
-    //clock->drawShadows(light);
+    mat4 cam = lookAt(camera->center, camera->center
+                                + camera->direction, vec3(0.0, 1.0, 0.0));
+    bed->drawShadows(light);
+    room->drawShadows(light);
+    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -118,15 +119,16 @@ void GameState::renderShadowBuffer() {
  */
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glCullFace(GL_BACK);
-    CurrAssets->lightingShader->startUsingShader();
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+    glCullFace(GL_BACK);
     
+    CurrAssets->lightingShader->startUsingShader();
     setView();
     setPerspectiveMat();
 
+
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
-    
+
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
@@ -145,7 +147,6 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
-    
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
