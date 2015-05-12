@@ -15,28 +15,8 @@ void GameState::initAssets() {
     
     real_bed = assets->actorFromName("bed");
     enemy = assets->actorFromName("enemy");
-    
-    
 //    room = assets->actorFromName("room");
-//    room->diffuseColor = vec3(0.31, 0.082, 0.212);
-//    room->ambientColor = vec3(1.0, 0.05, 0.3);
-//    room->specularColor = vec3(0.1, 0.1, 0.1);
-//    room->shininess = 0;
-//    
-//    bed = assets->actorFromName("sheet");
-//    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-//    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-//    bed->specularColor = vec3(0.1, 0.1, 0.1);
-//    bed->shininess = 20;
-//    
-//    clock = assets->actorFromName("clock");
-//    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-//    clock->ambientColor = vec3(0.1, 0.06, 0.17);
-//    clock->specularColor = vec3(0.1, 0.1, 0.1);
-//    clock->shininess = 10;
-
-
-
+    lamp = assets->actorFromName("lamp-table");
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -190,7 +170,8 @@ void GameState::renderScene() {
 //    viewFrustumCulling(*clock);
     viewFrustumCulling(*real_bed);
 //    viewFrustumCulling(*enemy);
-    enemy->draw(light);
+//    enemy->draw(light);
+    lamp->draw(light);
     
 //    viewFrustumCulling(*enemy);
 

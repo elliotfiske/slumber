@@ -47,6 +47,7 @@ void main() {
     float attenuation = 1.0;// / (1.0 + 0.02 * distToLight + 0.02 * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
+    textureColor += UdColor;
     
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * textureColor * attenuation;
