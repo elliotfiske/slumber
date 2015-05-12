@@ -16,7 +16,7 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
-    lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
+    lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");	
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
@@ -59,6 +59,8 @@ vector<Texture *> existingTextures;
  */
 void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx) {
     static GLuint textureUnit = 1;
+
+printf("what gives? time to array\n");
     
     const vector<float> &posBuf = shape.mesh.positions;
     glGenBuffers(1, &actor->posID[shapeNdx]);
@@ -77,6 +79,8 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, actor->indID[shapeNdx]);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
+    printf("All this other earrays are done\n");
+
     // Send the UV array to the GPU
     if (material.diffuse_texname.size() > 0) {
         const vector<float> &uvBuf = shape.mesh.texcoords;
@@ -84,6 +88,7 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
         glBindBuffer(GL_ARRAY_BUFFER, actor->uvID[shapeNdx]);
         glBufferData(GL_ARRAY_BUFFER, uvBuf.size()*sizeof(float), &uvBuf[0], GL_STATIC_DRAW);
         
+    printf("All this other UV earrays are done\n");
         // If we already loaded a texture, don't load it again!
         bool textureAlreadyLoaded = false;
         for (int ndx = 0; ndx < existingTextures.size(); ndx++) {
@@ -92,6 +97,7 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
                 textureAlreadyLoaded = true;
             }
         }
+    printf("tex allready loadre done\n");
         
         if (!textureAlreadyLoaded) {
             actor->texture[shapeNdx] = new Texture();
@@ -99,6 +105,8 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
             actor->texture[shapeNdx]->init();
             actor->textureUnit[shapeNdx] = textureUnit++;
             
+    printf("New tex\n");
+
             existingTextures.push_back(actor->texture[shapeNdx]);
         }
     }
@@ -117,14 +125,19 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), "../resources/models/");
+printf("Loading shape...\n");
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), RESOURCE_FOLDER);
+printf("Yeah loaded shape\n");
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }
     
     for (int ndx = 0; ndx < shapes.size(); ndx++) {
+printf("Time to go to gpu %d\n", shapes[ndx].mesh.material_ids[0]);
         tinyobj::material_t currMaterial = materials[shapes[ndx].mesh.material_ids[0]];
+printf("Tripped over materials\n");
         sendShapeToGPU(shapes[ndx], currMaterial, actor, ndx);
+printf("went to GPU boss\n");
     }
     
     actor->numShapes = shapes.size();
@@ -138,16 +151,21 @@ void Assets::loadShape(string filename, Actor *actor) {
  */
 Actor* Assets::actorFromName(string actorName) {
     Actor *result;
+
+printf("Actor from name...\n");
     
     result = new Actor(levelDict[actorName]);
     string objFilename("resources/models/" + actorName + ".obj");
     
+printf("Actor from name... 2\n");
 #ifdef XCODE_IS_TERRIBLE
     objFilename = "../" + objFilename;
 #endif
     
+printf("Actor from name... 4\n");
     loadShape(objFilename, result);
     
+printf("Actor from name...5\n");
     return result;
 }
 
