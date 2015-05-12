@@ -3,51 +3,45 @@
 
 #include "GLSL.h"
 #include <string>
+#include "shader.h"
+#include <map>
+#include "actor.hpp"
 
 using namespace std;
 
+#define CurrAssets Assets::instance()
+
+#ifdef XCODE_IS_TERRIBLE
+    #define RESOURCE_FOLDER "../resources/models/"
+#else
+    #define RESOURCE_FOLDER "resources/models/"
+#endif
+
 class Assets {
 public:
-    Assets();
+    /** Global "Assets" instance */
+    static Assets* instance() {
+        static Assets *instance = new Assets();
+        return instance;
+    }
     
+    ShadowShader   *shadowShader;
+    LightingShader *lightingShader;
+    FBOShader      *darkeningShader;
+    FBOShader      *motionBlurShader;
     
-    
-    GLuint pos_sphereID, nor_sphereID, ind_sphereID;
-    int numVerts_sphere;
-    GLuint pos_roomID, nor_roomID, ind_roomID;
-    int numVerts_room;
-    
-    GLuint pos_bedID, nor_bedID, ind_bedID;
-    int numVerts_bed;
-    
-    GLuint pos_clockID, nor_clockID, ind_clockID;
-    int numVerts_clock;
-    
-    bool installShaders(const std::string &vShaderName, const std::string &fShaderName);
-    GLuint h_aPosition;
-    GLuint h_aNormal;
-    GLuint h_uProjMatrix ;
-    GLuint h_uViewMatrix ;
-    GLuint h_uModelMatrix;
-    GLuint h_uLightPos;
-    GLuint h_uMatAmb;
-    GLuint h_uMatDif;
-    GLuint h_uMatSpec;
-    GLuint h_uMatShine;
-    GLuint ShadeProg;
-    
-    GLuint quad_programID;
-    GLuint quad_vertexPosition_modelspace;
-    GLuint texID;
-    GLuint timeID;
-    
-    GLuint FrameBufferProg;
-    
-    void loadShape(const char* filename, GLuint *posID, GLuint *norID, GLuint *indID, int *numVerts);
+    Actor* actorFromName(string actorName);
+    void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     
 private:
+    Assets();
+    void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     
+    // A simple dictionary where the key is the OBJ name and the
+    //  value is the position of that model.
+    std::map<string, glm::vec3>  levelDict;
 };
+
 
 #endif

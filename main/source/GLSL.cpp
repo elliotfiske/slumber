@@ -43,7 +43,7 @@ void printShaderInfoLog(GLuint shader)
 	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infologLength);
 	printError();
 	
-	if(infologLength > 0) {
+	if(infologLength > 2) {
 		infoLog = (GLchar *)malloc(infologLength);
 		if(infoLog == NULL) {
 			puts("ERROR: Could not allocate InfoLog buffer");
@@ -66,7 +66,7 @@ void printProgramInfoLog(GLuint program)
 	glGetProgramiv(program, GL_INFO_LOG_LENGTH, &infologLength);
 	printError();
 	
-	if(infologLength > 0) {
+	if(infologLength > 2) {
 		infoLog = (GLchar *)malloc(infologLength);
 		if(infoLog == NULL) {
 			puts("ERROR: Could not allocate InfoLog buffer");

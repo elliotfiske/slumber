@@ -2,47 +2,53 @@
 #include "camera.hpp"
 #include "GLSL.h"
 #include "assets.hpp"
-
-
+#include "Light.h"
 #include "Framebuffer.h"
-
-
-#define XMAX 19.0
-#define ZMAX 19.0
+#include "Texture.h"
 
 class GameState {
 public:
-    GameState(GLFWwindow *window);
+    GameState(GLFWwindow *window, bool isGhost);
+    
+    bool isGhost;
+    
     std::vector<Actor> actors;
-    std::vector<Actor> clocks;
-    Actor *groundPlane, *bed, *clock;
+    Actor *room, *bed, *clock, *real_bed, *enemy;
+    Actor *lamp, *sphere;
+    Light *light;
     
+
     Framebuffer *framebuffer;
+    Framebuffer *shadowfbo;
     
-    bool completed;
-    double prevTime;
-    int numCurSpheres;
-    int numSpheresHit;
+    Texture *bedWood;
     
     void update();
     void draw();
     
-    Assets assets;
-    
     // TODO: move to assets or something
     GLuint quad_vertexbuffer;
+    
+    mat4 perspectiveMat;
+    mat4 viewMat;
     
 private:
     Camera *camera;
     GLFWwindow *window;
     
+    double prevTime;
+    double currTime;
+    
     void setPerspectiveMat();
     void setView();
+    void renderScene();
+    void renderShadowBuffer();
+    void renderFrameBuffer();
     
-    double timeToNextSphere;
-    
-    void spawnSphere();
     void checkCollisions();
     
     void initAssets();
+    
+    void viewFrustumCulling(Actor curActor);
+    void tellClientWhereGhostIs();
 };

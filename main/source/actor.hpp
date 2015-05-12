@@ -2,38 +2,44 @@
 #define actor_h
 
 #include "glm/glm.hpp"
-#include "assets.hpp"
+#include "GLSL.h"
+#include "Light.h"
+#include "tiny_obj_loader.h"
+#include "Texture.h"
 
 using namespace glm;
 using namespace std;
 
+#define NUM_SHAPES 100
+
 class Actor {
 public:
-    Actor(vec3 center_, vec3 direction_, float velocityScale, float radius);
-    Actor(string actorName);
+    Actor(vec3 center_);
     vec3 center;
     vec3 direction;
     float velocityScalar;
     float boundSphereRad;
     
-    /** Material properties */
-    vec3 diffuseColor;
-    vec3 ambientColor;
-    vec3 specularColor;
-    float shininess;
+    int numShapes;
+    
+    tinyobj::material_t material[NUM_SHAPES];
+    Texture *texture[NUM_SHAPES];
+    GLuint textureUnit[NUM_SHAPES];
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
-    void draw(Assets assets);
+    void draw(Light *light);
+    void drawShadows(Light *light);
     
-    GLuint posID, norID, indID;
-    int numVerts;
-    int jiggly = 0;
+    GLuint posID[NUM_SHAPES], norID[NUM_SHAPES], indID[NUM_SHAPES], uvID[NUM_SHAPES];
+    int numVerts[NUM_SHAPES];
+    
+    mat4 modelMat;
     
 private:
-    void setModel(Assets assets);
-    void setMaterial(Assets assets);
-    
+    void setModel();
+    void setMaterial(tinyobj::material_t material);
+    void setLightMVP(Light *light, bool isShadowShader);
 };
 
 #endif

@@ -1,2 +1,0 @@
-/home/eaarroliga/cpe476/slumber/edgard-dev/Lighting/CMakeFiles/Lab1.dir
-/home/eaarroliga/cpe476/slumber/edgard-dev/Lighting/dependencies/glfw/src/CMakeFiles/glfw.dir
