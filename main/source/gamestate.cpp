@@ -114,9 +114,9 @@ void GameState::renderShadowBuffer() {
     CurrAssets->shadowShader->startUsingShader();
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
-    bed->drawShadows(light);
-    room->drawShadows(light);
-    clock->drawShadows(light);
+    real_bed->drawShadows(light);
+//    room->drawShadows(light);
+//    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -151,9 +151,9 @@ void GameState::renderScene() {
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-    viewFrustumCulling(*bed);
-    viewFrustumCulling(*room);
-    viewFrustumCulling(*clock);
+//    viewFrustumCulling(*bed);
+//    viewFrustumCulling(*room);
+//    viewFrustumCulling(*clock);
     viewFrustumCulling(*real_bed);
     
     CurrAssets->lightingShader->disableAttribArrays();
