@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../libraries/WorldObject.h"
 #include "../libraries/Rand.h"
+#include "../libraries/Octree.h"
 
 // reverses velocity if moving outside the arena
 void WorldObject::checkBounds(CollisionBox arena) {
@@ -37,7 +38,7 @@ WorldObject::~WorldObject()
 	
 }
 
-void WorldObject::draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1) const {
+void WorldObject::draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1, bool drawSphere) const {
 	MatrixStack lightP, lightMV; // light matrices
 	lightP.pushMatrix();
 	light.applyProjectionMatrix(&lightP);
@@ -63,23 +64,19 @@ void WorldObject::draw(MatrixStack &MV, Program *prog, Light &light, bool isShad
 	glUniform3fv(prog->getUniform("kd"),  1, diffuse.data());
 	glUniformMatrix4fv(prog->getUniform("MV"), 1, GL_FALSE, MV.topMatrix().data());
 	glUniformMatrix3fv(prog->getUniform("T1"), 1, GL_TRUE, texMat.data());	
-	shape->draw(prog->getAttribute("vertPos"), prog->getAttribute("vertNor"), prog->getAttribute("vertTex"));
+	shape->draw(prog->getAttribute("vertPos"), prog->getAttribute("vertNor"), prog->getAttribute("vertTex"), drawSphere);
 	MV.popMatrix();
 	lightMV.popMatrix();
 	lightP.popMatrix();
 }
 
-void WorldObject::update(float dt, std::vector<WorldObject> &objects) {
+void WorldObject::update(float dt, Octree *octree, CollisionBox arena) {
 	if (isCollected == false) {
 		// check collisions against other objects
-		for (int i = 1; i < (int)objects.size(); i++) {
-			if (!objects.at(i).isCollected && box->isXZCollision(*objects.at(i).getBox())) {
-				if (velocity.dot(objects.at(i).position - position) > 0) {
-					objects.at(i).velocity = -objects.at(i).velocity;
-					velocity = -velocity;
-				}
-				break;
-			}
+		std::vector<WorldObject> objects = octree->checkCollisions(this->box);
+		if (objects.size() > 0 && velocity.dot(objects[0].position - position) > 0) {
+			objects[0].velocity *= -1.0f;
+			velocity = -velocity;
 		}
 
 		// update position and bounding box
@@ -88,7 +85,7 @@ void WorldObject::update(float dt, std::vector<WorldObject> &objects) {
 		//yaw = atan2(position(2) - pos0(2), position(0) - pos0(0));
 		yaw = atan2(pos0(0) - position(0), pos0(2) - position(2));
 		box->setBounds(box->getMin() + velocity * dt, box->getMax() + velocity * dt);
-		checkBounds(*objects.at(0).getBox());
+		checkBounds(arena);
 	}
 	else {
 		if (std::max(scale(0), scale(2)) > 0.5f) {

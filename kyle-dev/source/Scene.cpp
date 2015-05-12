@@ -4,7 +4,9 @@
 #include <fstream>
 #include <sstream>
 #include "../libraries/Rand.h"
-#define INTERVAL 5.0f
+#include "../libraries/Octree.h"
+
+#define INTERVAL 1.0f
 #define MAX_OBJECTS 50
 
 using namespace std;
@@ -23,16 +25,16 @@ void Scene::spawnObject() {
 	if ((int)objects.size() >= MAX_OBJECTS)
 		return;
 
-	CollisionBox *box = objects.at(0).getBox();
+	//CollisionBox *box = objects.at(0).getBox();
 	Eigen::Vector3f s;
-	float scale = randomFloat(0.5f, 2.0f);
+	float scale = 10.0f;//randomFloat(0.5f, 2.0f);
 	s(0) = scale;
 	s(1) = scale;
 	s(2) = scale;
 
 	Eigen::Vector3f x;
 	x(0) = randomFloat(-10.0f, 10.0f);
-	x(1) = 1.0f;
+	x(1) = scale / 2.0f;
 	x(2) = randomFloat(-10.0f, 10.0f);
 
 	Eigen::Vector3f v;
@@ -58,16 +60,22 @@ void Scene::update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::
 		spawnObject();
 	}
 
-	player.update(keys, mouse, center, dt, objects);
+	Octree *octree = new Octree();
+	std::vector<WorldObject> objectsCopy;
 
-	/*for (int i = 1; i < (int)objects.size(); i++) {
-		std::vector<WorldObject> objsCopy;
-		for (int j = 0; j < (int)objects.size(); j++) {
-			if (i != j)
-				objsCopy.push_back(objects.at(j));
-		}
-		objects.at(i).update(dt, objsCopy);
-	}*/
+	for (unsigned int i = 1; i < objects.size(); i++)
+		objectsCopy.push_back(objects[i]);
+
+	octree->generate(objectsCopy);
+	player.update(keys, mouse, center, dt, objectsCopy, octree);
+
+	for (int i = 1; i < (int)objects.size(); i++) {
+		objects.at(i).update(dt, octree, *objects[0].getBox());
+	}
+
+	//std::cout << "Saved " << (int)((objects.size() + 1) * (objects.size() + 1) - octree->getChecked()) << " collisions" << std::endl;
+	
+	delete octree;
 }
 
 void Scene::init() {

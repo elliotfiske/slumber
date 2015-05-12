@@ -328,9 +328,32 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/S
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o
 
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o: CMakeFiles/lab1.dir/flags.make
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_13)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp > CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.requires:
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.requires
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.provides: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.requires
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.provides.build
+.PHONY : CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.provides
+
+CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.provides.build: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o
+
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_13)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_14)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp
 
@@ -353,7 +376,7 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/L
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_14)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_15)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp
 
@@ -376,7 +399,7 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/C
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_15)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_16)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp
 
@@ -399,7 +422,7 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/M
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_16)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_17)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/GLSL.cpp
 
@@ -422,7 +445,7 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/G
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_17)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_18)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp
 
@@ -445,7 +468,7 @@ CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/P
 
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o: CMakeFiles/lab1.dir/flags.make
 CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o: /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_18)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/whykalo/Documents/programming/slumber/kyle-dev/build/CMakeFiles $(CMAKE_PROGRESS_19)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o"
 	/usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc.o -c /home/whykalo/Documents/programming/slumber/kyle-dev/source/tiny_obj_loader.cc
 
@@ -480,6 +503,7 @@ lab1_OBJECTS = \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o" \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o" \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o" \
+"CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o" \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o" \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o" \
 "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o" \
@@ -502,6 +526,7 @@ lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/so
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o
+lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o
 lab1: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o
@@ -538,6 +563,7 @@ CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/program
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o.requires
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o.requires
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o.requires
+CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o.requires
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o.requires
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o.requires
 CMakeFiles/lab1.dir/requires: CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o.requires

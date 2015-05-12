@@ -11,6 +11,7 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Shape.cpp.o"
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/WorldObject.cpp.o"
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Scene.cpp.o"
+  "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o"
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Light.cpp.o"
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Camera.cpp.o"
   "CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.o"

@@ -18,7 +18,7 @@ public:
 	virtual ~Shape();
 	void load(const std::string &meshName);
 	void init();
-	void draw(GLint h_pos, GLint h_nor, GLint h_tex);
+	void draw(GLint h_pos, GLint h_nor, GLint h_tex, bool draw_bounds = false);
 	
 private:
 	std::vector<tinyobj::shape_t> shapes;

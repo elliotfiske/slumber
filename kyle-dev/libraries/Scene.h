@@ -5,8 +5,8 @@
 #include <vector>
 #include <Eigen/Dense>
 #include "Shape.h"
-#include "../libraries/Player.h"
-#include "../libraries/Light.h"
+#include "Player.h"
+#include "Light.h"
 
 class Scene {
 public:

@@ -28,5 +28,6 @@
 #include "Player.h"
 #include "HUD.h"
 #include "Light.h"
+#include "Octree.h"
 
 using namespace std;

@@ -330,6 +330,30 @@ home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s:
 	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s
 .PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.cpp.s
 
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.o: home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.o
+
+# target to build an object file
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o:
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.o
+
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.i: home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.i
+
+# target to preprocess a source file
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i:
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.i
+
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.s: home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.s
+
+# target to generate assembly for a file
+home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s:
+	$(MAKE) -f CMakeFiles/lab1.dir/build.make CMakeFiles/lab1.dir/home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s
+.PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.cpp.s
+
 home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.o: home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.cpp.o
 .PHONY : home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.o
 
@@ -582,6 +606,9 @@ help:
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.o"
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.i"
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/MatrixStack.s"
+	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.o"
+	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.i"
+	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Octree.s"
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.o"
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.i"
 	@echo "... home/whykalo/Documents/programming/slumber/kyle-dev/source/Player.s"
