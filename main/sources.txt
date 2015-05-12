@@ -15,6 +15,8 @@ set(HEADERS
    shader.h
    network.h
    Light.h
+   Plane.hpp
+   ViewFrustum.hpp
 )
 
 # List all .c / .cpp files here
@@ -34,4 +36,6 @@ set(SOURCES
    shader.cpp
    network.cpp
    Light.cpp
+   Plane.cpp
+   ViewFrustum.cpp
 )

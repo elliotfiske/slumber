@@ -30,6 +30,8 @@ public:
     GLuint posID, norID, indID;
     int numVerts;
     
+    mat4 modelMat;
+    
 private:
     void setModel();
     void setMaterial();

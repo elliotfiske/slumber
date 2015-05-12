@@ -1,35 +1,29 @@
 #include "Plane.hpp"
+#include "glm/glm.hpp"
 #include <stdio.h>
 
 Plane::Plane() {}
 
 Plane::~Plane() {}
 
-void Plane::setCoefficients(float a, float b, float c, float d) {
-   this.a = a;
-   this.b = b;
-   this.c = c;
-   this.d = d;
+void Plane::setCoefficients(float a_, float b_, float c_, float d_) {
+   a = a_;
+   b = b_;
+   c = c_;
+   d = d_;
 }
    
 
-float Plane::distance(vec3 p) {
-   return this.a*p.x + this.b*p.y + this.c*p.z + this.d;
+float Plane::distance(glm::vec3 p) {
+   return a*p.x + b*p.y + c*p.z + d;
 }
 
-void normalize(){
+void Plane::makeNormal(){
    float mag;
-   mag = sqrt(this.a * this.a + this.b * this.b + this.c * this.c);
-   this.a = this.a / mag;
-   this.b = this.b / mag;
-   this.c = this.c / mag;
-   this.d = this.d / mag;
+   mag = sqrt(a * a + b * b + c * c);
+   a = a / mag;
+   b = b / mag;
+   c = c / mag;
+   d = d / mag;
 }
 
-Halfspace classifyPoint(vec3 pt){
-   float d;
-   d = this.a*pt.x + this.b*pt.y + this.c*pt.z + this.d;
-   if (d < 0) return NEGATIVE;
-   if (d > 0) return POSITIVE;
-   return ON_PLANE;
-}
