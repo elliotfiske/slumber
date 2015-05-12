@@ -16,6 +16,7 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
         add_definitions(-DTHREADS)
     else()
     message(STATUS "I see you have GCC 4.8 or above! nice. Enabling networking.")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         add_definitions(-DTHREADS)
     endif ()
 
