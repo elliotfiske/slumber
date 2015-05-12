@@ -8,6 +8,7 @@
 #include <GL/glut.h>
 #endif
 #include <string>
+#include "GLSL.h"
 
 class Texture
 {
