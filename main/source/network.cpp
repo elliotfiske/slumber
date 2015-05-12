@@ -70,23 +70,19 @@ void doClientNetworking() {
     close(serverSocket);
 }
 
-void sendData(void *data) {
-    send(partnersSocket, data, BUFF_SIZE, 0);
+void sendData(char *data) {
+    send(partnersSocket, data, strlen(data) + 1, 0);
 }
 
 /**
  * Pack the ghost's position into 3 ints and send it
  *  over to the client.
  */
-void sendGhostPosition(int16_t x, int16_t y, int16_t z) {
-    InfoHeader posHeader = {
-        GHOST_POSITION_UPDATE_FLAG,
-        x,
-        y,
-        z
-    };
+void sendGhostPosition(float x, float y, float z) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", GHOST_POSITION_UPDATE_FLAG, x, y, z);
     
-    sendData(&posHeader);
+    sendData(dataString);
 }
 
 void receiveData(int serverSocket) {
@@ -108,9 +104,6 @@ void receiveData(int serverSocket) {
     }
 }
 
-void processIncomingPacket(void *entirePacket, long dataLen, int clientSocket) {
-    InfoHeader incoming;
-    memcpy(&incoming, entirePacket, BUFF_SIZE);
-    
-    cout << "Received packet with flag " << incoming.flag << " value1 " << incoming.value1 << " value2 " << incoming.value2 << " value 3 " << incoming.value3 << endl;
+void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
+    cout << "Received packet: " << entirePacket << endl;
 }
