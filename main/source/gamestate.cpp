@@ -12,10 +12,11 @@ using namespace glm;
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-    real_bed = assets->actorFromName("bed");
+    bed = assets->actorFromName("bed");
+    clock = assets->actorFromName("clock");
     enemy = assets->actorFromName("enemy");
-//    room = assets->actorFromName("room");
     lamp = assets->actorFromName("lamp-table");
+    room = assets->actorFromName("room");
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -128,11 +129,12 @@ void GameState::renderShadowBuffer() {
     CurrAssets->shadowShader->startUsingShader();
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
-    real_bed->drawShadows(light);
-    lamp->drawShadows(light);
+
+    bed->drawShadows(light);
     enemy->drawShadows(light);
-//    room->drawShadows(light);
-//    clock->drawShadows(light);
+    lamp->drawShadows(light);
+    room->drawShadows(light);
+    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -158,7 +160,7 @@ void GameState::viewFrustumCulling(Actor curActor){
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glCullFace(GL_BACK);
+//    glCullFace(GL_BACK);
     
     CurrAssets->lightingShader->startUsingShader();
     setView();
@@ -167,11 +169,11 @@ void GameState::renderScene() {
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-//    viewFrustumCulling(*real_bed);
-//    viewFrustumCulling(*enemy);
-    real_bed->draw(light);
+    bed->draw(light);
     enemy->draw(light);
     lamp->draw(light);
+    room->draw(light);
+    clock->draw(light);
 
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
@@ -188,7 +190,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -211,7 +213,7 @@ void GameState::renderFrameBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+//	glEnable(GL_CULL_FACE);
 
     renderShadowBuffer();
 
