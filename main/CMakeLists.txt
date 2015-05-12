@@ -62,6 +62,18 @@ list(APPEND LIBS
    ${CMAKE_DL_LIBS}
 )
 
+# SFML
+set(SFML_DIR "${DEP_DIR}/SFML-2.0")
+list(APPEND INCLUDES
+   ${SFML_DIR}/include
+)
+list(APPEND LIBS
+   ${SFML_DIR}/lib/libsfml-system.so
+)
+list(APPEND LIBS
+   ${SFML_DIR}/lib/libsfml-audio.so
+)
+
 # pthread libs
 find_package (Threads)
 list(APPEND LIBS
