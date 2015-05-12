@@ -12,14 +12,12 @@ using namespace glm;
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-printf("LOAding assets\n");
     bed = assets->actorFromName("bed");
     clock = assets->actorFromName("clock");
     enemy = assets->actorFromName("enemy");
     lamp = assets->actorFromName("lamp-table");
     room = assets->actorFromName("room");
     
-printf("Done LOAding assets\n");
     framebuffer = new Framebuffer();
     framebuffer->generate();
     framebuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
@@ -96,9 +94,6 @@ void GameState::update() {
         enemy->center.y = ghostPos.y;
         enemy->center.z = ghostPos.z;
     }
-    
-    enemy->center.x += getForwardVelocity();
-    enemy->center.y += getStrafeVelocity();
     
     float enemyYaw = atan2(enemy->center.y, enemy->center.x);
     float sqrtTerm = sqrt(enemy->center.x * enemy->center.x + enemy->center.y * enemy->center.y);
