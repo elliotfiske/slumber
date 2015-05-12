@@ -32,9 +32,21 @@
 # XCode stuff
 UserInterfaceState.xcuserstate
 dgph
+.DS_Store
+*.xcodeproj
 
 # CMake built stuff
 build/
 CMakeFiles/
 Makefile
 CMakeCache.txt
+cmake_install.cmake
+Makefile
+slumber
+CMakeScripts/
+slumber.*/
+
+# Eclipse stuff
+.cproject
+.project
+.metadata/

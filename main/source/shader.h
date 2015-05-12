@@ -61,8 +61,12 @@ public:
     
     GLuint fbo_ProgramID;
     
+    GLuint intensity_UniformID;
     GLuint position_AttributeID;
     GLuint textureToDisplay_ID;
+    
+    void setIntensity(float intensity);
+    void animateIntensity(float min, float max, double currTime, float slowFactor);
 };
 
 class ShadowShader {
