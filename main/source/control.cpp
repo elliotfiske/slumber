@@ -112,6 +112,24 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             xLightVel = 0.0f;
         }
     }
+    if (key == GLFW_KEY_Z) {
+        if (action == GLFW_PRESS) {
+            zLightVel = 0.1f;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            zLightVel = 0.0f;
+        }
+    }
+    if (key == GLFW_KEY_Y) {
+        if (action == GLFW_PRESS) {
+            yLightVel = 0.1f;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            yLightVel = 0.0f;
+        }
+    }
 }
 
 void setupCallbacks(GLFWwindow *window) {
@@ -149,6 +167,9 @@ void updateCamDirection(Camera *camera) {
 void updateLightPosition(Light *light) {
     glm::vec3 lightPos = light->getPosition();
     lightPos.x += xLightVel;
+    lightPos.y += yLightVel;
+    lightPos.z -= zLightVel;
+//    printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
     light->setPosition(lightPos);
 }
 

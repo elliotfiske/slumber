@@ -13,7 +13,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 
-#define BUFF_SIZE 1500
+#define BUFF_SIZE 56
 
 // Ghost->client packets
 #define GHOST_POSITION_UPDATE_FLAG 1
@@ -31,9 +31,9 @@ typedef struct InfoHeader {
 } __attribute__((packed)) InfoHeader;
 
 typedef struct Position {
-    int16_t  x;
-    int16_t  y;
-    int16_t  z;
+    float x;
+    float y;
+    float z;
 } Position;
 
 void doClientNetworking();
@@ -41,12 +41,12 @@ void doGhostNetworking();
 
 int tcpSetup();
 int tcpClientSetup(char *host_name, char *port);
-void sendData(void *data);
+void sendData(char *data);
 void receiveData(int socket);
-void processIncomingPacket(void *entirePacket, long dataLen, int clientSocket);
+void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket);
 
 // Methods for external use
-void sendGhostPosition(int16_t x, int16_t y, int16_t z);
+void sendGhostPosition(float x, float y, float z);
 Position getGhostPosition();
 
 

@@ -22,7 +22,7 @@ using namespace std;
 int partnersSocket = 0;
 
 // These correspond to properties in GameState
-int ghostPosX, ghostPosY, ghostPosZ;
+float ghostPosX, ghostPosY, ghostPosZ;
 bool shouldShowGhost;
 
 void doGhostNetworking() {
@@ -55,7 +55,7 @@ void doGhostNetworking() {
 void doClientNetworking() {
     int serverSocket = 0;
     
-    char *host = (char *)"localhost";
+    char *host = (char *)"192.168.0.2";
     char *port = (char *)"4444";
     
     serverSocket = tcpClientSetup(host, port);
@@ -70,23 +70,19 @@ void doClientNetworking() {
     close(serverSocket);
 }
 
-void sendData(void *data) {
-    send(partnersSocket, data, BUFF_SIZE, 0);
+void sendData(char *data) {
+    send(partnersSocket, data, strlen(data) + 1, 0);
 }
 
 /**
  * Pack the ghost's position into 3 ints and send it
  *  over to the client.
  */
-void sendGhostPosition(int16_t x, int16_t y, int16_t z) {
-    InfoHeader posHeader = {
-        GHOST_POSITION_UPDATE_FLAG,
-        x,
-        y,
-        z
-    };
+void sendGhostPosition(float x, float y, float z) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", GHOST_POSITION_UPDATE_FLAG, x, y, z);
     
-    sendData(&posHeader);
+    sendData(dataString);
 }
 
 void receiveData(int serverSocket) {
@@ -101,16 +97,24 @@ void receiveData(int serverSocket) {
         exit(0);
     }
     else {
-        if (messageLen != BUFF_SIZE) {
-            cout << "Cap'n, received packet of size " << messageLen << " instead of 56..." << endl;
-        }
         processIncomingPacket(buf, messageLen, serverSocket);
     }
 }
 
-void processIncomingPacket(void *entirePacket, long dataLen, int clientSocket) {
-    InfoHeader incoming;
-    memcpy(&incoming, entirePacket, BUFF_SIZE);
+void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
+    cout << "Received packet: " << entirePacket << endl;
+    int flag;
+    float x, y, z;
+    sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);
     
-    cout << "Received packet with flag " << incoming.flag << " value1 " << incoming.value1 << " value2 " << incoming.value2 << " value 3 " << incoming.value3 << endl;
+    if (flag == GHOST_POSITION_UPDATE_FLAG) {
+        ghostPosX = x;
+        ghostPosY = y;
+        ghostPosZ = z;
+    }
+}
+
+Position getGhostPosition() {
+    Position result = {ghostPosX, ghostPosY, ghostPosZ};
+    return result;
 }
