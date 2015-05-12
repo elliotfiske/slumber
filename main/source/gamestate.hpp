@@ -27,6 +27,9 @@ public:
     // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
+    mat4 perspectiveMat;
+    mat4 viewMat;
+    
 private:
     Camera *camera;
     GLFWwindow *window;
@@ -44,5 +47,6 @@ private:
     
     void initAssets();
     
+    void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
 };

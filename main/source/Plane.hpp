@@ -1,20 +1,14 @@
-#include <glm/glm.hpp>
+#include "glm/glm.hpp"
 
 class Plane{
+public:
    float a, b, c, d;
 
-   Plane::Plane(void);
-   Plane::~Plane();
+   Plane(void);
+   ~Plane();
 
    void setCoefficients(float a, float b, float c, float d);
-   float distance(vec3 p);
-   void normalize();
+   float distance(glm::vec3 p);
+   void makeNormal();
    
-   enum Halfspace{
-      NEGATIVE = -1,
-      ON_PLANE = 0,
-      POSITIVE = 1,
-   };
-   
-   Halfspace classifyPoint(const Plane & plane, const Point & pt);
-}
+};

@@ -4,6 +4,7 @@
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
+#include "ViewFrustum.hpp"
 #include "network.h"
 
 using namespace glm;
@@ -84,12 +85,20 @@ void GameState::checkCollisions() {
     // TODO: me!!!
 }
 
-float x = 0;
+float lastX, lastY, lastZ;
 
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
-    sendGhostPosition(x, x, x);
-    x += 0.1;
+    float x = camera->center.x;
+    float y = camera->center.y;
+    float z = camera->center.z;
+    
+    if (lastX != x || lastY != y || lastZ != z) {
+        lastX = camera->center.x;
+        lastY = camera->center.y;
+        lastZ = camera->center.z;
+        sendGhostPosition(lastX, lastY, lastZ);
+    }
 #endif
 }
 
@@ -118,6 +127,8 @@ void GameState::update() {
 void GameState::setView() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
+    
+    this->viewMat = cam;
     CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
@@ -125,6 +136,8 @@ void GameState::setView() {
 void GameState::setPerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
+    
+    this->perspectiveMat = Projection;
     CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
 
@@ -148,6 +161,19 @@ void GameState::renderShadowBuffer() {
     shadowfbo->unbind();
 }
 
+void GameState::viewFrustumCulling(Actor curActor){
+   ViewFrustum *vf = new ViewFrustum();
+   mat4 comboMatrix;
+   int result;
+   
+   comboMatrix = this->perspectiveMat * this->viewMat * curActor.modelMat;
+   vf->extractPlanes(comboMatrix, true);
+   result = vf->sphereIsInside(curActor.center, 1);
+   if(result == INSIDE || result == INTERSECT){
+      curActor.draw(light);
+   }
+}
+
 /**
  * Actually draws each of the 3D objects in the scene
  */
@@ -162,12 +188,13 @@ void GameState::renderScene() {
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-//    bed->draw(light);
-//    room->draw(light);
-//    clock->draw(light);
-    
+//    
+//    viewFrustumCulling(*bed);
+//    viewFrustumCulling(*room);
+//    viewFrustumCulling(*clock);
     bedWood->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 3);
-    real_bed->draw(light);
+    viewFrustumCulling(*real_bed);
+    bedWood->unbind(3);
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
