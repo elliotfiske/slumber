@@ -45,7 +45,11 @@ void GameState::initAssets() {
     shadowfbo->generateTexture(2048, 2048);
     
     bedWood = new Texture();
+#ifdef XCODE_IS_TERRIBLE
     bedWood->setFilename("../resources/models/wood.jpg");
+#else
+    bedWood->setFilename("resources/models/wood.jpg");
+#endif
     bedWood->init();
 
     light = new Light();
