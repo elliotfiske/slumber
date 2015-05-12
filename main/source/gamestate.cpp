@@ -13,6 +13,7 @@ void GameState::initAssets() {
     
     
     real_bed = assets->actorFromName("bed");
+    enemy = assets->actorFromName("sphere");
     
     
 //    room = assets->actorFromName("room");
@@ -108,6 +109,9 @@ void GameState::update() {
     else {
         Position ghostPos = getGhostPosition();
         printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
+	enemy->center.x = ghostPos.x;
+	enemy->center.y = ghostPos.y;
+	enemy->center.z = ghostPos.z;
     }
     
     prevTime = currTime;
@@ -169,6 +173,8 @@ void GameState::renderScene() {
     bedWood->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 3);
     real_bed->draw(light);
     
+    enemy->draw(light);
+
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
 }
