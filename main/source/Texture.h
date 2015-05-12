@@ -1,14 +1,15 @@
 #ifndef __Texture__
 #define __Texture__
 
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#endif
-#ifdef __unix__
-#include <GL/glut.h>
-#endif
-#include <string>
+//#ifdef __APPLE__
+//#include <GLUT/glut.h>
+//#endif
+//#ifdef __unix__
+//#include <GL/glut.h>
+//#endif
+
 #include "GLSL.h"
+#include <string>
 
 class Texture
 {
