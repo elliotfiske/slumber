@@ -129,7 +129,7 @@ void GameState::renderShadowBuffer() {
     CurrAssets->shadowShader->startUsingShader();
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
-
+    
     bed->drawShadows(light);
     enemy->drawShadows(light);
     lamp->drawShadows(light);
@@ -160,7 +160,7 @@ void GameState::viewFrustumCulling(Actor curActor){
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-//    glCullFace(GL_BACK);
+    glCullFace(GL_BACK);
     
     CurrAssets->lightingShader->startUsingShader();
     setView();
@@ -190,7 +190,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -213,7 +213,7 @@ void GameState::renderFrameBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-//	glEnable(GL_CULL_FACE);
+	glEnable(GL_CULL_FACE);
 
     renderShadowBuffer();
 
