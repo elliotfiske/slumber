@@ -97,9 +97,6 @@ void GameState::update() {
         enemy->center.z = ghostPos.z;
     }
     
-    enemy->center.x += getForwardVelocity();
-    enemy->center.y += getStrafeVelocity();
-    
     float enemyYaw = atan2(enemy->center.y, enemy->center.x);
     float sqrtTerm = sqrt(enemy->center.x * enemy->center.x + enemy->center.y * enemy->center.y);
     float enemyPitch = atan2(sqrtTerm, enemy->center.z);
