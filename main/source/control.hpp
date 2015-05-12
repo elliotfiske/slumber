@@ -16,3 +16,4 @@ float getStrafeVelocity();
 float getYaw();
 float getPitch();
 
+bool shouldWeReset();

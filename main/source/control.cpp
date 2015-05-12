@@ -46,6 +46,8 @@ void handleScroll(GLFWwindow *window, double scrollX, double scrollY) {
     }
 }
 
+bool shouldReset = false;
+
 void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
                     int mods) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
@@ -130,6 +132,17 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             yLightVel = 0.0f;
         }
     }
+    
+    if (key == GLFW_KEY_R) {
+        shouldReset = true;
+    }
+    else {
+        shouldReset =false;
+    }
+}
+
+bool shouldWeReset() {
+    return shouldReset;
 }
 
 void setupCallbacks(GLFWwindow *window) {

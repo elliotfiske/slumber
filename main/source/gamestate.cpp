@@ -18,6 +18,8 @@ bool collected5 = false;
 float sphereTicks = 0;
 float spookyspooky = 0;
 
+float playerHealth = 1.2;
+
 vector<vec3> spherePlaces;
 ViewFrustum *vf;
 
@@ -152,6 +154,16 @@ void GameState::tellClientWhereGhostIs() {
 }
 
 void GameState::update() {
+    if (playerHealth < 0) {
+        playerHealth -= 0.009;
+    }
+    
+    if (shouldWeReset()) {
+        playerHealth = 100;
+        sphereTicks = 0;
+        spookyspooky = 0;
+    }
+    
     currTime = glfwGetTime();
     double elapsedTime = currTime - prevTime;
     
@@ -177,7 +189,7 @@ void GameState::update() {
     // Reduce by 0.1 if enemy is outside walls
     
     sphereTicks += 1/(enemyDist*enemyDist*25);
-    sphereTicks += 0.5;
+//    printf("Sphereticks: %f\n", sphereTicks);
     
     if (sphereTicks > 9999999999999) {
         sphereTicks = 0;
@@ -233,15 +245,19 @@ void GameState::viewFrustumCulling(Actor curActor){
    comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
    vf->extractPlanes(comboMatrix);
    result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
-   if(result == INSIDE || result == INTERSECT){
-//       printf("BOOGA BOOGA BOOGA\n");
-spookyspooky = 7;
-   }
-   else {
-//       printf("Naw man :(\n");
-spookyspooky = 0;
-   }
-   curActor.draw(light);
+    if (!isGhost) {
+        if(result == INSIDE || result == INTERSECT){
+            //       printf("BOOGA BOOGA BOOGA\n");
+            spookyspooky = 7;
+            playerHealth -= 0.0035;
+            printf("HP: %f\b", playerHealth);
+        }
+        else {
+            //       printf("Naw man :(\n");
+            spookyspooky = 0;
+        }
+        curActor.draw(light);
+    }
 }
 
 /**
@@ -311,16 +327,22 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    if (spookyspooky > 0) {
-    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
-    
-    CurrAssets->motionBlurShader->animateIntensity(spookyspooky/3, spookyspooky, currTime, 15);
-}
+    if (spookyspooky > 0 && playerHealth > 0) {
+        glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
+        framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
+        
+        CurrAssets->motionBlurShader->animateIntensity(spookyspooky/3, spookyspooky, currTime, 15);
+    }
+    else {
+        glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
+        framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
+        
+        CurrAssets->darkeningShader->setIntensity(2.0 * (1.2 - playerHealth));
+    }
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
-    glVertexAttribPointer( 
+    glVertexAttribPointer(
                           CurrAssets->motionBlurShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
