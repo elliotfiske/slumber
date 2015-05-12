@@ -44,7 +44,7 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + 0.0005 * distToLight + 0.0005 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;
@@ -60,7 +60,7 @@ void main() {
     // Go from [-1,1] to [0,1]
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
     
-    float bias = 0.0000001;
+    float bias = 0.000001;
     float blur = 0.001;
     float visibility = 1.0;
     

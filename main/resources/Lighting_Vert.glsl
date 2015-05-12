@@ -20,7 +20,7 @@ void main() {
     mat4 MV = uViewMatrix * uModelMatrix;
     vec4 pos_cam = MV * aPosition;
 
-    vLight = (MV * vec4(lightPos, 1.0)).xyz;
+    vLight = (uViewMatrix * vec4(lightPos, 1.0)).xyz;
     vPos = pos_cam.xyz;
 
 	gl_Position = uProjMatrix * pos_cam;
