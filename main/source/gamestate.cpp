@@ -168,9 +168,10 @@ void GameState::update() {
     }
     
     if (shouldWeReset()) {
-        playerHealth = 100;
+        playerHealth = 1.2;
         sphereTicks = 0;
         spookyspooky = 0;
+        numCollected = 0;
     }
     
     currTime = glfwGetTime();
