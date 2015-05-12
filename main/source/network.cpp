@@ -22,7 +22,7 @@ using namespace std;
 int partnersSocket = 0;
 
 // These correspond to properties in GameState
-int ghostPosX, ghostPosY, ghostPosZ;
+float ghostPosX, ghostPosY, ghostPosZ;
 bool shouldShowGhost;
 
 void doGhostNetworking() {
