@@ -14,6 +14,7 @@ set(HEADERS
    Framebuffer.h
    shader.h
    network.h
+   network_setup.h
    Light.h
 )
 
@@ -33,5 +34,6 @@ set(SOURCES
    Framebuffer.cpp
    shader.cpp
    network.cpp
+   network_setup.cpp
    Light.cpp
 )

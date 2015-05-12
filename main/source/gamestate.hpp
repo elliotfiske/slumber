@@ -8,15 +8,17 @@
 
 class GameState {
 public:
-    GameState(GLFWwindow *window);
+    GameState(GLFWwindow *window, bool isGhost);
+    
+    bool isGhost;
+    
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock;
+    Actor *room, *bed, *clock, *real_bed;
     Light *light;
     
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    double prevTime;
     void update();
     void draw();
     
@@ -27,6 +29,9 @@ private:
     Camera *camera;
     GLFWwindow *window;
     
+    double prevTime;
+    double currTime;
+    
     void setPerspectiveMat();
     void setView();
     void renderScene();
@@ -36,4 +41,6 @@ private:
     void checkCollisions();
     
     void initAssets();
+    
+    void tellClientWhereGhostIs();
 };

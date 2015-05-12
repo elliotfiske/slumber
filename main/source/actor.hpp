@@ -27,7 +27,7 @@ public:
     void draw(Light *light);
     void drawShadows(Light *light);
     
-    GLuint posID, norID, indID;
+    GLuint posID, norID, indID, uvID;
     int numVerts;
     
 private:
