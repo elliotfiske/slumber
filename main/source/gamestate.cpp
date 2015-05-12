@@ -14,7 +14,7 @@ void GameState::initAssets() {
     
     
     real_bed = assets->actorFromName("bed");
-    enemy = assets->actorFromName("sphere");
+//    enemy = assets->actorFromName("sphere");
     
     
 //    room = assets->actorFromName("room");
@@ -45,14 +45,6 @@ void GameState::initAssets() {
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateTexture(2048, 2048);
-    
-    bedWood = new Texture();
-#ifdef XCODE_IS_TERRIBLE
-    bedWood->setFilename("../resources/models/wood.jpg");
-#else
-    bedWood->setFilename("resources/models/wood.jpg");
-#endif
-    bedWood->init();
 
     light = new Light();
     
@@ -118,9 +110,9 @@ void GameState::update() {
     else {
         Position ghostPos = getGhostPosition();
         printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
-	enemy->center.x = ghostPos.x;
-	enemy->center.y = ghostPos.y;
-	enemy->center.z = ghostPos.z;
+//	enemy->center.x = ghostPos.x;
+//	enemy->center.y = ghostPos.y;
+//	enemy->center.z = ghostPos.z;
     }
     
     prevTime = currTime;
@@ -196,11 +188,9 @@ void GameState::renderScene() {
 //    viewFrustumCulling(*bed);
 //    viewFrustumCulling(*room);
 //    viewFrustumCulling(*clock);
-    bedWood->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 3);
     viewFrustumCulling(*real_bed);
-    bedWood->unbind(3);
     
-    enemy->draw(light);
+//    viewFrustumCulling(*enemy);
 
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();

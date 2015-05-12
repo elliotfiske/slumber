@@ -5,6 +5,7 @@
 #include "GLSL.h"
 #include "Light.h"
 #include "tiny_obj_loader.h"
+#include "Texture.h"
 
 using namespace glm;
 using namespace std;
@@ -17,27 +18,25 @@ public:
     float velocityScalar;
     float boundSphereRad;
     
-    /** Material properties */
-    vec3 diffuseColor;
-    vec3 ambientColor;
-    vec3 specularColor;
-    float shininess;
+    int numShapes;
     
-    tinyobj::material_t currMaterial;
+    tinyobj::material_t material[10];
+    Texture *texture[10];
+    GLuint textureUnit[10];
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
     void draw(Light *light);
     void drawShadows(Light *light);
     
-    GLuint posID, norID, indID, uvID;
-    int numVerts;
+    GLuint posID[10], norID[10], indID[10], uvID[10];
+    int numVerts[10];
     
     mat4 modelMat;
     
 private:
     void setModel();
-    void setMaterial();
+    void setMaterial(tinyobj::material_t material);
     void setLightMVP(Light *light, bool isShadowShader);
 };
 

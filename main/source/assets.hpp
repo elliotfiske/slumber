@@ -25,6 +25,7 @@ public:
     FBOShader      *motionBlurShader;
     
     Actor* actorFromName(string actorName);
+    void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     
 private:
     Assets();

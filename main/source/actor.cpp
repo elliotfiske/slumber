@@ -33,24 +33,35 @@ void Actor::setModel() {
     CurrAssets->lightingShader->setModelMatrix(Composite);
 }
 
-void Actor::setMaterial() {
-    CurrAssets->lightingShader->setAmbientColor(ambientColor);
-    CurrAssets->lightingShader->setDiffuseColor(diffuseColor);
-    CurrAssets->lightingShader->setSpecularColor(specularColor);
-    CurrAssets->lightingShader->setShininess(shininess);
+void Actor::setMaterial(tinyobj::material_t material) {
+    CurrAssets->lightingShader->setAmbientColor(material.ambient);
+    CurrAssets->lightingShader->setDiffuseColor(material.diffuse);
+    CurrAssets->lightingShader->setSpecularColor(material.specular);
+    CurrAssets->lightingShader->setShininess(10.0);
 }
 
 void Actor::draw(Light *light) {
     setModel();
-    setMaterial();
     setLightMVP(light, false);
     
-    CurrAssets->lightingShader->setPositionArray(posID);
-    CurrAssets->lightingShader->setUVArray(uvID);
-    CurrAssets->lightingShader->setNormalArray(norID);
-    CurrAssets->lightingShader->setIndexArray(indID);
-    
-    glDrawElements(GL_TRIANGLES, numVerts, GL_UNSIGNED_INT, (void*) 0);
+    for (int ndx = 0; ndx < numShapes; ndx++) {
+        setMaterial(material[ndx]);
+        CurrAssets->lightingShader->setPositionArray(posID[ndx]);
+        CurrAssets->lightingShader->setNormalArray(norID[ndx]);
+        CurrAssets->lightingShader->setIndexArray(indID[ndx]);
+        
+        // Texture stuff
+        if (material[ndx].diffuse_texname.size() > 0) {
+            CurrAssets->lightingShader->setUVArray(uvID[ndx]);
+            texture[ndx]->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, textureUnit[ndx]);
+        }
+        
+        glDrawElements(GL_TRIANGLES, numVerts[ndx], GL_UNSIGNED_INT, (void*) 0);
+        
+        if (material[ndx].diffuse_texname.size() > 0) {
+            texture[ndx]->unbind(textureUnit[ndx]);
+        }
+    }
 }
 
 void Actor::setLightMVP(Light *light, bool isShadowShader) {
@@ -77,7 +88,7 @@ void Actor::setLightMVP(Light *light, bool isShadowShader) {
 void Actor::drawShadows(Light *light) {
     setLightMVP(light, true);
 
-    CurrAssets->shadowShader->setPositionArray(posID);
-
-    glDrawElements(GL_TRIANGLES, numVerts, GL_UNSIGNED_INT, (void*) 0);
+//    CurrAssets->shadowShader->setPositionArray(posID);
+//
+//    glDrawElements(GL_TRIANGLES, numVerts, GL_UNSIGNED_INT, (void*) 0);
 }
