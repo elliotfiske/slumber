@@ -4,8 +4,4 @@ room 0 0 0
 
 sheet 0 0 0
 
-sphere 0 5 0
-
-sphere 0 5 5
-
-sphere 0 5 10
+real_bed 0 0 -4

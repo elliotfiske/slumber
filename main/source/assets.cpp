@@ -18,9 +18,16 @@ using namespace std;
 Assets::Assets() {
     lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
+    motionBlurShader = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
-    readLevelData("level.txt");
+    string levelDataName = "resources/level.txt";
+    
+#ifdef XCODE_IS_TERRIBLE
+    levelDataName = "../" + levelDataName;
+#endif
+    
+    readLevelData(levelDataName);
 }
 
 /**
@@ -52,7 +59,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str());
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), "../resources/models/");
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }
@@ -68,6 +75,12 @@ void Assets::loadShape(string filename, Actor *actor) {
     glBindBuffer(GL_ARRAY_BUFFER, actor->norID);
     glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
     
+    // Send the UV array to the GPU
+    const vector<float> &uvBuf = shapes[0].mesh.texcoords;
+    glGenBuffers(1, &actor->uvID);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->uvID);
+    glBufferData(GL_ARRAY_BUFFER, uvBuf.size()*sizeof(float), &uvBuf[0], GL_STATIC_DRAW);
+    
     // Send the index array to the GPU
     const vector<unsigned int> &indBuf = shapes[0].mesh.indices;
     glGenBuffers(1, &actor->indID);
@@ -75,6 +88,12 @@ void Assets::loadShape(string filename, Actor *actor) {
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
     
     actor->numVerts = shapes[0].mesh.indices.size();
+
+    if (materials.size() > 0) {
+        printf("Ambient color: %f, %f, %f\n", materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
+        actor->ambientColor = vec3(materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
+        actor->diffuseColor = vec3(materials[0].diffuse[0], materials[0].diffuse[1], materials[0].diffuse[2]);
+    }
 }
 
 /**
@@ -85,7 +104,13 @@ Actor* Assets::actorFromName(string actorName) {
     Actor *result;
     
     result = new Actor(levelDict[actorName]);
-    loadShape("models/" + actorName + ".obj", result);
+    string objFilename("resources/models/" + actorName + ".obj");
+    
+#ifdef XCODE_IS_TERRIBLE
+    objFilename = "../" + objFilename;
+#endif
+    
+    loadShape(objFilename, result);
     
     return result;
 }

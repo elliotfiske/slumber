@@ -5,28 +5,37 @@
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
 #include "ViewFrustum.hpp"
+#include "network.h"
 
 using namespace glm;
 
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-    room = assets->actorFromName("room");
-    room->diffuseColor = vec3(0.31, 0.082, 0.212);
-    room->ambientColor = vec3(1.0, 0.05, 0.3);
-    room->specularColor = vec3(0.1, 0.1, 0.1);
-    room->shininess = 0;
     
-    bed = assets->actorFromName("sheet");
-    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-    bed->specularColor = vec3(0.1, 0.1, 0.1);
-    bed->shininess = 20;
     
-    clock = assets->actorFromName("clock");
-    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-    clock->ambientColor = vec3(0.1, 0.06, 0.17);
-    clock->specularColor = vec3(0.1, 0.1, 0.1);
-    clock->shininess = 10;
+    real_bed = assets->actorFromName("bed");
+    
+    
+//    room = assets->actorFromName("room");
+//    room->diffuseColor = vec3(0.31, 0.082, 0.212);
+//    room->ambientColor = vec3(1.0, 0.05, 0.3);
+//    room->specularColor = vec3(0.1, 0.1, 0.1);
+//    room->shininess = 0;
+//    
+//    bed = assets->actorFromName("sheet");
+//    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
+//    bed->ambientColor = vec3(0.15, 0.06, 0.07);
+//    bed->specularColor = vec3(0.1, 0.1, 0.1);
+//    bed->shininess = 20;
+//    
+//    clock = assets->actorFromName("clock");
+//    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
+//    clock->ambientColor = vec3(0.1, 0.06, 0.17);
+//    clock->specularColor = vec3(0.1, 0.1, 0.1);
+//    clock->shininess = 10;
+
+
+
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -52,10 +61,11 @@ void GameState::initAssets() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
 }
 
-GameState::GameState(GLFWwindow *window_) {
+GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     
     window = window_;
+    isGhost = isGhost_;
     
     setupCallbacks(window);
     initAssets();
@@ -64,19 +74,36 @@ GameState::GameState(GLFWwindow *window_) {
 }
 
 void GameState::checkCollisions() {
-    // TODO: meb
+    // TODO: me!!!
+}
+
+int countdown = 60;
+
+void GameState::tellClientWhereGhostIs() {
+#ifdef THREADS
+    countdown--;
+    
+    if (countdown == 0) {
+//        sendGhostPosition(5, 3, 8);
+        countdown = 60;
+    }
+#endif
 }
 
 void GameState::update() {
-    double curTime = glfwGetTime();
-    double elapsedTime = curTime - prevTime;
+    currTime = glfwGetTime();
+    double elapsedTime = currTime - prevTime;
     
     updateControl(window);
     updateCamDirection(camera);
     updateLightPosition(light);
-    camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
     
-    prevTime = curTime;
+    if (isGhost) {
+        camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
+        tellClientWhereGhostIs();
+    }
+    
+    prevTime = currTime;
     
     checkCollisions();
 }
@@ -103,7 +130,7 @@ void GameState::setPerspectiveMat() {
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, 2048, 2048);
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
@@ -148,9 +175,7 @@ void GameState::renderScene() {
     viewFrustumCulling(*bed);
     viewFrustumCulling(*room);
     viewFrustumCulling(*clock);
-    //bed->draw(light);
-    //room->draw(light);
-    //clock->draw(light);
+    viewFrustrumCulling(*real_bed);
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
@@ -164,13 +189,15 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
+    
+    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->darkeningShader->position_AttributeID, // attribute
+                          CurrAssets->motionBlurShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?

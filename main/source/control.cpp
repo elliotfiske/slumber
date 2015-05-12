@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "camera.hpp"
+#include "network.h"
 #include <math.h>
 
 float pitch;
@@ -92,6 +93,16 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             strafeAccel = 0;
         }
     }
+    
+    if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
+        int keyVal = key - GLFW_KEY_0;
+        char num[5];
+        
+        sprintf(num, "%d", keyVal);
+        
+        sendData(num);
+    }
+
     if (key == GLFW_KEY_X) {
         if (action == GLFW_PRESS) {
             xLightVel = 0.1f;
