@@ -4,6 +4,7 @@
 #include "glm/glm.hpp"
 #include "GLSL.h"
 #include "Light.h"
+#include "tiny_obj_loader.h"
 
 using namespace glm;
 using namespace std;
@@ -22,7 +23,7 @@ public:
     vec3 specularColor;
     float shininess;
     
-    material_t currMaterial;
+    tinyobj::material_t currMaterial;
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
