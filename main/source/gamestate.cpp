@@ -91,7 +91,7 @@ void GameState::tellClientWhereGhostIs() {
     countdown--;
     
     if (countdown == 0) {
-//        sendGhostPosition(5, 3, 8);
+        sendGhostPosition(5, 3, 8);
         countdown = 60;
     }
 #endif
