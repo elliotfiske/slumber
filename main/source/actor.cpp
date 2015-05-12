@@ -44,7 +44,7 @@ void Actor::setModel() {
     glm::mat4 RotZ   = glm::rotate(glm::mat4(1.0f), direction.z, vec3(0, 0, 1));
     
     glm::mat4 Composite = Trans * RotX * RotY * RotZ;
-    
+
     modelMat = Composite;
     
     CurrAssets->lightingShader->setModelMatrix(Composite);

@@ -124,13 +124,11 @@ void GameState::setPerspectiveMat() {
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    glViewport(0, 0, 2048, 2048);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-    mat4 cam = lookAt(camera->center, camera->center
-                                + camera->direction, vec3(0.0, 1.0, 0.0));
     
     bed->drawShadows(light);
     enemy->drawShadows(light);
@@ -169,7 +167,7 @@ void GameState::renderScene() {
     setPerspectiveMat();
 
 
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
     
     bed->draw(light);
     enemy->draw(light);
@@ -192,7 +190,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);

@@ -58,7 +58,7 @@ vector<Texture *> existingTextures;
  *  UV's (if they exist) to the GPU
  */
 void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx) {
-    static GLuint textureUnit = 1;
+    static GLuint textureUnit = 3;
 
 printf("what gives? time to array\n");
     

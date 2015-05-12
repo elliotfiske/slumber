@@ -2,7 +2,7 @@
 #ifndef __Light__
 #define __Light__
 
-#define GLM_FORCE_RADIANS
+//#define GLM_FORCE_RADIANS
 #include "glm/glm.hpp"
 
 class MatrixStack;
