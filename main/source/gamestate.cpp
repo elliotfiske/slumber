@@ -12,7 +12,6 @@ using namespace glm;
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-    
     real_bed = assets->actorFromName("bed");
     enemy = assets->actorFromName("enemy");
 //    room = assets->actorFromName("room");
@@ -24,7 +23,7 @@ void GameState::initAssets() {
 
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
-    shadowfbo->generateTexture(2048, 2048);
+    shadowfbo->generateShadowTexture(2048, 2048);
 
     light = new Light();
     
@@ -127,10 +126,13 @@ void GameState::renderShadowBuffer() {
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-
-    //bed->drawShadows(light);
-    //room->drawShadows(light);
-    //clock->drawShadows(light);
+    mat4 cam = lookAt(camera->center, camera->center
+                                + camera->direction, vec3(0.0, 1.0, 0.0));
+    real_bed->drawShadows(light);
+    lamp->drawShadows(light);
+    enemy->drawShadows(light);
+//    room->drawShadows(light);
+//    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -155,25 +157,21 @@ void GameState::viewFrustumCulling(Actor curActor){
  */
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glCullFace(GL_BACK);
-    CurrAssets->lightingShader->startUsingShader();
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+    glCullFace(GL_BACK);
     
+    CurrAssets->lightingShader->startUsingShader();
     setView();
     setPerspectiveMat();
 
+
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
-//    
-//    viewFrustumCulling(*bed);
-//    viewFrustumCulling(*room);
-//    viewFrustumCulling(*clock);
-    viewFrustumCulling(*real_bed);
+//    viewFrustumCulling(*real_bed);
 //    viewFrustumCulling(*enemy);
-//    enemy->draw(light);
+    real_bed->draw(light);
+    enemy->draw(light);
     lamp->draw(light);
-    
-//    viewFrustumCulling(*enemy);
 
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
