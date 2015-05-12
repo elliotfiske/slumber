@@ -38,7 +38,7 @@ void GameState::initAssets() {
     spherePlaces.push_back(vec3(-40.6, 28.7, -103.52));
     spherePlaces.push_back(vec3(36.57, 26.8, -39.52));
     spherePlaces.push_back(vec3(-15.98, 9.77, -82.9));
-    spherePlaces.push_back(vec3(-45.7, 88, -30.5));
+    spherePlaces.push_back(vec3(-45.7, 8, -30.5));
     spherePlaces.push_back(vec3(21.7, 18.5, 0.5));
     
     framebuffer = new Framebuffer();
@@ -271,28 +271,28 @@ void GameState::renderScene() {
     }
     
     if (sphereTicks > 20) {
-        sphere1->center = spherePlaces[1];
+        sphere2->center = spherePlaces[1];
         if (!collected2) {
             sphere2->draw(light);
         }
     }
     
     if (sphereTicks > 30) {
-        sphere1->center = spherePlaces[2];
+        sphere3->center = spherePlaces[2];
         if (!collected3) {
             sphere3->draw(light);
         }
     }
     
     if (sphereTicks > 40) {
-        sphere1->center = spherePlaces[3];
+        sphere4->center = spherePlaces[3];
         if (!collected4) {
             sphere4->draw(light);
         }
     }
     
     if (sphereTicks > 50) {
-        sphere1->center = spherePlaces[4];
+        sphere5->center = spherePlaces[4];
         if (!collected5) {
             sphere5->draw(light);
         }
