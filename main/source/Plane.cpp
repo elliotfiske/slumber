@@ -1,5 +1,6 @@
 #include "Plane.hpp"
 #include "glm/glm.hpp"
+#include <math.h>
 #include <stdio.h>
 
 Plane::Plane() {}
@@ -20,7 +21,7 @@ float Plane::distance(glm::vec3 p) {
 
 void Plane::makeNormal(){
    float mag;
-   mag = sqrt(a * a + b * b + c * c);
+   mag = sqrt((a * a) + (b * b) + (c * c));
    a = a / mag;
    b = b / mag;
    c = c / mag;

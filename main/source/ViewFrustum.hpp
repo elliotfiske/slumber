@@ -10,6 +10,6 @@ public:
    ViewFrustum();
    ~ViewFrustum();
 
-   void extractPlanes(glm::mat4 comboMatrix, bool normalize);
-   int sphereIsInside(glm::vec3 point, int radius);
+   void extractPlanes(glm::mat4 comboMatrix);
+   int sphereIsInside(glm::vec3 point, float radius);
 };

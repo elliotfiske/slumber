@@ -13,26 +13,29 @@ void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
     
-    real_bed = assets->actorFromName("bed");
+    //real_bed = assets->actorFromName("bed");
     
     
-//    room = assets->actorFromName("room");
-//    room->diffuseColor = vec3(0.31, 0.082, 0.212);
-//    room->ambientColor = vec3(1.0, 0.05, 0.3);
-//    room->specularColor = vec3(0.1, 0.1, 0.1);
-//    room->shininess = 0;
-//    
-//    bed = assets->actorFromName("sheet");
-//    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-//    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-//    bed->specularColor = vec3(0.1, 0.1, 0.1);
-//    bed->shininess = 20;
-//    
-//    clock = assets->actorFromName("clock");
-//    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-//    clock->ambientColor = vec3(0.1, 0.06, 0.17);
-//    clock->specularColor = vec3(0.1, 0.1, 0.1);
-//    clock->shininess = 10;
+    room = assets->actorFromName("room");
+    room->diffuseColor = vec3(0.31, 0.082, 0.212);
+    room->ambientColor = vec3(1.0, 0.05, 0.3);
+    room->specularColor = vec3(0.1, 0.1, 0.1);
+    room->shininess = 0;
+    room->boundSphereRad = 1;
+    
+    bed = assets->actorFromName("sheet");
+    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
+    bed->ambientColor = vec3(0.15, 0.06, 0.07);
+    bed->specularColor = vec3(0.1, 0.1, 0.1);
+    bed->shininess = 20;
+    room->boundSphereRad = 1;
+    
+    clock = assets->actorFromName("clock");
+    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
+    clock->ambientColor = vec3(0.1, 0.06, 0.17);
+    clock->specularColor = vec3(0.1, 0.1, 0.1);
+    clock->shininess = 10;
+    clock->boundSphereRad = 1;
 
 
 
@@ -112,7 +115,7 @@ void GameState::setView() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
-    this->viewMat = cam;
+    viewMat = cam;
     CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
@@ -121,7 +124,7 @@ void GameState::setPerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     
-    this->perspectiveMat = Projection;
+    perspectiveMat = Projection;
     CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
 
@@ -150,9 +153,11 @@ void GameState::viewFrustumCulling(Actor curActor){
    mat4 comboMatrix;
    int result;
    
-   comboMatrix = this->perspectiveMat * this->viewMat * curActor.modelMat;
-   vf->extractPlanes(comboMatrix, true);
-   result = vf->sphereIsInside(curActor.center, 1);
+   setView();
+   setPerspectiveMat();
+   comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+   vf->extractPlanes(comboMatrix);
+   result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
    if(result == INSIDE || result == INTERSECT){
       curActor.draw(light);
    }
@@ -171,12 +176,14 @@ void GameState::renderScene() {
     setPerspectiveMat();
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
-    
-    viewFrustumCulling(*bed);
-    viewFrustumCulling(*room);
+
+    //viewFrustumCulling(*bed);
+    //viewFrustumCulling(*room);
     viewFrustumCulling(*clock);
-    viewFrustrumCulling(*real_bed);
-    
+    //viewFrustumCulling(*real_bed);
+    bed->draw(light);
+    room->draw(light);
+    //clock->draw(light);
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
 }
@@ -192,7 +199,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
