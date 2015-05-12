@@ -2,8 +2,8 @@ clock 9.45 1 0
 
 room 0 0 0
 
-sheet 0 0 0
-
 real_bed 0 -1 -4
 
-sphere 0 4 0
+enemy 0 4 15
+
+lamp-table 0 0 -45

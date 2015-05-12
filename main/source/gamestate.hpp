@@ -14,6 +14,7 @@ public:
     
     std::vector<Actor> actors;
     Actor *room, *bed, *clock, *real_bed, *enemy;
+    Actor *lamp;
     Light *light;
     
     Framebuffer *framebuffer;

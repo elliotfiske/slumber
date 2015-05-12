@@ -151,6 +151,12 @@ void ShadowShader::setMVPmatrix(mat4 MVPmatrix) {
 
 void ShadowShader::disableAttribArrays() {
     glDisableVertexAttribArray(position_AttributeID);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+}
+
+void ShadowShader::setIndexArray(GLuint arrayID) {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, arrayID);
 }
 
 
@@ -220,6 +226,8 @@ void LightingShader::setLightMVP(mat4 lightMVP) {
 void LightingShader::disableAttribArrays() {
     glDisableVertexAttribArray(position_AttributeID);
     glDisableVertexAttribArray(normal_AttributeID);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
 
