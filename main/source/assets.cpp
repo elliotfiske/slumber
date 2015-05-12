@@ -51,6 +51,64 @@ void Assets::readLevelData(string filename) {
     }
 }
 
+vector<Texture *> existingTextures;
+
+/**
+ * Takes a shape and buffers the position, normals, index and 
+ *  UV's (if they exist) to the GPU
+ */
+void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx) {
+    static GLuint textureUnit = 1;
+    
+    const vector<float> &posBuf = shape.mesh.positions;
+    glGenBuffers(1, &actor->posID[shapeNdx]);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->posID[shapeNdx]);
+    glBufferData(GL_ARRAY_BUFFER, posBuf.size()*sizeof(float), &posBuf[0], GL_STATIC_DRAW);
+    
+    // Send the normal array to the GPU
+    const vector<float> &norBuf = shape.mesh.normals;
+    glGenBuffers(1, &actor->norID[shapeNdx]);
+    glBindBuffer(GL_ARRAY_BUFFER, actor->norID[shapeNdx]);
+    glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
+    
+    // Send the index array to the GPU
+    const vector<unsigned int> &indBuf = shape.mesh.indices;
+    glGenBuffers(1, &actor->indID[shapeNdx]);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, actor->indID[shapeNdx]);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
+    
+    // Send the UV array to the GPU
+    if (material.diffuse_texname.size() > 0) {
+        const vector<float> &uvBuf = shape.mesh.texcoords;
+        glGenBuffers(1, &actor->uvID[shapeNdx]);
+        glBindBuffer(GL_ARRAY_BUFFER, actor->uvID[shapeNdx]);
+        glBufferData(GL_ARRAY_BUFFER, uvBuf.size()*sizeof(float), &uvBuf[0], GL_STATIC_DRAW);
+        
+        // If we already loaded a texture, don't load it again!
+        bool textureAlreadyLoaded = false;
+        for (int ndx = 0; ndx < existingTextures.size(); ndx++) {
+            if (existingTextures[ndx]->filename == RESOURCE_FOLDER + material.diffuse_texname) {
+                actor->texture[shapeNdx] = existingTextures[ndx];
+                textureAlreadyLoaded = true;
+            }
+        }
+        
+        if (!textureAlreadyLoaded) {
+            actor->texture[shapeNdx] = new Texture();
+            actor->texture[shapeNdx]->setFilename(RESOURCE_FOLDER + material.diffuse_texname);
+            actor->texture[shapeNdx]->init();
+            actor->textureUnit[shapeNdx] = textureUnit++;
+            
+            existingTextures.push_back(actor->texture[shapeNdx]);
+        }
+    }
+    
+    actor->numVerts[shapeNdx] = shape.mesh.indices.size();
+    actor->material[shapeNdx] = material;
+}
+
+
+
 /**
  * Sends .OBJ data to the GPU and tells the actor what its
  *  array IDs are.
@@ -64,37 +122,15 @@ void Assets::loadShape(string filename, Actor *actor) {
         printf("OBJ error: %s\n", err.c_str());
     }
     
-    const vector<float> &posBuf = shapes[0].mesh.positions;
-    glGenBuffers(1, &actor->posID);
-    glBindBuffer(GL_ARRAY_BUFFER, actor->posID);
-    glBufferData(GL_ARRAY_BUFFER, posBuf.size()*sizeof(float), &posBuf[0], GL_STATIC_DRAW);
-    
-    // Send the normal array to the GPU
-    const vector<float> &norBuf = shapes[0].mesh.normals;
-    glGenBuffers(1, &actor->norID);
-    glBindBuffer(GL_ARRAY_BUFFER, actor->norID);
-    glBufferData(GL_ARRAY_BUFFER, norBuf.size()*sizeof(float), &norBuf[0], GL_STATIC_DRAW);
-    
-    // Send the UV array to the GPU
-    const vector<float> &uvBuf = shapes[0].mesh.texcoords;
-    glGenBuffers(1, &actor->uvID);
-    glBindBuffer(GL_ARRAY_BUFFER, actor->uvID);
-    glBufferData(GL_ARRAY_BUFFER, uvBuf.size()*sizeof(float), &uvBuf[0], GL_STATIC_DRAW);
-    
-    // Send the index array to the GPU
-    const vector<unsigned int> &indBuf = shapes[0].mesh.indices;
-    glGenBuffers(1, &actor->indID);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, actor->indID);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indBuf.size()*sizeof(unsigned int), &indBuf[0], GL_STATIC_DRAW);
-    
-    actor->numVerts = shapes[0].mesh.indices.size();
-
-    if (materials.size() > 0) {
-        printf("Ambient color: %f, %f, %f\n", materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
-        actor->ambientColor = vec3(materials[0].ambient[0], materials[0].ambient[1], materials[0].ambient[2]);
-        actor->diffuseColor = vec3(materials[0].diffuse[0], materials[0].diffuse[1], materials[0].diffuse[2]);
+    for (int ndx = 0; ndx < shapes.size(); ndx++) {
+        tinyobj::material_t currMaterial = materials[shapes[ndx].mesh.material_ids[0]];
+        sendShapeToGPU(shapes[ndx], currMaterial, actor, ndx);
     }
+    
+    actor->numShapes = shapes.size();
 }
+
+
 
 /**
  * Uses the levelDict to create an actor with the correct

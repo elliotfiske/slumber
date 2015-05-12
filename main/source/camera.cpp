@@ -9,7 +9,8 @@ const float CAM_Y_MIN = 0.0;
 const float CAM_Y_MAX = 10.4;
 
 const float CAM_Z_MIN = -46;
-const float CAM_Z_MAX = 2.5;
+//const float CAM_Z_MAX = 2.5;
+const float CAM_Z_MAX = 46;
 
 Camera::Camera(vec3 center_, vec3 direction_, float velocityScale, float radius):
         Actor(center_) {  

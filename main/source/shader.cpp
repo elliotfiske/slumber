@@ -197,16 +197,16 @@ void LightingShader::setLightPos(vec3 lightPos) {
     glUniform3fv(lightPos_UniformID, 1, value_ptr(lightPos));
 }
 
-void LightingShader::setAmbientColor(vec3 color) {
-    glUniform3f(ambientMaterial_uniformID, color.x, color.y, color.z);
+void LightingShader::setAmbientColor(float color[]) {
+    glUniform3f(ambientMaterial_uniformID, color[0], color[1], color[2]);
 }
 
-void LightingShader::setDiffuseColor(vec3 color) {
-    glUniform3f(diffuseMaterial_UniformID, color.x, color.y, color.z);
+void LightingShader::setDiffuseColor(float color[]) {
+    glUniform3f(diffuseMaterial_UniformID, color[0], color[1], color[2]);
 }
 
-void LightingShader::setSpecularColor(glm::vec3 color) {
-    glUniform3f(specularMaterial_UniformID, color.x, color.y, color.z);
+void LightingShader::setSpecularColor(float color[]) {
+    glUniform3f(specularMaterial_UniformID, color[0], color[1], color[2]);
 }
 
 void LightingShader::setShininess(float shininess) {

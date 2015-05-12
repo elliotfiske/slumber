@@ -11,6 +11,12 @@ using namespace std;
 
 #define CurrAssets Assets::instance()
 
+#ifdef XCODE_IS_TERRIBLE
+    #define RESOURCE_FOLDER "../resources/models/"
+#else
+    #define RESOURCE_FOLDER "resources/models/"
+#endif
+
 class Assets {
 public:
     /** Global "Assets" instance */
@@ -25,6 +31,7 @@ public:
     FBOShader      *motionBlurShader;
     
     Actor* actorFromName(string actorName);
+    void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     
 private:
     Assets();

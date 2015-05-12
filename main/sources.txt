@@ -18,6 +18,8 @@ set(HEADERS
    Light.h
    stb_image.h
    Texture.h
+   Plane.hpp
+   ViewFrustum.hpp
 )
 
 # List all .c / .cpp files here
@@ -39,4 +41,6 @@ set(SOURCES
    network_setup.cpp
    Light.cpp
    Texture.cpp
+   Plane.cpp
+   ViewFrustum.cpp
 )

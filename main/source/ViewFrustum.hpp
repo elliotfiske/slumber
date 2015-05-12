@@ -1,15 +1,15 @@
-#include <glm/glm.hpp>
 #include "Plane.hpp"
 #define INSIDE 1
-#define OUTSIDE -1;
-#define INTERSECT 0;
+#define OUTSIDE -1
+#define INTERSECT 0
 
 class ViewFrustum{
+public:
+   Plane planes[6];
 
-   ViewFrustum::ViewFrustum(void);
-   ViewFrustum::~ViewFrustum();
+   ViewFrustum();
+   ~ViewFrustum();
 
-   Plane[6] planes;
-   void extractPlanes(mat4 comboMatrix, bool normalize);
-   bool sphereIsInside(vec3 point, int radius);
+   void extractPlanes(glm::mat4 comboMatrix, bool normalize);
+   int sphereIsInside(glm::vec3 point, int radius);
 };
