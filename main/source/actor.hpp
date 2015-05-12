@@ -10,6 +10,8 @@
 using namespace glm;
 using namespace std;
 
+#define NUM_SHAPES 100
+
 class Actor {
 public:
     Actor(vec3 center_);
@@ -20,17 +22,17 @@ public:
     
     int numShapes;
     
-    tinyobj::material_t material[10];
-    Texture *texture[10];
-    GLuint textureUnit[10];
+    tinyobj::material_t material[NUM_SHAPES];
+    Texture *texture[NUM_SHAPES];
+    GLuint textureUnit[NUM_SHAPES];
     
     void step(double dt);
     bool detectIntersect(Actor target, bool oc);
     void draw(Light *light);
     void drawShadows(Light *light);
     
-    GLuint posID[10], norID[10], indID[10], uvID[10];
-    int numVerts[10];
+    GLuint posID[NUM_SHAPES], norID[NUM_SHAPES], indID[NUM_SHAPES], uvID[NUM_SHAPES];
+    int numVerts[NUM_SHAPES];
     
     mat4 modelMat;
     
