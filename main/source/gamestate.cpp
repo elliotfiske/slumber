@@ -84,16 +84,12 @@ void GameState::checkCollisions() {
     // TODO: me!!!
 }
 
-int countdown = 60;
+float x = 0;
 
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
-    countdown--;
-    
-    if (countdown == 0) {
-        sendGhostPosition(5, 3, 8);
-        countdown = 60;
-    }
+    sendGhostPosition(x, x, x);
+    x += 0.1;
 #endif
 }
 
@@ -108,6 +104,10 @@ void GameState::update() {
     if (isGhost) {
         camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
         tellClientWhereGhostIs();
+    }
+    else {
+        Position ghostPos = getGhostPosition();
+        printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
     }
     
     prevTime = currTime;

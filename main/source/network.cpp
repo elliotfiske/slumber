@@ -97,13 +97,24 @@ void receiveData(int serverSocket) {
         exit(0);
     }
     else {
-        if (messageLen != BUFF_SIZE) {
-            cout << "Cap'n, received packet of size " << messageLen << " instead of 56..." << endl;
-        }
         processIncomingPacket(buf, messageLen, serverSocket);
     }
 }
 
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     cout << "Received packet: " << entirePacket << endl;
+    int flag;
+    float x, y, z;
+    sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);
+    
+    if (flag == GHOST_POSITION_UPDATE_FLAG) {
+        ghostPosX = x;
+        ghostPosY = y;
+        ghostPosZ = z;
+    }
+}
+
+Position getGhostPosition() {
+    Position result = {ghostPosX, ghostPosY, ghostPosZ};
+    return result;
 }
