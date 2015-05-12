@@ -95,6 +95,16 @@ void GameState::update() {
         enemy->center.z = ghostPos.z;
     }
     
+    enemy->center.x += getForwardVelocity();
+    enemy->center.y += getStrafeVelocity();
+    
+    float enemyYaw = atan2(enemy->center.y, enemy->center.x);
+    float sqrtTerm = sqrt(enemy->center.x * enemy->center.x + enemy->center.y * enemy->center.y);
+    float enemyPitch = atan2(sqrtTerm, enemy->center.z);
+    
+    printf("yawdiff: %f pitchdiff: %f\n", enemyYaw - getYaw() + 1.59, enemyPitch - getPitch() - 2.68);
+    
+    
     prevTime = currTime;
     
     checkCollisions();
@@ -166,57 +176,13 @@ void GameState::renderScene() {
     setView();
     setPerspectiveMat();
 
-
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
     bed->draw(light);
     lamp->draw(light);
     room->draw(light);
     clock->draw(light);
-    
-    
-    
-#define N 10
-    GLuint    queries[N];
-    GLuint     sampleBoolean;
-    GLint     available;
-    glGenQueries(N, queries);
-    
-    
-    // before this point, render major occluders
-    glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-    glDepthMask(GL_FALSE);
-    // also disable texturing and any fancy shaders
-    for (int i = 0; i < N; i++) {
-        glBeginQuery(GL_ANY_SAMPLES_PASSED, queries[i]);
-        // render bounding box for object i
-        enemy->draw(light);
-        glEndQuery(GL_ANY_SAMPLES_PASSED);
-    }
-    
-    glFlush();
-    
-    int i = N*3/4; // instead of N-1, to prevent the GPU from going idle
-    do {
-        glGetQueryObjectiv(queries[i],
-                           GL_QUERY_RESULT_AVAILABLE,
-                           &available);
-    } while (!available);
-    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-    glDepthMask(GL_TRUE);
-    
-    // reenable other state, such as texturing
-    for (i = 0; i < N; i++) {
-        glGetQueryObjectuiv(queries[i], GL_QUERY_RESULT,
-                            &sampleBoolean);
-        if (sampleBoolean != 0) {
-            printf("garbageeeee\n");
-            enemy->draw(light);
-        }
-    }
-    
-    enemy->center.y -= 0.1;
-
+    enemy->draw(light);
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();

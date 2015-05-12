@@ -181,3 +181,11 @@ float getStrafeVelocity() {
     return strafeVel;
 }
 
+
+float getYaw() {
+    return yaw;
+}
+float getPitch() {
+    return pitch;
+}
+

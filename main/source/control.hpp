@@ -13,3 +13,6 @@ void setupCallbacks(GLFWwindow *window);
 float getForwardVelocity();
 float getStrafeVelocity();
 
+float getYaw();
+float getPitch();
+
