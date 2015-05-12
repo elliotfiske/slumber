@@ -18,6 +18,7 @@ bool collected5 = false;
 float sphereTicks = 0;
 
 vector<vec3> spherePlaces;
+ViewFrustum *vf;
 
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
@@ -76,8 +77,56 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     prevTime = glfwGetTime();
 }
 
+int numCollected = 0;
+
 void GameState::checkCollisions() {
-    // TODO: me!!!
+    
+    
+    if (sphereTicks > 10) {
+        if (!collected1) {
+            collected1 = vf->gotLight(sphere1->center, 1.0);
+            
+            if (collected1) {
+            numCollected++;
+            }
+        }
+    }
+    
+    if (sphereTicks > 20) {
+        if (!collected2) {
+            collected2 = vf->gotLight(sphere2->center, 1.0);
+            if (collected2) {
+                numCollected++;
+            }
+        }
+    }
+    
+    if (sphereTicks > 30) {
+        if (!collected3) {
+            collected3 = vf->gotLight(sphere3->center, 1.0);
+            if (collected3) {
+                numCollected++;
+            }
+        }
+    }
+    
+    if (sphereTicks > 40) { 
+        if (!collected4) {
+            collected4 = vf->gotLight(sphere4->center, 1.0);
+            if (collected4) {
+                numCollected++;
+            }
+        }
+    }
+    
+    if (sphereTicks > 50) {
+        if (!collected5) {
+            collected5 = vf->gotLight(sphere5->center, 1.0);
+            if (collected5) {
+                numCollected++;
+            }
+        }
+    }
 }
 
 float lastX, lastY, lastZ;
@@ -118,21 +167,23 @@ void GameState::update() {
     
     prevTime = currTime;
     
-    checkCollisions();
-    
     float enemyDist = distance(vec3(0, 0, 0), enemy->center);
     
     // Reduce by 0.1 if enemy is outside walls
     
-    sphereTicks += 1/(enemyDist*enemyDist);
-    printf("Sphere ticks: %f\n", sphereTicks);
+    sphereTicks += 1/(enemyDist*enemyDist*25);
+    sphereTicks += 0.5;
+    
+    if (sphereTicks > 9999999999999) {
+        sphereTicks = 0;
+    }
 }
 
 void GameState::setView() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
-    this->viewMat = cam;
+    viewMat = cam;
     CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
@@ -141,7 +192,7 @@ void GameState::setPerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     
-    this->perspectiveMat = Projection;
+    perspectiveMat = Projection;
     CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
 
@@ -170,13 +221,15 @@ void GameState::renderShadowBuffer() {
 }
 
 void GameState::viewFrustumCulling(Actor curActor){
-   ViewFrustum *vf = new ViewFrustum();
+   vf = new ViewFrustum();
    mat4 comboMatrix;
    int result;
    
-   comboMatrix = this->perspectiveMat * this->viewMat * curActor.modelMat;
-   vf->extractPlanes(comboMatrix, true);
-   result = vf->sphereIsInside(curActor.center, 1);
+   setView();
+   setPerspectiveMat();
+   comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+   vf->extractPlanes(comboMatrix);
+   result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
    if(result == INSIDE || result == INTERSECT){
 //       printf("BOOGA BOOGA BOOGA\n");
    }
@@ -205,7 +258,41 @@ void GameState::renderScene() {
     room->draw(light);
     clock->draw(light);
     viewFrustumCulling(*enemy);
-//    enemy->draw(light);
+    
+    if (sphereTicks > 10) {
+        sphere1->center = spherePlaces[0];
+        if (!collected1) {
+            sphere1->draw(light);
+        }
+    }
+    
+    if (sphereTicks > 20) {
+        sphere1->center = spherePlaces[1];
+        if (!collected2) {
+            sphere2->draw(light);
+        }
+    }
+    
+    if (sphereTicks > 30) {
+        sphere1->center = spherePlaces[2];
+        if (!collected3) {
+            sphere3->draw(light);
+        }
+    }
+    
+    if (sphereTicks > 40) {
+        sphere1->center = spherePlaces[3];
+        if (!collected4) {
+            sphere4->draw(light);
+        }
+    }
+    
+    if (sphereTicks > 50) {
+        sphere1->center = spherePlaces[4];
+        if (!collected5) {
+            sphere5->draw(light);
+        }
+    }
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
@@ -222,7 +309,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
+    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -257,4 +344,6 @@ void GameState::draw() {
     
     glfwSwapBuffers(window);
     glfwPollEvents();
+    
+    checkCollisions();
 }

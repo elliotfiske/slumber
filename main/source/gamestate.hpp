@@ -19,6 +19,7 @@ public:
     
     Light *light;
     
+
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     

@@ -4,7 +4,7 @@ ViewFrustum::ViewFrustum() {}
 
 ViewFrustum::~ViewFrustum() {}
 
-void ViewFrustum::extractPlanes(glm::mat4 comboMatrix, bool normalize){
+void ViewFrustum::extractPlanes(glm::mat4 comboMatrix) {
    // Left clipping plane
 //   leftPlane.setCoefficients(comboMatrix[3][0] + comboMatrix[0][0],
 //                             comboMatrix[3][1] + comboMatrix[0][1],
@@ -54,22 +54,9 @@ void ViewFrustum::extractPlanes(glm::mat4 comboMatrix, bool normalize){
     bottomPlane.makeNormal();
     nearPlane.makeNormal();
     farPlane.makeNormal();
-    
-    
-   // Normalize the plane equations, if requested
-   if (normalize == true){
-      planes[0].makeNormal();
-      planes[1].makeNormal();
-      planes[2].makeNormal();
-      planes[3].makeNormal();
-      planes[4].makeNormal();
-      planes[5].makeNormal();
-   }
 }
 
-int ViewFrustum::sphereIsInside(glm::vec3 point, int radius){
-   float distance;
-   int result = INSIDE;
+int ViewFrustum::sphereIsInside(glm::vec3 point, float radius){
     
     float leftDistance = leftPlane.distance(point);
     float rightDistance = rightPlane.distance(point);
@@ -78,21 +65,8 @@ int ViewFrustum::sphereIsInside(glm::vec3 point, int radius){
     float farDistance = farPlane.distance(point);
     
     float topDistance = topPlane.distance(point);
-    float bottomDistance = bottomPlane.distance(point);
-
-//    printf("left dist: %f right dist: %f near: %f far: %f bottom: %f top %f\n", leftDistance, rightDistance, nearDistance, farDistance, bottomDistance, topDistance);
+    float bottomDistance = bottomPlane.distance(point);\
     
-   for(int i=0; i < 6; i++) {
-       
-      distance = planes[i].distance(point);
-      if (distance < -radius){
-//         return OUTSIDE;
-      }
-      else if (distance < radius){
-//         result = INTERSECT;
-      }
-   }
-//   return result;
     if (leftDistance < -2.0) {
         return OUTSIDE;
     }
@@ -110,4 +84,28 @@ int ViewFrustum::sphereIsInside(glm::vec3 point, int radius){
         return OUTSIDE;
     }
     return INSIDE;
+}
+
+bool ViewFrustum::gotLight(glm::vec3 point, float radius){
+    
+    float leftDistance = leftPlane.distance(point);
+    float rightDistance = rightPlane.distance(point);
+    
+    float sideDiff = fabs(leftDistance - rightDistance);
+    
+    float nearDistance = nearPlane.distance(point);
+    float farDistance = farPlane.distance(point);
+    
+    float topDistance = topPlane.distance(point);
+    float bottomDistance = bottomPlane.distance(point);
+    
+    float upDownDiff = fabs(topDistance - bottomDistance);
+    
+    printf("side diff %f topdiff %f\n", sideDiff, upDownDiff);
+    
+    if (sideDiff < 2.0 && upDownDiff < 2.0) {
+        return true;
+    }
+    
+    return false;
 }
