@@ -89,7 +89,6 @@ void GameState::update() {
     }
     else {
         Position ghostPos = getGhostPosition();
-        printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
         enemy->center.x = ghostPos.x;
         enemy->center.y = ghostPos.y;
         enemy->center.z = ghostPos.z;
@@ -99,7 +98,7 @@ void GameState::update() {
     float sqrtTerm = sqrt(enemy->center.x * enemy->center.x + enemy->center.y * enemy->center.y);
     float enemyPitch = atan2(sqrtTerm, enemy->center.z);
     
-    printf("yawdiff: %f pitchdiff: %f\n", enemyYaw - getYaw() + 1.59, enemyPitch - getPitch() - 2.68);
+//    printf("yawdiff: %f pitchdiff: %f\n", enemyYaw - getYaw() + 1.59, enemyPitch - getPitch() - 2.68);
     
     
     prevTime = currTime;
@@ -157,8 +156,12 @@ void GameState::viewFrustumCulling(Actor curActor){
    vf->extractPlanes(comboMatrix, true);
    result = vf->sphereIsInside(curActor.center, 1);
    if(result == INSIDE || result == INTERSECT){
-      curActor.draw(light);
+       printf("BOOGA BOOGA BOOGA\n");
    }
+   else {
+       printf("Naw man :(\n");
+   }
+   curActor.draw(light);
 }
 
 /**
@@ -179,7 +182,8 @@ void GameState::renderScene() {
     lamp->draw(light);
     room->draw(light);
     clock->draw(light);
-    enemy->draw(light);
+    viewFrustumCulling(*enemy);
+//    enemy->draw(light);
     
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();

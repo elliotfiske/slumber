@@ -6,6 +6,12 @@
 class ViewFrustum{
 public:
    Plane planes[6];
+    Plane leftPlane;
+    Plane rightPlane;
+    Plane nearPlane;
+    Plane farPlane;
+    Plane topPlane;
+    Plane bottomPlane;
 
    ViewFrustum();
    ~ViewFrustum();
