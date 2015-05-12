@@ -131,10 +131,10 @@ void GameState::renderShadowBuffer() {
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
     bed->drawShadows(light);
-    enemy->drawShadows(light);
     lamp->drawShadows(light);
     room->drawShadows(light);
     clock->drawShadows(light);
+    enemy->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -170,11 +170,54 @@ void GameState::renderScene() {
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
     
     bed->draw(light);
-    enemy->draw(light);
     lamp->draw(light);
     room->draw(light);
     clock->draw(light);
+    
+    
+    
+#define N 10
+    GLuint    queries[N];
+    GLuint     sampleBoolean;
+    GLint     available;
+    glGenQueries(N, queries);
+    
+    
+    // before this point, render major occluders
+    glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
+    glDepthMask(GL_FALSE);
+    // also disable texturing and any fancy shaders
+    for (int i = 0; i < N; i++) {
+        glBeginQuery(GL_ANY_SAMPLES_PASSED, queries[i]);
+        // render bounding box for object i
+        enemy->draw(light);
+        glEndQuery(GL_ANY_SAMPLES_PASSED);
+    }
+    
+    glFlush();
+    
+    int i = N*3/4; // instead of N-1, to prevent the GPU from going idle
+    do {
+        glGetQueryObjectiv(queries[i],
+                           GL_QUERY_RESULT_AVAILABLE,
+                           &available);
+    } while (!available);
+    glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
+    glDepthMask(GL_TRUE);
+    
+    // reenable other state, such as texturing
+    for (i = 0; i < N; i++) {
+        glGetQueryObjectuiv(queries[i], GL_QUERY_RESULT,
+                            &sampleBoolean);
+        if (sampleBoolean != 0) {
+            printf("garbageeeee\n");
+            enemy->draw(light);
+        }
+    }
+    
+    enemy->center.y -= 0.1;
 
+    
     CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
 }
@@ -194,7 +237,7 @@ void GameState::renderFrameBuffer() {
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
-    glVertexAttribPointer(
+    glVertexAttribPointer( 
                           CurrAssets->motionBlurShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type

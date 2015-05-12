@@ -4,6 +4,6 @@ room 0 0 0
 
 real_bed 0 -1 -4
 
-enemy 0 4 15
+enemy 0 4 -15
 
 lamp-table -15 0 -85
