@@ -17,7 +17,7 @@ float strafeAccel;
 
 float xLightVel, yLightVel, zLightVel;
 
-#define ACCEL 5.0
+#define ACCEL 8.0
 #define FRICTION 1.2
 
 void handleMouse(GLFWwindow* window, double currX, double currY) {
