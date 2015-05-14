@@ -187,19 +187,19 @@ void GameState::update() {
     }
     else {
         Position ghostPos = getGhostPosition();
-        enemy->center.x = ghostPos.x;
-        enemy->center.y = ghostPos.y;
-        enemy->center.z = ghostPos.z;
+        enemy->center.x = 0;
+        enemy->center.y = 4;
+        enemy->center.z = -10;
     }
     
     prevTime = currTime;
     float enemyDist = 10910192309120;
     if (isGhost) {
-        enemyDist = distance(vec3(0, 0, 0), camera->center);
+        enemyDist = glm::distance(vec3(0, 0, 0), camera->center);
     }
     else {
         if (enemy->center.x < 0.01) {
-            enemyDist = distance(vec3(0, 0, 0), enemy->center);
+            enemyDist = glm::distance(vec3(0, 0, 0), enemy->center);
         }
     }
     
