@@ -9,15 +9,6 @@
 
 using namespace glm;
 
-bool collected1 = false;
-bool collected2 = false;
-bool collected3 = false;
-bool collected4 = false;
-bool collected5 = false;
-
-float sphereTicks = 0;
-float spookyspooky = 0;
-
 float playerHealth = 1.2;
 
 vector<vec3> spherePlaces;
@@ -28,21 +19,11 @@ void GameState::initAssets() {
     
     bed = assets->actorFromName("bed");
     clock = assets->actorFromName("clock");
-    enemy = assets->actorFromName("enemy");
     lamp = assets->actorFromName("lamp-table");
     room = assets->actorFromName("room");
     
-    sphere1 = assets->actorFromName("collect");
-    sphere2 = assets->actorFromName("collect");
-    sphere3 = assets->actorFromName("collect");
-    sphere4 = assets->actorFromName("collect");
-    sphere5 = assets->actorFromName("collect");
-    
-    spherePlaces.push_back(vec3(-40.6, 28.7, -103.52));
-    spherePlaces.push_back(vec3(36.57, 26.8, -39.52));
-    spherePlaces.push_back(vec3(-15.98, 9.77, -82.9));
-    spherePlaces.push_back(vec3(-45.7, 8, -30.5));
-    spherePlaces.push_back(vec3(21.7, 18.5, 0.5));
+    Actor *tempCollectible = assets->actorFromName("collect");
+    collectible = new Collectible(*tempCollectible);
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -87,66 +68,17 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
 int numCollected = 0;
 
 void GameState::checkCollisions() {
-    
-    if (!isGhost) {
-    if (sphereTicks > 10) {
-        if (!collected1) {
-            collected1 = vf->gotLight(sphere1->center, 1.0);
-            
-            if (collected1) {
-            numCollected++;
-            }
-        }
-    }
-    
-    if (sphereTicks > 20) {
-        if (!collected2) {
-            collected2 = vf->gotLight(sphere2->center, 1.0);
-            if (collected2) {
-                numCollected++;
-            }
-        }
-    }
-    
-    if (sphereTicks > 30) {
-        if (!collected3) {
-            collected3 = vf->gotLight(sphere3->center, 1.0);
-            if (collected3) {
-                numCollected++;
-            }
-        }
-    }
-    
-    if (sphereTicks > 40) { 
-        if (!collected4) {
-            collected4 = vf->gotLight(sphere4->center, 1.0);
-            if (collected4) {
-                numCollected++;
-            }
-        }
-    }
-    
-    if (sphereTicks > 50) {
-        if (!collected5) {
-            collected5 = vf->gotLight(sphere5->center, 1.0);
-            if (collected5) {
-                numCollected++;
-            }
-        }
-    }
-    
-    if (numCollected == 5) {
-        printf("YOU WINN!!!!!!!\n");
-        printf("YOU WINN!!!!!!!\n");
-        printf("YOU WINN!!!!!!!\n");
-        printf("YOU WINN!!!!!!!\n");
-        printf("YOU WINN!!!!!!!\n");
-    }
+    if (vf->gotLight(collectible->center, 5.0)) {
+        collectible->collected();
     }
 }
 
 float lastX, lastY, lastZ;
 
+/**
+ * Send a packet to the paralyzed player with the current
+ *  location of the ghost
+ */
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
     float x = camera->center.x;
@@ -162,15 +94,12 @@ void GameState::tellClientWhereGhostIs() {
 #endif
 }
 
+/**
+ * Called every frame!
+ */
 void GameState::update() {
-    if (playerHealth < 0) {
-        playerHealth -= 0.009;
-    }
-    
     if (shouldWeReset()) {
         playerHealth = 1.2;
-        sphereTicks = 0;
-        spookyspooky = 0;
         numCollected = 0;
     }
     
@@ -181,36 +110,20 @@ void GameState::update() {
     updateCamDirection(camera);
     updateLightPosition(light);
     
+    collectible->step(elapsedTime);
+    
     if (isGhost) {
         camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
         tellClientWhereGhostIs();
     }
     else {
         Position ghostPos = getGhostPosition();
-        enemy->center.x = 0;
-        enemy->center.y = 4;
-        enemy->center.z = -10;
+        enemy->center.x = ghostPos.x;
+        enemy->center.y = ghostPos.y;
+        enemy->center.z = ghostPos.z;
     }
     
     prevTime = currTime;
-    float enemyDist = 10910192309120;
-    if (isGhost) {
-        enemyDist = glm::distance(vec3(0, 0, 0), camera->center);
-    }
-    else {
-        if (enemy->center.x < 0.01) {
-            enemyDist = glm::distance(vec3(0, 0, 0), enemy->center);
-        }
-    }
-    
-    // Reduce by 0.1 if enemy is outside walls
-    
-    sphereTicks += 1/(enemyDist*enemyDist*2) * 120;
-    printf("Sphereticks: %f\n", sphereTicks);
-    
-    if (sphereTicks > 9999999999999) {
-        sphereTicks = 0;
-    }
 }
 
 void GameState::setView() {
@@ -231,7 +144,6 @@ void GameState::setPerspectiveMat() {
 }
 
 
-
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
@@ -245,34 +157,26 @@ void GameState::renderShadowBuffer() {
     lamp->drawShadows(light);
     room->drawShadows(light);
     clock->drawShadows(light);
-    enemy->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
     shadowfbo->unbind();
 }
 
+/**
+ * Draw the specified actor iff it's within the user's view
+ */
 void GameState::viewFrustumCulling(Actor curActor){
-   vf = new ViewFrustum();
-   mat4 comboMatrix;
-   int result;
-   
-   setView();
-   setPerspectiveMat();
-   comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
-   vf->extractPlanes(comboMatrix);
-   result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
-    if (!isGhost) {
-        if(result == INSIDE || result == INTERSECT){
-            //       printf("BOOGA BOOGA BOOGA\n");
-            spookyspooky = 7;
-            playerHealth -= 0.0035;
-            printf("HP: %f\b", playerHealth);
-        }
-        else {
-            //       printf("Naw man :(\n");
-            spookyspooky = 0;
-        }
+    vf = new ViewFrustum();
+    mat4 comboMatrix;
+    
+//    setView();
+//    setPerspectiveMat();
+    comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
+    if (inView != OUTSIDE) {
         curActor.draw(light);
     }
 }
@@ -291,48 +195,20 @@ void GameState::renderScene() {
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
 
-    bed->draw(light);
-    lamp->draw(light);
+//    viewFrustumCulling(*bed);
+//    viewFrustumCulling(*lamp);
     room->draw(light);
+//    viewFrustumCulling(*clock);
+    bed->draw(light);
     clock->draw(light);
-    viewFrustumCulling(*enemy);
+    lamp->draw(light);
     
-    if (sphereTicks > 10) {
-        sphere1->center = spherePlaces[0];
-        if (!collected1) {
-            sphere1->draw(light);
-        }
-    }
+    CurrAssets->collectibleShader->startUsingShader();
+    setView();
+    setPerspectiveMat();
     
-    if (sphereTicks > 20) {
-        sphere2->center = spherePlaces[1];
-        if (!collected2) {
-            sphere2->draw(light);
-        }
-    }
+    collectible->draw(light);
     
-    if (sphereTicks > 30) {
-        sphere3->center = spherePlaces[2];
-        if (!collected3) {
-            sphere3->draw(light);
-        }
-    }
-    
-    if (sphereTicks > 40) {
-        sphere4->center = spherePlaces[3];
-        if (!collected4) {
-            sphere4->draw(light);
-        }
-    }
-    
-    if (sphereTicks > 50) {
-        sphere5->center = spherePlaces[4];
-        if (!collected5) {
-            sphere5->draw(light);
-        }
-    }
-    
-    CurrAssets->lightingShader->disableAttribArrays();
     shadowfbo->unbindTexture();
 }
 
@@ -344,18 +220,8 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    if (spookyspooky > 0 && playerHealth > 0) {
-        glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
-        framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
-        
-        CurrAssets->motionBlurShader->animateIntensity(spookyspooky/3, spookyspooky, currTime, 15);
-    }
-    else {
-        glUseProgram(CurrAssets->darkeningShader->fbo_ProgramID);
-        framebuffer->bindTexture(CurrAssets->darkeningShader->textureToDisplay_ID);
-        
-        CurrAssets->darkeningShader->setIntensity(2.0 * (1.2 - playerHealth));
-    }
+    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -391,5 +257,5 @@ void GameState::draw() {
     glfwSwapBuffers(window);
     glfwPollEvents();
     
-    checkCollisions();
+//    checkCollisions();
 }

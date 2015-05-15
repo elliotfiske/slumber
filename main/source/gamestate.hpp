@@ -5,6 +5,7 @@
 #include "Light.h"
 #include "Framebuffer.h"
 #include "Texture.h"
+#include "collectible.h"
 
 class GameState {
 public:
@@ -15,7 +16,7 @@ public:
     std::vector<Actor> actors;
     Actor *room, *bed, *clock, *enemy;
     Actor *lamp;
-    Actor *sphere1, *sphere2, *sphere3, *sphere4, *sphere5;
+    Collectible *collectible;
     
     Light *light;
     

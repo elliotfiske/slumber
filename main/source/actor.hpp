@@ -27,6 +27,7 @@ public:
     GLuint textureUnit[NUM_SHAPES];
     
     void step(double dt);
+    
     bool detectIntersect(Actor target, bool oc);
     void draw(Light *light);
     void drawShadows(Light *light);
@@ -36,9 +37,10 @@ public:
     
     mat4 modelMat;
     
-private:
     void setModel();
     void setMaterial(tinyobj::material_t material);
+    
+private:
     void setLightMVP(Light *light, bool isShadowShader);
 };
 

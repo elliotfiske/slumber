@@ -8,4 +8,4 @@ enemy 0 4 -15
 
 lamp-table -15 0 -85
 
-collect 0 100 0
+collect 0 1 -5

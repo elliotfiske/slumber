@@ -65,27 +65,33 @@ int ViewFrustum::sphereIsInside(glm::vec3 point, float radius){
     float farDistance = farPlane.distance(point);
     
     float topDistance = topPlane.distance(point);
-    float bottomDistance = bottomPlane.distance(point);\
+    float bottomDistance = bottomPlane.distance(point);
     
-    if (leftDistance < -2.0) {
+    float diameter = -2 * radius;
+    
+    if (leftDistance < diameter) {
         return OUTSIDE;
     }
 
-    if (leftDistance < -2.0) {
+    if (leftDistance < diameter) {
         return OUTSIDE;
     }
-    if (rightDistance < -2.0) {
+    if (rightDistance < diameter) {
         return OUTSIDE;
     }
-    if (topDistance < -2.0) {
+    if (topDistance < diameter) {
         return OUTSIDE;
     }
-    if (bottomDistance < -2.0) {
+    if (bottomDistance < diameter) {
         return OUTSIDE;
     }
     return INSIDE;
 }
 
+/**
+ * If the user is looking straight at the light,
+ *  collect it and play a sound.
+ */
 bool ViewFrustum::gotLight(glm::vec3 point, float radius){
     
     float leftDistance = leftPlane.distance(point);
@@ -93,16 +99,12 @@ bool ViewFrustum::gotLight(glm::vec3 point, float radius){
     
     float sideDiff = fabs(leftDistance - rightDistance);
     
-    float nearDistance = nearPlane.distance(point);
-    float farDistance = farPlane.distance(point);
-    
     float topDistance = topPlane.distance(point);
     float bottomDistance = bottomPlane.distance(point);
     
     float upDownDiff = fabs(topDistance - bottomDistance);
   
-    
-    if (sideDiff < 10.0 && upDownDiff < 10.0) {
+    if (sideDiff < radius * 2 && upDownDiff < radius * 2) {
         // play sound
         return true;
     }
