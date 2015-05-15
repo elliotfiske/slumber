@@ -20,6 +20,7 @@ set(HEADERS
    Texture.h
    Plane.hpp
    ViewFrustum.hpp
+   collectible.h
 )
 
 # List all .c / .cpp files here
@@ -43,4 +44,5 @@ set(SOURCES
    Texture.cpp
    Plane.cpp
    ViewFrustum.cpp
+   collectible.cpp
 )
