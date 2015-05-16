@@ -70,13 +70,13 @@ void Actor::draw(Light *light) {
         // Texture stuff
         if (material[ndx].diffuse_texname.size() > 0) {
             CurrAssets->lightingShader->setUVArray(uvID[ndx]);
-            texture[ndx]->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 1);//textureUnit[ndx]);
+            texture[ndx]->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 0);//textureUnit[ndx]);
         }
         
         glDrawElements(GL_TRIANGLES, numVerts[ndx], GL_UNSIGNED_INT, (void*) 0);
         
         if (material[ndx].diffuse_texname.size() > 0) {
-            texture[ndx]->unbind(1);//textureUnit[ndx]);
+            texture[ndx]->unbind(0);//textureUnit[ndx]);
         }
     }
 }

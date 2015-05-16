@@ -21,6 +21,7 @@ set(HEADERS
    Plane.hpp
    ViewFrustum.hpp
    collectible.h
+   titlestate.h
 )
 
 # List all .c / .cpp files here
@@ -45,4 +46,5 @@ set(SOURCES
    Plane.cpp
    ViewFrustum.cpp
    collectible.cpp
+   titlestate.cpp
 )
