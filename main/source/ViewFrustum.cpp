@@ -103,8 +103,6 @@ bool ViewFrustum::gotLight(glm::vec3 point, float radius){
     float bottomDistance = bottomPlane.distance(point);
     
     float upDownDiff = fabs(topDistance - bottomDistance);
-    
-    printf("Do this: side %f upd %f\n", sideDiff, upDownDiff);
   
     if (sideDiff < radius * 2 && upDownDiff < radius * 2) {
         // play sound

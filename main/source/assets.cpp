@@ -140,7 +140,6 @@ void Assets::loadShape(string filename, Actor *actor) {
 Actor* Assets::actorFromName(string actorName) {
     Actor *result;
     
-    printf("center is %f, %f, %f\n", levelDict[actorName].x, levelDict[actorName].y, levelDict[actorName].z);
     result = new Actor(levelDict[actorName]);
     string objFilename("resources/models/" + actorName + ".obj");
     
