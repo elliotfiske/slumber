@@ -23,9 +23,9 @@ void main() {
     vLight = (uViewMatrix * vec4(lightPos, 1.0)).xyz;
     vPos = pos_cam.xyz;
 
-	gl_Position = uProjMatrix * pos_cam;
+    gl_Position = uProjMatrix * pos_cam;
 
-	vNor  = normalize((MV * vec4(aNormal, 0.0)).xyz);
+    vNor  = normalize((MV * vec4(aNormal, 0.0)).xyz);
 
     shadowClip = lightMVP * aPosition;
     

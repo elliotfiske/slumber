@@ -17,7 +17,7 @@ using namespace std;
  */
 Assets::Assets() {
     lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
-    collectibleShader = new LightingShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
+    collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");

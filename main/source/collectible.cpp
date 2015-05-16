@@ -51,7 +51,7 @@ void Collectible::draw(Light *light) {
 //        return;
 //    }
     
-    printf("Drawing collectible!\n");
+//    printf("Drawing collectible!\n");
     
     setModel();
 

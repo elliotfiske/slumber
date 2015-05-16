@@ -126,23 +126,27 @@ void GameState::update() {
     prevTime = currTime;
 }
 
-void GameState::setView() {
+/**
+ * Update the instance variable with the current view
+ *  matrix
+ */
+void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-    CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
-/* helper function to set projection matrix - don't touch */
-void GameState::setPerspectiveMat() {
+/**
+ * Update the instance variable with the current perspective
+ *  matrix
+ */
+void GameState::updatePerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     
     perspectiveMat = Projection;
-    CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
-
 
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
@@ -170,8 +174,6 @@ void GameState::viewFrustumCulling(Actor curActor){
     vf = new ViewFrustum();
     mat4 comboMatrix;
     
-//    setView();
-//    setPerspectiveMat();
     comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
     vf->extractPlanes(comboMatrix);
     
@@ -190,8 +192,11 @@ void GameState::renderScene() {
     glCullFace(GL_BACK);
     
     CurrAssets->lightingShader->startUsingShader();
-    setView();
-    setPerspectiveMat();
+    updateViewMat();
+    updatePerspectiveMat();
+    
+    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
 
@@ -204,12 +209,20 @@ void GameState::renderScene() {
     lamp->draw(light);
     
     CurrAssets->collectibleShader->startUsingShader();
-    setView();
-    setPerspectiveMat();
+//    setView();
+//    setPerspectiveMat();
+    CurrAssets->collectibleShader->setViewMatrix(viewMat);
+    CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
     collectible->draw(light);
     
     shadowfbo->unbindTexture();
+    
+    // check OpenGL error TODO: remove
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        cerr << "OpenGL error: " << err << endl;
+    }
 }
 
 /**

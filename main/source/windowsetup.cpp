@@ -33,6 +33,8 @@ GLFWwindow* setupWindow(){
    
    glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE);
+    glEnable (GL_BLEND);
+    glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
    glClearColor(.051f, .447f, .60f, 0.0f);
   
    return window;

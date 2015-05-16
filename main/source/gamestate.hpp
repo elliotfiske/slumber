@@ -42,8 +42,8 @@ private:
     double prevTime;
     double currTime;
     
-    void setPerspectiveMat();
-    void setView();
+    void updatePerspectiveMat();
+    void updateViewMat();
     void renderScene();
     void renderShadowBuffer();
     void renderFrameBuffer();
