@@ -22,9 +22,9 @@ void Camera::step(double dt, float forwardVelocity, float strafeVelocity) {
     vec3 right = cross(direction, vec3(0.0, 1.0, 0.0));
     center += right * (float) dt * strafeVelocity;
     
-    center.x = clamp(center.x, CAM_X_MIN, CAM_X_MAX);
-    center.y = clamp(center.y, CAM_Y_MIN, CAM_Y_MAX);
-    center.z = clamp(center.z, CAM_Z_MIN, CAM_Z_MAX);
+//    center.x = clamp(center.x, CAM_X_MIN, CAM_X_MAX);
+//    center.y = clamp(center.y, CAM_Y_MIN, CAM_Y_MAX);
+//    center.z = clamp(center.z, CAM_Z_MIN, CAM_Z_MAX);
 }
 
 bool Camera::checkLight(Actor light) {

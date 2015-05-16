@@ -5,6 +5,7 @@
 #include "Light.h"
 #include "Framebuffer.h"
 #include "Texture.h"
+#include "collectible.h"
 
 class GameState {
 public:
@@ -13,10 +14,11 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *real_bed, *enemy;
-    Actor *lamp, *sphere;
-    Light *light;
+    Actor *room, *bed, *clock, *enemy;
+    Actor *lamp;
+    Collectible *collectible;
     
+    Light *light;
 
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
@@ -26,7 +28,6 @@ public:
     void update();
     void draw();
     
-    // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
     mat4 perspectiveMat;
@@ -39,8 +40,8 @@ private:
     double prevTime;
     double currTime;
     
-    void setPerspectiveMat();
-    void setView();
+    void updatePerspectiveMat();
+    void updateViewMat();
     void renderScene();
     void renderShadowBuffer();
     void renderFrameBuffer();

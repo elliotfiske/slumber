@@ -17,6 +17,7 @@ using namespace std;
  */
 Assets::Assets() {
     lightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
+    collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
     darkeningShader = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
@@ -58,8 +59,8 @@ vector<Texture *> existingTextures;
  *  UV's (if they exist) to the GPU
  */
 void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx) {
-    static GLuint textureUnit = 1;
-    
+    static GLuint textureUnit = 3;
+
     const vector<float> &posBuf = shape.mesh.positions;
     glGenBuffers(1, &actor->posID[shapeNdx]);
     glBindBuffer(GL_ARRAY_BUFFER, actor->posID[shapeNdx]);
@@ -117,7 +118,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), "../resources/models/");
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), RESOURCE_FOLDER);
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }

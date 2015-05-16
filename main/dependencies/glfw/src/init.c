@@ -140,6 +140,7 @@ GLFWAPI int glfwInit(void)
 
     // Not all window hints have zero as their default value
     glfwDefaultWindowHints();
+    glfwWindowHint(GLFW_SAMPLES, 4);
 
     return GL_TRUE;
 }

@@ -14,49 +14,57 @@
 #include "glm/glm.hpp"
 #include "GLSL.h"
 
-class LightingShader {
+class BaseMVPShader {
 public:
-    LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
+    BaseMVPShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
-    GLuint lighting_ProgramID;
-    GLuint textureToDisplay_ID;
-    GLuint uv_AttributeID;
-    GLuint diffuseTexture_UniformID;
+    GLuint programID;
     
     void startUsingShader();
-    
-    void setPositionArray(GLuint arrayID);
-    void setUVArray(GLuint arrayID);
     void setNormalArray(GLuint arrayID);
     void setIndexArray(GLuint arrayID);
     
+    void setPositionArray(GLuint arrayID);
     void setProjectionMatrix(glm::mat4 projectionMatrix);
     void setModelMatrix(glm::mat4 modelMatrix);
     void setViewMatrix(glm::mat4 viewMatrix);
-    void setLightPos(glm::vec3 lightPos); // NOTE: doesn't actually work, yet
-    void setAmbientColor(float color[]);
-    void setDiffuseColor(float color[]);
-    void setSpecularColor(float color[]);
-    void setShininess(float shininess);
-    void setLightMVP(glm::mat4 lightMVP);
     
     // Clean-up
     void disableAttribArrays();
-    
-private:
+
+protected:
     GLuint position_AttributeID;
     GLuint normal_AttributeID;
     
     GLuint projectionMatrix_UniformID;
     GLuint viewMatrix_UniformID;
     GLuint modelMatrix_UniformID;
+};
+
+class LightingShader : public BaseMVPShader {
+public:
+    LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
+    
+    GLuint textureToDisplay_ID;
+    GLuint uv_AttributeID;
+    GLuint diffuseTexture_UniformID;
+    
+    void setUVArray(GLuint arrayID);
+    
+    void setLightPos(glm::vec3 lightPos);
+    void setAmbientColor(float color[]);
+    void setDiffuseColor(float color[]);
+    void setSpecularColor(float color[]);
+    void setShininess(float shininess);
+    void setLightMVP(glm::mat4 lightMVP);
+    
+private:
     GLuint lightPos_UniformID;
     GLuint ambientMaterial_uniformID;
     GLuint diffuseMaterial_UniformID;
     GLuint specularMaterial_UniformID;
     GLuint shininess_UniformID;
     GLuint lightMVP_UniformID;
-    
 };
 
 class FBOShader {

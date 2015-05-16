@@ -9,13 +9,21 @@
 
 using namespace glm;
 
+float playerHealth = 1.2;
+
+vector<vec3> spherePlaces;
+ViewFrustum *vf;
+
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-    real_bed = assets->actorFromName("bed");
-    enemy = assets->actorFromName("enemy");
-//    room = assets->actorFromName("room");
+    
+    bed = assets->actorFromName("bed");
+    clock = assets->actorFromName("clock");
     lamp = assets->actorFromName("lamp-table");
-    sphere = assets->actorFromName("sphere");
+    room = assets->actorFromName("room");
+    
+    Actor *tempCollectible = assets->actorFromName("collect");
+    collectible = new Collectible(*tempCollectible);
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -42,8 +50,12 @@ void GameState::initAssets() {
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
-    camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    
+    if (isGhost_) {
+        camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    }
+    else {
+        camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    }
     window = window_;
     isGhost = isGhost_;
     
@@ -53,15 +65,20 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     prevTime = glfwGetTime();
 }
 
+int numCollected = 0;
+
 void GameState::checkCollisions() {
-    // TODO: me!!!
-   if(camera->checkLight(sphere)) {
-       printf("collect light here");
-   }
+    if (vf->gotLight(collectible->center, 5.0)) {
+        collectible->collected();
+    }
 }
 
 float lastX, lastY, lastZ;
 
+/**
+ * Send a packet to the paralyzed player with the current
+ *  location of the ghost
+ */
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
     float x = camera->center.x;
@@ -77,7 +94,15 @@ void GameState::tellClientWhereGhostIs() {
 #endif
 }
 
+/**
+ * Called every frame yo
+ */
 void GameState::update() {
+    if (shouldWeReset()) {
+        playerHealth = 1.2;
+        numCollected = 0;
+    }
+    
     currTime = glfwGetTime();
     double elapsedTime = currTime - prevTime;
     
@@ -85,76 +110,77 @@ void GameState::update() {
     updateCamDirection(camera);
     updateLightPosition(light);
     
+    collectible->step(elapsedTime);
+    
     if (isGhost) {
         camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
         tellClientWhereGhostIs();
     }
     else {
         Position ghostPos = getGhostPosition();
-        printf("Ghost izzat: %f, %f, %f\n", ghostPos.x, ghostPos.y, ghostPos.z);
         enemy->center.x = ghostPos.x;
         enemy->center.y = ghostPos.y;
         enemy->center.z = ghostPos.z;
     }
     
     prevTime = currTime;
-    
-    checkCollisions();
 }
 
-void GameState::setView() {
+/**
+ * Update the instance variable with the current view
+ *  matrix
+ */
+void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-    CurrAssets->lightingShader->setViewMatrix(cam);
 }
 
-/* helper function to set projection matrix - don't touch */
-void GameState::setPerspectiveMat() {
+/**
+ * Update the instance variable with the current perspective
+ *  matrix
+ */
+void GameState::updatePerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     
     perspectiveMat = Projection;
-    CurrAssets->lightingShader->setProjectionMatrix(Projection);
 }
-
-
 
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    glViewport(0, 0, 2048, 2048);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-    mat4 cam = lookAt(camera->center, camera->center
-                                + camera->direction, vec3(0.0, 1.0, 0.0));
-    real_bed->drawShadows(light);
+    
+    bed->drawShadows(light);
     lamp->drawShadows(light);
-    enemy->drawShadows(light);
-//    room->drawShadows(light);
-//    clock->drawShadows(light);
+    room->drawShadows(light);
+    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
     shadowfbo->unbind();
 }
 
+/**
+ * Draw the specified actor iff it's within the user's view
+ */
 void GameState::viewFrustumCulling(Actor curActor){
-   ViewFrustum *vf = new ViewFrustum();
-   mat4 comboMatrix;
-   int result;
-   
-   setView();
-   setPerspectiveMat();
-   comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
-   vf->extractPlanes(comboMatrix);
-   result = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
-   if(result == INSIDE || result == INTERSECT){
-      curActor.draw(light);
-   }
+    vf = new ViewFrustum();
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
+    if (inView != OUTSIDE) {
+        curActor.draw(light);
+    }
 }
 
 /**
@@ -165,21 +191,36 @@ void GameState::renderScene() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
     
+    updateViewMat();
+    updatePerspectiveMat();
+    
     CurrAssets->lightingShader->startUsingShader();
-    setView();
-    setPerspectiveMat();
+    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
 
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
-    //viewFrustumCulling(*bed);
-    //viewFrustumCulling(*room);
-    viewFrustumCulling(*clock);
-    //viewFrustumCulling(*real_bed);
-    bed->draw(light);
+    viewFrustumCulling(*bed);
+//    viewFrustumCulling(*lamp);
     room->draw(light);
-    //clock->draw(light);
-    CurrAssets->lightingShader->disableAttribArrays();
+//    viewFrustumCulling(*clock);
+    bed->draw(light);
+    clock->draw(light);
+    lamp->draw(light);
+    
+    CurrAssets->collectibleShader->startUsingShader();
+    CurrAssets->collectibleShader->setViewMatrix(viewMat);
+    CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
+    
+    collectible->draw(light);
+    
     shadowfbo->unbindTexture();
+    
+    // check OpenGL error TODO: remove
+    GLenum err;
+    while ((err = glGetError()) != GL_NO_ERROR) {
+        cerr << "OpenGL error: " << err << endl;
+    }
 }
 
 /**
@@ -192,8 +233,6 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
-    
-    CurrAssets->motionBlurShader->animateIntensity(0, 0, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -228,4 +267,6 @@ void GameState::draw() {
     
     glfwSwapBuffers(window);
     glfwPollEvents();
+    
+    checkCollisions();
 }

@@ -27,6 +27,7 @@ public:
     
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
+    BaseMVPShader  *collectibleShader;
     FBOShader      *darkeningShader;
     FBOShader      *motionBlurShader;
     

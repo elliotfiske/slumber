@@ -7,8 +7,8 @@ Light::Light() :
 	aspect(1.0f),
 	fovy(90.0f),
 	znear(0.1f),
-	zfar(50.0f),
-	position(0.0f, 5.0f, -10.0f),
+	zfar(200.0f),
+	position(-15.0f, 11.0f, -85.0f),
 	target(0.0f, 0.0f, 0.0f),
 	up(0.0f, 1.0f, 0.0f)
 {

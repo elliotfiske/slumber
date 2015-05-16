@@ -13,7 +13,6 @@ void Plane::setCoefficients(float a_, float b_, float c_, float d_) {
    c = c_;
    d = d_;
 }
-   
 
 float Plane::distance(glm::vec3 p) {
    return a*p.x + b*p.y + c*p.z + d;
