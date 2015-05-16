@@ -83,5 +83,5 @@ void main() {
 
 
 
-    gl_FragColor.rgb = lAmbientColor + visibility * (lDiffuseColor + lSpecularColor);
+    gl_FragColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
 }

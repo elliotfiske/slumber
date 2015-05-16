@@ -110,7 +110,6 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     
     diffuseTexture_UniformID   = GLSL::getUniformLocation(programID, "diffuseTextureSampler");
     
-//    GLSL::printError();
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
@@ -132,7 +131,6 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
     intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
     
-//    GLSL::printError();
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
@@ -153,7 +151,7 @@ ShadowShader::ShadowShader(std::string vertexShaderFile, std::string fragmentSha
     // Make handles to uniforms
     MVP_UniformID = GLSL::getUniformLocation(shadow_ProgramID, "MVP");
     
-    //    GLSL::printError();// check OpenGL error
+    // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
         cerr << "OpenGL error: " << err << endl;

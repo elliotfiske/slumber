@@ -19,7 +19,6 @@ public:
     Collectible *collectible;
     
     Light *light;
-    
 
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
@@ -29,7 +28,6 @@ public:
     void update();
     void draw();
     
-    // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
     mat4 perspectiveMat;

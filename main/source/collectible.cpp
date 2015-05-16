@@ -47,11 +47,9 @@ void Collectible::setModel() {
  * Simpler draw b/c we only have 1 shape and don't care about lighting.
  */
 void Collectible::draw(Light *light) {
-//    if (!visible) {
-//        return;
-//    }
-    
-//    printf("Drawing collectible!\n");
+    if (!visible) {
+        return;
+    }
     
     setModel();
 
@@ -68,11 +66,11 @@ void Collectible::draw(Light *light) {
  * User picked me up!  Hide myself until later.
  */
 void Collectible::collected() {
-//    if (!visible) {
-//        return;
-//    }
-//    
-//    visible = false;
-//    
-//    timeToAppear = 0.1; // TODO: randomize
+    if (!visible) {
+        return;
+    }
+    
+    visible = false;
+    
+    timeToAppear = 0.1; // TODO: randomize.  maybe.
 }

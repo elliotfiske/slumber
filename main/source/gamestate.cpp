@@ -95,7 +95,7 @@ void GameState::tellClientWhereGhostIs() {
 }
 
 /**
- * Called every frame!
+ * Called every frame yo
  */
 void GameState::update() {
     if (shouldWeReset()) {
@@ -191,16 +191,16 @@ void GameState::renderScene() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
     
-    CurrAssets->lightingShader->startUsingShader();
     updateViewMat();
     updatePerspectiveMat();
     
+    CurrAssets->lightingShader->startUsingShader();
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
 
-//    viewFrustumCulling(*bed);
+    viewFrustumCulling(*bed);
 //    viewFrustumCulling(*lamp);
     room->draw(light);
 //    viewFrustumCulling(*clock);
@@ -209,8 +209,6 @@ void GameState::renderScene() {
     lamp->draw(light);
     
     CurrAssets->collectibleShader->startUsingShader();
-//    setView();
-//    setPerspectiveMat();
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
@@ -270,5 +268,5 @@ void GameState::draw() {
     glfwSwapBuffers(window);
     glfwPollEvents();
     
-//    checkCollisions();
+    checkCollisions();
 }
