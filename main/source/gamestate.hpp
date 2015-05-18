@@ -23,8 +23,6 @@ public:
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    Texture *bedWood;
-    
     void update();
     void draw();
     

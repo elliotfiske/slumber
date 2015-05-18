@@ -17,12 +17,12 @@ ViewFrustum *vf;
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-    bed = assets->actorFromName("bed");
-    clock = assets->actorFromName("clock");
-    lamp = assets->actorFromName("lamp-table");
-    room = assets->actorFromName("room");
+    bed = assets->actorDictionary["bed"];
+    clock = assets->actorDictionary["clock"];
+    lamp = assets->actorDictionary["lamp-table"];
+    room = assets->actorDictionary["room"];
     
-    Actor *tempCollectible = assets->actorFromName("collect");
+    Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
     
     framebuffer = new Framebuffer();

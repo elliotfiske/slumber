@@ -31,17 +31,17 @@ public:
     FBOShader      *darkeningShader;
     FBOShader      *motionBlurShader;
     
-    Actor* actorFromName(string actorName);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
+    
+    // A simple dictionary where the key is the OBJ name and the
+    //  value is the Actor instance that uses that model.
+    std::map<string, Actor*>  actorDictionary;
     
 private:
     Assets();
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     
-    // A simple dictionary where the key is the OBJ name and the
-    //  value is the position of that model.
-    std::map<string, glm::vec3>  levelDict;
 };
 
 

@@ -32,7 +32,7 @@ Assets::Assets() {
 }
 
 /**
- * Populate the levelDict with information from the level file
+ * Populate the actorDictionary with information from the level file
  */
 void Assets::readLevelData(string filename) {
     ifstream levelFile(filename.c_str());
@@ -48,7 +48,9 @@ void Assets::readLevelData(string filename) {
         levelFile >> newActorCenter.y;
         levelFile >> newActorCenter.z;
         
-        levelDict[currActorName] = newActorCenter;
+        actorDictionary[currActorName] = new Actor(newActorCenter);
+        string objFilename(RESOURCE_FOLDER + currActorName + ".obj");
+        loadShape(objFilename, actorDictionary[currActorName]);
     }
 }
 
@@ -130,26 +132,4 @@ void Assets::loadShape(string filename, Actor *actor) {
     
     actor->numShapes = shapes.size();
 }
-
-
-
-/**
- * Uses the levelDict to create an actor with the correct
- *  OBJ data and position
- */
-Actor* Assets::actorFromName(string actorName) {
-    Actor *result;
-    
-    result = new Actor(levelDict[actorName]);
-    string objFilename("resources/models/" + actorName + ".obj");
-    
-#ifdef XCODE_IS_TERRIBLE
-    objFilename = "../" + objFilename;
-#endif
-    
-    loadShape(objFilename, result);
-    
-    return result;
-}
-
 
