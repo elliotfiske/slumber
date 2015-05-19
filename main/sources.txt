@@ -22,6 +22,8 @@ set(HEADERS
    ViewFrustum.hpp
    collectible.h
    titlestate.h
+   ParalyzedState.h
+   GhostState.h
 )
 
 # List all .c / .cpp files here
@@ -47,4 +49,6 @@ set(SOURCES
    ViewFrustum.cpp
    collectible.cpp
    titlestate.cpp
+   ParalyzedState.cpp
+   GhostState.cpp
 )

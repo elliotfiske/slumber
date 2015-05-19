@@ -10,5 +10,11 @@
 #define __slumber__titlestate__
 
 #include <stdio.h>
+#include "gamestate.hpp"
+
+class TitleState : public GameState {
+public:
+    TitleState(GLFWwindow *window);
+};
 
 #endif /* defined(__slumber__titlestate__) */

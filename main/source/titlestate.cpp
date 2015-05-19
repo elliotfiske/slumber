@@ -8,3 +8,6 @@
 
 #include "titlestate.h"
 
+TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
+    
+}

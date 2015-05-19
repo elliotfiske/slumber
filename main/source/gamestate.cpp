@@ -4,23 +4,19 @@
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
-#include "ViewFrustum.hpp"
 #include "network.h"
 
 using namespace glm;
 
 float playerHealth = 1.2;
 
-vector<vec3> spherePlaces;
-ViewFrustum *vf;
-
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
-    bed = assets->actorDictionary["bed"];
+    bed =   assets->actorDictionary["bed"];
     clock = assets->actorDictionary["clock"];
-    lamp = assets->actorDictionary["lamp-table"];
-    room = assets->actorDictionary["room"];
+    lamp =  assets->actorDictionary["lamp-table"];
+    room =  assets->actorDictionary["room"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -50,12 +46,11 @@ void GameState::initAssets() {
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
+    // Set up camera in subclasses
     if (isGhost_) {
         camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     }
-    else {
-        camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    }
+    
     window = window_;
     isGhost = isGhost_;
     
@@ -63,9 +58,10 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     initAssets();
     
     prevTime = glfwGetTime();
+    
+    updatePerspectiveMat();
+    vf = new ViewFrustum();
 }
-
-int numCollected = 0;
 
 void GameState::checkCollisions() {
     if (vf->gotLight(collectible->center, 5.0)) {
@@ -100,14 +96,13 @@ void GameState::tellClientWhereGhostIs() {
 void GameState::update() {
     if (shouldWeReset()) {
         playerHealth = 1.2;
-        numCollected = 0;
     }
     
     currTime = glfwGetTime();
     double elapsedTime = currTime - prevTime;
     
     updateControl(window);
-    updateCamDirection(camera);
+    updateCamDirection(camera); 
     updateLightPosition(light);
     
     collectible->step(elapsedTime);
@@ -144,7 +139,6 @@ void GameState::updateViewMat() {
 void GameState::updatePerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
-    
     perspectiveMat = Projection;
 }
 
@@ -171,7 +165,6 @@ void GameState::renderShadowBuffer() {
  * Draw the specified actor iff it's within the user's view
  */
 void GameState::viewFrustumCulling(Actor curActor){
-    vf = new ViewFrustum();
     mat4 comboMatrix;
     
     comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
@@ -188,11 +181,10 @@ void GameState::viewFrustumCulling(Actor curActor){
  */
 void GameState::renderScene() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
     
     updateViewMat();
-    updatePerspectiveMat();
     
     CurrAssets->lightingShader->startUsingShader();
     CurrAssets->lightingShader->setViewMatrix(viewMat);
@@ -201,9 +193,7 @@ void GameState::renderScene() {
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
 
     viewFrustumCulling(*bed);
-//    viewFrustumCulling(*lamp);
     room->draw(light);
-//    viewFrustumCulling(*clock);
     bed->draw(light);
     clock->draw(light);
     lamp->draw(light);

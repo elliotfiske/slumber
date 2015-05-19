@@ -61,7 +61,7 @@ void main() {
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
     
     float bias = 0.000001;
-    float blur = 0.001;
+    float blur = 0.0001;
     float visibility = 1.0;
     
     if(shadowCoords.w > 0.0 &&

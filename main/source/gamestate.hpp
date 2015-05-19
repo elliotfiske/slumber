@@ -5,6 +5,7 @@
 #include "Light.h"
 #include "Framebuffer.h"
 #include "Texture.h"
+#include "ViewFrustum.hpp"
 #include "collectible.h"
 
 class GameState {
@@ -23,15 +24,17 @@ public:
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    void update();
-    void draw();
+    virtual void update();
+    virtual void draw();
     
     GLuint quad_vertexbuffer;
     
     mat4 perspectiveMat;
     mat4 viewMat;
     
-private:
+    ViewFrustum *vf;
+    
+protected:
     Camera *camera;
     GLFWwindow *window;
     
