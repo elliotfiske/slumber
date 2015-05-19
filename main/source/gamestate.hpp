@@ -53,4 +53,6 @@ protected:
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
+    void billboardCheatSphericalBegin();
+    void billboardEnd();
 };
