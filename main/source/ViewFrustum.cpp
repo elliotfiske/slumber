@@ -4,60 +4,110 @@ ViewFrustum::ViewFrustum() {}
 
 ViewFrustum::~ViewFrustum() {}
 
-void extractPlanes(mat4 comboMatrix, bool normalize){
+void ViewFrustum::extractPlanes(glm::mat4 comboMatrix) {
    // Left clipping plane
-   planes[0].setCoeffecients(comboMatrix[3][0] + comboMatrix[0][0],
-      comboMatrix[3][1] + comboMatrix[0][1]
-      comboMatrix[3][2] + comboMatrix[0][2]
-      comboMatrix[3][3] + comboMatrix[0][3]);
-   // Right clipping plane
-   planes[1].setCoeffecients(comboMatrix[3][0] - comboMatrix[0][0],
-      comboMatrix[3][1] - comboMatrix[0][1]
-      comboMatrix[3][2] - comboMatrix[0][2]
-      comboMatrix[3][3] - comboMatrix[0][3]);
+//   leftPlane.setCoefficients(comboMatrix[3][0] + comboMatrix[0][0],
+//                             comboMatrix[3][1] + comboMatrix[0][1],
+//                             comboMatrix[3][2] + comboMatrix[0][2],
+//                             comboMatrix[3][3] + comboMatrix[0][3]);
+//   // Right clipping plane
+//   rightPlane.setCoefficients(comboMatrix[3][0] - comboMatrix[0][0],
+//                              comboMatrix[3][1] - comboMatrix[0][1],
+//                              comboMatrix[3][2] - comboMatrix[0][2],
+//                              comboMatrix[3][3] - comboMatrix[0][3]);
+    
+    leftPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][0],
+                              comboMatrix[1][3] + comboMatrix[1][0],
+                              comboMatrix[2][3] + comboMatrix[2][0],
+                              comboMatrix[3][3] + comboMatrix[3][0]);
+    // Right clipping plane
+    rightPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][0],
+                               comboMatrix[1][3] - comboMatrix[1][0],
+                               comboMatrix[2][3] - comboMatrix[2][0],
+                               comboMatrix[3][3] - comboMatrix[3][0]);
+
+    
    // Top clipping plane
-   planes[2].setCoeffecients(comboMatrix[3][0] - comboMatrix[1][0],
-      comboMatrix[3][1] - comboMatrix[1][1]
-      comboMatrix[3][2] - comboMatrix[1][2]
-      comboMatrix[3][3] - comboMatrix[1][3]);
+   topPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][1],
+                            comboMatrix[1][3] - comboMatrix[1][1],
+                            comboMatrix[2][3] - comboMatrix[2][1],
+                            comboMatrix[3][3] - comboMatrix[3][1]);
    // Bottom clipping plane
-   planes[3].setCoeffecients(comboMatrix[3][0] + comboMatrix[1][0],
-      comboMatrix[3][1] + comboMatrix[1][1]
-      comboMatrix[3][2] + comboMatrix[1][2]
-      comboMatrix[3][3] + comboMatrix[1][3]);
+   bottomPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][1],
+                              comboMatrix[1][3] + comboMatrix[1][1],
+                              comboMatrix[2][3] + comboMatrix[2][1],
+                              comboMatrix[3][3] + comboMatrix[3][1]);
    // Near clipping plane
-   planes[4].setCoeffecients(comboMatrix[3][0] + comboMatrix[2][0],
-      comboMatrix[3][1] + comboMatrix[2][1]
-      comboMatrix[3][2] + comboMatrix[2][2]
-      comboMatrix[3][3] + comboMatrix[2][3]);
+   nearPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][2],
+                             comboMatrix[1][3] + comboMatrix[1][2],
+                             comboMatrix[2][3] + comboMatrix[2][2],
+                             comboMatrix[3][3] + comboMatrix[3][2]);
    // Far clipping plane
-   planes[0].setCoeffecients(comboMatrix[3][0] - comboMatrix[2][0],
-      comboMatrix[3][1] - comboMatrix[2][1]
-      comboMatrix[3][2] - comboMatrix[2][2]
-      comboMatrix[3][3] - comboMatrix[2][3]);
-   // Normalize the plane equations, if requested
-   if (normalize == true){
-      p_planes[0].normalize;
-      p_planes[1].normalize;
-      p_planes[2].normalize;
-      p_planes[3].normalize;
-      p_planes[4].normalize;
-      p_planes[5].normalize;
-   }
+   farPlane.setCoefficients(comboMatrix[0][3] - comboMatrix[0][2],
+                            comboMatrix[1][3] - comboMatrix[1][2],
+                            comboMatrix[2][3] - comboMatrix[2][2],
+                            comboMatrix[3][3] - comboMatrix[3][2]);
+    
+    leftPlane.makeNormal();
+    rightPlane.makeNormal();
+    topPlane.makeNormal();
+    bottomPlane.makeNormal();
+    nearPlane.makeNormal();
+    farPlane.makeNormal();
 }
 
-bool sphereIsInside(vec3 point, int radius){
-   float distance;
-   int result = INSIDE;
+int ViewFrustum::sphereIsInside(glm::vec3 point, float radius){
+    
+    float leftDistance = leftPlane.distance(point);
+    float rightDistance = rightPlane.distance(point);
+    
+    float nearDistance = nearPlane.distance(point);
+    float farDistance = farPlane.distance(point);
+    
+    float topDistance = topPlane.distance(point);
+    float bottomDistance = bottomPlane.distance(point);
+    
+    float diameter = -2 * radius;
+    
+    if (leftDistance < diameter) {
+        return OUTSIDE;
+    }
 
-   for(int i=0; i < 6; i++) {
-      distance = planes[i].distance(p);
-      if (distance < -radius){
-         return OUTSIDE;
-      }
-      else if (distance < radius){
-         result = INTERSECT;
-      }
-   }
-   return result;
+    if (leftDistance < diameter) {
+        return OUTSIDE;
+    }
+    if (rightDistance < diameter) {
+        return OUTSIDE;
+    }
+    if (topDistance < diameter) {
+        return OUTSIDE;
+    }
+    if (bottomDistance < diameter) {
+        return OUTSIDE;
+    }
+    return INSIDE;
+}
+
+/**
+ * If the user is looking straight at the light,
+ *  collect it and play a sound.
+ */
+bool ViewFrustum::gotLight(glm::vec3 point, float radius){
+    
+    float leftDistance = leftPlane.distance(point);
+    float rightDistance = rightPlane.distance(point);
+    
+    float sideDiff = fabs(leftDistance - rightDistance);
+    
+    float topDistance = topPlane.distance(point);
+    float bottomDistance = bottomPlane.distance(point);
+    
+    float upDownDiff = fabs(topDistance - bottomDistance);
+  
+    if (sideDiff < radius * 2 && upDownDiff < radius * 2) {
+        // play sound
+        return true;
+    }
+    
+    return false;
 }

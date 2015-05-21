@@ -3,39 +3,60 @@
 #include "GLSL.h"
 #include "assets.hpp"
 #include "Light.h"
-#include "Framebuffer.h"
+#include "shaders/Framebuffer.h"
+#include "Texture.h"
+#include "ViewFrustum.hpp"
+#include "collectible.h"
 
+#ifndef GameState_h
+#define GameState_h
 
 class GameState {
 public:
-    GameState(GLFWwindow *window);
-    std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *real_bed;
-    Light *light;
+    GameState(GLFWwindow *window, bool isGhost);
     
+    bool isGhost;
+    
+    std::vector<Actor> actors;
+    Actor *room, *bed, *clock, *enemy;
+    Actor *lamp;
+    Collectible *collectible;
+    
+    Light *light;
+
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    void update();
+    virtual void update();
     void draw();
     
-    // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
-private:
+    mat4 perspectiveMat;
+    mat4 viewMat;
+    
+    ViewFrustum *vf;
+    
+protected:
     Camera *camera;
     GLFWwindow *window;
     
-    double prevTime;
-    double currTime;
+    double prevTime, elapsedTime;
     
-    void setPerspectiveMat();
-    void setView();
-    void renderScene();
+    void updatePerspectiveMat();
+    void updateViewMat();
+    virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     
-    void checkCollisions();
+    virtual void checkCollisions() {}
     
     void initAssets();
+    
+    void viewFrustumCulling(Actor curActor);
+    void tellClientWhereGhostIs();
+    void billboardCheatSphericalBegin();
+    void billboardEnd();
 };
+
+#endif

@@ -75,6 +75,8 @@ int tcpClientSetup(char *hostName, char *port) {
         printf("Error getting hostname: %s\n", hostName);
         exit(-1);
     }
+
+    printf("Connecting to server...\n");
     
     memcpy((char*)&remote.sin_addr, (char*)hp->h_addr, hp->h_length);
     

@@ -10,6 +10,7 @@
 //    Created by zwood on 2/21/10.
 
 #include "GLIncludes.h"
+#include <iostream>
 
 #pragma once
 #ifndef __GLSL__

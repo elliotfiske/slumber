@@ -4,32 +4,23 @@
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
+#include "network.h"
 
 using namespace glm;
 
+float playerHealth = 1.2;
+
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-    room = assets->actorFromName("room");
-    room->diffuseColor = vec3(0.31, 0.082, 0.212);
-    room->ambientColor = vec3(1.0, 0.05, 0.3);
-    room->specularColor = vec3(0.1, 0.1, 0.1);
-    room->shininess = 0;
     
-    bed = assets->actorFromName("sheet");
-    bed->diffuseColor = vec3(0.1, 0.2, 0.3);
-    bed->ambientColor = vec3(0.15, 0.06, 0.07);
-    bed->specularColor = vec3(0.1, 0.1, 0.1);
-    bed->shininess = 20;
+    bed =   assets->actorDictionary["bed"];
+    clock = assets->actorDictionary["clock"];
+    lamp =  assets->actorDictionary["lamp-table"];
+    room =  assets->actorDictionary["room"];
+    enemy = assets->actorDictionary["enemy"];
     
-    clock = assets->actorFromName("clock");
-    clock->diffuseColor = vec3(0.388, 0.231, 0.102);
-    clock->ambientColor = vec3(0.1, 0.06, 0.17);
-    clock->specularColor = vec3(0.1, 0.1, 0.1);
-    clock->shininess = 10;
-
-   real_bed = assets->actorFromName("bed");
-
-
+    Actor *tempCollectible = assets->actorDictionary["collect"];
+    collectible = new Collectible(*tempCollectible);
     
     framebuffer = new Framebuffer();
     framebuffer->generate();
@@ -37,7 +28,7 @@ void GameState::initAssets() {
 
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
-    shadowfbo->generateTexture(2048, 2048);
+    shadowfbo->generateShadowTexture(2048, 2048);
 
     light = new Light();
     
@@ -55,62 +46,72 @@ void GameState::initAssets() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
 }
 
-GameState::GameState(GLFWwindow *window_) {
-    camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    
+GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
+    isGhost = isGhost_;
     
     setupCallbacks(window);
     initAssets();
     
     prevTime = glfwGetTime();
+    
+    updatePerspectiveMat();
+    vf = new ViewFrustum();
 }
 
-void GameState::checkCollisions() {
-    // TODO: meb
-}
-
+/**
+ * Called every frame yo
+ */
 void GameState::update() {
-    currTime = glfwGetTime();
-    double elapsedTime = currTime - prevTime;
+    if (shouldWeReset()) {
+        playerHealth = 1.2;
+    }
     
-    updateControl(window);
-    updateCamDirection(camera);
-    updateLightPosition(light);
-    camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
-    
+    double currTime = glfwGetTime();
+    elapsedTime = currTime - prevTime;
     prevTime = currTime;
     
-    checkCollisions();
+    updateControl(window);
+    updateCamDirection(camera); 
+    updateLightPosition(light);
+    
+    collectible->step(elapsedTime);
 }
 
-void GameState::setView() {
+/**
+ * Update the instance variable with the current view
+ *  matrix
+ */
+void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
-    CurrAssets->lightingShader->setViewMatrix(cam);
+    
+    viewMat = cam;
 }
 
-/* helper function to set projection matrix - don't touch */
-void GameState::setPerspectiveMat() {
+/**
+ * Update the instance variable with the current perspective
+ *  matrix
+ */
+void GameState::updatePerspectiveMat() {
     mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
-    CurrAssets->lightingShader->setProjectionMatrix(Projection);
+    perspectiveMat = Projection;
 }
-
-
 
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    glViewport(0, 0, 2048, 2048);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();
-
-    //bed->drawShadows(light);
-    //room->drawShadows(light);
-    //clock->drawShadows(light);
+    
+    bed->drawShadows(light);
+    lamp->drawShadows(light);
+    room->drawShadows(light);
+    clock->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -118,27 +119,20 @@ void GameState::renderShadowBuffer() {
 }
 
 /**
- * Actually draws each of the 3D objects in the scene
+ * Draw the specified actor iff it's within the user's view
  */
-void GameState::renderScene() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glCullFace(GL_BACK);
-    CurrAssets->lightingShader->startUsingShader();
-    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+void GameState::viewFrustumCulling(Actor curActor){
+    mat4 comboMatrix;
     
-    setView();
-    setPerspectiveMat();
-
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID);
+    comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+    vf->extractPlanes(comboMatrix);
     
-//    bed->draw(light);
-    room->draw(light);
-    clock->draw(light);
-    real_bed->draw(light);
-    
-    CurrAssets->lightingShader->disableAttribArrays();
-    shadowfbo->unbindTexture();
+    int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
+    if (inView != OUTSIDE) {
+        curActor.draw(light);
+    }
 }
+
 
 /**
  * Render a texture to a square that covers the whole screen.
@@ -150,8 +144,6 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
-    
-    CurrAssets->motionBlurShader->animateIntensity(0, 10, currTime, 3);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
@@ -186,4 +178,41 @@ void GameState::draw() {
     
     glfwSwapBuffers(window);
     glfwPollEvents();
+    
+    checkCollisions();
 }
+/*
+void GameState::billboardCheatSphericalBegin() {
+   
+   float modelview[16];
+   int i,j;
+
+   // save the current modelview matrix
+   glPushMatrix();
+
+   // get the current modelview matrix
+   glGetFloatv(GL_MODELVIEW_MATRIX , modelview);
+
+   // undo all rotations
+   // beware all scaling is lost as well 
+   for( i=0; i<3; i++ ) 
+       for( j=0; j<3; j++ ) {
+      if ( i==j )
+          modelview[i*4+j] = 1.0;
+      else
+          modelview[i*4+j] = 0.0;
+       }
+
+   // set the modelview with no rotations
+   glLoadMatrixf(modelview);
+}
+
+
+
+void GameState::billboardEnd() {
+
+   // restore the previously 
+   // stored modelview matrix
+   glPopMatrix();
+}
+*/

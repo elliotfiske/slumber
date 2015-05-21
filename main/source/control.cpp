@@ -17,7 +17,7 @@ float strafeAccel;
 
 float xLightVel, yLightVel, zLightVel;
 
-#define ACCEL 5.0
+#define ACCEL 8.0
 #define FRICTION 1.2
 
 void handleMouse(GLFWwindow* window, double currX, double currY) {
@@ -45,6 +45,8 @@ void handleScroll(GLFWwindow *window, double scrollX, double scrollY) {
         pitch = glm::radians(80.0);
     }
 }
+
+bool shouldReset = false;
 
 void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
                     int mods) {
@@ -105,13 +107,42 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
 
     if (key == GLFW_KEY_X) {
         if (action == GLFW_PRESS) {
-            xLightVel = 0.1f;
+            xLightVel = 0.5f;
         }
         
         if (action == GLFW_RELEASE) {
             xLightVel = 0.0f;
         }
     }
+    if (key == GLFW_KEY_Z) {
+        if (action == GLFW_PRESS) {
+            zLightVel = 0.5f;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            zLightVel = 0.0f;
+        }
+    }
+    if (key == GLFW_KEY_Y) {
+        if (action == GLFW_PRESS) {
+            yLightVel = 0.5f;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            yLightVel = 0.0f;
+        }
+    }
+    
+    if (key == GLFW_KEY_R) {
+        shouldReset = true;
+    }
+    else {
+        shouldReset =false;
+    }
+}
+
+bool shouldWeReset() {
+    return shouldReset;
 }
 
 void setupCallbacks(GLFWwindow *window) {
@@ -149,6 +180,9 @@ void updateCamDirection(Camera *camera) {
 void updateLightPosition(Light *light) {
     glm::vec3 lightPos = light->getPosition();
     lightPos.x += xLightVel;
+    lightPos.y += yLightVel;
+    lightPos.z += zLightVel;
+    //printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
     light->setPosition(lightPos);
 }
 
@@ -158,5 +192,13 @@ float getForwardVelocity() {
 
 float getStrafeVelocity() {
     return strafeVel;
+}
+
+
+float getYaw() {
+    return yaw;
+}
+float getPitch() {
+    return pitch;
 }
 

@@ -13,9 +13,10 @@ if ("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU")
     if (NOT (GCC_VERSION VERSION_GREATER 4.7 OR GCC_VERSION VERSION_EQUAL 4.7))
         message(STATUS "****NOTE: C++11 compiler not found.  Disabling Networking!!!")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-        add_definitions(-DTHREADS)
+        #        add_definitions(-DTHREADS)
     else()
-    message(STATUS "I see you have GCC 4.8 or above! nice. Enabling networking.")
+        message(STATUS "I see you have GCC 4.8 or above! nice. Enabling networking.")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
         add_definitions(-DTHREADS)
     endif ()
 
@@ -60,6 +61,18 @@ list(APPEND INCLUDES
 list(APPEND LIBS
    ${CMAKE_DL_LIBS}
 )
+
+# SFML
+# set(SFML_DIR "${DEP_DIR}/SFML-2.0")
+# list(APPEND INCLUDES
+#    ${SFML_DIR}/include
+# )
+# list(APPEND LIBS
+#    ${SFML_DIR}/lib/libsfml-system.so
+# )
+# list(APPEND LIBS
+#    ${SFML_DIR}/lib/libsfml-audio.so
+# )
 
 # pthread libs
 find_package (Threads)

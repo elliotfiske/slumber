@@ -1,7 +1,11 @@
-clock 9.45 1 0
+clock 29.45 -11 0
 
 room 0 0 0
 
-sheet 0 0 0
+bed 0 -1 -4
 
-real_bed 0 0 -4
+enemy 0 4 -15
+
+lamp-table -15 0 -85
+
+collect 0 1 -5
