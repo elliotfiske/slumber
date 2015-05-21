@@ -19,6 +19,7 @@ Collectible::Collectible(Actor actor): Actor(actor.center) {
     norID[0] = actor.norID[0];
     indID[0] = actor.indID[0];
     numVerts[0] = actor.numVerts[0];
+    positionIndex = 0;
 }
 
 /**
