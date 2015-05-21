@@ -28,7 +28,7 @@ ShadowShader::ShadowShader(string vertexShaderFile, std::string fragmentShaderFi
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
+        cerr << "OpenGL error from Shadow shader: " << err << endl;
     }
 }
 

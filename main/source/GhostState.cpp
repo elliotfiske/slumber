@@ -52,7 +52,7 @@ void GhostState::renderScene() {
     // check OpenGL error TODO: remove
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
+        cerr << "OpenGL error from Ghost state: " << err << endl;
     }
 }
 

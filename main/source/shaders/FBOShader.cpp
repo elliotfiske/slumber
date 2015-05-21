@@ -27,7 +27,7 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
+        cerr << "OpenGL error from FBO shader: " << err << endl;
     }
 }
 

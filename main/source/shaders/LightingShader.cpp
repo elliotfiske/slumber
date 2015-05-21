@@ -35,7 +35,7 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
+        cerr << "OpenGL error from Lighting Shader: " << err << endl;
     }
 }
 
