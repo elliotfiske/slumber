@@ -57,9 +57,9 @@ void Texture::init()
 
 void Texture::bind(GLint handle, GLint unit)
 {
-    glActiveTexture(GL_TEXTURE0 + unit);
+//    glActiveTexture(GL_TEXTURE0 + unit);
     glBindTexture(GL_TEXTURE_2D, tid);
-    glUniform1i(handle, unit);
+//    glUniform1i(handle, unit);
 }
 
 void Texture::unbind(GLint unit)

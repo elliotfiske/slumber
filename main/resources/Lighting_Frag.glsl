@@ -46,9 +46,7 @@ void main() {
     float cs = pow(max(0.0, dot(n, h)), Ushine);
     float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
 
-    int whatever;
-    vec2 funUV = vec2(fract(UV.x), fract(UV.y));
-    vec3 textureColor = texture2D( diffuseTextureSampler, funUV ).rgb;
+    vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;
     
     vec3 lAmbientColor  = UaColor * attenuation;
@@ -63,7 +61,7 @@ void main() {
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
     
     float bias = 0.000001;
-    float blur = 0.001;
+    float blur = 0.0001;
     float visibility = 1.0;
     
     if(shadowCoords.w > 0.0 &&

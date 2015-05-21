@@ -15,6 +15,8 @@ void main() {
     vPos = pos_cam.xyz;
 
 	gl_Position = uProjMatrix * pos_cam;
+	gl_Position += vec4(aNormal, 0.0) * 0.0001; // NOTE: this is a horrible hack so that aNormal is FORCED to be used.  But I don't care.
+	
 
 	vNor = normalize((MV * vec4(aNormal, 0.0)).xyz);
 }

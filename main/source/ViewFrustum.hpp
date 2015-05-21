@@ -3,7 +3,10 @@
 #define OUTSIDE -1
 #define INTERSECT 0
 
-class ViewFrustum{
+#ifndef viewfrust_h
+#define viewfrust_h
+
+class ViewFrustum {
 public:
    Plane planes[6];
     Plane leftPlane;
@@ -20,3 +23,5 @@ public:
    int sphereIsInside(glm::vec3 point, float radius);
     bool gotLight(glm::vec3 point, float radius);
 };
+
+#endif

@@ -3,9 +3,13 @@
 #include "GLSL.h"
 #include "assets.hpp"
 #include "Light.h"
-#include "Framebuffer.h"
+#include "shaders/Framebuffer.h"
 #include "Texture.h"
+#include "ViewFrustum.hpp"
 #include "collectible.h"
+
+#ifndef GameState_h
+#define GameState_h
 
 class GameState {
 public:
@@ -23,9 +27,7 @@ public:
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    Texture *bedWood;
-    
-    void update();
+    virtual void update();
     void draw();
     
     GLuint quad_vertexbuffer;
@@ -33,23 +35,28 @@ public:
     mat4 perspectiveMat;
     mat4 viewMat;
     
-private:
+    ViewFrustum *vf;
+    
+protected:
     Camera *camera;
     GLFWwindow *window;
     
-    double prevTime;
-    double currTime;
+    double prevTime, elapsedTime;
     
     void updatePerspectiveMat();
     void updateViewMat();
-    void renderScene();
+    virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     
-    void checkCollisions();
+    virtual void checkCollisions() {}
     
     void initAssets();
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
+    void billboardCheatSphericalBegin();
+    void billboardEnd();
 };
+
+#endif

@@ -3,7 +3,10 @@
 
 #include "GLSL.h"
 #include <string>
-#include "shader.h"
+#include "shaders/shader.h"
+#include "shaders/LightingShader.h"
+#include "shaders/ShadowShader.h"
+#include "shaders/FBOShader.h"
 #include <map>
 #include "actor.hpp"
 
@@ -12,9 +15,11 @@ using namespace std;
 #define CurrAssets Assets::instance()
 
 #ifdef XCODE_IS_TERRIBLE
-    #define RESOURCE_FOLDER "../resources/models/"
+    #define RESOURCE_FOLDER "../resources/"
+    #define MODELS_FOLDER "../resources/models/"
 #else
-    #define RESOURCE_FOLDER "resources/models/"
+    #define RESOURCE_FOLDER "resources/"
+    #define MODELS_FOLDER "resources/models/"
 #endif
 
 class Assets {
@@ -31,17 +36,17 @@ public:
     FBOShader      *darkeningShader;
     FBOShader      *motionBlurShader;
     
-    Actor* actorFromName(string actorName);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
+    
+    // A simple dictionary where the key is the OBJ name and the
+    //  value is the Actor instance that uses that model.
+    std::map<string, Actor*>  actorDictionary;
     
 private:
     Assets();
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     
-    // A simple dictionary where the key is the OBJ name and the
-    //  value is the position of that model.
-    std::map<string, glm::vec3>  levelDict;
 };
 
 
