@@ -1,6 +1,9 @@
 #include "glm/glm.hpp"
 
-class Plane{
+#ifndef PLANE_H
+#define PLANE_H
+
+class Plane {
 public:
    float a, b, c, d;
 
@@ -12,3 +15,5 @@ public:
    void makeNormal();
    
 };
+
+#endif

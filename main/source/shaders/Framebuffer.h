@@ -1,7 +1,7 @@
-//#ifndef _FRAMEBUFFER_H_
-//#define _FRAMEBUFFER_H_
+#ifndef _FRAMEBUFFER_H_
+#define _FRAMEBUFFER_H_
 
-#include "GLSL.h"
+#include "../GLSL.h"
 
 class Framebuffer {
 public:
@@ -33,4 +33,4 @@ private:
 	GLint unit;
 };
 
-//#endif//_FRAMEBUFFER_H_
+#endif//_FRAMEBUFFER_H_

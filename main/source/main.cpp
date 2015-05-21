@@ -1,5 +1,7 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
+#include "ParalyzedState.h"
+#include "GhostState.h"
 #include "network.h"
 #include <iostream>
 
@@ -44,7 +46,7 @@ int main(int argc, const char* argv[]) {
         isGhost = false;
     }
     
-    gameState = new GameState(window, isGhost);
+    gameState = new GhostState(window);
     while(window) {
         gameState->update();
         gameState->draw();

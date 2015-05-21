@@ -17,6 +17,7 @@ void GameState::initAssets() {
     clock = assets->actorDictionary["clock"];
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
+    enemy = assets->actorDictionary["enemy"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -46,11 +47,6 @@ void GameState::initAssets() {
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
-    // Set up camera in subclasses
-    if (isGhost_) {
-        camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    }
-    
     window = window_;
     isGhost = isGhost_;
     
@@ -63,33 +59,6 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     vf = new ViewFrustum();
 }
 
-void GameState::checkCollisions() {
-    if (vf->gotLight(collectible->center, 5.0)) {
-        collectible->collected();
-    }
-}
-
-float lastX, lastY, lastZ;
-
-/**
- * Send a packet to the paralyzed player with the current
- *  location of the ghost
- */
-void GameState::tellClientWhereGhostIs() {
-#ifdef THREADS
-    float x = camera->center.x;
-    float y = camera->center.y;
-    float z = camera->center.z;
-    
-    if (lastX != x || lastY != y || lastZ != z) {
-        lastX = camera->center.x;
-        lastY = camera->center.y;
-        lastZ = camera->center.z;
-        sendGhostPosition(lastX, lastY, lastZ);
-    }
-#endif
-}
-
 /**
  * Called every frame yo
  */
@@ -98,27 +67,15 @@ void GameState::update() {
         playerHealth = 1.2;
     }
     
-    currTime = glfwGetTime();
-    double elapsedTime = currTime - prevTime;
+    double currTime = glfwGetTime();
+    elapsedTime = currTime - prevTime;
+    prevTime = currTime;
     
     updateControl(window);
     updateCamDirection(camera); 
     updateLightPosition(light);
     
     collectible->step(elapsedTime);
-    
-    if (isGhost) {
-        camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
-        tellClientWhereGhostIs();
-    }
-    else {
-        Position ghostPos = getGhostPosition();
-        enemy->center.x = ghostPos.x;
-        enemy->center.y = ghostPos.y;
-        enemy->center.z = ghostPos.z;
-    }
-    
-    prevTime = currTime;
 }
 
 /**
@@ -176,42 +133,6 @@ void GameState::viewFrustumCulling(Actor curActor){
     }
 }
 
-/**
- * Actually draws each of the 3D objects in the scene
- */
-void GameState::renderScene() {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glCullFace(GL_BACK);
-    
-    updateViewMat();
-    
-    CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(viewMat);
-    CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
-
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
-
-    viewFrustumCulling(*bed);
-    room->draw(light);
-    bed->draw(light);
-    clock->draw(light);
-    lamp->draw(light);
-    
-    CurrAssets->collectibleShader->startUsingShader();
-    CurrAssets->collectibleShader->setViewMatrix(viewMat);
-    CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
-    
-    collectible->draw(light);
-    
-    shadowfbo->unbindTexture();
-    
-    // check OpenGL error TODO: remove
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
-    }
-}
 
 /**
  * Render a texture to a square that covers the whole screen.
@@ -260,7 +181,7 @@ void GameState::draw() {
     
     checkCollisions();
 }
-
+/*
 void GameState::billboardCheatSphericalBegin() {
    
    float modelview[16];
@@ -294,3 +215,4 @@ void GameState::billboardEnd() {
    // stored modelview matrix
    glPopMatrix();
 }
+*/

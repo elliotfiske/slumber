@@ -3,7 +3,7 @@
 
 #include "GLSL.h"
 #include <string>
-#include "shader.h"
+#include "shaders/shader.h"
 #include <map>
 #include "actor.hpp"
 
@@ -12,9 +12,11 @@ using namespace std;
 #define CurrAssets Assets::instance()
 
 #ifdef XCODE_IS_TERRIBLE
-    #define RESOURCE_FOLDER "../resources/models/"
+    #define RESOURCE_FOLDER "../resources/"
+    #define MODELS_FOLDER "../resources/models/"
 #else
-    #define RESOURCE_FOLDER "resources/models/"
+    #define RESOURCE_FOLDER "resources/"
+    #define MODELS_FOLDER "../resources/"
 #endif
 
 class Assets {

@@ -7,7 +7,8 @@
 //
 
 #include "shader.h"
-#include "glm/gtc/type_ptr.hpp" //value_ptr
+#include "../assets.hpp"
+#include "../glm/gtc/type_ptr.hpp" //value_ptr
 #include <cassert>
 #include <iostream>
 
@@ -18,13 +19,8 @@ using namespace glm;
  * Do the actual compiling + linking of the shader
  */
 GLuint linkProgram(string vertexShaderFile, string fragmentShaderFile) {
-    vertexShaderFile   = "resources/" + vertexShaderFile;
-    fragmentShaderFile = "resources/" + fragmentShaderFile;
-    
-#ifdef XCODE_IS_TERRIBLE
-    vertexShaderFile   = "../" + vertexShaderFile;
-    fragmentShaderFile = "../" + fragmentShaderFile;
-#endif
+    vertexShaderFile   = RESOURCE_FOLDER + vertexShaderFile;
+    fragmentShaderFile = RESOURCE_FOLDER + fragmentShaderFile;
     
     GLint error_flag;
     GLuint new_ProgramID;

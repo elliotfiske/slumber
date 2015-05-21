@@ -22,11 +22,7 @@ Assets::Assets() {
     motionBlurShader  = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
-    string levelDataName = "resources/level.txt";
-    
-#ifdef XCODE_IS_TERRIBLE
-    levelDataName = "../" + levelDataName;
-#endif
+    string levelDataName = RESOURCE_FOLDER + string("level.txt");
     
     readLevelData(levelDataName);
 }
@@ -49,7 +45,7 @@ void Assets::readLevelData(string filename) {
         levelFile >> newActorCenter.z;
         
         actorDictionary[currActorName] = new Actor(newActorCenter);
-        string objFilename(RESOURCE_FOLDER + currActorName + ".obj");
+        string objFilename(MODELS_FOLDER + currActorName + ".obj");
         loadShape(objFilename, actorDictionary[currActorName]);
     }
 }
@@ -90,7 +86,7 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
         // If we already loaded a texture, don't load it again!
         bool textureAlreadyLoaded = false;
         for (int ndx = 0; ndx < existingTextures.size(); ndx++) {
-            if (existingTextures[ndx]->filename == RESOURCE_FOLDER + material.diffuse_texname) {
+            if (existingTextures[ndx]->filename == MODELS_FOLDER + material.diffuse_texname) {
                 actor->texture[shapeNdx] = existingTextures[ndx];
                 textureAlreadyLoaded = true;
             }
@@ -98,7 +94,7 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
         
         if (!textureAlreadyLoaded) {
             actor->texture[shapeNdx] = new Texture();
-            actor->texture[shapeNdx]->setFilename(RESOURCE_FOLDER + material.diffuse_texname);
+            actor->texture[shapeNdx]->setFilename(MODELS_FOLDER + material.diffuse_texname);
             actor->texture[shapeNdx]->init();
             actor->textureUnit[shapeNdx] = textureUnit++;
             
@@ -120,7 +116,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), RESOURCE_FOLDER);
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), MODELS_FOLDER);
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }

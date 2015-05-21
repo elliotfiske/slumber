@@ -15,10 +15,11 @@
 class ParalyzedState : public GameState {
 public:
     ParalyzedState(GLFWwindow *window);
+    void update();
     
 protected:
     void checkCollisions();
-    
+    void renderScene();
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

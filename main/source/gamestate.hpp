@@ -3,10 +3,13 @@
 #include "GLSL.h"
 #include "assets.hpp"
 #include "Light.h"
-#include "Framebuffer.h"
+#include "shaders/Framebuffer.h"
 #include "Texture.h"
 #include "ViewFrustum.hpp"
 #include "collectible.h"
+
+#ifndef GameState_h
+#define GameState_h
 
 class GameState {
 public:
@@ -25,7 +28,7 @@ public:
     Framebuffer *shadowfbo;
     
     virtual void update();
-    virtual void draw();
+    void draw();
     
     GLuint quad_vertexbuffer;
     
@@ -38,16 +41,15 @@ protected:
     Camera *camera;
     GLFWwindow *window;
     
-    double prevTime;
-    double currTime;
+    double prevTime, elapsedTime;
     
     void updatePerspectiveMat();
     void updateViewMat();
-    void renderScene();
+    virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     
-    void checkCollisions();
+    virtual void checkCollisions() {}
     
     void initAssets();
     
@@ -56,3 +58,5 @@ protected:
     void billboardCheatSphericalBegin();
     void billboardEnd();
 };
+
+#endif

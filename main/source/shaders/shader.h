@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 #include <string>
-#include "glm/glm.hpp"
-#include "GLSL.h"
+#include "../glm/glm.hpp"
+#include "../GLSL.h"
 
 class BaseMVPShader {
 public:
