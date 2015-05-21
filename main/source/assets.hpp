@@ -19,7 +19,7 @@ using namespace std;
     #define MODELS_FOLDER "../resources/models/"
 #else
     #define RESOURCE_FOLDER "resources/"
-    #define MODELS_FOLDER "../resources/"
+    #define MODELS_FOLDER "resources/models/"
 #endif
 
 class Assets {
