@@ -7,8 +7,8 @@
 //
 
 #include "shader.h"
-#include "../assets.hpp"
 #include "../glm/gtc/type_ptr.hpp" //value_ptr
+#include "../assets.hpp"
 #include <cassert>
 #include <iostream>
 
@@ -86,104 +86,6 @@ BaseMVPShader::BaseMVPShader(string vertexShaderFile, string fragmentShaderFile)
     modelMatrix_UniformID      = GLSL::getUniformLocation(programID, "uModelMatrix");
 }
 
-/**
- * Initialize and link a vertex and fragment lighting shader
- *  from the specified file names.
- */
-LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFile): BaseMVPShader(vertexShaderFile, fragmentShaderFile) {
-    
-    // Make handles to attribute data
-    uv_AttributeID       = GLSL::getAttribLocation(programID, "aUV");
-    textureToDisplay_ID  = GLSL::getUniformLocation(programID, "shadowMap");
-    
-    // Make handles to uniforms
-    lightPos_UniformID         = GLSL::getUniformLocation(programID, "lightPos");
-    ambientMaterial_uniformID  = GLSL::getUniformLocation(programID, "UaColor");
-    diffuseMaterial_UniformID  = GLSL::getUniformLocation(programID, "UdColor");
-    specularMaterial_UniformID = GLSL::getUniformLocation(programID, "UsColor");
-    shininess_UniformID        = GLSL::getUniformLocation(programID, "Ushine");
-    lightMVP_UniformID         = GLSL::getUniformLocation(programID, "lightMVP");
-    
-    diffuseTexture_UniformID   = GLSL::getUniformLocation(programID, "diffuseTextureSampler");
-    
-    // check OpenGL error
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
-    }
-}
-
-/**
- * Initialize and link a vertex and fragment FBO shader
- *  from the specified file names.
- */
-FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFile) {
-    fbo_ProgramID = linkProgram(vertexShaderFile, fragmentShaderFile);
-    
-    // Make handles to attribute data
-    position_AttributeID = GLSL::getAttribLocation(fbo_ProgramID, "aPosition");
-    
-    // Make handles to uniforms
-    textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
-    intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
-    
-    // check OpenGL error
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
-    }
-}
-
-/**
- * Initialize and link a vertex and fragment shadow shader
- *  from the specified file names.
- */
-ShadowShader::ShadowShader(std::string vertexShaderFile, std::string fragmentShaderFile) {
-    shadow_ProgramID = linkProgram(vertexShaderFile, fragmentShaderFile);
-    
-    // Make handles to attribute data
-    position_AttributeID = GLSL::getAttribLocation(shadow_ProgramID, "vertPos");
-    
-    // Make handles to uniforms
-    MVP_UniformID = GLSL::getUniformLocation(shadow_ProgramID, "MVP");
-    
-    // check OpenGL error
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
-    }
-}
-
-/**
- * Initialize and link a shader for the all-white collectibles
- */
-
-// --------- SHADOW SHADER SETTERS ------------
-void ShadowShader::startUsingShader() {
-    glUseProgram(shadow_ProgramID);
-}
-
-void ShadowShader::setPositionArray(GLuint arrayID) {
-    GLSL::enableVertexAttribArray(position_AttributeID);
-    glBindBuffer(GL_ARRAY_BUFFER, arrayID);
-    glVertexAttribPointer(position_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
-}
-
-void ShadowShader::setMVPmatrix(mat4 MVPmatrix) {
-    glUniformMatrix4fv(MVP_UniformID, 1, GL_FALSE, value_ptr(MVPmatrix));
-}
-
-void ShadowShader::disableAttribArrays() {
-    glDisableVertexAttribArray(position_AttributeID);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
-
-void ShadowShader::setIndexArray(GLuint arrayID) {
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, arrayID);
-}
-
-
 // --------- BASE MVP SHADER SHADER SETTERS -----------
 void BaseMVPShader::startUsingShader() {
     glUseProgram(programID);
@@ -224,47 +126,4 @@ void BaseMVPShader::disableAttribArrays() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-// --------- BASE LIGHTING SHADER SHADER SETTERS -----------
-
-void LightingShader::setUVArray(GLuint arrayID) {
-    GLSL::enableVertexAttribArray(uv_AttributeID);
-    glBindBuffer(GL_ARRAY_BUFFER, arrayID);
-    glVertexAttribPointer(uv_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
-}
-
-void LightingShader::setLightPos(vec3 lightPos) {
-    glUniform3fv(lightPos_UniformID, 1, value_ptr(lightPos));
-}
-
-void LightingShader::setAmbientColor(float color[]) {
-    glUniform3f(ambientMaterial_uniformID, color[0], color[1], color[2]);
-}
-
-void LightingShader::setDiffuseColor(float color[]) {
-    glUniform3f(diffuseMaterial_UniformID, color[0], color[1], color[2]);
-}
-
-void LightingShader::setSpecularColor(float color[]) {
-    glUniform3f(specularMaterial_UniformID, color[0], color[1], color[2]);
-}
-
-void LightingShader::setShininess(float shininess) {
-    glUniform1f(shininess_UniformID, shininess);
-}
-
-void LightingShader::setLightMVP(mat4 lightMVP) {
-    glUniformMatrix4fv(lightMVP_UniformID, 1, GL_FALSE, value_ptr(lightMVP));
-}
-
-
-
-// ----------- FBO SHADER SETTERS ------------
-void FBOShader::setIntensity(float intensity) {
-    glUniform1f(intensity_UniformID, intensity);
-}
-
-void FBOShader::animateIntensity(float min, float max, double currTime, float slowFactor) {
-    float newIntensity = sin(currTime * slowFactor) * (max - min) + min*2;
-    setIntensity(newIntensity);
-}
 

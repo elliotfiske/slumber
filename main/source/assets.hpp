@@ -4,6 +4,9 @@
 #include "GLSL.h"
 #include <string>
 #include "shaders/shader.h"
+#include "shaders/LightingShader.h"
+#include "shaders/ShadowShader.h"
+#include "shaders/FBOShader.h"
 #include <map>
 #include "actor.hpp"
 
