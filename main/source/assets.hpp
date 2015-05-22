@@ -33,8 +33,11 @@ public:
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
     BaseMVPShader  *collectibleShader;
+    
     FBOShader      *darkeningShader;
     FBOShader      *motionBlurShader;
+    FBOShader      *ghostShader;
+    FBOShader      *woozyShader;
     
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     

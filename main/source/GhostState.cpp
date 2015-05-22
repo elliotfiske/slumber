@@ -35,9 +35,9 @@ void GhostState::renderScene() {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
     
-    viewFrustumCulling(*bed);
-    room->draw(light);
+    //    viewFrustumCulling(*bed);
     bed->draw(light);
+    room->draw(light);
     clock->draw(light);
     lamp->draw(light);
     

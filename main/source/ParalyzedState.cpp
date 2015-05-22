@@ -44,9 +44,9 @@ void ParalyzedState::renderScene() {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
     
-    viewFrustumCulling(*bed);
-    room->draw(light);
+    //    viewFrustumCulling(*bed);
     bed->draw(light);
+    room->draw(light);
     clock->draw(light);
     lamp->draw(light);
     
@@ -61,6 +61,6 @@ void ParalyzedState::renderScene() {
     // check OpenGL error TODO: remove
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error from Paralyzed State: " << err << endl;
+        cerr << "OpenGL error: " << err << endl;
     }
 }

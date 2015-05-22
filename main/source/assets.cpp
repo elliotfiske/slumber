@@ -17,9 +17,13 @@ using namespace std;
  */
 Assets::Assets() {
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
+    ghostShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Ghost_Vision.glsl");
+    woozyShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Woozy.glsl");
     collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
+    
     darkeningShader   = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader  = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
+    
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
