@@ -51,7 +51,7 @@ void Collectible::draw(Light *light) {
     if (!visible) {
         return;
     }
-    
+   
     setModel();
 
     CurrAssets->collectibleShader->setPositionArray(posID[0]);
