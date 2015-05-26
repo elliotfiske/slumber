@@ -15,6 +15,7 @@ void GameState::initAssets() {
     
     bed =   assets->actorDictionary["bed"];
     clock = assets->actorDictionary["clock"];
+    tv = assets->actorDictionary["tv"];
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
@@ -112,6 +113,7 @@ void GameState::renderShadowBuffer() {
     lamp->drawShadows(light);
     room->drawShadows(light);
     clock->drawShadows(light);
+    tv->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
