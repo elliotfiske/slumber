@@ -37,7 +37,11 @@ public:
     
     ViewFrustum *vf;
     
-    GLuint antialiasTexture, intermediateFBO, screenTexture;
+    GLuint antialiasTexture, intermediateFBO;
+    
+    /* Swapping game states */
+    bool shouldSwitch;
+    virtual GameState* newState();
     
 protected:
     Camera *camera;

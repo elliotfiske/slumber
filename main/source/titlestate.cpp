@@ -8,9 +8,23 @@
 
 #include "titlestate.h"
 #include "control.hpp"
+#include "GhostState.h"
+#include "ParalyzedState.h"
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
-    camera = new Camera(vec3(0.0, 5.0, -95.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    camera = new Camera(vec3(0.0, 5.0, -65.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    
+    Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
+    title = new Collectible(*tempCollectible);
+    title->center = vec3(0.0, 11.0, -90.0);
+    
+    Actor *tempCollectible1 = CurrAssets->actorDictionary["collect"];
+    button1 = new Collectible(*tempCollectible1);
+    button1->center = vec3(0.0, 4.0, -100.0);
+    
+    Actor *tempCollectible2 = CurrAssets->actorDictionary["collect"];
+    button2 = new Collectible(*tempCollectible2);
+    button2->center = vec3(0.0, -1.0, -100.0);
 }
 
 /**
@@ -41,6 +55,9 @@ void TitleState::renderScene() {
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
 //	collectible->draw(light);
+    title->draw(light);
+    button1->draw(light);
+    button2->draw(light);
     
     shadowfbo->unbindTexture();
     
@@ -55,8 +72,38 @@ void TitleState::renderScene() {
  * Check the user's mouse to see if they're mousing over either "PLAY"
  *  button
  */
+GameState *nextState;
 void TitleState::update() {
-    // DON'T CALL super.update() plz
-    updateCamDirection(camera);
-//    updateLightPosition(light);
+    vec2 mousePos = titleControl();
+    
+    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 470.0 && mousePos.y > 353.0) {
+        button1->red = true;
+    }
+    else {
+        button1->red = false;
+    }
+    
+    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 600.0 && mousePos.y > 491.0) {
+        button2->red = true;
+    }
+    else {
+        button2->red = false;
+    }
+    
+    
+    if (shouldStartParalyzed()) {
+        shouldSwitch = true;
+        nextState = new ParalyzedState(window);
+    }
+    
+    if (shouldStartGhost()) {
+        shouldSwitch = true;
+        nextState = new GhostState(window);
+        CurrAssets->currShader = CurrAssets->ghostShader;
+    }
+}
+
+
+GameState* TitleState::newState() {
+    return nextState;
 }

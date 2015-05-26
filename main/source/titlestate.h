@@ -18,6 +18,10 @@ public:
     
     void renderScene();
     void update();
+    
+    Collectible *title, *button1, *button2;
+    
+    GameState* newState();
 };
 
 #endif /* defined(__slumber__titlestate__) */

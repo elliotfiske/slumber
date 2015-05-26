@@ -51,6 +51,10 @@ int main(int argc, const char* argv[]) {
     while(window) {
         gameState->update();
         gameState->draw();
+        
+        if (gameState->shouldSwitch) {
+            gameState = gameState->newState();
+        }
     }
     
 #ifdef THREADS

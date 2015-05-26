@@ -13,9 +13,11 @@
 GhostState::GhostState(GLFWwindow *window) :
 GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-//    CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
-    CurrAssets->ghostLightingShader = CurrAssets->lightingShader;
-    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
+    CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
+    CurrAssets->currFBOShader = CurrAssets->ghostShader;
+//    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
+    
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
 
 void GhostState::checkCollisions() {

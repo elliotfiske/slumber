@@ -10,44 +10,8 @@ using namespace glm;
 
 float playerHealth = 1.2;
 
-GLuint generateMultiSampleTexture(GLuint samples) {
-    GLuint texture;
-    glGenTextures(1, &texture);
-    
-    glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, texture);
-    
-    glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, samples, GL_RGB, 100, 100, GL_TRUE);
-    
-    glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0);
-    
-    return texture;
-}
-
-// Generates a texture that is suited for attachments to a framebuffer
-GLuint generateAttachmentTexture(GLboolean depth, GLboolean stencil)
-{
-    // What enum to use?
-    GLenum attachment_type;
-    if(!depth && !stencil)
-        attachment_type = GL_RGB;
-    else if(depth && !stencil)
-        attachment_type = GL_DEPTH_COMPONENT;
-    else if(!depth && stencil)
-        attachment_type = GL_STENCIL_INDEX;
-    
-    //Generate texture ID and load texture data
-    GLuint textureID;
-    glGenTextures(1, &textureID);
-    glBindTexture(GL_TEXTURE_2D, textureID);
-    if(!depth && !stencil)
-        glTexImage2D(GL_TEXTURE_2D, 0, attachment_type, WINDOW_WIDTH, WINDOW_HEIGHT, 0, attachment_type, GL_UNSIGNED_BYTE, NULL);
-    else // Using both a stencil and depth test, needs special format arguments
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, WINDOW_WIDTH, WINDOW_HEIGHT, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    
-    return textureID;
+GameState* GameState::newState() {
+    return new GameState(window, false);
 }
 
 void GameState::initAssets() {
@@ -66,27 +30,10 @@ void GameState::initAssets() {
     framebuffer = new Framebuffer();
     framebuffer->generate();
     framebuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
-
-    /** ANTI ALIASING */
-//    framebuffer->bind();
-//    antialiasTexture = generateMultiSampleTexture(4);
-//    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, antialiasTexture, 0);
-//    framebuffer->unbind();
     
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateShadowTexture(2048, 2048);
-    
-    
-    // second framebuffer
-    screenTexture = generateAttachmentTexture(false, false);
-    glGenFramebuffers(1, &intermediateFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, intermediateFBO);
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, screenTexture, 0);	// We only need a color buffer
-    
-    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-        cout << "ERROR::FRAMEBUFFER:: Intermediate framebuffer is not complete!" << endl;
-    glBindFramebuffer(GL_FRAMEBUFFER, 0);
     
 
     light = new Light();
@@ -203,17 +150,17 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->ghostShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->ghostShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->currShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
     
-    glUniform1f(CurrAssets->ghostShader->intensity_UniformID, 16.2);
-    glUniform1f(CurrAssets->ghostShader->time_UniformID, coolTime);
+    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
+    glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->ghostShader->position_AttributeID, // attribute
+                          CurrAssets->currShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?

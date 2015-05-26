@@ -11,9 +11,17 @@
 
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    CurrAssets->currFBOShader = CurrAssets->currShader;
+    
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
 
 void ParalyzedState::checkCollisions() {
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * viewMat * collectible->modelMat;
+    vf->extractPlanes(comboMatrix);
+    
     if (vf->gotLight(collectible->center, 5.0)) {
         collectible->collected();
     }
@@ -26,6 +34,7 @@ void ParalyzedState::update() {
     enemy->center.x = ghostPos.x;
     enemy->center.y = ghostPos.y;
     enemy->center.z = ghostPos.z;
+    
 }
 
 /**
