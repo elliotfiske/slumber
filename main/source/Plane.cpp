@@ -1,5 +1,6 @@
 #include "Plane.hpp"
 #include "glm/glm.hpp"
+#include <math.h>
 #include <stdio.h>
 
 Plane::Plane() {}
@@ -12,7 +13,6 @@ void Plane::setCoefficients(float a_, float b_, float c_, float d_) {
    c = c_;
    d = d_;
 }
-   
 
 float Plane::distance(glm::vec3 p) {
    return a*p.x + b*p.y + c*p.z + d;
@@ -20,7 +20,7 @@ float Plane::distance(glm::vec3 p) {
 
 void Plane::makeNormal(){
    float mag;
-   mag = sqrt(a * a + b * b + c * c);
+   mag = sqrt((a * a) + (b * b) + (c * c));
    a = a / mag;
    b = b / mag;
    c = c / mag;

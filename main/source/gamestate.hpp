@@ -3,8 +3,13 @@
 #include "GLSL.h"
 #include "assets.hpp"
 #include "Light.h"
-#include "Framebuffer.h"
+#include "shaders/Framebuffer.h"
 #include "Texture.h"
+#include "ViewFrustum.hpp"
+#include "collectible.h"
+
+#ifndef GameState_h
+#define GameState_h
 
 class GameState {
 public:
@@ -13,41 +18,45 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *real_bed, *enemy;
+    Actor *room, *bed, *clock, *enemy;
     Actor *lamp;
-    Light *light;
+    Collectible *collectible;
     
+    Light *light;
+
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
     
-    Texture *bedWood;
-    
-    void update();
+    virtual void update();
     void draw();
     
-    // TODO: move to assets or something
     GLuint quad_vertexbuffer;
     
     mat4 perspectiveMat;
     mat4 viewMat;
     
-private:
+    ViewFrustum *vf;
+    
+protected:
     Camera *camera;
     GLFWwindow *window;
     
-    double prevTime;
-    double currTime;
+    double prevTime, elapsedTime;
     
-    void setPerspectiveMat();
-    void setView();
-    void renderScene();
+    void updatePerspectiveMat();
+    void updateViewMat();
+    virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     
-    void checkCollisions();
+    virtual void checkCollisions() {}
     
     void initAssets();
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
+    void billboardCheatSphericalBegin();
+    void billboardEnd();
 };
+
+#endif

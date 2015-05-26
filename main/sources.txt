@@ -11,8 +11,6 @@ set(HEADERS
    control.hpp
    assets.hpp
    util.h
-   Framebuffer.h
-   shader.h
    network.h
    network_setup.h
    Light.h
@@ -20,6 +18,16 @@ set(HEADERS
    Texture.h
    Plane.hpp
    ViewFrustum.hpp
+   collectible.h
+   titlestate.h
+   ParalyzedState.h
+   GhostState.h
+
+   shaders/Framebuffer.h
+   shaders/shader.h
+   shaders/LightingShader.h
+   shaders/FBOShader.h
+   shaders/ShadowShader.h
 )
 
 # List all .c / .cpp files here
@@ -35,12 +43,20 @@ set(SOURCES
    control.cpp
    assets.cpp
    util.c
-   Framebuffer.cpp
-   shader.cpp
    network.cpp
    network_setup.cpp
    Light.cpp
    Texture.cpp
    Plane.cpp
    ViewFrustum.cpp
+   collectible.cpp
+   titlestate.cpp
+   ParalyzedState.cpp
+   GhostState.cpp
+
+   shaders/Framebuffer.cpp
+   shaders/shader.cpp
+   shaders/LightingShader.cpp
+   shaders/FBOShader.cpp
+   shaders/ShadowShader.cpp
 )
