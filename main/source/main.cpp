@@ -46,7 +46,7 @@ int main(int argc, const char* argv[]) {
         isGhost = false;
     }
     
-    gameState = new GhostState(window);
+    gameState = new ParalyzedState(window);
     while(window) {
         gameState->update();
         gameState->draw();

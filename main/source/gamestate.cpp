@@ -143,17 +143,17 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->ghostShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->ghostShader->textureToDisplay_ID);
     
-    glUniform1f(CurrAssets->motionBlurShader->intensity_UniformID, 16.2);
-    glUniform1f(CurrAssets->motionBlurShader->time_UniformID, coolTime);
+    glUniform1f(CurrAssets->ghostShader->intensity_UniformID, 16.2);
+    glUniform1f(CurrAssets->ghostShader->time_UniformID, coolTime);
     coolTime += 0.17;
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->motionBlurShader->position_AttributeID, // attribute
+                          CurrAssets->ghostShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?

@@ -11,9 +11,9 @@
 #include "network.h"
 
 GhostState::GhostState(GLFWwindow *window) :
-	GameState(window, true) {
-	camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-        CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
+GameState(window, true) {
+    camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+//    CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
 }
 
 void GhostState::checkCollisions() {
@@ -30,11 +30,11 @@ void GhostState::renderScene() {
 
 	updateViewMat();
 
-	CurrAssets->lightingShader->startUsingShader();
-	CurrAssets->lightingShader->setViewMatrix(viewMat);
-	CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->ghostLightingShader->startUsingShader();
+	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
+	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
 
-	shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 0);
 
     //	viewFrustumCulling(*bed);
     bed->draw(light);
