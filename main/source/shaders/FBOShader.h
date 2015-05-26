@@ -25,7 +25,6 @@ public:
     
     /** OPTIONAL PARAMETERS */
     GLuint time_UniformID;
-    GLuint resolution_UniformID;
     
     void setIntensity(float intensity);
     void animateIntensity(float min, float max, double currTime, float slowFactor);

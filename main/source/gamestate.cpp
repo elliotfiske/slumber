@@ -143,17 +143,17 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->ghostShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->ghostShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
     
-    glUniform1f(CurrAssets->ghostShader->intensity_UniformID, 0.6);
-    glUniform1f(CurrAssets->ghostShader->time_UniformID, coolTime);
+    glUniform1f(CurrAssets->motionBlurShader->intensity_UniformID, 16.2);
+    glUniform1f(CurrAssets->motionBlurShader->time_UniformID, coolTime);
     coolTime += 0.17;
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->ghostShader->position_AttributeID, // attribute
+                          CurrAssets->motionBlurShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?
@@ -161,7 +161,7 @@ void GameState::renderFrameBuffer() {
                           (void*)0                        // array buffer offset
                           );
     
-    // Draw the triangles that cover the screenp
+    // Draw the triangles that cover the screen
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);

@@ -32,6 +32,7 @@ public:
     
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
+    LightingShader *ghostLightingShader;
     BaseMVPShader  *collectibleShader;
     
     FBOShader      *darkeningShader;

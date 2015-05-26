@@ -25,7 +25,6 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
 
     time_UniformID = glGetUniformLocation(fbo_ProgramID, "time");
-    resolution_UniformID = glGetUniformLocation(fbo_ProgramID, "resolution");
     
     // check OpenGL error
     GLenum err;
