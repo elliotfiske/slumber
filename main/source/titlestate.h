@@ -15,6 +15,9 @@
 class TitleState : public GameState {
 public:
     TitleState(GLFWwindow *window);
+    
+    void renderScene();
+    void update();
 };
 
 #endif /* defined(__slumber__titlestate__) */

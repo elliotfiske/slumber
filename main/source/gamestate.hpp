@@ -37,6 +37,8 @@ public:
     
     ViewFrustum *vf;
     
+    GLuint antialiasTexture, intermediateFBO, screenTexture;
+    
 protected:
     Camera *camera;
     GLFWwindow *window;
