@@ -46,7 +46,7 @@ void GhostState::renderScene() {
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-	collectible->draw(light);
+//	collectible->draw(light);
 
 	shadowfbo->unbindTexture();
 
