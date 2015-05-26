@@ -25,7 +25,7 @@ GLFWwindow* setupWindow(){
     // Initialize GLAD
     if (!gladLoadGL()) {
         printf("Couldn't initialize GLAD\n");
-        glfwDestroyWindow(window);
+        glfwDestroyWindow(window); 
         glfwTerminate();
         return NULL;
     }
