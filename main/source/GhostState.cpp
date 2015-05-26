@@ -13,6 +13,7 @@
 GhostState::GhostState(GLFWwindow *window) :
 	GameState(window, true) {
 	camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+        CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
 }
 
 void GhostState::checkCollisions() {
