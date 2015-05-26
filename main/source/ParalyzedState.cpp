@@ -10,6 +10,8 @@
 #include "network.h"
 
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
+    playerHealth = 100;
+    playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
 }
 
@@ -63,4 +65,34 @@ void ParalyzedState::renderScene() {
     while ((err = glGetError()) != GL_NO_ERROR) {
         cerr << "OpenGL error from Paralyzed State: " << err << endl;
     }
+}
+void ParalyzedState::increaseHealth(int healthValue){
+   if(playerHealth < 100){
+      playerHealth += healthValue;
+   }
+   else {
+      playerHealth = 100;
+   }
+}
+void ParalyzedState::lowerHealth(int severity){
+   if(playerSensitivity = false){
+      playerHealth -= severity;
+   }
+   else {
+      playerHealth -= (severity + (severity/2));
+   }
+}
+void ParalyzedState::increaseSensitive(){
+   playerSensitivity = true;
+}
+void ParalyzedState::lowerSensitive(){
+   playerSensitivity = false;
+}
+
+int ParalyzedState::getHealth(){
+   return playerHealth;
+}
+    
+bool ParalyzedState::getSensitivity(){
+   return playerSensitivity;
 }

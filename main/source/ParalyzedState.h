@@ -16,10 +16,18 @@ class ParalyzedState : public GameState {
 public:
     ParalyzedState(GLFWwindow *window);
     void update();
+    void increaseHealth(int healthValue);
+    void lowerHealth(int severity);
+    void increaseSensitive();
+    void lowerSensitive();
+    int getHealth();
+    bool getSensitivity();
     
 protected:
     void checkCollisions();
     void renderScene();
+    int playerHealth;
+    bool playerSensitivity;
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */
