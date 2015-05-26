@@ -10,8 +10,10 @@ GLFWwindow* setupWindow(){
     
     glfwDefaultWindowHints();
     glfwWindowHint(GLFW_RESIZABLE, false);
-    
-    window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", NULL, NULL);
+
+    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+   window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
     if(window == NULL){
         fprintf(stderr, "Failed to initialize window\n");
         glfwTerminate();
