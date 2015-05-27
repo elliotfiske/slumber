@@ -17,6 +17,14 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     title = CurrAssets->billboardDictionary["title.png"];
     
     CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
+    
+    
+    Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
+    button1 = new Collectible(*tempCollectible);
+    button1->center = vec3(0.0, 4.0, -100.0);
+    
+    button2 = new Collectible(*tempCollectible);
+    button2->center = vec3(0.0, -1.0, -100.0);
 }
 
 /**
@@ -42,6 +50,13 @@ void TitleState::renderScene() {
     lamp->draw(light);
     tv->draw(light);
     
+    CurrAssets->collectibleShader->startUsingShader();
+    CurrAssets->collectibleShader->setViewMatrix(viewMat);
+    CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
+    
+    button1->draw(light);
+    button2->draw(light);
+    
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
@@ -65,19 +80,19 @@ void TitleState::renderScene() {
 GameState *nextState;
 void TitleState::update() {
     vec2 mousePos = titleControl();
-//    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 470.0 && mousePos.y > 353.0) {
-//        button1->red = true;
-//    }
-//    else {
-//        button1->red = false;
-//    }
-//    
-//    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 600.0 && mousePos.y > 491.0) {
-//        button2->red = true;
-//    }
-//    else {
-//        button2->red = false;
-//    }
+    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 470.0 && mousePos.y > 353.0) {
+        button1->red = true;
+    }
+    else {
+        button1->red = false;
+    }
+    
+    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 600.0 && mousePos.y > 491.0) {
+        button2->red = true;
+    }
+    else {
+        button2->red = false;
+    }
     
     if (shouldStartParalyzed()) {
         shouldSwitch = true;
