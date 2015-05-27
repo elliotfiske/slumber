@@ -16,7 +16,7 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     
     title = CurrAssets->billboardDictionary["title.png"];
     
-    CurrAssets->play("resources/sounds/musicbox.flac");
+    CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
 }
 
 /**
