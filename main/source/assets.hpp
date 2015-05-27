@@ -18,11 +18,13 @@ using namespace std;
 #define CurrAssets Assets::instance()
 
 #ifdef XCODE_IS_TERRIBLE
-    #define RESOURCE_FOLDER "../resources/"
+    #define RESOURCE_FOLDER string("../resources/")
     #define MODELS_FOLDER string("../resources/models/")
+    #define SOUND_FOLDER string("../resources/sounds")
 #else
-    #define RESOURCE_FOLDER "resources/"
-    #define MODELS_FOLDER "resources/models/"
+    #define RESOURCE_FOLDER string("resources/")
+    #define MODELS_FOLDER string("resources/models/")
+    #define SOUND_FOLDER string("resources/sounds")
 #endif
 
 class Assets {
