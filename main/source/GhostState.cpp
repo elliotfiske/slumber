@@ -35,18 +35,22 @@ void GhostState::renderScene() {
 	glCullFace(GL_BACK);
 
 	updateViewMat();
+	updateHighlightMat();
 
 	CurrAssets->ghostLightingShader->startUsingShader();
 	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
 	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 0);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 1);
 
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
     tv->draw(light);
 	lamp->draw(light);
+
+	shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
@@ -60,8 +64,6 @@ void GhostState::renderScene() {
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 //	collectible->draw(light);
-
-	shadowfbo->unbindTexture();
 
 	// check OpenGL error
 	GLenum err;

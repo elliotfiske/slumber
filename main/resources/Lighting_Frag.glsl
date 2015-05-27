@@ -11,6 +11,7 @@ varying vec2 UV;
 varying vec3 vPos;
 varying vec3 vNor;
 varying vec4 shadowClip;
+varying vec4 highlightCoords;
 varying vec3 vLight;
 
 vec2 poissonDisk[] = vec2[](
@@ -68,13 +69,14 @@ void main() {
         shadowCoords.x > 0.0 && shadowCoords.x < 1.0 &&
         shadowCoords.y > 0.0 && shadowCoords.y < 1.0 &&
         shadowCoords.z > 0.0 && shadowCoords.z < 1.0) {
+		visibility -= .5;
         for(int i = 0; i < 4; i++) {
             // Get the distance to light stored in the shadow map.
             // This value is in NDC between 0 and 1.
             // (Note: distToLight we computed for Blinn-Phong is in camera space.)
             float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
             if(distToLightStored < shadowCoords.z + bias) {
-//                visibility -= 0.25;
+                visibility -= 0.25;
             }
         }
     }

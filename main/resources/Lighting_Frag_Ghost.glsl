@@ -11,6 +11,7 @@ varying vec2 UV;
 varying vec3 vPos;
 varying vec3 vNor;
 varying vec4 shadowClip;
+varying vec4 highlightCoords;
 varying vec3 vLight;
 
 vec2 poissonDisk[] = vec2[](
@@ -83,11 +84,29 @@ void main() {
         }
     }
 
+	vec4 hCoords = highlightCoords;
+	hCoords = hCoords / hCoords.w;
+	hCoords.xyz = 0.5 * hCoords.xyz + 0.5;
+
+	float amountHighlight = 0.0;
+	if(hCoords.w > 0.0 &&
+        hCoords.x > 0.0 && hCoords.x < 1.0 &&
+        hCoords.y > 0.0 && hCoords.y < 1.0 &&
+        hCoords.z > 0.0 && hCoords.z < 1.0) {
+		amountHighlight = 1.0;
+	}
+
     // Make everything lighter and blue
     vec4 currColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
-    currColor.z = (currColor.x + currColor.y + currColor.z) / 3.0 * 2.1;
-    currColor.x /= 1.7;
-    currColor.y /= 1.3;
+	if (amountHighlight > 0.0) {
+		float color = (currColor.x + currColor.y + currColor.z) / 3;
+		currColor = vec4(color, color, color, 1.0);
+	}
+	else {
+		currColor.z = (currColor.x + currColor.y + currColor.z) / 3.0 * 2.1;
+		currColor.x /= 1.7;
+		currColor.y /= 1.3;
+	}
     
     gl_FragColor = currColor;
 }
