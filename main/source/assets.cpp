@@ -34,6 +34,8 @@ Assets::Assets() {
     
     string billboardsName = RESOURCE_FOLDER + string("billboards.txt");
     generateBillboards(billboardsName);
+
+    // TODO: pre-load sounds by calling this->loadSoundBuffer(<filename>);
 }
 
 /**
@@ -154,7 +156,19 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
     actor->material[shapeNdx] = material;
 }
 
+void Assets::play(string filename, vec3 pos) {
+    if (soundBuffers.find(filename) == soundBuffers.end())
+        this->loadSoundBuffer(filename);
 
+    sf::SoundBuffer buf = soundBuffers[filename];
+    sf::Sound sound(buf);
+
+    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.play();
+
+    // keep the sound in scope so we can make sure it is not recycled
+    sounds.push_back(sound);
+}
 
 /**
  * Sends .OBJ data to the GPU and tells the actor what its
@@ -175,5 +189,11 @@ void Assets::loadShape(string filename, Actor *actor) {
     }
     
     actor->numShapes = shapes.size();
+}
+
+void Assets::loadSoundBuffer(string filename) {
+    sf::SoundBuffer buf;
+    buf.loadFromFile(filename);
+    soundBuffers[filename] = buf;
 }
 
