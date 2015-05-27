@@ -11,6 +11,8 @@
 #include "actor.hpp"
 #include "BillboardActor.h"
 
+#include <SFML/Audio.hpp>
+
 using namespace std;
 
 #define CurrAssets Assets::instance()
@@ -45,6 +47,7 @@ public:
     FBOShader      *currFBOShader;
     
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
+    void play(string filename, vec3 pos = vec3(0.0f, 0.0f, 0.0f));
     
     // A simple dictionary where the key is the OBJ name and the
     //  value is the Actor instance that uses that model.
@@ -57,7 +60,10 @@ private:
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     void generateBillboards(string filename);
+    void loadSoundBuffer(string filename);
     
+    map<string, sf::SoundBuffer> soundBuffers;
+    vector<sf::Sound> sounds;
 };
 
 
