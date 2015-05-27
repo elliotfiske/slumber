@@ -165,6 +165,9 @@ void Assets::play(string filename, vec3 pos) {
 
     sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
     sound.play();
+    
+//    while (sound.getStatus() == sf::Sound::Playing) {
+//    }
 
     // keep the sound in scope so we can make sure it is not recycled
     sounds.push_back(sound);
