@@ -48,6 +48,7 @@ void ParalyzedState::renderScene() {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
+    tv->draw(light);
     lamp->draw(light);
     
     CurrAssets->collectibleShader->startUsingShader();

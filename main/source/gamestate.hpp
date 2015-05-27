@@ -18,7 +18,7 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *enemy;
+    Actor *room, *bed, *clock, *enemy, *tv;
     Actor *lamp;
     Collectible *collectible;
     
@@ -36,6 +36,8 @@ public:
     mat4 viewMat;
     
     ViewFrustum *vf;
+    
+    GLuint antialiasTexture, intermediateFBO, screenTexture;
     
 protected:
     Camera *camera;

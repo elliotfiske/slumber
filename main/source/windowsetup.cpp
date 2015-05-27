@@ -28,7 +28,7 @@ GLFWwindow* setupWindow(){
         return NULL;
     }
     
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+//    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     glEnable(GL_DEPTH_TEST);
     glEnable (GL_BLEND);
