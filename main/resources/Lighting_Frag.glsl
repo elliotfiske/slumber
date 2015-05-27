@@ -61,8 +61,8 @@ void main() {
     // Go from [-1,1] to [0,1]
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
     
-    float bias = 0.00001;
-    float blur = 0.001;
+    float bias = 0.000001;
+    float blur = 0.0001;
     float visibility = 1.0;
     
     if(shadowCoords.w > 0.0 &&
@@ -70,15 +70,15 @@ void main() {
         shadowCoords.y > 0.0 && shadowCoords.y < 1.0 &&
         shadowCoords.z > 0.0 && shadowCoords.z < 1.0) {
 		visibility -= .5;
-//        for(int i = 0; i < 4; i++) {
-//            // Get the distance to light stored in the shadow map.
-//            // This value is in NDC between 0 and 1.
-//            // (Note: distToLight we computed for Blinn-Phong is in camera space.)
-//            float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
-//            if(distToLightStored < shadowCoords.z + bias) {
-//                visibility -= 0.25;
-//            }
-//        }
+        for(int i = 0; i < 4; i++) {
+            // Get the distance to light stored in the shadow map.
+            // This value is in NDC between 0 and 1.
+            // (Note: distToLight we computed for Blinn-Phong is in camera space.)
+            float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
+            if(distToLightStored < shadowCoords.z + bias) {
+                visibility -= 0.25;
+            }
+        }
     }
 
 

@@ -54,7 +54,7 @@ void ParalyzedState::renderScene() {
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 8);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 1);
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);

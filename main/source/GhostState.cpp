@@ -42,7 +42,7 @@ void GhostState::renderScene() {
 	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 8);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 1);
 
     bed->draw(light);
 	room->draw(light);
