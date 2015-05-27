@@ -62,8 +62,9 @@ void ParalyzedState::renderScene() {
     CurrAssets->lightingShader->startUsingShader();
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 1);
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);
@@ -72,13 +73,13 @@ void ParalyzedState::renderScene() {
     tv->draw(light);
     lamp->draw(light);
     
+    shadowfbo->unbindTexture();
+
     CurrAssets->collectibleShader->startUsingShader();
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
     collectible->draw(light);
-    
-    shadowfbo->unbindTexture();
     
     // check OpenGL error TODO: remove
     GLenum err;
