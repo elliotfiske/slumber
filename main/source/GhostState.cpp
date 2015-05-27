@@ -47,6 +47,8 @@ void GhostState::renderScene() {
 	clock->draw(light);
     tv->draw(light);
 	lamp->draw(light);
+
+	shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
@@ -60,8 +62,6 @@ void GhostState::renderScene() {
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 //	collectible->draw(light);
-
-	shadowfbo->unbindTexture();
 
 	// check OpenGL error
 	GLenum err;
