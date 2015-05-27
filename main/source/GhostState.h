@@ -21,7 +21,7 @@ protected:
     
     void checkCollisions();
     void renderScene();
-    
+
     void update();
 };
 

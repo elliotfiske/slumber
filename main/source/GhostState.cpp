@@ -35,12 +35,14 @@ void GhostState::renderScene() {
 	glCullFace(GL_BACK);
 
 	updateViewMat();
+	updateHighlightMat();
 
 	CurrAssets->ghostLightingShader->startUsingShader();
 	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
 	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 0);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 8);
 
     bed->draw(light);
 	room->draw(light);

@@ -28,6 +28,7 @@ public:
     void setSpecularColor(float color[]);
     void setShininess(float shininess);
     void setLightMVP(glm::mat4 lightMVP);
+	void setHighlightVP(glm::mat4 VP);
     
 private:
     GLuint lightPos_UniformID;
@@ -36,6 +37,7 @@ private:
     GLuint specularMaterial_UniformID;
     GLuint shininess_UniformID;
     GLuint lightMVP_UniformID;
+    GLuint highlightVP_UniformID;
 };
 
 #endif /* defined(__slumber__LightingShader__) */

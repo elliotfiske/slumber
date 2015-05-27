@@ -34,7 +34,7 @@ void GameState::initAssets() {
     
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
-    shadowfbo->generateShadowTexture(2048, 2048);
+    shadowfbo->generateShadowTexture(4096, 4096);
     
 
     light = new Light();
@@ -108,10 +108,24 @@ void GameState::updatePerspectiveMat() {
     perspectiveMat = Projection;
 }
 
+void GameState::updateHighlightMat() {
+	float yaw = 0.0f, pitch = 0.0f;
+	glm::vec3 position = glm::vec3(0.0f, 10.0f, -40.0f);
+
+	glm::mat4 Ryaw     = glm::rotate(glm::mat4(1.0f), yaw, vec3(0, 1, 0));
+    glm::mat4 Rpitch   = glm::rotate(glm::mat4(1.0f), pitch, vec3(1, 0, 0));
+    glm::mat4 Trans    = glm::translate(glm::mat4(1.0f), position);
+	glm::mat4 Transform = Trans * Ryaw * Rpitch;
+	glm::mat4 V = glm::inverse(Transform);
+	mat4 P = perspective(45.0f, (float) WINDOW_WIDTH
+                                            / WINDOW_HEIGHT, 0.1f, 200.f);
+	highlightVPMat = P * V;
+}
+
 void GameState::renderShadowBuffer() {
     shadowfbo->bind();
 
-    glViewport(0, 0, 2048, 2048);
+    glViewport(0, 0, 4096, 4096);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glCullFace(GL_FRONT);
 

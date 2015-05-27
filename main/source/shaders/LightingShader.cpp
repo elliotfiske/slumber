@@ -29,6 +29,7 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     specularMaterial_UniformID = GLSL::getUniformLocation(programID, "UsColor");
     shininess_UniformID        = GLSL::getUniformLocation(programID, "Ushine");
     lightMVP_UniformID         = GLSL::getUniformLocation(programID, "lightMVP");
+    highlightVP_UniformID         = GLSL::getUniformLocation(programID, "highlightVP");
     
     diffuseTexture_UniformID   = GLSL::getUniformLocation(programID, "diffuseTextureSampler");
     
@@ -71,4 +72,8 @@ void LightingShader::setShininess(float shininess) {
 
 void LightingShader::setLightMVP(mat4 lightMVP) {
     glUniformMatrix4fv(lightMVP_UniformID, 1, GL_FALSE, value_ptr(lightMVP));
+}
+
+void LightingShader::setHighlightVP(mat4 VP) {
+    glUniformMatrix4fv(highlightVP_UniformID, 1, GL_FALSE, value_ptr(VP));
 }

@@ -34,6 +34,7 @@ public:
     
     mat4 perspectiveMat;
     mat4 viewMat;
+	mat4 highlightVPMat;
     
     ViewFrustum *vf;
     
@@ -51,6 +52,7 @@ protected:
     
     void updatePerspectiveMat();
     void updateViewMat();
+	void updateHighlightMat();
     virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
