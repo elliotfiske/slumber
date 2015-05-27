@@ -14,10 +14,9 @@
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     camera = new Camera(vec3(0.0, 5.0, -65.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     
-    Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
-    title = new Collectible(*tempCollectible);
-    title->center = vec3(0.0, 11.0, -90.0);
+    title = CurrAssets->billboardDictionary["title.jpg"];
     
+    Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
     button1 = new Collectible(*tempCollectible);
     button1->center = vec3(0.0, 4.0, -100.0);
     
@@ -47,13 +46,12 @@ void TitleState::renderScene() {
     clock->draw(light);
     tv->draw(light);
     lamp->draw(light);
+    title->draw(light);
     
     CurrAssets->collectibleShader->startUsingShader();
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
-    
-//	collectible->draw(light);
-    title->draw(light);
+
     button1->draw(light);
     button2->draw(light);
     
@@ -87,7 +85,6 @@ void TitleState::update() {
     else {
         button2->red = false;
     }
-    
     
     if (shouldStartParalyzed()) {
         shouldSwitch = true;

@@ -17,7 +17,7 @@ using namespace std;
 
 #ifdef XCODE_IS_TERRIBLE
     #define RESOURCE_FOLDER "../resources/"
-    #define MODELS_FOLDER "../resources/models/"
+    #define MODELS_FOLDER string("../resources/models/")
 #else
     #define RESOURCE_FOLDER "resources/"
     #define MODELS_FOLDER "resources/models/"

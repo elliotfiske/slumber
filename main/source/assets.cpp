@@ -61,6 +61,11 @@ void Assets::readLevelData(string filename) {
  * Load all the billboards and their respective textures
  */
 void Assets::generateBillboards(string filename) {
+    
+    // First, load the billboard's shape (a plane) into the GPU
+    Actor masterBillboard(vec3(0, 0, 0));
+    loadShape(MODELS_FOLDER + "plane.obj", &masterBillboard);
+    
     ifstream billboardFile(filename.c_str());
     if (!billboardFile.is_open()) {
         cerr << "Couldn't open level data with filename " << filename << endl;
@@ -70,15 +75,24 @@ void Assets::generateBillboards(string filename) {
     string currBillboardName;
     while (billboardFile >> currBillboardName) {
         vec3 billboardCenter;
-        float billboardAngle;
+        float billboardAngle, billboardScale;
+        
         billboardFile >> billboardCenter.x;
         billboardFile >> billboardCenter.y;
         billboardFile >> billboardCenter.z;
         billboardFile >> billboardAngle;
+        billboardFile >> billboardScale;
         
-        billboardDictionary[currBillboardName] = new Actor(billboardCenter);
-        string objFilename(MODELS_FOLDER + currBillboardName + ".obj");
-        loadShape(objFilename, billboardDictionary[currBillboardName]);
+        BillboardActor *billy = new BillboardActor(billboardCenter, billboardScale, billboardAngle, &masterBillboard);
+        
+        Texture *billboardTexture = new Texture();
+        billboardTexture->setFilename(MODELS_FOLDER + "billboards/" + currBillboardName);
+        billboardTexture->init();
+        
+        billy->texture[0] = billboardTexture;
+        billy->material[0].diffuse_texname = currBillboardName;
+        
+        billboardDictionary[currBillboardName] = billy;
     }
 }
 
@@ -148,7 +162,7 @@ void Assets::loadShape(string filename, Actor *actor) {
     std::vector<tinyobj::shape_t>    shapes;
     std::vector<tinyobj::material_t> materials;
     
-    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), MODELS_FOLDER);
+    std::string err = tinyobj::LoadObj(shapes, materials, filename.c_str(), MODELS_FOLDER.c_str());
     if(!err.empty()) {
         printf("OBJ error: %s\n", err.c_str());
     }

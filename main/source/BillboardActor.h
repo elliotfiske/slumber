@@ -14,7 +14,7 @@
 
 class BillboardActor : public Actor {
 public:
-    BillboardActor(vec3 center_, Texture *texture, float scale, float angle);
+    BillboardActor(vec3 center_, float scale, float angle, Actor *masterBillboard);
   
     float angle;
 };

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "gamestate.hpp"
+#include "BillboardActor.h"
 
 class TitleState : public GameState {
 public:
@@ -19,7 +20,8 @@ public:
     void renderScene();
     void update();
     
-    Collectible *title, *button1, *button2;
+    Collectible *button1, *button2;
+    BillboardActor *title;
     
     GameState* newState();
 };
