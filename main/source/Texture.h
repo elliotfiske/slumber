@@ -17,7 +17,7 @@ public:
     Texture();
     virtual ~Texture();
     void setFilename(const std::string &f) { filename = f; }
-    void init();
+    void init(bool nearFilter);
     void bind(GLint handle, GLint unit);
     void unbind(GLint unit);
     std::string filename;

@@ -4,24 +4,31 @@ varying vec2 UV;
 uniform sampler2D uTex;
 uniform float intensity;
 
-const float sampleDist = 1.0;
+const float sampleDist = 0.007;
+
+
 
 void main() {
+    
+    
+    
+    
     float samples[10];
-    samples[0] = -0.08;
-    samples[1] = -0.05;
-    samples[2] = -0.03;
-    samples[3] = -0.02;
-    samples[4] = -0.01;
-    samples[5] =  0.01;
-    samples[6] =  0.02;
-    samples[7] =  0.03;
-    samples[8] =  0.05;
-    samples[9] =  0.08;
+    samples[0] =  0.01;
+    samples[1] =  0.015;
+    samples[2] =  0.02;
+    samples[3] =  0.03;
+    samples[4] =  0.035;
+    samples[5] =  0.039;
+    samples[6] =  0.043;
+    samples[7] =  0.0455;
+    samples[8] =  0.0465;
+    samples[9] =  0.047;
     
     vec2 dir = 0.5 - UV;
-    float dist = sqrt(dir.x*dir.x + dir.y*dir.y);
-    dir = dir/dist;
+    float dist = distance(vec2(0.5, 0.5), UV) * 16.8;
+    dist = pow(dist, 2.0);
+    dir = dir*dist;
     
     vec4 color = texture2D(uTex, UV);
     vec4 sum = color;

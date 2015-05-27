@@ -37,6 +37,8 @@ public:
     
     double timeToAppear;
     
+    bool red;
+    
 private:
     int positionIndex;
     bool visible;

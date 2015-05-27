@@ -28,6 +28,8 @@ set(HEADERS
    shaders/LightingShader.h
    shaders/FBOShader.h
    shaders/ShadowShader.h
+
+   BillboardActor.h
 )
 
 # List all .c / .cpp files here
@@ -59,4 +61,6 @@ set(SOURCES
    shaders/LightingShader.cpp
    shaders/FBOShader.cpp
    shaders/ShadowShader.cpp
+
+   BillboardActor.cpp
 )

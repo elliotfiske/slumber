@@ -30,4 +30,5 @@ void main() {
     shadowClip = lightMVP * aPosition;
     
     UV = aUV;
+    UV.y *= -1.0;
 }

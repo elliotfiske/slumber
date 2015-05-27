@@ -23,6 +23,9 @@ public:
     GLuint position_AttributeID;
     GLuint textureToDisplay_ID;
     
+    /** OPTIONAL PARAMETERS */
+    GLuint time_UniformID;
+    
     void setIntensity(float intensity);
     void animateIntensity(float min, float max, double currTime, float slowFactor);
 };

@@ -33,6 +33,7 @@ public:
     
     // Clean-up
     void disableAttribArrays();
+    GLuint red_UniformID;
 
 protected:
     GLuint position_AttributeID;
@@ -41,6 +42,7 @@ protected:
     GLuint projectionMatrix_UniformID;
     GLuint viewMatrix_UniformID;
     GLuint modelMatrix_UniformID;
+
 };
 
 #endif /* defined(__slumber__shader__) */

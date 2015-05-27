@@ -10,6 +10,8 @@ void updateLightPosition(Light *light);
 void updateControl(GLFWwindow *window);
 void setupCallbacks(GLFWwindow *window);
 
+glm::vec2 titleControl();
+
 float getForwardVelocity();
 float getStrafeVelocity();
 
@@ -17,3 +19,6 @@ float getYaw();
 float getPitch();
 
 bool shouldWeReset();
+
+bool shouldStartGhost();
+bool shouldStartParalyzed();

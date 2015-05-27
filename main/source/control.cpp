@@ -17,6 +17,9 @@ float strafeAccel;
 
 float xLightVel, yLightVel, zLightVel;
 
+float mouseX, mouseY;
+bool startParalyzed = false, startGhost = false;
+
 #define ACCEL 8.0
 #define FRICTION 1.2
 
@@ -30,6 +33,22 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
     
     if (pitch > glm::radians(80.0)) {
         pitch = glm::radians(80.0);
+    }
+    
+    mouseX = currX;
+    mouseY = currY;
+}
+
+
+void doClick(GLFWwindow* window, int button, int action, int mods) {
+    if (action == GLFW_PRESS) {
+        if (mouseX < 570.0 && mouseX > 452.0 && mouseY < 470.0 && mouseY > 353.0) {
+            startParalyzed = true;
+        }
+        
+        if (mouseX < 570.0 && mouseX > 452.0 && mouseY < 600.0 && mouseY > 491.0) {
+            startGhost = true;
+        }
     }
 }
 
@@ -148,6 +167,7 @@ bool shouldWeReset() {
 void setupCallbacks(GLFWwindow *window) {
     glfwSetCursorPos(window, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
     glfwSetCursorPosCallback(window, handleMouse);
+    glfwSetMouseButtonCallback(window, doClick);
     glfwSetScrollCallback(window, handleScroll);
     
     glfwSetKeyCallback(window, handleKeypress);
@@ -186,6 +206,10 @@ void updateLightPosition(Light *light) {
     light->setPosition(lightPos);
 }
 
+vec2 titleControl() {
+    return vec2(mouseX, mouseY);
+}
+
 float getForwardVelocity() {
     return forwardVel;
 }
@@ -202,3 +226,10 @@ float getPitch() {
     return pitch;
 }
 
+bool shouldStartParalyzed() {
+    return startParalyzed;
+}
+
+bool shouldStartGhost() {
+    return startGhost;
+}

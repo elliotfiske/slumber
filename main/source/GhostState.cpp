@@ -11,8 +11,15 @@
 #include "network.h"
 
 GhostState::GhostState(GLFWwindow *window) :
-	GameState(window, true) {
-	camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+GameState(window, true) {
+    camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
+    CurrAssets->currFBOShader = CurrAssets->ghostShader;
+//    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
+    
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+    title = CurrAssets->billboardDictionary["title.png"];
 }
 
 void GhostState::checkCollisions() {
@@ -29,23 +36,30 @@ void GhostState::renderScene() {
 
 	updateViewMat();
 
-	CurrAssets->lightingShader->startUsingShader();
-	CurrAssets->lightingShader->setViewMatrix(viewMat);
-	CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->ghostLightingShader->startUsingShader();
+	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
+	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
 
-	shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 0);
 
-	viewFrustumCulling(*bed);
+    bed->draw(light);
 	room->draw(light);
-	bed->draw(light);
 	clock->draw(light);
+    tv->draw(light);
 	lamp->draw(light);
+    
+    CurrAssets->billboardShader->startUsingShader();
+    CurrAssets->billboardShader->setViewMatrix(viewMat);
+    CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
+    
+    title->draw(light);
+    
 
 	CurrAssets->collectibleShader->startUsingShader();
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-	collectible->draw(light);
+//	collectible->draw(light);
 
 	shadowfbo->unbindTexture();
 

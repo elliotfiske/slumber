@@ -13,7 +13,8 @@ const float CAM_Z_MIN = -46;
 const float CAM_Z_MAX = 46;
 
 Camera::Camera(vec3 center_, vec3 direction_, float velocityScale, float radius):
-        Actor(center_) {  
+        Actor(center_) {
+            direction = direction_;
 }
 
 void Camera::step(double dt, float forwardVelocity, float strafeVelocity) {

@@ -11,10 +11,19 @@
 
 #include <stdio.h>
 #include "gamestate.hpp"
+#include "BillboardActor.h"
 
 class TitleState : public GameState {
 public:
     TitleState(GLFWwindow *window);
+    
+    void renderScene();
+    void update();
+    
+    Collectible *button1, *button2;
+    BillboardActor *title;
+    
+    GameState* newState();
 };
 
 #endif /* defined(__slumber__titlestate__) */

@@ -2,6 +2,7 @@
 #include "gamestate.hpp"
 #include "ParalyzedState.h"
 #include "GhostState.h"
+#include "titlestate.h"
 #include "network.h"
 #include <iostream>
 
@@ -46,10 +47,19 @@ int main(int argc, const char* argv[]) {
         isGhost = false;
     }
     
-    gameState = new GhostState(window);
+    gameState = new TitleState(window);
+    
     while(window) {
+        if (gameState == NULL) {
+            printf("u wot m8\n");
+        }
+        
         gameState->update();
         gameState->draw();
+        
+        if (gameState->shouldSwitch) {
+            gameState = gameState->newState();
+        }
     }
     
 #ifdef THREADS

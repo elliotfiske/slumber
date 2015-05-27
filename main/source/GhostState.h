@@ -17,6 +17,8 @@ public:
     GhostState(GLFWwindow *window);
     
 protected:
+    BillboardActor *title;
+    
     void checkCollisions();
     void renderScene();
     

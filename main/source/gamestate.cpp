@@ -10,11 +10,17 @@ using namespace glm;
 
 float playerHealth = 1.2;
 
+GameState* GameState::newState() {
+    printf("THIS SHOULD NOT BE CALLED LIKE EVER");
+    return new GameState(window, false);
+}
+
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
     
     bed =   assets->actorDictionary["bed"];
     clock = assets->actorDictionary["clock"];
+    tv = assets->actorDictionary["tv"];
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
@@ -25,10 +31,11 @@ void GameState::initAssets() {
     framebuffer = new Framebuffer();
     framebuffer->generate();
     framebuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+    
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateShadowTexture(2048, 2048);
+    
 
     light = new Light();
     
@@ -57,6 +64,8 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     
     updatePerspectiveMat();
     vf = new ViewFrustum();
+    
+    shouldSwitch = false;
 }
 
 /**
@@ -112,6 +121,7 @@ void GameState::renderShadowBuffer() {
     lamp->drawShadows(light);
     room->drawShadows(light);
     clock->drawShadows(light);
+    tv->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -133,6 +143,7 @@ void GameState::viewFrustumCulling(Actor curActor){
     }
 }
 
+float coolTime = 0.0;
 
 /**
  * Render a texture to a square that covers the whole screen.
@@ -142,13 +153,17 @@ void GameState::renderFrameBuffer() {
     glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glUseProgram(CurrAssets->motionBlurShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->motionBlurShader->textureToDisplay_ID);
+    glUseProgram(CurrAssets->currShader->fbo_ProgramID);
+    framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
+    
+    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
+    glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
+    coolTime += 0.17;
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
-                          CurrAssets->motionBlurShader->position_AttributeID, // attribute
+                          CurrAssets->currShader->position_AttributeID, // attribute
                           3,                              // size
                           GL_FLOAT,                       // type
                           GL_FALSE,                       // normalized?
@@ -156,7 +171,7 @@ void GameState::renderFrameBuffer() {
                           (void*)0                        // array buffer offset
                           );
     
-    // Draw the triangles that cover the screenp
+    // Draw the triangles that cover the screen
     glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
     
     glDisableVertexAttribArray(0);
@@ -166,6 +181,7 @@ void GameState::renderFrameBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_MULTISAMPLE);
 	glEnable(GL_CULL_FACE);
 
     renderShadowBuffer();

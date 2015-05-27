@@ -9,17 +9,22 @@
 #include "shaders/FBOShader.h"
 #include <map>
 #include "actor.hpp"
+#include "BillboardActor.h"
+
+#include <SFML/Audio.hpp>
 
 using namespace std;
 
 #define CurrAssets Assets::instance()
 
 #ifdef XCODE_IS_TERRIBLE
-    #define RESOURCE_FOLDER "../resources/"
-    #define MODELS_FOLDER "../resources/models/"
+    #define RESOURCE_FOLDER string("../resources/")
+    #define MODELS_FOLDER string("../resources/models/")
+    #define SOUND_FOLDER string("../resources/sounds")
 #else
-    #define RESOURCE_FOLDER "resources/"
-    #define MODELS_FOLDER "resources/models/"
+    #define RESOURCE_FOLDER string("resources/")
+    #define MODELS_FOLDER string("resources/models/")
+    #define SOUND_FOLDER string("resources/sounds")
 #endif
 
 class Assets {
@@ -32,21 +37,35 @@ public:
     
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
+    LightingShader *ghostLightingShader;
     BaseMVPShader  *collectibleShader;
-    FBOShader      *darkeningShader;
+    LightingShader  *billboardShader;
+    
+    FBOShader      *currShader;
     FBOShader      *motionBlurShader;
+    FBOShader      *ghostShader;
+    FBOShader      *woozyShader;
+    
+    FBOShader      *currFBOShader;
     
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
+    void play(string filename, vec3 pos = vec3(0.0f, 0.0f, 0.0f));
     
     // A simple dictionary where the key is the OBJ name and the
     //  value is the Actor instance that uses that model.
     std::map<string, Actor*>  actorDictionary;
     
+    std::map<string, BillboardActor*> billboardDictionary;
+    
 private:
     Assets();
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
+    void generateBillboards(string filename);
+    void loadSoundBuffer(string filename);
     
+    map<string, sf::SoundBuffer> soundBuffers;
+    vector<sf::Sound> sounds;
 };
 
 
