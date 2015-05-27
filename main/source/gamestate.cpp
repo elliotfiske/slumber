@@ -11,6 +11,7 @@ using namespace glm;
 float playerHealth = 1.2;
 
 GameState* GameState::newState() {
+    printf("THIS SHOULD NOT BE CALLED LIKE EVER");
     return new GameState(window, false);
 }
 

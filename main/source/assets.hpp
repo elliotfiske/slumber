@@ -9,6 +9,7 @@
 #include "shaders/FBOShader.h"
 #include <map>
 #include "actor.hpp"
+#include "BillboardActor.h"
 
 using namespace std;
 
@@ -48,10 +49,13 @@ public:
     //  value is the Actor instance that uses that model.
     std::map<string, Actor*>  actorDictionary;
     
+    std::map<string, BillboardActor*> billboardDictionary;
+    
 private:
     Assets();
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
+    void generateBillboards(string filename);
     
 };
 

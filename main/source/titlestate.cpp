@@ -18,12 +18,10 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     title = new Collectible(*tempCollectible);
     title->center = vec3(0.0, 11.0, -90.0);
     
-    Actor *tempCollectible1 = CurrAssets->actorDictionary["collect"];
-    button1 = new Collectible(*tempCollectible1);
+    button1 = new Collectible(*tempCollectible);
     button1->center = vec3(0.0, 4.0, -100.0);
     
-    Actor *tempCollectible2 = CurrAssets->actorDictionary["collect"];
-    button2 = new Collectible(*tempCollectible2);
+    button2 = new Collectible(*tempCollectible);
     button2->center = vec3(0.0, -1.0, -100.0);
 }
 

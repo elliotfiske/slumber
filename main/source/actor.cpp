@@ -5,23 +5,6 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 
-void printMat(const glm::mat4 &M, const char *name = 0)
-{
-	if(name) {
-		printf("%s=[\n", name);
-	}
-	for(int i = 0; i < 4; ++i) {
-		for(int j = 0; j < 4; ++j) {
-			printf("%- 5.2f ", M[j][i]);
-		}
-		printf("\n");
-	}
-	if(name) {
-		printf("];");
-	}
-	printf("\n");
-}
-
 Actor::Actor(vec3 center_) {
     center = center_;
 }

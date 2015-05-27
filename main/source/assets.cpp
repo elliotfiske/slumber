@@ -28,8 +28,10 @@ Assets::Assets() {
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
-    
     readLevelData(levelDataName);
+    
+    string billboardsName = RESOURCE_FOLDER + string("billboards.txt");
+    generateBillboards(billboardsName);
 }
 
 /**
@@ -52,6 +54,31 @@ void Assets::readLevelData(string filename) {
         actorDictionary[currActorName] = new Actor(newActorCenter);
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
         loadShape(objFilename, actorDictionary[currActorName]);
+    }
+}
+
+/**
+ * Load all the billboards and their respective textures
+ */
+void Assets::generateBillboards(string filename) {
+    ifstream billboardFile(filename.c_str());
+    if (!billboardFile.is_open()) {
+        cerr << "Couldn't open level data with filename " << filename << endl;
+        return;
+    }
+    
+    string currBillboardName;
+    while (billboardFile >> currBillboardName) {
+        vec3 billboardCenter;
+        float billboardAngle;
+        billboardFile >> billboardCenter.x;
+        billboardFile >> billboardCenter.y;
+        billboardFile >> billboardCenter.z;
+        billboardFile >> billboardAngle;
+        
+        billboardDictionary[currBillboardName] = new Actor(billboardCenter);
+        string objFilename(MODELS_FOLDER + currBillboardName + ".obj");
+        loadShape(objFilename, billboardDictionary[currBillboardName]);
     }
 }
 
