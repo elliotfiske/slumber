@@ -9,6 +9,10 @@
 #include "ParalyzedState.h"
 #include "network.h"
 
+#ifdef THREADS
+    #include <thread>
+#endif
+
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
@@ -16,6 +20,12 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     CurrAssets->currFBOShader = CurrAssets->currShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+#ifdef THREADS
+    thread *t1;
+    
+    t1 = new thread(doClientNetworking);
+#endif
 }
 
 void ParalyzedState::checkCollisions() {

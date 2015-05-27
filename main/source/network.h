@@ -23,6 +23,7 @@
 // Client->ghost packets
 #define USER_LOOK_UPDATE_FLAG 4
 
+
 typedef struct InfoHeader {
     uint8_t  flag;
     int16_t  value1;

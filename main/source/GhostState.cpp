@@ -10,6 +10,10 @@
 #include "control.hpp"
 #include "network.h"
 
+#ifdef THREADS
+    #include <thread>
+#endif
+
 GhostState::GhostState(GLFWwindow *window) :
 GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
@@ -20,6 +24,13 @@ GameState(window, true) {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
     title = CurrAssets->billboardDictionary["title.png"];
+    
+    
+#ifdef THREADS
+    thread *t1;
+    
+    t1 = new thread(doGhostNetworking);
+#endif
 }
 
 void GhostState::checkCollisions() {

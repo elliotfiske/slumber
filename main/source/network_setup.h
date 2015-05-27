@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 
+#define SERVER_ADDRESS "192.168.0.2"
+
 int tcpSetup();
 int tcpClientSetup(char *host_name, char *port);
 
