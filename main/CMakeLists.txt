@@ -80,10 +80,10 @@ else()
         ${SFML_DIR}/include
     )
     list(APPEND LIBS
-        ${SFML_DIR}/lib/libsfml-system.so
+        ${SFML_DIR}/lib/libsfml-system.so.2
     )
     list(APPEND LIBS
-        ${SFML_DIR}/lib/libsfml-audio.so
+        ${SFML_DIR}/lib/libsfml-audio.so.2
     )
 endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
 
