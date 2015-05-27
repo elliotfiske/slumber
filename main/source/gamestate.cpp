@@ -64,6 +64,8 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     
     updatePerspectiveMat();
     vf = new ViewFrustum();
+    
+    shouldSwitch = false;
 }
 
 /**

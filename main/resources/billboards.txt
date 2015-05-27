@@ -1,1 +1,1 @@
-title.jpg 0 11 -90 0 1
+title.png 0 5 -75 0 1

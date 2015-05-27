@@ -48,7 +48,12 @@ int main(int argc, const char* argv[]) {
     }
     
     gameState = new TitleState(window);
+    
     while(window) {
+        if (gameState == NULL) {
+            printf("u wot m8\n");
+        }
+        
         gameState->update();
         gameState->draw();
         

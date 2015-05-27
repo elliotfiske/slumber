@@ -18,12 +18,14 @@ using namespace std;
 Assets::Assets() {
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag_Ghost.glsl");
-    ghostShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Ghost_Vision.glsl");
-    woozyShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Woozy.glsl");
-    collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
+    billboardShader   = new LightingShader("Lighting_Vert.glsl", "Billboard_Frag.glsl");
     
-    currShader   = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
+    ghostShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Ghost_Vision.glsl");
+    currShader        = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader  = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
+    woozyShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Woozy.glsl");
+    
+    collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
     
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     

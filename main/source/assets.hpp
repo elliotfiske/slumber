@@ -35,6 +35,7 @@ public:
     LightingShader *lightingShader;
     LightingShader *ghostLightingShader;
     BaseMVPShader  *collectibleShader;
+    LightingShader  *billboardShader;
     
     FBOShader      *currShader;
     FBOShader      *motionBlurShader;
