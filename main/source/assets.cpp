@@ -30,6 +30,8 @@ Assets::Assets() {
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     
     readLevelData(levelDataName);
+
+    // TODO: pre-load sounds by calling this->loadSoundBuffer(<filename>);
 }
 
 /**
