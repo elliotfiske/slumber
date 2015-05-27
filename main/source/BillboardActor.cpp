@@ -22,4 +22,6 @@ BillboardActor::BillboardActor(vec3 center_, float scale, float angle, Actor *ma
     uvID[0]     = masterBillboard->uvID[0];
     numVerts[0] = masterBillboard->numVerts[0];
     numShapes = 1;
+    
+    direction.y = angle;
 }

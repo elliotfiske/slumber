@@ -89,7 +89,7 @@ void Assets::generateBillboards(string filename) {
         
         Texture *billboardTexture = new Texture();
         billboardTexture->setFilename(MODELS_FOLDER + "billboards/" + currBillboardName);
-        billboardTexture->init();
+        billboardTexture->init(true);
         
         billy->texture[0] = billboardTexture;
         billy->material[0].diffuse_texname = currBillboardName;
@@ -143,7 +143,7 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
         if (!textureAlreadyLoaded) {
             actor->texture[shapeNdx] = new Texture();
             actor->texture[shapeNdx]->setFilename(MODELS_FOLDER + material.diffuse_texname);
-            actor->texture[shapeNdx]->init();
+            actor->texture[shapeNdx]->init(false);
             actor->textureUnit[shapeNdx] = textureUnit++;
             
             existingTextures.push_back(actor->texture[shapeNdx]);

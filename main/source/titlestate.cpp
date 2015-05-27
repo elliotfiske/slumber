@@ -38,12 +38,13 @@ void TitleState::renderScene() {
     room->draw(light);
     clock->draw(light);
     lamp->draw(light);
+    tv->draw(light);
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
-    tv->draw(light);
+    title->material[0].diffuse[0] = 1.0;
     title->draw(light);
     
     shadowfbo->unbindTexture();

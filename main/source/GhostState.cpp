@@ -18,6 +18,8 @@ GameState(window, true) {
 //    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+    title = CurrAssets->billboardDictionary["title.png"];
 }
 
 void GhostState::checkCollisions() {
@@ -40,12 +42,18 @@ void GhostState::renderScene() {
 
 	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 0);
 
-    //	viewFrustumCulling(*bed);
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
     tv->draw(light);
 	lamp->draw(light);
+    
+    CurrAssets->billboardShader->startUsingShader();
+    CurrAssets->billboardShader->setViewMatrix(viewMat);
+    CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
+    
+    title->draw(light);
+    
 
 	CurrAssets->collectibleShader->startUsingShader();
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);

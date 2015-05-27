@@ -46,11 +46,12 @@ void main() {
     float cs = pow(max(0.0, dot(n, h)), Ushine);
     float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
 
-    vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
+    vec4 textureColor = texture2D( diffuseTextureSampler, UV );
 //    textureColor += UdColor;
+    textureColor = mix(textureColor, vec4(UdColor, textureColor.w), 0.5);
     
     vec3 lAmbientColor  = UaColor * attenuation;
-    vec3 lDiffuseColor  = cd * textureColor * attenuation;
+    vec3 lDiffuseColor  = cd * textureColor.rgb * attenuation;
     vec3 lSpecularColor = cs * UsColor * attenuation;
 
     // Shadowing
@@ -79,10 +80,7 @@ void main() {
         }
     }
 
-    if (textureColor.r < 0.1) {
-        discard;
-    }
 
-    gl_FragColor = vec4(textureColor, 1.0);
+    gl_FragColor = textureColor;
 }
 
