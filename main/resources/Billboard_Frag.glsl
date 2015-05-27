@@ -48,7 +48,7 @@ void main() {
 
     vec4 textureColor = texture2D( diffuseTextureSampler, UV );
 //    textureColor += UdColor;
-    textureColor = mix(textureColor, vec4(UdColor, textureColor.w), 0.5);
+    textureColor = mix(textureColor, vec4(UdColor, textureColor.w), 0.05);
     
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * textureColor.rgb * attenuation;
@@ -75,11 +75,13 @@ void main() {
             // (Note: distToLight we computed for Blinn-Phong is in camera space.)
             float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
             if(distToLightStored < shadowCoords.z + bias) {
-//                visibility -= 0.25;
+                visibility -= 0.25;
             }
         }
     }
 
+    float whatever = lAmbientColor.x + lDiffuseColor.x + lSpecularColor.x + visibility;
+    textureColor.x -= whatever * 0.000001;
 
     gl_FragColor = textureColor;
 }
