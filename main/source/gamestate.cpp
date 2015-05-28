@@ -174,7 +174,7 @@ void GameState::renderFrameBuffer() {
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
-    framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID, 5);
+    framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
     
     glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);

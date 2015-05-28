@@ -78,13 +78,13 @@ void ParalyzedState::renderScene() {
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 11);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
 
 	if (flickerDuration > 0.0) {
 		lightFlicker();
 	}
 	else {
-		CurrAssets->lightingShader->setAttenuation(0.001f);
+		CurrAssets->lightingShader->setAttenuation(0.0005f);
 	}
     
     //    viewFrustumCulling(*bed);

@@ -55,7 +55,7 @@ void main() {
     cd = cd * 0.5 + 0.5;
     
     vec3 lAmbientColor  = UaColor * attenuation;
-    vec3 lDiffuseColor  = cd * textureColor;
+    vec3 lDiffuseColor  = cd * textureColor * attenuation;
     vec3 lSpecularColor = cs * UsColor * attenuation;
 
     // Shadowing

@@ -66,7 +66,7 @@ void GhostState::renderScene() {
 	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 11);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 1);
 
 	if (flickerDuration > 0.0) {
 		lightFlicker();
@@ -103,8 +103,24 @@ void GhostState::renderScene() {
 	}
 }
 
+// Check player position against a bounding box
+bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
+	glm::vec3 pos = camera->center;
+	if (pos.x > min.x && pos.x < max.x &&
+		pos.y > min.y && pos.y < max.y &&
+		pos.z > min.z && pos.z < max.z) {
+		return true;
+	}
+	return false;
+}
+
 void GhostState::update() {
 	GameState::update();
+
+	glm::vec3 pos = CurrAssets->actorDictionary["lamp-table"]->center;
+	if (checkBounds(pos - glm::vec3(20.0f, 20.0f, 20.0f), pos + glm::vec3(20.0f, 20.0f, 20.0f))) {
+		flickerDuration = 2.0;
+	}
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();
