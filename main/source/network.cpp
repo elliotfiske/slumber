@@ -118,7 +118,7 @@ void receiveData(int serverSocket) {
 }
 
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
-//    cout << "Received packet: " << entirePacket << endl;
+    cout << "Received packet: " << entirePacket << endl;
     int flag;
     float x, y, z;
     sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);

@@ -104,7 +104,7 @@ void GameState::updateViewMat() {
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(45.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
@@ -112,15 +112,22 @@ void GameState::updatePerspectiveMat() {
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
 	float yaw = playerLook.y, pitch = playerLook.x;
-	glm::vec3 position = glm::vec3(0.0f, 10.0f, -40.0f);
+	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
+    yaw += 180.0 - 45.0;
+    
+    yaw = 180.0 / 3.141 * yaw;
+    pitch = 180.0 / 3.141 * pitch;
+    
 	glm::mat4 Ryaw     = glm::rotate(glm::mat4(1.0f), yaw, vec3(0, 1, 0));
     glm::mat4 Rpitch   = glm::rotate(glm::mat4(1.0f), pitch, vec3(1, 0, 0));
     glm::mat4 Trans    = glm::translate(glm::mat4(1.0f), position);
 	glm::mat4 Transform = Trans * Ryaw * Rpitch;
 	glm::mat4 V = glm::inverse(Transform);
-	mat4 P = perspective(45.0f, (float) WINDOW_WIDTH
-                                            / WINDOW_HEIGHT, 0.1f, 200.f);
+    
+    // HACKY HACK HACK
+	mat4 P = perspective(35.0f, (float) (1920.0
+                                            / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
 }
 
