@@ -48,7 +48,7 @@ void ParalyzedState::update() {
     enemy->center.y = ghostPos.y;
     enemy->center.z = ghostPos.z;
     
-
+    tellGhostWhereImLooking();
 }
 
 
