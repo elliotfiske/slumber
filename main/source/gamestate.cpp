@@ -24,6 +24,7 @@ void GameState::initAssets() {
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
+    door = assets->actorDictionary["door"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);

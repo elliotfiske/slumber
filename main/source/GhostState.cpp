@@ -59,6 +59,7 @@ void GhostState::renderScene() {
 	clock->draw(light);
     tv->draw(light);
 	lamp->draw(light);
+    door->draw(light);
 
 	shadowfbo->unbindTexture();
     

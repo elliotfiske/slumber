@@ -18,7 +18,7 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *enemy, *tv;
+    Actor *room, *bed, *clock, *enemy, *tv, *door;
     Actor *lamp;
     Collectible *collectible;
     

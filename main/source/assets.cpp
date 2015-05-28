@@ -50,14 +50,19 @@ void Assets::readLevelData(string filename) {
     
     string currActorName;
     while (levelFile >> currActorName) {
+        float actorAngle;
+        
         vec3 newActorCenter;
         levelFile >> newActorCenter.x;
         levelFile >> newActorCenter.y;
         levelFile >> newActorCenter.z;
+        levelFile >> actorAngle;
         
         actorDictionary[currActorName] = new Actor(newActorCenter);
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
         loadShape(objFilename, actorDictionary[currActorName]);
+        
+        actorDictionary[currActorName]->direction.y = actorAngle;
     }
 }
 
