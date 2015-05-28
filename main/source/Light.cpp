@@ -6,9 +6,9 @@
 Light::Light() :
 	aspect(1.0f),
 	fovy(90.0f),
-	znear(0.1f),
+	znear(30.0f),
 	zfar(200.0f),
-	position(40.0f, 10.0f, 5.0f),
+	position(45.0f, 8.0f, 10.0f),
 	target(0.0f, 0.0f, 0.0f),
 	up(0.0f, 1.0f, 0.0f)
 {

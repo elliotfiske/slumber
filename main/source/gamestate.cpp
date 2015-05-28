@@ -87,7 +87,6 @@ void GameState::update() {
     
     updateControl(window);
     updateCamDirection(camera); 
-    updateLightPosition(light);
     
     collectible->step(elapsedTime);
 }

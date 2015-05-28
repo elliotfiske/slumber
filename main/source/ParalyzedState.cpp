@@ -17,7 +17,7 @@
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-    camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     CurrAssets->currFBOShader = CurrAssets->currShader;
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
@@ -48,7 +48,7 @@ void ParalyzedState::lightFlicker() {
 	else if (attenFactor < 0.001) {
 		flickerDirection = 1.0;
 	}
-	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+	attenFactor = std::max(0.0002, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
 	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
@@ -84,7 +84,7 @@ void ParalyzedState::renderScene() {
 		lightFlicker();
 	}
 	else {
-		CurrAssets->lightingShader->setAttenuation(0.0005f);
+		CurrAssets->lightingShader->setAttenuation(0.0002f);
 	}
     
     //    viewFrustumCulling(*bed);

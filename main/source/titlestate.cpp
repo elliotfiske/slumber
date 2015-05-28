@@ -36,7 +36,7 @@ void TitleState::renderScene() {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
-	CurrAssets->lightingShader->setAttenuation(0.001f);
+	CurrAssets->lightingShader->setAttenuation(0.0002f);
 
     //	viewFrustumCulling(*bed);
     bed->draw(light);

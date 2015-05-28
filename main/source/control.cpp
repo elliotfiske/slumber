@@ -15,10 +15,8 @@ float strafeVel;
 float forwardAccel;
 float strafeAccel;
 
-float xLightVel, yLightVel, zLightVel;
-
 float mouseX, mouseY;
-bool startParalyzed = false, startGhost = false;
+bool startParalyzed = false, startGhost = false, itemAction = false;
 
 #define ACCEL 8.0
 #define FRICTION 1.2
@@ -129,6 +127,26 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             strafeAccel = 0;
         }
     }
+
+	if (key == GLFW_KEY_D) {
+        if (action == GLFW_PRESS) {
+            strafeAccel = ACCEL;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            strafeAccel = 0;
+        }
+    }
+
+	if (key == GLFW_KEY_E) {
+        if (action == GLFW_PRESS) {
+            itemAction = true;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            itemAction = false;
+        }
+    }
     
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
@@ -137,34 +155,6 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         sprintf(num, "%d", keyVal);
         
         sendData(num);
-    }
-
-    if (key == GLFW_KEY_X) {
-        if (action == GLFW_PRESS) {
-            xLightVel = 0.5f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            xLightVel = 0.0f;
-        }
-    }
-    if (key == GLFW_KEY_Z) {
-        if (action == GLFW_PRESS) {
-            zLightVel = 0.5f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            zLightVel = 0.0f;
-        }
-    }
-    if (key == GLFW_KEY_Y) {
-        if (action == GLFW_PRESS) {
-            yLightVel = 0.5f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            yLightVel = 0.0f;
-        }
     }
     
     if (key == GLFW_KEY_R) {
@@ -212,15 +202,6 @@ void updateCamDirection(Camera *camera) {
     camera->direction = direction;
 }
 
-void updateLightPosition(Light *light) {
-    glm::vec3 lightPos = light->getPosition();
-    lightPos.x += xLightVel;
-    lightPos.y += yLightVel;
-    lightPos.z += zLightVel;
-    //printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
-    light->setPosition(lightPos);
-}
-
 vec2 titleControl() {
     return vec2(mouseX, mouseY);
 }
@@ -247,4 +228,8 @@ bool shouldStartParalyzed() {
 
 bool shouldStartGhost() {
     return startGhost;
+}
+
+bool getItemAction() {
+	return itemAction;
 }

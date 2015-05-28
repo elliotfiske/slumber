@@ -76,7 +76,7 @@ void main() {
             // (Note: distToLight we computed for Blinn-Phong is in camera space.)
             float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
             if(distToLightStored < shadowCoords.z + bias) {
-                visibility -= 0.25;
+                visibility -= 0.20;
             }
         }
     }

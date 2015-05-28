@@ -48,6 +48,7 @@ void GhostState::lightFlicker() {
 	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
 }
 
 /**
@@ -72,7 +73,7 @@ void GhostState::renderScene() {
 		lightFlicker();
 	}
 	else {
-		CurrAssets->lightingShader->setAttenuation(0.001f);
+		CurrAssets->lightingShader->setAttenuation(0.0002f);
 	}
 
     bed->draw(light);
@@ -117,10 +118,30 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 void GhostState::update() {
 	GameState::update();
 
-	glm::vec3 pos = CurrAssets->actorDictionary["lamp-table"]->center;
-	if (checkBounds(pos - glm::vec3(20.0f, 20.0f, 20.0f), pos + glm::vec3(20.0f, 20.0f, 20.0f))) {
-		flickerDuration = 2.0;
+	glm::vec3 lamppos = CurrAssets->actorDictionary["lamp-table"]->center;
+	glm::vec3 doorpos = CurrAssets->actorDictionary["door"]->center;
+	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+
+	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Flicker the light
+			flickerDuration = 2.0;
+		}
 	}
+	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Close/open door
+		}
+	}
+	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Shake it
+		}
+	}
+
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();
