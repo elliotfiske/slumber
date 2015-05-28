@@ -34,14 +34,17 @@ void TitleState::renderScene() {
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
+	CurrAssets->lightingShader->setAttenuation(0.0002f);
+
     //	viewFrustumCulling(*bed);
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
     lamp->draw(light);
     tv->draw(light);
+    door->draw(light);
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
@@ -50,8 +53,6 @@ void TitleState::renderScene() {
     title->draw(light);
     playGhost->draw(light);
     play->draw(light);
-    
-    shadowfbo->unbindTexture();
     
     // check OpenGL error
     GLenum err;

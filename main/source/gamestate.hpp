@@ -63,6 +63,10 @@ protected:
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
+
+	double flickerDuration;
+	double flickerDirection;
+	float attenFactor;
 };
 
 #endif

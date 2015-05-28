@@ -9,6 +9,7 @@
 #include "GhostState.h"
 #include "control.hpp"
 #include "network.h"
+#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -36,6 +37,20 @@ void GhostState::checkCollisions() {
 	// TODO: make sure ghost can't go through stuff
 }
 
+void GhostState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
+}
+
 /**
  * Draw the scene from the user's perspective
  */
@@ -52,7 +67,14 @@ void GhostState::renderScene() {
 	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->textureToDisplay_ID, 1);
+	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 1);
+
+	if (flickerDuration > 0.0) {
+		lightFlicker();
+	}
+	else {
+		CurrAssets->lightingShader->setAttenuation(0.0002f);
+	}
 
     bed->draw(light);
 	room->draw(light);
@@ -82,8 +104,44 @@ void GhostState::renderScene() {
 	}
 }
 
+// Check player position against a bounding box
+bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
+	glm::vec3 pos = camera->center;
+	if (pos.x > min.x && pos.x < max.x &&
+		pos.y > min.y && pos.y < max.y &&
+		pos.z > min.z && pos.z < max.z) {
+		return true;
+	}
+	return false;
+}
+
 void GhostState::update() {
 	GameState::update();
+
+	glm::vec3 lamppos = CurrAssets->actorDictionary["lamp-table"]->center;
+	glm::vec3 doorpos = CurrAssets->actorDictionary["door"]->center;
+	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+
+	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Flicker the light
+			flickerDuration = 2.0;
+		}
+	}
+	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Close/open door
+		}
+	}
+	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Shake it
+		}
+	}
+
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();

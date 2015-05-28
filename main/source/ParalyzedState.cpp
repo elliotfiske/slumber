@@ -9,6 +9,7 @@
 #include "ParalyzedState.h"
 #include "network.h"
 #include "control.hpp"
+#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -17,8 +18,9 @@
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-    camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     CurrAssets->currFBOShader = CurrAssets->currShader;
+	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
@@ -40,15 +42,26 @@ void ParalyzedState::checkCollisions() {
     }
 }
 
+void ParalyzedState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0002, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+}
+
 void ParalyzedState::update() {
     GameState::update();
     
-    Position ghostPos = getGhostPosition();
-    enemy->center.x = ghostPos.x;
-    enemy->center.y = ghostPos.y;
-    enemy->center.z = ghostPos.z;
-    
-    tellGhostWhereImLooking();
+//    Position ghostPos = getGhostPosition();
+//    enemy->center.x = ghostPos.x;
+//    enemy->center.y = ghostPos.y;
+//    enemy->center.z = ghostPos.z;
 }
 
 
@@ -74,13 +87,20 @@ void ParalyzedState::renderScene() {
     glCullFace(GL_BACK);
     
     updateViewMat();
-    
+
     CurrAssets->lightingShader->startUsingShader();
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 1);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
+
+	if (flickerDuration > 0.0) {
+		lightFlicker();
+	}
+	else {
+		CurrAssets->lightingShader->setAttenuation(0.0002f);
+	}
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);

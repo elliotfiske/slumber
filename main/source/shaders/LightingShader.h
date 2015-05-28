@@ -16,7 +16,7 @@ class LightingShader : public BaseMVPShader {
 public:
     LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
-    GLuint textureToDisplay_ID;
+    GLuint shadowMap_ID;
     GLuint uv_AttributeID;
     GLuint diffuseTexture_UniformID;
     
@@ -27,6 +27,7 @@ public:
     void setDiffuseColor(float color[]);
     void setSpecularColor(float color[]);
     void setShininess(float shininess);
+    void setAttenuation(float attenuation);
     void setLightMVP(glm::mat4 lightMVP);
 	void setHighlightVP(glm::mat4 VP);
     
@@ -38,6 +39,7 @@ private:
     GLuint shininess_UniformID;
     GLuint lightMVP_UniformID;
     GLuint highlightVP_UniformID;
+    GLuint attenuation_UniformID;
 };
 
 #endif /* defined(__slumber__LightingShader__) */
