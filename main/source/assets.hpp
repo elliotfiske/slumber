@@ -48,8 +48,10 @@ public:
     
     FBOShader      *currFBOShader;
     
+//    void doPlay(string filename);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     void play(string filename, vec3 pos = vec3(0.0f, 0.0f, 0.0f));
+    void stopSounds();
     
     // A simple dictionary where the key is the OBJ name and the
     //  value is the Actor instance that uses that model.
@@ -62,7 +64,7 @@ private:
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
     void generateBillboards(string filename);
-    void loadSoundBuffer(string filename);
+//    void loadSoundBuffer(string filename);
     
     map<string, sf::SoundBuffer> soundBuffers;
     vector<sf::Sound> sounds;

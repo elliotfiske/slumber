@@ -251,5 +251,7 @@ bool shouldStartGhost() {
 }
 
 bool getItemAction() {
-	return itemAction;
+    bool result = itemAction;
+    itemAction = false;
+	return result;
 }

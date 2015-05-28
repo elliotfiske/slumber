@@ -74,6 +74,7 @@ void Collectible::collected() {
     }
     
     visible = false;
+    center = vec3(500, 500, 500);
     
     timeToAppear = 2.1; // TODO: randomize.  maybe.
 }

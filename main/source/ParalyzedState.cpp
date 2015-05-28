@@ -79,6 +79,8 @@ void ParalyzedState::update() {
         }
         
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            
             flickerDuration = 2.0;
             checkHurt(lamp, 20);
         }

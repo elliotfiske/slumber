@@ -129,6 +129,8 @@ void GhostState::update() {
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
             sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
+            
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action

@@ -17,7 +17,7 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     play = CurrAssets->billboardDictionary["play.png"];
     playGhost = CurrAssets->billboardDictionary["play_ghost.png"];
     
-    CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/musicbox.flac");
 }
 
 /**
@@ -89,12 +89,14 @@ void TitleState::update() {
     if (shouldStartParalyzed()) {
         shouldSwitch = true;
         nextState = new ParalyzedState(window);
+        CurrAssets->stopSounds();
     }
     
     if (shouldStartGhost()) {
         shouldSwitch = true;
         nextState = new GhostState(window);
         CurrAssets->currShader = CurrAssets->ghostShader;
+        CurrAssets->stopSounds();
     }
 }
 
