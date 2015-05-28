@@ -15,7 +15,7 @@
  * Takes in an actor "master billboard" and copies the location of the plane w
  *  sent to the GPU earlier
  */
-BillboardActor::BillboardActor(vec3 center_, float scale, float angle, Actor *masterBillboard): Actor(center_) {
+BillboardActor::BillboardActor(vec3 center_, float scale_, float angle, Actor *masterBillboard): Actor(center_) {
     posID[0]    = masterBillboard->posID[0];
     norID[0]    = masterBillboard->norID[0];
     indID[0]    = masterBillboard->indID[0];
@@ -24,4 +24,5 @@ BillboardActor::BillboardActor(vec3 center_, float scale, float angle, Actor *ma
     numShapes = 1;
     
     direction.y = angle;
+    scale = scale_;
 }

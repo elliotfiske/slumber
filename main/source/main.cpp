@@ -16,7 +16,12 @@ int main(int argc, const char* argv[]) {
     // Print out executable location 'cuz it often gets put in a weird place
     printf("It's at %s btw\n", *argv);
     
-    window = setupWindow();
+    bool fullscreen = false;
+    if (argc == 2) {
+        fullscreen = true;
+    }
+    
+    window = setupWindow(fullscreen);
     
     if (window == NULL) {
         printf("Window was null\n");
@@ -26,15 +31,13 @@ int main(int argc, const char* argv[]) {
     gameState = new TitleState(window);
     
     while(window) {
-        if (gameState == NULL) {
-            printf("u wot m8\n");
-        }
-        
         gameState->update();
         gameState->draw();
         
         if (gameState->shouldSwitch) {
             gameState = gameState->newState();
         }
+        
+        
     }
 }

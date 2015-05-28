@@ -24,7 +24,7 @@ bool startParalyzed = false, startGhost = false;
 #define FRICTION 1.2
 
 void handleMouse(GLFWwindow* window, double currX, double currY) {
-    yaw += (WINDOW_WIDTH / 2 - currX) / 1000.0;
+    yaw   += (WINDOW_WIDTH  / 2 - currX) / 1000.0;
     pitch += (WINDOW_HEIGHT / 2 - currY) / 1000.0;
     
     if (pitch < glm::radians(-80.0)) {
@@ -39,14 +39,29 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
     mouseY = currY;
 }
 
+bool coordsOverPlay(float x, float y) {
+    float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
+    if (midDiffX < 200 && mouseY < 520.2 && mouseY > 407.6) {
+        return true;
+    }
+    return false;
+}
+
+bool coordsOverGhost(float x, float y) {
+    float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
+    if (midDiffX < 200 && mouseY < 825.8 && mouseY > 606.5) {
+        return true;
+    }
+    return false;
+}
 
 void doClick(GLFWwindow* window, int button, int action, int mods) {
     if (action == GLFW_PRESS) {
-        if (mouseX < 570.0 && mouseX > 452.0 && mouseY < 470.0 && mouseY > 353.0) {
+        if (coordsOverPlay(mouseX, mouseY)) {
             startParalyzed = true;
         }
         
-        if (mouseX < 570.0 && mouseX > 452.0 && mouseY < 600.0 && mouseY > 491.0) {
+        if (coordsOverGhost(mouseX, mouseY)) {
             startGhost = true;
         }
     }

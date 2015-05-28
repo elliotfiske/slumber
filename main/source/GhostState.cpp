@@ -23,7 +23,7 @@ GameState(window, true) {
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
-    title = CurrAssets->billboardDictionary["title.png"];
+    lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
     
 #ifdef THREADS
     thread *t1;
@@ -42,7 +42,7 @@ void GhostState::checkCollisions() {
 void GhostState::renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-	glCullFace(GL_BACK);
+    glDisable(GL_CULL_FACE);
 
 	updateViewMat();
 	updateHighlightMat();
@@ -66,9 +66,8 @@ void GhostState::renderScene() {
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
-    title->draw(light);
+    lampText->draw(light);
     
-
 	CurrAssets->collectibleShader->startUsingShader();
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);

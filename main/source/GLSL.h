@@ -16,8 +16,10 @@
 #ifndef __GLSL__
 #define __GLSL__
 
-#define WINDOW_WIDTH  glfwGetVideoMode(glfwGetPrimaryMonitor())->width
-#define WINDOW_HEIGHT glfwGetVideoMode(glfwGetPrimaryMonitor())->height
+
+#define WINDOW_WIDTH  (glfwGetVideoMode(glfwGetPrimaryMonitor())->width)
+#define WINDOW_HEIGHT (glfwGetVideoMode(glfwGetPrimaryMonitor())->height)
+
 
 namespace GLSL {
 	

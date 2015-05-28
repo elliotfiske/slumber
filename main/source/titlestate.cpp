@@ -48,8 +48,8 @@ void TitleState::renderScene() {
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
     title->draw(light);
-    play->draw(light);
     playGhost->draw(light);
+    play->draw(light);
     
     shadowfbo->unbindTexture();
     
@@ -67,18 +67,22 @@ void TitleState::renderScene() {
 GameState *nextState;
 void TitleState::update() {
     vec2 mousePos = titleControl();
-    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 470.0 && mousePos.y > 353.0) {
-        play->material[0].diffuse[0] = 255.0;
+    if (coordsOverPlay(mousePos.x, mousePos.y)) {
+        play->material[0].diffuse[1] = 0.0;
+        play->material[0].diffuse[2] = 0.0;
     }
     else {
-        play->material[0].diffuse[0] = 0.0;
+        play->material[0].diffuse[1] = 255.0;
+        play->material[0].diffuse[2] = 255.0;
     }
     
-    if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 600.0 && mousePos.y > 491.0) {
-        playGhost->material[0].diffuse[0] = 255.0;
+    if (coordsOverGhost(mousePos.x, mousePos.y)) {
+        playGhost->material[0].diffuse[1] = 0.0;
+        playGhost->material[0].diffuse[2] = 0.0;
     }
     else {
-        playGhost->material[0].diffuse[0] = 0.0;
+        playGhost->material[0].diffuse[1] = 255.0;
+        playGhost->material[0].diffuse[2] = 255.0;
     }
     
     if (shouldStartParalyzed()) {

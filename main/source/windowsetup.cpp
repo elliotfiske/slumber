@@ -1,6 +1,12 @@
 #include "windowsetup.hpp"
 
-GLFWwindow* setupWindow(){
+void doHints() {
+    glfwDefaultWindowHints();
+    glfwWindowHint(GLFW_RESIZABLE, false);
+    //    glfwWindowHint(GLFW_SAMPLES, 4);
+}
+
+GLFWwindow* setupWindow(bool fullscreen) {
     GLFWwindow* window;
     
     if (!glfwInit()){
@@ -8,13 +14,17 @@ GLFWwindow* setupWindow(){
         return NULL;
     }
     
-    glfwDefaultWindowHints();
-    glfwWindowHint(GLFW_RESIZABLE, false);
-//    glfwWindowHint(GLFW_SAMPLES, 4);
+    doHints();
     
     const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
-    window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+    if (fullscreen) {
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+    }
+    else {
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", NULL, NULL);
+    }
+    
     if(window == NULL){
         fprintf(stderr, "Failed to initialize window\n");
         glfwTerminate();
