@@ -31,6 +31,8 @@ protected:
     int playerHealth;
     bool playerSensitivity;
 	void lightFlicker();
+    
+    void checkHurt(Actor *danger, int howMuch);
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

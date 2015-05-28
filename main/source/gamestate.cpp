@@ -214,7 +214,8 @@ void GameState::viewFrustumCulling(Actor curActor){
     
     int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
     if (inView != OUTSIDE) {
-        curActor.draw(light);
+//        curActor.draw(light);
+        
     }
 }
 

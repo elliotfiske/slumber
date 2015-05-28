@@ -42,6 +42,18 @@ void ParalyzedState::checkCollisions() {
     }
 }
 
+void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * GameState::viewMat * danger->modelMat;
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
+    if (inView != OUTSIDE) {
+        lowerHealth(howMuch);
+    }
+}
+
 void ParalyzedState::lightFlicker() {
 	if (attenFactor > 0.02f) {
 		flickerDirection = -1.0;
@@ -62,18 +74,22 @@ void ParalyzedState::update() {
     if (currAction) {
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
+            checkHurt(door, 10);
         }
         
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
             flickerDuration = 2.0;
+            checkHurt(lamp, 20);
         }
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
+            checkHurt(clock, 15);
         }
         
-        if (currACtion == GHOST_ACTION_TV_STATIC) {
+        if (currAction == GHOST_ACTION_TV_STATIC) {
             tvStaticDuration = 0.8;
+            checkHurt(tv, 20);
         }
     }
     
