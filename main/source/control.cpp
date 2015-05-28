@@ -33,6 +33,16 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
         pitch = glm::radians(80.0);
     }
     
+    if (startParalyzed) {
+    	if (yaw < 1.58) {
+    		yaw = 1.58;
+    	}
+
+    	if (yaw > 4.65) {
+    		yaw = 4.65;
+    	}
+    }
+
     mouseX = currX;
     mouseY = currY;
 }
@@ -55,11 +65,11 @@ bool coordsOverGhost(float x, float y) {
 
 void doClick(GLFWwindow* window, int button, int action, int mods) {
     if (action == GLFW_PRESS) {
-        if (coordsOverPlay(mouseX, mouseY)) {
+        if (coordsOverPlay(mouseX, mouseY) && !startParalyzed && !startGhost) {
             startParalyzed = true;
         }
         
-        if (coordsOverGhost(mouseX, mouseY)) {
+        if (coordsOverGhost(mouseX, mouseY) && !startParalyzed && !startGhost) {
             startGhost = true;
         }
     }
