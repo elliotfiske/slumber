@@ -98,9 +98,10 @@ void main() {
 
     // Make everything lighter and blue
     vec4 currColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
-	if (amountHighlight > 0.0) {
-		float color = (currColor.x + currColor.y + currColor.z) / 3;
-		currColor = vec4(color, color, color, 1.0);
+    if (amountHighlight > 0.0) {
+        currColor.x = (currColor.x + currColor.y + currColor.z) / 3.0 * 1.9;
+        currColor.z /= 1.8;
+        currColor.y /= 1.4;
 	}
 	else {
 		currColor.z = (currColor.x + currColor.y + currColor.z) / 3.0 * 2.1;

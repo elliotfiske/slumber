@@ -114,10 +114,11 @@ void GameState::updateHighlightMat() {
 	float yaw = playerLook.y, pitch = playerLook.x;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
-    yaw += 180.0 - 45.0;
     
     yaw = 180.0 / 3.141 * yaw;
     pitch = 180.0 / 3.141 * pitch;
+    
+    yaw += 180.0;
     
 	glm::mat4 Ryaw     = glm::rotate(glm::mat4(1.0f), yaw, vec3(0, 1, 0));
     glm::mat4 Rpitch   = glm::rotate(glm::mat4(1.0f), pitch, vec3(1, 0, 0));
