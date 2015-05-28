@@ -23,6 +23,8 @@ public:
     int getHealth();
     bool getSensitivity();
     
+    void tellGhostWhereImLooking();
+
 protected:
     void checkCollisions();
     void renderScene();

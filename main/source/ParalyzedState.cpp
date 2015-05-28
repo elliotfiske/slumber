@@ -47,6 +47,21 @@ void ParalyzedState::update() {
     enemy->center.y = ghostPos.y;
     enemy->center.z = ghostPos.z;
     
+
+}
+
+
+/**
+ * Send a packet to the ghost player with the current
+ *  location of where I'm looking
+ */
+void ParalyzedState::tellGhostWhereImLooking() {
+#ifdef THREADS
+	float pitch = getPitch();
+	float yaw = getYaw();
+
+	sendGhostPosition(lastX, lastY, lastZ);
+#endif
 }
 
 /**

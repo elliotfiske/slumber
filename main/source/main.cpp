@@ -5,7 +5,6 @@
 #include "titlestate.h"
 #include <iostream>
 
-
 using namespace std;
 
 GameState *gameState;
@@ -14,7 +13,7 @@ int main(int argc, const char* argv[]) {
     GLFWwindow* window;
     
     // Print out executable location 'cuz it often gets put in a weird place
-    printf("It's at %s btw\n", *argv);
+    cout << "It's at " << *argv << " btw\n";
     
     bool fullscreen = false;
     if (argc == 2) {

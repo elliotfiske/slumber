@@ -49,6 +49,7 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket);
 // Methods for external use
 void sendGhostPosition(float x, float y, float z);
 Position getGhostPosition();
+Position getPlayerLook();
 
 
 #endif /* defined(__slumber__network__) */

@@ -23,6 +23,10 @@ int partnersSocket = 0;
 
 // These correspond to properties in GameState
 float ghostPosX, ghostPosY, ghostPosZ;
+
+// These correspond to properties in GhostState
+float playerLookYaw, playerLookPitch;
+
 bool shouldShowGhost;
 
 void doGhostNetworking() {
@@ -86,6 +90,17 @@ void sendGhostPosition(float x, float y, float z) {
     sendData(dataString);
 }
 
+/**
+ * Pack the client's camera angle into a bootiful string and
+ *  zap it over to the ghost
+ */
+void sendGhostPosition(float pitch, float yaw) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, 0.0);
+
+    sendData(dataString);
+}
+
 void receiveData(int serverSocket) {
     char buf[BUFF_SIZE]; // Buffer for receiving data from the other guy
     
@@ -113,9 +128,20 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
         ghostPosY = y;
         ghostPosZ = z;
     }
+
+    if (flag == USER_LOOK_UPDATE_FLAG) {
+    	playerLookPitch = x;
+    	playerLookYaw = y;
+    }
 }
 
 Position getGhostPosition() {
     Position result = {ghostPosX, ghostPosY, ghostPosZ};
     return result;
+}
+
+Position getPlayerLook() {
+	Position result = {playerLookPitch, playerLookYaw, 0.0};
+	return result;
+}
 }
