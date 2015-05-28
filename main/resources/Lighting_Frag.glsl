@@ -69,7 +69,6 @@ void main() {
         shadowCoords.x > 0.0 && shadowCoords.x < 1.0 &&
         shadowCoords.y > 0.0 && shadowCoords.y < 1.0 &&
         shadowCoords.z > 0.0 && shadowCoords.z < 1.0) {
-		visibility -= .5;
         for(int i = 0; i < 4; i++) {
             // Get the distance to light stored in the shadow map.
             // This value is in NDC between 0 and 1.

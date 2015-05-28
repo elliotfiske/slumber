@@ -16,7 +16,7 @@ class LightingShader : public BaseMVPShader {
 public:
     LightingShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     
-    GLuint textureToDisplay_ID;
+    GLuint shadowMap_ID;
     GLuint uv_AttributeID;
     GLuint diffuseTexture_UniformID;
     

@@ -20,7 +20,7 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     
     // Make handles to attribute data
     uv_AttributeID       = GLSL::getAttribLocation(programID, "aUV");
-    textureToDisplay_ID  = GLSL::getUniformLocation(programID, "shadowMap");
+    shadowMap_ID  = GLSL::getUniformLocation(programID, "shadowMap");
     
     // Make handles to uniforms
     lightPos_UniformID         = GLSL::getUniformLocation(programID, "lightPos");

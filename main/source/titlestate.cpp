@@ -41,7 +41,7 @@ void TitleState::renderScene() {
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
     //	viewFrustumCulling(*bed);
     bed->draw(light);
@@ -50,6 +50,8 @@ void TitleState::renderScene() {
     lamp->draw(light);
     tv->draw(light);
     
+    shadowfbo->unbindTexture();
+
     CurrAssets->collectibleShader->startUsingShader();
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
@@ -63,8 +65,6 @@ void TitleState::renderScene() {
     
     title->material[0].diffuse[0] = 1.0;
     title->draw(light);
-    
-    shadowfbo->unbindTexture();
     
     // check OpenGL error
     GLenum err;

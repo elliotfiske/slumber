@@ -84,6 +84,8 @@ void main() {
         }
     }
 
+
+	// Project the other player's vision on the wall
 	vec4 hCoords = highlightCoords;
 	hCoords = hCoords / hCoords.w;
 	hCoords.xyz = 0.5 * hCoords.xyz + 0.5;

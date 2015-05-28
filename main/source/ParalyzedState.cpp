@@ -14,6 +14,7 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     CurrAssets->currFBOShader = CurrAssets->currShader;
+	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 }
@@ -54,7 +55,7 @@ void ParalyzedState::renderScene() {
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
-    shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 1);
+    shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 11);
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);
