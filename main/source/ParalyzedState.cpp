@@ -19,7 +19,7 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    CurrAssets->currFBOShader = CurrAssets->currShader;
+//    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -39,6 +39,7 @@ void ParalyzedState::checkCollisions() {
     
     if (vf->gotLight(collectible->center, 5.0)) {
         collectible->collected();
+        increaseHealth(20);
     }
 }
 
@@ -98,6 +99,8 @@ void ParalyzedState::update() {
 //    enemy->center.y = ghostPos.y;
 //    enemy->center.z = ghostPos.z;
     tellGhostWhereImLooking();
+    float darkness = (100 - playerHealth) * 4 / 100;
+    CurrAssets->currShader->setIntensity(darkness);
 }
 
 
@@ -161,12 +164,10 @@ void ParalyzedState::renderScene() {
     }
 }
 void ParalyzedState::increaseHealth(int healthValue){
-   if(playerHealth < 100){
-      playerHealth += healthValue;
-   }
-   else {
-      playerHealth = 100;
-   }
+    playerHealth += healthValue;
+    if (playerHealth > 100) {
+        playerHealth = 100;
+    }
 }
 void ParalyzedState::lowerHealth(int severity){
    if(playerSensitivity = false){

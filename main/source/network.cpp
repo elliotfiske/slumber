@@ -106,7 +106,7 @@ void sendPlayerLook(float pitch, float yaw) {
  */
 void sendGhostAction(int action) {
     char dataString[256];
-    sprintf(dataString, "%d %f %f %f", action, 0, 0, 0);
+    sprintf(dataString, "%d %f %f %f", action, 0.0, 0.0, 0.0);
     
     sendData(dataString);
 }

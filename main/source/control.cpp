@@ -86,6 +86,16 @@ void handleScroll(GLFWwindow *window, double scrollX, double scrollY) {
     if (pitch > glm::radians(80.0)) {
         pitch = glm::radians(80.0);
     }
+    
+    if (startParalyzed) {
+        if (yaw < 1.58) {
+            yaw = 1.58;
+        }
+        
+        if (yaw > 4.65) {
+            yaw = 4.65;
+        }
+    }
 }
 
 bool shouldReset = false;

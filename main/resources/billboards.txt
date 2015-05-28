@@ -2,4 +2,4 @@ title.png      -7.5  6.7 -79   0 1
 play.png       -7.5  4.9 -79   0 1
 play_ghost.png -7.5  3.2 -79   0 1
 
-lamp_tooltip.png  -10 2.5 -60  90 3
+lamp_tooltip.png  42 4 10  -90 3
