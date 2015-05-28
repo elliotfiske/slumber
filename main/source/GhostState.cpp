@@ -31,6 +31,7 @@ GameState(window, true) {
     
     t1 = new thread(doGhostNetworking);
 #endif
+	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
 }
 
 void GhostState::checkCollisions() {
@@ -48,7 +49,6 @@ void GhostState::lightFlicker() {
 	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
-	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
 }
 
 /**
@@ -79,7 +79,7 @@ void GhostState::renderScene() {
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
-    tv->draw(light);
+    tv->draw(light, true);
 	lamp->draw(light);
     door->draw(light);
 
@@ -123,16 +123,19 @@ void GhostState::update() {
 	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
+		printf("in checkBounds\n");
 		// Set billboard here!!
 
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
+            sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
 		// Set billboard here!!
 
 		if (getItemAction()) { // Close/open door
+			doorToggle = true;
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action

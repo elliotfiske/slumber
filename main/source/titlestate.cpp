@@ -12,7 +12,7 @@
 #include "ParalyzedState.h"
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
-    camera = new Camera(vec3(0.0, 5.0, -65.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    camera = new Camera(vec3(-7.5, 5.0, -69.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     title = CurrAssets->billboardDictionary["title.png"];
     play = CurrAssets->billboardDictionary["play.png"];
     playGhost = CurrAssets->billboardDictionary["play_ghost.png"];
@@ -43,7 +43,7 @@ void TitleState::renderScene() {
     room->draw(light);
     clock->draw(light);
     lamp->draw(light);
-    tv->draw(light);
+    tv->draw(light, true);
     door->draw(light);
     
     CurrAssets->billboardShader->startUsingShader();
