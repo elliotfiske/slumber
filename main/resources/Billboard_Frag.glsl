@@ -49,7 +49,7 @@ void main() {
 
     vec4 textureColor = texture2D( diffuseTextureSampler, UV );
 //    textureColor += UdColor;
-    textureColor = mix(textureColor, vec4(UdColor, textureColor.w), 0.05);
+    textureColor = mix(textureColor, vec4(UdColor, textureColor.w), 0.5);
     
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * textureColor.rgb * attenuation;
@@ -82,7 +82,7 @@ void main() {
     }
 
     float whatever = lAmbientColor.x + lDiffuseColor.x + lSpecularColor.x + visibility;
-    textureColor.x -= whatever * 0.000001;
+    textureColor.y -= whatever * 0.00000000000000001;
 
     gl_FragColor = textureColor;
 }

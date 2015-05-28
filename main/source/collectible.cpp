@@ -48,9 +48,9 @@ void Collectible::setModel() {
  * Simpler draw b/c we only have 1 shape and don't care about lighting.
  */
 void Collectible::draw(Light *light) {
-//    if (!visible) {
-//        return;
-//    }
+    if (!visible) {
+        return;
+    }
    
     setModel();
 

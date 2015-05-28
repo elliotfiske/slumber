@@ -11,6 +11,10 @@
 #include "network.h"
 #include "glm/gtx/random.hpp"
 
+#ifdef THREADS
+    #include <thread>
+#endif
+
 GhostState::GhostState(GLFWwindow *window) :
 GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
@@ -20,7 +24,13 @@ GameState(window, true) {
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
-    title = CurrAssets->billboardDictionary["title.png"];
+    lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
+    
+#ifdef THREADS
+    thread *t1;
+    
+    t1 = new thread(doGhostNetworking);
+#endif
 }
 
 void GhostState::checkCollisions() {
@@ -46,7 +56,7 @@ void GhostState::lightFlicker() {
 void GhostState::renderScene() {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-	glCullFace(GL_BACK);
+    glDisable(GL_CULL_FACE);
 
 	updateViewMat();
 	updateHighlightMat();
@@ -70,6 +80,7 @@ void GhostState::renderScene() {
 	clock->draw(light);
     tv->draw(light);
 	lamp->draw(light);
+    door->draw(light);
 
 	shadowfbo->unbindTexture();
     
@@ -77,9 +88,8 @@ void GhostState::renderScene() {
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
-    title->draw(light);
+    lampText->draw(light);
     
-
 	CurrAssets->collectibleShader->startUsingShader();
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);

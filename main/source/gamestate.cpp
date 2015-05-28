@@ -24,6 +24,7 @@ void GameState::initAssets() {
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
+    door = assets->actorDictionary["door"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -131,6 +132,7 @@ void GameState::renderShadowBuffer() {
 
     glViewport(0, 0, 4096, 4096);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_CULL_FACE);
     glCullFace(GL_FRONT);
 
     CurrAssets->shadowShader->startUsingShader();

@@ -44,6 +44,8 @@ void doGhostNetworking() {
         exit(-1);
     }
     
+    printf("CLIENT HAS CONNECTED!\n");
+    
     partnersSocket = clientSocket;
     
     while (1) {
@@ -55,7 +57,7 @@ void doGhostNetworking() {
 void doClientNetworking() {
     int serverSocket = 0;
     
-    char *host = (char *)"192.168.0.2";
+    char *host = (char *) SERVER_ADDRESS;
     char *port = (char *)"4444";
     
     serverSocket = tcpClientSetup(host, port);

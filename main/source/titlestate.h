@@ -20,8 +20,7 @@ public:
     void renderScene();
     void update();
     
-    Collectible *button1, *button2;
-    BillboardActor *title;
+    BillboardActor *title, *play, *playGhost;
     
     GameState* newState();
 };

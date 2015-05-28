@@ -17,10 +17,8 @@ public:
     Actor(vec3 center_);
     vec3 center;
     vec3 direction;
-    float velocityScalar;
     float boundSphereRad;
-    
-    int numShapes;
+    float scale;
     
     tinyobj::material_t material[NUM_SHAPES];
     Texture *texture[NUM_SHAPES];
@@ -32,6 +30,7 @@ public:
     void draw(Light *light);
     void drawShadows(Light *light);
     
+    int numShapes;
     GLuint posID[NUM_SHAPES], norID[NUM_SHAPES], indID[NUM_SHAPES], uvID[NUM_SHAPES];
     int numVerts[NUM_SHAPES];
     

@@ -10,6 +10,10 @@
 #include "network.h"
 #include "glm/gtx/random.hpp"
 
+#ifdef THREADS
+    #include <thread>
+#endif
+
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
@@ -18,6 +22,12 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+#ifdef THREADS
+    thread *t1;
+    
+    t1 = new thread(doClientNetworking);
+#endif
 }
 
 void ParalyzedState::checkCollisions() {
@@ -83,6 +93,7 @@ void ParalyzedState::renderScene() {
     clock->draw(light);
     tv->draw(light);
     lamp->draw(light);
+    door->draw(light);
     
     shadowfbo->unbindTexture();
 
