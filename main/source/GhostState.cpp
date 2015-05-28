@@ -79,7 +79,7 @@ void GhostState::renderScene() {
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
-    tv->draw(light, true);
+    tv->draw(light, tvStaticDuration > 0.0);
 	lamp->draw(light);
     door->draw(light);
 
@@ -118,12 +118,12 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 void GhostState::update() {
 	GameState::update();
 
-	glm::vec3 lamppos = CurrAssets->actorDictionary["lamp-table"]->center;
-	glm::vec3 doorpos = CurrAssets->actorDictionary["door"]->center;
-	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
+	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
+    glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+    glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
-		printf("in checkBounds\n");
 		// Set billboard here!!
 
 		if (getItemAction()) { // Flicker the light
@@ -136,14 +136,28 @@ void GhostState::update() {
 
 		if (getItemAction()) { // Close/open door
 			doorToggle = true;
+            sendGhostAction(GHOST_ACTION_CREAK_DOOR);
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
 		// Set billboard here!!
 
 		if (getItemAction()) { // Shake it
+            clockShakeDuration = 3.0;
+            sendGhostAction(GHOST_ACTION_POSSESS_CLOCK);
 		}
 	}
+    else if (checkBounds(tvpos - itemUseBounds, tvpos + itemUseBounds)) {
+        
+        if (getItemAction()) {
+            tvStaticDuration = 0.8;
+            sendGhostAction(GHOST_ACTION_TV_STATIC);
+        }
+    }
+    else if (shouldWeReset()) {
+        
+        sendGhostAction(GHOST_ACTION_BOO);
+    }
 
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());

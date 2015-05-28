@@ -54,7 +54,6 @@ void doGhostNetworking() {
     
     while (1) {
         receiveData(clientSocket);
-        printf(" from the poor guy I'm haunting!\n");
     }
 }
 

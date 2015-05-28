@@ -73,6 +73,10 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     vf = new ViewFrustum();
     
     shouldSwitch = false;
+    
+    tvStaticDuration = 0;
+    flickerDuration = 0;
+    clockShakeDuration = 0;
 }
 
 /**
@@ -95,6 +99,27 @@ void GameState::update() {
 	}
     
     collectible->step(elapsedTime);
+    
+    if (tvStaticDuration > 0) {
+        tvStaticDuration -= elapsedTime;
+        if (tvStaticDuration < 0) {
+            Actor *teevee = CurrAssets->actorDictionary["tv"];
+            teevee->material[teevee->tvScreenIndex].ambient[0] = 0;
+            teevee->material[teevee->tvScreenIndex].ambient[1] = 0;
+            teevee->material[teevee->tvScreenIndex].ambient[2] = 0;
+        }
+    }
+    
+    Actor *clocky = CurrAssets->actorDictionary["clock"];
+    if (clockShakeDuration > 0) {
+        clockShakeDuration -= elapsedTime;
+        clocky->direction.x = glm::linearRand(-0.9, 0.9);
+        clocky->direction.y = glm::linearRand(-0.9, 0.9);
+        clocky->direction.z = glm::linearRand(-0.9, 0.9);
+    }
+    else {
+        clocky->direction = vec3(0, 0, 0);
+    }
 }
 
 /**

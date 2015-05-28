@@ -71,6 +71,8 @@ protected:
 
 	bool doorToggle;
 	int doorDirection;
+    float clockShakeDuration;
+    float tvStaticDuration;
 };
 
 #endif

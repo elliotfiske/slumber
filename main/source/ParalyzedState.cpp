@@ -67,6 +67,14 @@ void ParalyzedState::update() {
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
             flickerDuration = 2.0;
         }
+        
+        if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
+            clockShakeDuration = 3.0;
+        }
+        
+        if (currACtion == GHOST_ACTION_TV_STATIC) {
+            tvStaticDuration = 0.8;
+        }
     }
     
 //    Position ghostPos = getGhostPosition();

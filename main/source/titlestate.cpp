@@ -43,7 +43,7 @@ void TitleState::renderScene() {
     room->draw(light);
     clock->draw(light);
     lamp->draw(light);
-    tv->draw(light, true);
+    tv->draw(light);
     door->draw(light);
     
     CurrAssets->billboardShader->startUsingShader();
