@@ -134,7 +134,7 @@ void GameState::updateViewMat() {
 }
 
 void GameState::updateDoorSwing() {
-	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 1.0f;
+	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 0.25f;
     if (doorDirection > 0) {
 		if (CurrAssets->actorDictionary["door"]->direction.y >= -10) {
 			doorToggle = false;

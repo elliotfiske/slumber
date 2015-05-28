@@ -115,6 +115,8 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 	return false;
 }
 
+bool creak1 = true;
+
 void GhostState::update() {
 	GameState::update();
 
@@ -139,7 +141,9 @@ void GhostState::update() {
 		if (getItemAction()) { // Close/open door
 			doorToggle = true;
             sendGhostAction(GHOST_ACTION_CREAK_DOOR);
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/creak.m4a");
+            string two = creak1 ? "" : "2";
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            creak1 = !creak1;
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
