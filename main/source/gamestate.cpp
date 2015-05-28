@@ -110,7 +110,8 @@ void GameState::updatePerspectiveMat() {
 }
 
 void GameState::updateHighlightMat() {
-	float yaw = 40.0f, pitch = 0.0f;
+    Position playerLook = getPlayerLook();
+	float yaw = playerLook.y, pitch = playerLook.x;
 	glm::vec3 position = glm::vec3(0.0f, 10.0f, -40.0f);
 
 	glm::mat4 Ryaw     = glm::rotate(glm::mat4(1.0f), yaw, vec3(0, 1, 0));
