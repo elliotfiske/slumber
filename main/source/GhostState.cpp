@@ -127,6 +127,7 @@ void GhostState::update() {
 
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
+            // NETWORKING
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
