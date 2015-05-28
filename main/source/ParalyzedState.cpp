@@ -8,6 +8,7 @@
 
 #include "ParalyzedState.h"
 #include "network.h"
+#include "control.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -60,7 +61,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 	float pitch = getPitch();
 	float yaw = getYaw();
 
-	sendGhostPosition(lastX, lastY, lastZ);
+    sendPlayerLook(pitch, yaw);
 #endif
 }
 

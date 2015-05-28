@@ -48,6 +48,7 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket);
 
 // Methods for external use
 void sendGhostPosition(float x, float y, float z);
+void sendPlayerLook(float pitch, float yaw);
 Position getGhostPosition();
 Position getPlayerLook();
 

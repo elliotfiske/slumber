@@ -83,9 +83,8 @@ int tcpClientSetup(char *hostName, char *port) {
     // get the port used on the remote side and store
     remote.sin_port = htons(atoi(port));
     
-    if (connect(socketNum, (struct sockaddr*)&remote, sizeof(struct sockaddr_in)) < 0) {
+    while (connect(socketNum, (struct sockaddr*)&remote, sizeof(struct sockaddr_in)) < 0) {
         perror("connect call");
-        exit(-1);
     }
     
     printf("SUCCESSFULLY CONNECTED\n");

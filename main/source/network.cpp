@@ -94,7 +94,7 @@ void sendGhostPosition(float x, float y, float z) {
  * Pack the client's camera angle into a bootiful string and
  *  zap it over to the ghost
  */
-void sendGhostPosition(float pitch, float yaw) {
+void sendPlayerLook(float pitch, float yaw) {
     char dataString[256];
     sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, 0.0);
 
@@ -144,4 +144,4 @@ Position getPlayerLook() {
 	Position result = {playerLookPitch, playerLookYaw, 0.0};
 	return result;
 }
-}
+
