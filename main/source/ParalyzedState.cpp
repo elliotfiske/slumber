@@ -68,6 +68,10 @@ void ParalyzedState::lightFlicker() {
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
 
+
+bool creakOne = true;
+
+
 void ParalyzedState::update() {
     GameState::update();
     
@@ -75,7 +79,10 @@ void ParalyzedState::update() {
     if (currAction) {
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/creak.m4a");
+            
+            string two = creakOne ? "" : "2";
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            creakOne = !creakOne;
 
             checkHurt(door, 10);
         }
