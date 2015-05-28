@@ -194,6 +194,12 @@ void Assets::loadShape(string filename, Actor *actor) {
     for (int ndx = 0; ndx < shapes.size(); ndx++) {
         tinyobj::material_t currMaterial = materials[shapes[ndx].mesh.material_ids[0]];
         sendShapeToGPU(shapes[ndx], currMaterial, actor, ndx);
+        
+        // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
+        if (shapes[ndx].name == "SCREEN") {
+            printf("Gotcha\n");
+            actor->tvScreenIndex = ndx;
+        }
     }
     
     actor->numShapes = shapes.size();

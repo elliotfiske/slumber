@@ -8,6 +8,7 @@
 Actor::Actor(vec3 center_) {
     center = center_;
     scale = 1.0;
+    tvScreenIndex = -1;
 }
 
 void Actor::step(double dt) {
