@@ -4,6 +4,7 @@ uniform vec3 UdColor;
 uniform vec3 UsColor;
 uniform float Ushine;
 uniform sampler2D shadowMap;
+uniform float attenFactor;
 
 uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
@@ -45,7 +46,7 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + attenFactor * distToLight + attenFactor * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;

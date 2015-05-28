@@ -9,6 +9,7 @@
 #include "GhostState.h"
 #include "control.hpp"
 #include "network.h"
+#include "glm/gtx/random.hpp"
 
 GhostState::GhostState(GLFWwindow *window) :
 GameState(window, true) {
@@ -24,6 +25,19 @@ GameState(window, true) {
 
 void GhostState::checkCollisions() {
 	// TODO: make sure ghost can't go through stuff
+}
+
+void GhostState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
 
 /**
@@ -43,6 +57,13 @@ void GhostState::renderScene() {
 	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
 
 	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 11);
+
+	if (flickerDuration > 0.0) {
+		lightFlicker();
+	}
+	else {
+		CurrAssets->lightingShader->setAttenuation(0.001f);
+	}
 
     bed->draw(light);
 	room->draw(light);

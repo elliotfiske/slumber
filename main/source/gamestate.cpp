@@ -51,6 +51,10 @@ void GameState::initAssets() {
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
+
+	flickerDuration = 0.0;
+	flickerDirection = 1.0;
+	attenFactor = 0.001;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {

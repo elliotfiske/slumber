@@ -18,7 +18,6 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     
     CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
     
-    
     Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
     button1 = new Collectible(*tempCollectible);
     button1->center = vec3(0.0, 4.0, -100.0);
@@ -43,6 +42,8 @@ void TitleState::renderScene() {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
+	CurrAssets->lightingShader->setAttenuation(0.001f);
+
     //	viewFrustumCulling(*bed);
     bed->draw(light);
     room->draw(light);

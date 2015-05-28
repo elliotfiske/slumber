@@ -28,6 +28,7 @@ protected:
     void renderScene();
     int playerHealth;
     bool playerSensitivity;
+	void lightFlicker();
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

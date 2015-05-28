@@ -6,7 +6,7 @@ bed 0 -1 -4
 
 enemy 0 4 -15
 
-lamp-table -15 0 -85
+lamp-table 45 0 10
 
 collect 0 1 -5
 

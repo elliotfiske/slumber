@@ -21,6 +21,7 @@ protected:
     
     void checkCollisions();
     void renderScene();
+	void lightFlicker();
 
     void update();
 };

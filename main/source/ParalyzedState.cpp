@@ -8,6 +8,7 @@
 
 #include "ParalyzedState.h"
 #include "network.h"
+#include "glm/gtx/random.hpp"
 
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
@@ -30,6 +31,19 @@ void ParalyzedState::checkCollisions() {
     }
 }
 
+void ParalyzedState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+}
+
 void ParalyzedState::update() {
     GameState::update();
     
@@ -37,7 +51,6 @@ void ParalyzedState::update() {
     enemy->center.x = ghostPos.x;
     enemy->center.y = ghostPos.y;
     enemy->center.z = ghostPos.z;
-    
 }
 
 /**
@@ -49,13 +62,20 @@ void ParalyzedState::renderScene() {
     glCullFace(GL_BACK);
     
     updateViewMat();
-    
+
     CurrAssets->lightingShader->startUsingShader();
     CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 11);
+
+	if (flickerDuration > 0.0) {
+		lightFlicker();
+	}
+	else {
+		CurrAssets->lightingShader->setAttenuation(0.001f);
+	}
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);
