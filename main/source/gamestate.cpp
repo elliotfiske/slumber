@@ -56,6 +56,8 @@ void GameState::initAssets() {
 	flickerDuration = 0.0;
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
+	doorToggle = false;
+	doorDirection = -1;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -86,7 +88,11 @@ void GameState::update() {
     prevTime = currTime;
     
     updateControl(window);
-    updateCamDirection(camera); 
+    updateCamDirection(camera);
+
+	if (doorToggle) {
+		updateDoorSwing();
+	}
     
     collectible->step(elapsedTime);
 }
@@ -100,6 +106,22 @@ void GameState::updateViewMat() {
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
+}
+
+void GameState::updateDoorSwing() {
+	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 1.0f;
+    if (doorDirection > 0) {
+		if (CurrAssets->actorDictionary["door"]->direction.y >= -10) {
+			doorToggle = false;
+			doorDirection = -1;
+		}
+	}
+	else {
+		if (CurrAssets->actorDictionary["door"]->direction.y <= -40) {
+			doorToggle = false;
+			doorDirection = 1;
+		}
+	}
 }
 
 /**

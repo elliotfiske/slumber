@@ -63,10 +63,14 @@ protected:
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
+	void updateDoorSwing();
 
 	double flickerDuration;
 	double flickerDirection;
 	float attenFactor;
+
+	bool doorToggle;
+	int doorDirection;
 };
 
 #endif
