@@ -25,7 +25,6 @@ GameState(window, true) {
     
     title = CurrAssets->billboardDictionary["title.png"];
     
-    
 #ifdef THREADS
     thread *t1;
     

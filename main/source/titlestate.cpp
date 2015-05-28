@@ -13,18 +13,11 @@
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     camera = new Camera(vec3(0.0, 5.0, -65.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    
     title = CurrAssets->billboardDictionary["title.png"];
+    play = CurrAssets->billboardDictionary["play.png"];
+    playGhost = CurrAssets->billboardDictionary["play_ghost.png"];
     
     CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
-    
-    
-    Actor *tempCollectible = CurrAssets->actorDictionary["collect"];
-    button1 = new Collectible(*tempCollectible);
-    button1->center = vec3(0.0, 4.0, -100.0);
-    
-    button2 = new Collectible(*tempCollectible);
-    button2->center = vec3(0.0, -1.0, -100.0);
 }
 
 /**
@@ -50,19 +43,13 @@ void TitleState::renderScene() {
     lamp->draw(light);
     tv->draw(light);
     
-    CurrAssets->collectibleShader->startUsingShader();
-    CurrAssets->collectibleShader->setViewMatrix(viewMat);
-    CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
-    
-    button1->draw(light);
-    button2->draw(light);
-    
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
-    title->material[0].diffuse[0] = 1.0;
     title->draw(light);
+    play->draw(light);
+    playGhost->draw(light);
     
     shadowfbo->unbindTexture();
     
@@ -81,17 +68,17 @@ GameState *nextState;
 void TitleState::update() {
     vec2 mousePos = titleControl();
     if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 470.0 && mousePos.y > 353.0) {
-        button1->red = true;
+        play->material[0].diffuse[0] = 255.0;
     }
     else {
-        button1->red = false;
+        play->material[0].diffuse[0] = 0.0;
     }
     
     if (mousePos.x < 570.0 && mousePos.x > 452.0 && mousePos.y < 600.0 && mousePos.y > 491.0) {
-        button2->red = true;
+        playGhost->material[0].diffuse[0] = 255.0;
     }
     else {
-        button2->red = false;
+        playGhost->material[0].diffuse[0] = 0.0;
     }
     
     if (shouldStartParalyzed()) {
