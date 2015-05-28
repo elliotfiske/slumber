@@ -101,6 +101,17 @@ void sendPlayerLook(float pitch, float yaw) {
     sendData(dataString);
 }
 
+/**
+ * Send one of the predefined constants over to the player.
+ *  That'll spook em!
+ */
+void sendGhostAction(int action) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", action, 0, 0, 0);
+    
+    sendData(dataString);
+}
+
 void receiveData(int serverSocket) {
     char buf[BUFF_SIZE]; // Buffer for receiving data from the other guy
     
@@ -117,23 +128,55 @@ void receiveData(int serverSocket) {
     }
 }
 
+int currAction = 0;
+
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
 //    cout << "Received packet: " << entirePacket << endl;
     int flag;
     float x, y, z;
     sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);
     
+    if (flag == GHOST_ACTION_FLICKER_LAMP) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_CREAK_DOOR) {
+        currAction = flag;
+    }
+
+    if (flag == GHOST_ACTION_POSSESS_CLOCK) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_TV_STATIC) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_BOO) {
+        currAction = flag;
+    }
+    
     if (flag == GHOST_POSITION_UPDATE_FLAG) {
         ghostPosX = x;
         ghostPosY = y;
         ghostPosZ = z;
     }
-
+    
     if (flag == USER_LOOK_UPDATE_FLAG) {
-    	playerLookPitch = x;
-    	playerLookYaw = y;
+        playerLookPitch = x;
+        playerLookYaw = y;
     }
 }
+
+int actionReady() {
+    if (currAction) {
+        int result = currAction;
+        currAction = 0;
+        return result;
+    }
+    return currAction;
+}
+
 
 Position getGhostPosition() {
     Position result = {ghostPosX, ghostPosY, ghostPosZ};

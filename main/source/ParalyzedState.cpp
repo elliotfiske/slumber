@@ -58,6 +58,17 @@ void ParalyzedState::lightFlicker() {
 void ParalyzedState::update() {
     GameState::update();
     
+    int currAction = actionReady();
+    if (currAction) {
+        if (currAction == GHOST_ACTION_CREAK_DOOR) {
+            doorToggle = true;
+        }
+        
+        if (currAction == GHOST_ACTION_FLICKER_LAMP) {
+            flickerDuration = 2.0;
+        }
+    }
+    
 //    Position ghostPos = getGhostPosition();
 //    enemy->center.x = ghostPos.x;
 //    enemy->center.y = ghostPos.y;
@@ -106,7 +117,7 @@ void ParalyzedState::renderScene() {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
-    tv->draw(light);
+    tv->draw(light, true);
     lamp->draw(light);
     door->draw(light);
     

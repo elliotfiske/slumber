@@ -79,7 +79,7 @@ void GhostState::renderScene() {
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
-    tv->draw(light);
+    tv->draw(light, true);
 	lamp->draw(light);
     door->draw(light);
 
@@ -128,7 +128,7 @@ void GhostState::update() {
 
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
-            // NETWORKING
+            sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
