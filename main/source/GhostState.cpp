@@ -139,6 +139,7 @@ void GhostState::update() {
 		if (getItemAction()) { // Close/open door
 			doorToggle = true;
             sendGhostAction(GHOST_ACTION_CREAK_DOOR);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/creak.m4a");
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
@@ -147,12 +148,14 @@ void GhostState::update() {
 		if (getItemAction()) { // Shake it
             clockShakeDuration = 3.0;
             sendGhostAction(GHOST_ACTION_POSSESS_CLOCK);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
 		}
 	}
     else if (checkBounds(tvpos - itemUseBounds, tvpos + itemUseBounds)) {
         
         if (getItemAction()) {
-            tvStaticDuration = 0.8;
+            tvStaticDuration = 1.8;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
             sendGhostAction(GHOST_ACTION_TV_STATIC);
         }
     }

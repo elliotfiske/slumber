@@ -75,6 +75,8 @@ void ParalyzedState::update() {
     if (currAction) {
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/creak.m4a");
+
             checkHurt(door, 10);
         }
         
@@ -87,11 +89,14 @@ void ParalyzedState::update() {
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+
             checkHurt(clock, 15);
         }
         
         if (currAction == GHOST_ACTION_TV_STATIC) {
-            tvStaticDuration = 0.8;
+            tvStaticDuration = 1.8;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
             checkHurt(tv, 20);
         }
     }
