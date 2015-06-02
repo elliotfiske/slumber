@@ -52,7 +52,8 @@ void GhostState::renderScene() {
 
 	CurrAssets->reflectionShader->startUsingShader();
 	CurrAssets->reflectionShader->setViewMatrix(mirrorViewMat);
-	CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
+    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
+	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0));
 	
 	//mirror->draw(light);
 	

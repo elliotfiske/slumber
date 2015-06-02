@@ -38,12 +38,12 @@ void GameState::initAssets() {
     light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
-        -1.0f, -1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        -1.0f,  1.0f,  0.0f,
-        -1.0f,  1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        1.0f,  1.0f,   0.0f,
+        -1000.0f, -1000.0f,  0.0f,
+        1000.0f, -1000.0f,   0.0f,
+        -1000.0f,  1000.0f,  0.0f,
+        -1000.0f,  1000.0f,  0.0f,
+        1000.0f, -1000.0f,   0.0f,
+        1000.0f,  1000.0f,   0.0f,
     };
     
     glGenBuffers(1, &quad_vertexbuffer);
@@ -97,7 +97,8 @@ void GameState::updateViewMat() {
                                 mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-    mirrorViewMat = mirrorCam;
+//    mirrorViewMat = mirrorCam;
+    mirrorViewMat = cam;
 }
 
 /**
@@ -203,14 +204,16 @@ void GameState::renderReflectBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
-
+    
     framebuffer->bind();
-    reflectbuffer->bind();
     renderScene();
     framebuffer->unbind();
+    
+    reflectbuffer->bind();
+    renderScene();
     reflectbuffer->unbind();
     
     renderFrameBuffer();
