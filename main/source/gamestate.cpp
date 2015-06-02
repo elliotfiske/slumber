@@ -46,9 +46,29 @@ void GameState::initAssets() {
         10.0f,  10.0f,   0.0f,
     };
     
+    static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
+    };
+//        0.5f, -0.5f,  0.0f,
+//        0.5f, -0.5f,   0.0f,
+//        0.5f, 0.5f,  0.0f,
+//        0.5f, 0.5f,  0.0f,
+//        0.5f, 0.5f,   0.0f,
+//        0.5f,  0.5f,   0.0f,
+//    };
+    
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
+    
+    glGenBuffers(1, &quad_vertexbuffer_mirror);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -182,10 +202,9 @@ void GameState::renderReflectBuffer() {
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
-//    reflectbuffer->bindTexture(1);
     
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glVertexAttribPointer(
                           CurrAssets->reflectionShader->position_AttributeID, // attribute
                           3,                              // size
