@@ -182,6 +182,7 @@ void GameState::renderReflectBuffer() {
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
+//    reflectbuffer->bindTexture(1);
     
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
