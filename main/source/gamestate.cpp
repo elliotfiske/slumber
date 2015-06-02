@@ -47,21 +47,14 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -10.0f, -10.0f,  0.0f,
-        10.0f, -10.0f,   0.0f,
-        -10.0f,  10.0f,  0.0f,
-        -10.0f,  10.0f,  0.0f,
-        10.0f, -10.0f,   0.0f,
-        10.0f,  10.0f,   0.0f,
+        -0.5f, -0.5f,  0.0f,
+        0.5f, -0.5f,   0.0f,
+        -0.5f, 0.5f,  0.0f,
+        -0.5f, 0.5f,  0.0f,
+        0.5f, -0.5f,   0.0f,
+        0.5f,  0.5f,   0.0f,
     };
-//        0.5f, -0.5f,  0.0f,
-//        0.5f, -0.5f,   0.0f,
-//        0.5f, 0.5f,  0.0f,
-//        0.5f, 0.5f,  0.0f,
-//        0.5f, 0.5f,   0.0f,
-//        0.5f,  0.5f,   0.0f,
-//    };
-    
+
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
@@ -199,6 +192,7 @@ void GameState::renderReflectBuffer() {
     // Clear the screen
 //    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
 //    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_DEPTH_TEST);
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
