@@ -18,7 +18,7 @@ public:
     
 protected:
     void checkCollisions();
-    void renderScene();
+    void renderScene(bool isMirror);
     
     void update();
 };

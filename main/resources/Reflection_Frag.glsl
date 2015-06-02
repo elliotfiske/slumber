@@ -18,7 +18,7 @@ void main()
 	vec4 reflectionTextureColor = texture2D (reflection_sampler, UV);
 
 	// Framebuffer reflection can have alpha > 1
-	reflectionTextureColor.x = 1.0;
+//	reflectionTextureColor.x = 1.0;
 
 	gl_FragColor = reflectionTextureColor;
 }

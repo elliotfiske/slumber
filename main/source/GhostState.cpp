@@ -23,7 +23,7 @@ void GhostState::checkCollisions() {
 /**
  * Draw the scene from the user's perspective
  */
-void GhostState::renderScene() {
+void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
 	glCullFace(GL_BACK);
@@ -31,7 +31,7 @@ void GhostState::renderScene() {
 	updateViewMat();
 
 	CurrAssets->lightingShader->startUsingShader();
-	CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
 	CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 
 	shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);
@@ -51,11 +51,13 @@ void GhostState::renderScene() {
 	//clock->draw(light);
 
 	CurrAssets->reflectionShader->startUsingShader();
-	CurrAssets->reflectionShader->setViewMatrix(mirrorViewMat);
-    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
-	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0));
+	CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
+    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
+	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
 	
-	//mirror->draw(light);
+//	mirror->draw(light);
 	
 	
 	shadowfbo->unbindTexture();

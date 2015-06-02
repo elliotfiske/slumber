@@ -48,7 +48,7 @@ protected:
     
     void updatePerspectiveMat();
     void updateViewMat();
-    virtual void renderScene() {}
+    virtual void renderScene(bool isMirror) {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     void renderReflectBuffer();

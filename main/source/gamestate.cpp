@@ -38,12 +38,12 @@ void GameState::initAssets() {
     light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
-        -1000.0f, -1000.0f,  0.0f,
-        1000.0f, -1000.0f,   0.0f,
-        -1000.0f,  1000.0f,  0.0f,
-        -1000.0f,  1000.0f,  0.0f,
-        1000.0f, -1000.0f,   0.0f,
-        1000.0f,  1000.0f,   0.0f,
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
     };
     
     glGenBuffers(1, &quad_vertexbuffer);
@@ -177,8 +177,8 @@ void GameState::renderFrameBuffer() {
 
 void GameState::renderReflectBuffer() {
     // Clear the screen
-    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+//    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
@@ -209,11 +209,11 @@ void GameState::draw() {
     renderShadowBuffer();
     
     framebuffer->bind();
-    renderScene();
+    renderScene(false);
     framebuffer->unbind();
     
     reflectbuffer->bind();
-    renderScene();
+    renderScene(true);
     reflectbuffer->unbind();
     
     renderFrameBuffer();
