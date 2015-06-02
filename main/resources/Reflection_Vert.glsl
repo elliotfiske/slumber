@@ -1,4 +1,4 @@
-attribute vec4 vertPos;
+attribute vec3 vertPos;
 attribute vec3 aNormal;
 
 uniform mat4 uProjMatrix;
@@ -14,9 +14,10 @@ void main()
 {
    mat4 MVP = uProjMatrix * uViewMatrix * uModelMatrix;
   
-	gl_Position = MVP * vertPos;
+    gl_Position = vec4(vertPos.xy, 0., 1.0);//MVP * vertPos;
 	
 	vPos = vertPos.xyz;
 
     UV = (gl_Position.xy + vec2(1, 1)) /1.0;
+
 }
