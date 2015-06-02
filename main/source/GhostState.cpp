@@ -13,6 +13,7 @@
 GhostState::GhostState(GLFWwindow *window) :
 	GameState(window, true) {
 	camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+	mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
 }
 
 void GhostState::checkCollisions() {
@@ -40,13 +41,22 @@ void GhostState::renderScene() {
 	bed->draw(light);
 	clock->draw(light);
 	lamp->draw(light);
+	
 
 	CurrAssets->collectibleShader->startUsingShader();
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 	collectible->draw(light);
+	//clock->draw(light);
 
+	CurrAssets->reflectionShader->startUsingShader();
+	CurrAssets->reflectionShader->setViewMatrix(mirrorViewMat);
+	CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
+	
+	//mirror->draw(light);
+	
+	
 	shadowfbo->unbindTexture();
 
 	// check OpenGL error

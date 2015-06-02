@@ -11,6 +11,7 @@
 
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
 }
 
 void ParalyzedState::checkCollisions() {
@@ -49,12 +50,18 @@ void ParalyzedState::renderScene() {
     bed->draw(light);
     clock->draw(light);
     lamp->draw(light);
+    //mirror->draw(light);
     
     CurrAssets->collectibleShader->startUsingShader();
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
     collectible->draw(light);
+    //clock->draw(light);
+    
+    CurrAssets->reflectionShader->startUsingShader();
+    CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     
     shadowfbo->unbindTexture();
     

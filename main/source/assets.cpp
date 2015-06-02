@@ -21,6 +21,7 @@ Assets::Assets() {
     darkeningShader   = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");
     motionBlurShader  = new FBOShader("FBO_Vert.glsl" , "FBO_Frag_Motion_Blur.glsl");
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
+    reflectionShader  = new ReflectShader("Reflection_Vert.glsl", "Reflection_Frag.glsl");
     
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     

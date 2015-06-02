@@ -18,6 +18,7 @@ void GameState::initAssets() {
     lamp =  assets->actorDictionary["lamp-table"];
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
+    mirror = assets->actorDictionary["mirror"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -29,6 +30,10 @@ void GameState::initAssets() {
     shadowfbo = new Framebuffer();
     shadowfbo->generate();
     shadowfbo->generateShadowTexture(2048, 2048);
+    
+    reflectbuffer = new Framebuffer();
+    reflectbuffer->generate();
+    reflectbuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
 
     light = new Light();
     
@@ -49,6 +54,8 @@ void GameState::initAssets() {
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
     isGhost = isGhost_;
+    
+    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     
     setupCallbacks(window);
     initAssets();
@@ -86,7 +93,11 @@ void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
+    mat4 mirrorCam = lookAt(mirrorCamera->center, mirrorCamera->center +
+                                mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
+    
     viewMat = cam;
+    mirrorViewMat = mirrorCam;
 }
 
 /**
@@ -163,6 +174,32 @@ void GameState::renderFrameBuffer() {
     framebuffer->unbindTexture();
 }
 
+void GameState::renderReflectBuffer() {
+    // Clear the screen
+    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
+    reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
+    
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
+    glVertexAttribPointer(
+                          CurrAssets->reflectionShader->position_AttributeID, // attribute
+                          3,                              // size
+                          GL_FLOAT,                       // type
+                          GL_FALSE,                       // normalized?
+                          0,                              // stride
+                          (void*)0                        // array buffer offset
+                          );
+    
+    // Draw the triangles that cover the screenp
+    glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
+    
+    glDisableVertexAttribArray(0);
+    reflectbuffer->unbindTexture();
+}
+
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
@@ -171,10 +208,13 @@ void GameState::draw() {
     renderShadowBuffer();
 
     framebuffer->bind();
+    reflectbuffer->bind();
     renderScene();
     framebuffer->unbind();
+    reflectbuffer->unbind();
     
     renderFrameBuffer();
+    renderReflectBuffer();
     
     glfwSwapBuffers(window);
     glfwPollEvents();

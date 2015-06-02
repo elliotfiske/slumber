@@ -7,6 +7,7 @@
 #include "shaders/LightingShader.h"
 #include "shaders/ShadowShader.h"
 #include "shaders/FBOShader.h"
+#include "shaders/ReflectShader.h"
 #include <map>
 #include "actor.hpp"
 
@@ -35,6 +36,7 @@ public:
     BaseMVPShader  *collectibleShader;
     FBOShader      *darkeningShader;
     FBOShader      *motionBlurShader;
+    ReflectShader  *reflectionShader;
     
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     

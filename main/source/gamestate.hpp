@@ -18,7 +18,7 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *enemy;
+    Actor *room, *bed, *clock, *enemy, *mirror;
     Actor *lamp;
     Collectible *collectible;
     
@@ -26,6 +26,7 @@ public:
 
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
+    Framebuffer *reflectbuffer;
     
     virtual void update();
     void draw();
@@ -34,11 +35,13 @@ public:
     
     mat4 perspectiveMat;
     mat4 viewMat;
+    mat4 mirrorViewMat;
     
     ViewFrustum *vf;
     
 protected:
     Camera *camera;
+    Camera *mirrorCamera;
     GLFWwindow *window;
     
     double prevTime, elapsedTime;
@@ -48,6 +51,7 @@ protected:
     virtual void renderScene() {}
     void renderShadowBuffer();
     void renderFrameBuffer();
+    void renderReflectBuffer();
     
     virtual void checkCollisions() {}
     

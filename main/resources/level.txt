@@ -1,4 +1,4 @@
-clock 29.45 -11 0
+clock 13.5 -11 -85
 
 room 0 0 0
 
@@ -8,4 +8,6 @@ enemy 0 4 -15
 
 lamp-table -15 0 -85
 
-collect 0 1 -5
+collect 0 0 -5
+
+
