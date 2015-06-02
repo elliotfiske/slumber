@@ -31,7 +31,7 @@ public:
     virtual void update();
     void draw();
     
-    GLuint quad_vertexbuffer;
+    GLuint quad_vertexbuffer, quad_vertexbuffer_mirror;
     
     mat4 perspectiveMat;
     mat4 viewMat;
@@ -48,7 +48,7 @@ protected:
     
     void updatePerspectiveMat();
     void updateViewMat();
-    virtual void renderScene() {}
+    virtual void renderScene(bool isMirror) {}
     void renderShadowBuffer();
     void renderFrameBuffer();
     void renderReflectBuffer();

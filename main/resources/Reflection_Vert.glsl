@@ -7,6 +7,8 @@ uniform mat4 uModelMatrix;
 
 varying vec3 vPos;
 
+// Interpolate the vertex positions and pass them to the fragment shader.
+varying vec2 UV;
 
 void main()
 {
@@ -16,4 +18,5 @@ void main()
 	
 	vPos = vertPos.xyz;
 
+    UV = (gl_Position.xy + vec2(1, 1)) /1.0;
 }

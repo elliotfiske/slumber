@@ -32,7 +32,7 @@ void ParalyzedState::update() {
 /**
  * Draw the scene from the user's perspective
  */
-void ParalyzedState::renderScene() {
+void ParalyzedState::renderScene(bool isMirror) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
@@ -40,7 +40,7 @@ void ParalyzedState::renderScene() {
     updateViewMat();
     
     CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->textureToDisplay_ID, 0);

@@ -19,7 +19,7 @@ public:
     
 protected:
     void checkCollisions();
-    void renderScene();
+    void renderScene(bool isMirror);
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

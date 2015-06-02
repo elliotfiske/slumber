@@ -38,17 +38,37 @@ void GameState::initAssets() {
     light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
-        -1.0f, -1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        -1.0f,  1.0f,  0.0f,
-        -1.0f,  1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        1.0f,  1.0f,   0.0f,
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
     };
+    
+    static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
+    };
+//        0.5f, -0.5f,  0.0f,
+//        0.5f, -0.5f,   0.0f,
+//        0.5f, 0.5f,  0.0f,
+//        0.5f, 0.5f,  0.0f,
+//        0.5f, 0.5f,   0.0f,
+//        0.5f,  0.5f,   0.0f,
+//    };
     
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
+    
+    glGenBuffers(1, &quad_vertexbuffer_mirror);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -97,7 +117,8 @@ void GameState::updateViewMat() {
                                 mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-    mirrorViewMat = mirrorCam;
+//    mirrorViewMat = mirrorCam;
+    mirrorViewMat = cam;
 }
 
 /**
@@ -176,14 +197,14 @@ void GameState::renderFrameBuffer() {
 
 void GameState::renderReflectBuffer() {
     // Clear the screen
-    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
-    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+//    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+//    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
     
     glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glVertexAttribPointer(
                           CurrAssets->reflectionShader->position_AttributeID, // attribute
                           3,                              // size
@@ -203,14 +224,16 @@ void GameState::renderReflectBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
-
+    
     framebuffer->bind();
-    reflectbuffer->bind();
-    renderScene();
+    renderScene(false);
     framebuffer->unbind();
+    
+    reflectbuffer->bind();
+    renderScene(true);
     reflectbuffer->unbind();
     
     renderFrameBuffer();
