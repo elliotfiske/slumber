@@ -19,8 +19,12 @@ public:
 protected:
     BillboardActor *lampText;
     
+    
+    
     void checkCollisions();
     void renderScene();
+    void drawHUD();
+    
 	void lightFlicker();
 
     void update();

@@ -257,7 +257,6 @@ void GameState::renderFrameBuffer() {
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-    glEnable(GL_MULTISAMPLE);
 	glEnable(GL_CULL_FACE);
 
     renderShadowBuffer();
@@ -268,6 +267,8 @@ void GameState::draw() {
     
     renderFrameBuffer();
     
+    drawHUD();
+    
     glfwSwapBuffers(window);
     glfwPollEvents();
     
@@ -275,3 +276,6 @@ void GameState::draw() {
 }
 
 
+void GameState::drawHUD() {
+    glDisable(GL_DEPTH_TEST);
+}

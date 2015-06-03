@@ -193,3 +193,9 @@ void GameState::tellClientWhereGhostIs() {
 	}
 #endif
 }
+
+void GhostState::drawHUD() {
+    GameState::drawHUD();
+    
+    
+}

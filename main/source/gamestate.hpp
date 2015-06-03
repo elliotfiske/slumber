@@ -29,6 +29,7 @@ public:
     
     virtual void update();
     void draw();
+    virtual void drawHUD();
     
     GLuint quad_vertexbuffer;
     
