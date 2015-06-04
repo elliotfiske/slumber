@@ -9,13 +9,15 @@
 #include "GhostState.h"
 #include "control.hpp"
 #include "network.h"
+#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
 #endif
 
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
-    camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    ghostHealth = 100.0f;
+	 camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
@@ -40,7 +42,7 @@ void GhostState::checkCollisions() {
 
 /**
  * Draw the scene from the user's perspective
- */
+*/
 void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
@@ -88,13 +90,10 @@ void GhostState::renderScene(bool isMirror) {
 //	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 	collectible->draw(light);
-
-	CurrAssets->reflectionShader->startUsingShader();
-	CurrAssets->reflectionShader->setViewMatrix(viewMat);
+	    
+   mat4 staticViewMat = lookAt(vec3(0.0, 0.0, 0.0), vec3(0.52, .27, -.8), vec3(0.0, 1.0, 0.0));
     
-    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
-    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
-	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
+	
 	
 	shadowfbo->unbindTexture();
 
@@ -118,9 +117,16 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 
 bool creak1 = true;
 
+void GhostState::updateCameraShake() {
+	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+
+	ghostHealth = fmaxf(0.0, ghostHealth - 10.0 * elapsedTime);
+}
+
 void GhostState::update() {
 	GameState::update();
-
+    viewFrustumCulling();
 
 	if (shakeCamera) updateCameraShake();
 
@@ -159,7 +165,6 @@ void GhostState::update() {
 		}
 
 		if (getItemAltAction()) {
-			shakeCamera = true;
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
@@ -189,11 +194,31 @@ void GhostState::update() {
 	tellClientWhereGhostIs();
 }
 
+// check to see if ghost in inside the player's view 
+void GhostState::viewFrustumCulling(){
+    mat4 comboMatrix;
+    
+    comboMatrix = highlightVPMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 6.0));
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(camera->center, 2);
+    if (inView != OUTSIDE) {
+		shakeCamera = true;
+    }
+	else {
+		shakeCamera = false;
+	}
+}
+
+void GhostState::damageGhost() {
+
+}
+
 float lastX, lastY, lastZ;
 
 /**
  * Send a packet to the paralyzed player with the current
- *  location of the ghost
+   location of the ghost
  */
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS

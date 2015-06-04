@@ -55,12 +55,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.5f, -0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f,
-        -0.5f, 0.5f,  0.0f,
-        -0.5f, 0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f, 
-        0.5f,  0.5f,   0.0f,
+        -0.75f, .25f,  0.0f,
+        0.75f,  .25f,   0.0f,
+        -0.75f, 1.75f,  0.0f,
+        -0.75f, 1.75f,  0.0f,
+        0.75f,  .25f,   0.0f, 
+        0.75f,  1.75f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -85,7 +85,7 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
     isGhost = isGhost_;
     
-    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    mirrorCamera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 0.0);
     
     setupCallbacks(window);
     initAssets();
@@ -157,8 +157,8 @@ void GameState::updateViewMat() {
                                 mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-//    mirrorViewMat = mirrorCam;
-    mirrorViewMat = cam;
+    mirrorViewMat = mirrorCam;
+    //mirrorViewMat = cam;
 }
 
 void GameState::updateDoorSwing() {
@@ -199,12 +199,6 @@ void GameState::lightExplode() {
 
 	explodeDuration = std::max(0.0, (explodeDuration - elapsedTime));
 	if (explodeDuration == 0.0) lampExplode = false;
-}
-
-void GameState::updateCameraShake() {
-	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
-	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
-	shakeCamera = false;
 }
 
 /**
@@ -341,7 +335,7 @@ void GameState::renderReflectBuffer() {
 
 
 void GameState::draw() {
-	glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
@@ -350,12 +344,14 @@ void GameState::draw() {
     renderScene(false);
     framebuffer->unbind();
     
-//    reflectbuffer->bind();
-//    renderScene(true);
-//    reflectbuffer->unbind();
+    reflectbuffer->bind();
+    renderScene(true);
+    reflectbuffer->unbind();
     
     renderFrameBuffer();
-//    renderReflectBuffer();
+
+    glDisable(GL_DEPTH_TEST);
+    renderReflectBuffer();
     
     drawHUD();
     

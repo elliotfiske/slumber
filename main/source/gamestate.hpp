@@ -71,7 +71,6 @@ protected:
 	void updateDoorSwing();
 	void lightFlicker();
 	void lightExplode();
-	void updateCameraShake();
 
 	double flickerDuration;
 	double flickerDirection;
