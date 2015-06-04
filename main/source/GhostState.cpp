@@ -17,6 +17,7 @@
 
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     ghostHealth = 100.0f;
+    playerHealth = 100.0f;
 	 camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
@@ -204,7 +205,7 @@ void GhostState::viewFrustumCulling(){
     comboMatrix = highlightVPMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 6.0));
     vf->extractPlanes(comboMatrix);
     
-    int inView = vf->sphereIsInside(camera->center, 2);
+    int inView = vf->sphereIsInside(camera->center, 0.1f);
     if (inView != OUTSIDE) {
 		shakeCamera = true;
     }
@@ -244,6 +245,7 @@ void GhostState::drawHUD() {
 	ghostHUD->drawElement();    
 	CurrAssets->billboardShader->setPercentShown(ghostHealth);
     ghostBar->drawElement();
+	CurrAssets->billboardShader->setPercentShown(playerHealth);
     playerBar->drawElement();
 	CurrAssets->billboardShader->setPercentShown(1000.0f);
 

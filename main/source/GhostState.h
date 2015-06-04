@@ -20,6 +20,7 @@ public:
 protected:
     BillboardActor *lampText;
     float ghostHealth;
+	float playerHealth;
     
     HUDElement *ghostHUD, *ghostBar, *playerBar;
     
