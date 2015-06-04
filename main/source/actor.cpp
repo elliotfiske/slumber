@@ -35,7 +35,10 @@ void Actor::step(double dt) {
 bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
     // TODO: what am I supposed to do with override cooldown?
 
-    return box.collides(target.box);
+    for (size_t i = 0; i < numShapes; i++)
+        for (size_t j = 0; j < target.numShapes; j++)
+            if (boxes[i].collides(target.boxes[j]))
+                return true;
 }
 
 void Actor::setModel() {

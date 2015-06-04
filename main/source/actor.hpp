@@ -20,7 +20,7 @@ public:
     vec3 direction;
     float velocityScalar;
     float boundSphereRad;
-    BoundingBox box;
+    BoundingBox boxes[NUM_SHAPES];
     
     int numShapes;
     
