@@ -75,7 +75,6 @@ void ParalyzedState::update() {
 
     int currAction = actionReady();
     if (currAction) {
-printf("DOING ACTION %d\n", currAction);
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
             
@@ -121,6 +120,11 @@ printf("DOING ACTION %d\n", currAction);
     tellGhostWhereImLooking();
     float darkness = (100 - playerHealth) * 4 / 100;
     CurrAssets->currShader->setIntensity(darkness);
+    
+    
+    if (shouldWeReset()) {
+        playerHealth = 100.0; 
+    }
 }
 
 
