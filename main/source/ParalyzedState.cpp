@@ -75,6 +75,7 @@ void ParalyzedState::update() {
 
     int currAction = actionReady();
     if (currAction) {
+printf("DOING ACTION %d\n", currAction);
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
             
@@ -191,7 +192,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     // check OpenGL error TODO: remove
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error: " << err << endl;
+      //  cerr << "OpenGL error: " << err << endl;
     }
 }
 void ParalyzedState::increaseHealth(int healthValue){
