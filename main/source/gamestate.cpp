@@ -5,6 +5,7 @@
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include <iostream>
 
 using namespace glm;
 
@@ -75,6 +76,17 @@ void GameState::initAssets() {
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
+
+
+
+    // set up spline pathing for lamp
+    std::cout << lamp->center.x << ", " << lamp->center.y << ", " << lamp->center.z << std::endl;
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->animate = true;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -117,6 +129,7 @@ void GameState::update() {
 		updateDoorSwing();
 	}
     
+    lamp->step(elapsedTime);
     collectible->step(elapsedTime);
     
     if (tvStaticDuration > 0) {
