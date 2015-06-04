@@ -196,7 +196,9 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
 }
 
 bool shouldWeReset() {
-    return shouldReset;
+    bool result = shouldReset;
+    shouldReset = false;
+    return result;
 }
 
 void setupCallbacks(GLFWwindow *window) {

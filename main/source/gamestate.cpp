@@ -123,6 +123,7 @@ void GameState::update() {
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
     
+    
     updateControl(window);
     updateCamDirection(camera);
 
