@@ -9,6 +9,10 @@
 #include <cassert>
 #include <iostream>
 
+#ifdef THREADS
+    #include <thread>
+#endif
+
 using namespace std;
 
 /**
@@ -28,6 +32,7 @@ Assets::Assets() {
     collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
     
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
+    reflectionShader  = new ReflectShader("Reflection_Vert.glsl", "Reflection_Frag.glsl");
     
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     readLevelData(levelDataName);
@@ -161,21 +166,47 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
     actor->material[shapeNdx] = material;
 }
 
-void Assets::play(string filename, vec3 pos) {
-    if (soundBuffers.find(filename) == soundBuffers.end())
-        this->loadSoundBuffer(filename);
+using namespace sf;
 
-    sf::SoundBuffer buf = soundBuffers[filename];
-    sf::Sound sound(buf);
+SoundBuffer loadSoundBuffer(string filename) {
+    sf::SoundBuffer buf;
+    buf.loadFromFile(filename);
+    //    soundBuffers[filename] = buf;
+    return buf;
+}
 
-    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
-    sound.play();
+string filename;
+thread *wut;
+bool killSound = false;
+
+
+void doPlay() {
+//    if (soundBuffers.find(filename) == soundBuffers.end())
+//        this->loadSoundBuffer(filename);
     
-//    while (sound.getStatus() == sf::Sound::Playing) {
-//    }
+    sf::SoundBuffer buf = loadSoundBuffer(filename);
+    sf::Sound sound(buf);
+    
+//    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.play();
+    killSound = false;
+    
+    while (sound.getStatus() == sf::Sound::Playing && !killSound) { }
+}
 
-    // keep the sound in scope so we can make sure it is not recycled
-    sounds.push_back(sound);
+
+void Assets::play(string filename_, vec3 pos) {
+#ifdef THREADS
+
+    filename = filename_;
+    killSound = true;
+    wut = new thread(doPlay);
+
+#endif
+}
+
+void Assets::stopSounds() {
+    killSound = true;
 }
 
 /**
@@ -205,9 +236,4 @@ void Assets::loadShape(string filename, Actor *actor) {
     actor->numShapes = shapes.size();
 }
 
-void Assets::loadSoundBuffer(string filename) {
-    sf::SoundBuffer buf;
-    buf.loadFromFile(filename);
-    soundBuffers[filename] = buf;
-}
 

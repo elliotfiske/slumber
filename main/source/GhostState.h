@@ -20,7 +20,9 @@ protected:
     BillboardActor *lampText;
     
     void checkCollisions();
-    void renderScene();
+    void drawHUD();
+    void renderScene(bool isMirror);
+    
 	void lightFlicker();
 
     void update();

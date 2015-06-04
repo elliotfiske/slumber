@@ -15,12 +15,11 @@
     #include <thread>
 #endif
 
-GhostState::GhostState(GLFWwindow *window) :
-GameState(window, true) {
+GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
-//    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
@@ -54,7 +53,7 @@ void GhostState::lightFlicker() {
 /**
  * Draw the scene from the user's perspective
  */
-void GhostState::renderScene() {
+void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glDisable(GL_CULL_FACE);
@@ -79,9 +78,10 @@ void GhostState::renderScene() {
     bed->draw(light);
 	room->draw(light);
 	clock->draw(light);
-    tv->draw(light);
+    tv->draw(light, tvStaticDuration > 0.0);
 	lamp->draw(light);
     door->draw(light);
+    fan->draw(light);
 
 	shadowfbo->unbindTexture();
     
@@ -95,7 +95,16 @@ void GhostState::renderScene() {
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-//	collectible->draw(light);
+	collectible->draw(light);
+
+	CurrAssets->reflectionShader->startUsingShader();
+	CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
+    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
+	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
+	
+	shadowfbo->unbindTexture();
 
 	// check OpenGL error
 	GLenum err;
@@ -115,19 +124,24 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 	return false;
 }
 
+bool creak1 = true;
+
 void GhostState::update() {
 	GameState::update();
 
-	glm::vec3 lamppos = CurrAssets->actorDictionary["lamp-table"]->center;
-	glm::vec3 doorpos = CurrAssets->actorDictionary["door"]->center;
-	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
+	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
+    glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
+    glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
-		printf("in checkBounds\n");
 		// Set billboard here!!
 
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
+            sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
+            
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
@@ -135,14 +149,33 @@ void GhostState::update() {
 
 		if (getItemAction()) { // Close/open door
 			doorToggle = true;
+            sendGhostAction(GHOST_ACTION_CREAK_DOOR);
+            string two = creak1 ? "" : "2";
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            creak1 = !creak1;
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
 		// Set billboard here!!
 
 		if (getItemAction()) { // Shake it
+            clockShakeDuration = 3.0;
+            sendGhostAction(GHOST_ACTION_POSSESS_CLOCK);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
 		}
 	}
+    else if (checkBounds(tvpos - itemUseBounds, tvpos + itemUseBounds)) {
+        
+        if (getItemAction()) {
+            tvStaticDuration = 1.8;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            sendGhostAction(GHOST_ACTION_TV_STATIC);
+        }
+    }
+    else if (shouldWeReset()) {
+        
+        sendGhostAction(GHOST_ACTION_BOO);
+    }
 
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
@@ -168,4 +201,10 @@ void GameState::tellClientWhereGhostIs() {
 		sendGhostPosition(lastX, lastY, lastZ);
 	}
 #endif
+}
+
+void GhostState::drawHUD() {
+    GameState::drawHUD();
+    
+    
 }

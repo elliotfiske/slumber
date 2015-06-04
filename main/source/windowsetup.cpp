@@ -3,7 +3,6 @@
 void doHints() {
     glfwDefaultWindowHints();
     glfwWindowHint(GLFW_RESIZABLE, false);
-    //    glfwWindowHint(GLFW_SAMPLES, 4);
 }
 
 GLFWwindow* setupWindow(bool fullscreen) {

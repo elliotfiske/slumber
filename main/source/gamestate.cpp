@@ -25,6 +25,7 @@ void GameState::initAssets() {
     room =  assets->actorDictionary["room"];
     enemy = assets->actorDictionary["enemy"];
     door = assets->actorDictionary["door"];
+    fan = assets->actorDictionary["fan"];
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -37,18 +38,30 @@ void GameState::initAssets() {
     shadowfbo->generate();
     shadowfbo->generateShadowTexture(4096, 4096);
     
+    reflectbuffer = new Framebuffer();
+    reflectbuffer->generate();
+    reflectbuffer->generateTexture(WINDOW_WIDTH, WINDOW_HEIGHT);
 
     light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
-        -1.0f, -1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        -1.0f,  1.0f,  0.0f,
-        -1.0f,  1.0f,  0.0f,
-        1.0f, -1.0f,   0.0f,
-        1.0f,  1.0f,   0.0f,
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
     };
     
+    static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
+        -0.5f, -0.5f,  0.0f,
+        0.5f, -0.5f,   0.0f,
+        -0.5f, 0.5f,  0.0f,
+        -0.5f, 0.5f,  0.0f,
+        0.5f, -0.5f,   0.0f, 
+        0.5f,  0.5f,   0.0f,
+    };
+
     glGenBuffers(1, &quad_vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data), g_quad_vertex_buffer_data, GL_STATIC_DRAW);
@@ -58,11 +71,17 @@ void GameState::initAssets() {
 	attenFactor = 0.001;
 	doorToggle = false;
 	doorDirection = -1;
+    
+    glGenBuffers(1, &quad_vertexbuffer_mirror);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
     isGhost = isGhost_;
+    
+    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     
     setupCallbacks(window);
     initAssets();
@@ -73,6 +92,10 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     vf = new ViewFrustum();
     
     shouldSwitch = false;
+    
+    tvStaticDuration = 0;
+    flickerDuration = 0;
+    clockShakeDuration = 0;
 }
 
 /**
@@ -95,6 +118,27 @@ void GameState::update() {
 	}
     
     collectible->step(elapsedTime);
+    
+    if (tvStaticDuration > 0) {
+        tvStaticDuration -= elapsedTime;
+        if (tvStaticDuration < 0) {
+            Actor *teevee = CurrAssets->actorDictionary["tv"];
+            teevee->material[teevee->tvScreenIndex].ambient[0] = 0;
+            teevee->material[teevee->tvScreenIndex].ambient[1] = 0;
+            teevee->material[teevee->tvScreenIndex].ambient[2] = 0;
+        }
+    }
+    
+    Actor *clocky = CurrAssets->actorDictionary["clock"];
+    if (clockShakeDuration > 0) {
+        clockShakeDuration -= elapsedTime;
+        clocky->direction.x = glm::linearRand(-0.9, 0.9);
+        clocky->direction.y = glm::linearRand(-0.9, 0.9);
+        clocky->direction.z = glm::linearRand(-0.9, 0.9);
+    }
+    else {
+        clocky->direction = vec3(0, 0, 0);
+    }
 }
 
 /**
@@ -105,11 +149,16 @@ void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
+    mat4 mirrorCam = lookAt(mirrorCamera->center, mirrorCamera->center +
+                                mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
+    
     viewMat = cam;
+//    mirrorViewMat = mirrorCam;
+    mirrorViewMat = cam;
 }
 
 void GameState::updateDoorSwing() {
-	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 1.0f;
+	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 0.25f;
     if (doorDirection > 0) {
 		if (CurrAssets->actorDictionary["door"]->direction.y >= -10) {
 			doorToggle = false;
@@ -189,7 +238,8 @@ void GameState::viewFrustumCulling(Actor curActor){
     
     int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
     if (inView != OUTSIDE) {
-        curActor.draw(light);
+//        curActor.draw(light);
+        
     }
 }
 
@@ -206,7 +256,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
     
-    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
+//    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
     
@@ -228,19 +278,52 @@ void GameState::renderFrameBuffer() {
     framebuffer->unbindTexture();
 }
 
+void GameState::renderReflectBuffer() {
+    // Clear the screen
+//    glViewport(0,0,WINDOW_WIDTH,WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
+//    glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_DEPTH_TEST);
+    
+    glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
+    reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
+    
+    glEnableVertexAttribArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
+    glVertexAttribPointer(
+                          CurrAssets->reflectionShader->position_AttributeID, // attribute
+                          3,                              // size
+                          GL_FLOAT,                       // type
+                          GL_FALSE,                       // normalized?
+                          0,                              // stride
+                          (void*)0                        // array buffer offset
+                          );
+    
+    // Draw the triangles that cover the screenp
+    glDrawArrays(GL_TRIANGLES, 0, 6); // 2*3 indices starting at 0 -> 2 triangles
+    
+    glDisableVertexAttribArray(0);
+    reflectbuffer->unbindTexture();
+}
+
 
 void GameState::draw() {
 	glEnable(GL_DEPTH_TEST);
-    glEnable(GL_MULTISAMPLE);
-	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
-
+    
     framebuffer->bind();
-    renderScene();
+    renderScene(false);
     framebuffer->unbind();
     
+    reflectbuffer->bind();
+    renderScene(true);
+    reflectbuffer->unbind();
+    
     renderFrameBuffer();
+    renderReflectBuffer();
+    
+    drawHUD();
     
     glfwSwapBuffers(window);
     glfwPollEvents();
@@ -249,3 +332,6 @@ void GameState::draw() {
 }
 
 
+void GameState::drawHUD() {
+    glDisable(GL_DEPTH_TEST);
+}

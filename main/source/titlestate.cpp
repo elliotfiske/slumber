@@ -12,18 +12,18 @@
 #include "ParalyzedState.h"
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
-    camera = new Camera(vec3(0.0, 5.0, -65.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    camera = new Camera(vec3(-7.5, 5.0, -69.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     title = CurrAssets->billboardDictionary["title.png"];
     play = CurrAssets->billboardDictionary["play.png"];
     playGhost = CurrAssets->billboardDictionary["play_ghost.png"];
     
-    CurrAssets->play(RESOURCE_FOLDER + "/sounds/musicbox.flac");
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/musicbox.flac");
 }
 
 /**
  * Draw the scene from the user's perspective
  */
-void TitleState::renderScene() {
+void TitleState::renderScene(bool isMirror) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
@@ -45,6 +45,8 @@ void TitleState::renderScene() {
     lamp->draw(light);
     tv->draw(light);
     door->draw(light);
+    
+    shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
@@ -89,12 +91,14 @@ void TitleState::update() {
     if (shouldStartParalyzed()) {
         shouldSwitch = true;
         nextState = new ParalyzedState(window);
+        CurrAssets->stopSounds();
     }
     
     if (shouldStartGhost()) {
         shouldSwitch = true;
         nextState = new GhostState(window);
         CurrAssets->currShader = CurrAssets->ghostShader;
+        CurrAssets->stopSounds();
     }
 }
 
