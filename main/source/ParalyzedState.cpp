@@ -147,7 +147,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     updateViewMat();
 
     CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
+    CurrAssets->lightingShader->setViewMatrix(viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
