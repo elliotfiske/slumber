@@ -19,6 +19,7 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
@@ -29,6 +30,8 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     
     t1 = new thread(doClientNetworking);
 #endif
+    
+    
 }
 
 void ParalyzedState::checkCollisions() {
@@ -134,7 +137,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 /**
  * Draw the scene from the user's perspective
  */
-void ParalyzedState::renderScene() {
+void ParalyzedState::renderScene(bool isMirror) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
@@ -142,7 +145,7 @@ void ParalyzedState::renderScene() {
     updateViewMat();
 
     CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
@@ -171,6 +174,11 @@ void ParalyzedState::renderScene() {
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
     collectible->draw(light);
+    //clock->draw(light);
+    
+    CurrAssets->reflectionShader->startUsingShader();
+    CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     
     // check OpenGL error TODO: remove
     GLenum err;

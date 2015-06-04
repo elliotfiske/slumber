@@ -15,12 +15,11 @@
     #include <thread>
 #endif
 
-GhostState::GhostState(GLFWwindow *window) :
-GameState(window, true) {
+GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
-//    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
@@ -54,7 +53,7 @@ void GhostState::lightFlicker() {
 /**
  * Draw the scene from the user's perspective
  */
-void GhostState::renderScene() {
+void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glDisable(GL_CULL_FACE);
@@ -96,7 +95,16 @@ void GhostState::renderScene() {
 	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-//	collectible->draw(light);
+	collectible->draw(light);
+
+	CurrAssets->reflectionShader->startUsingShader();
+	CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
+    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
+	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
+	
+	shadowfbo->unbindTexture();
 
 	// check OpenGL error
 	GLenum err;

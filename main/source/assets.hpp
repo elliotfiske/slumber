@@ -7,6 +7,7 @@
 #include "shaders/LightingShader.h"
 #include "shaders/ShadowShader.h"
 #include "shaders/FBOShader.h"
+#include "shaders/ReflectShader.h"
 #include <map>
 #include "actor.hpp"
 #include "BillboardActor.h"
@@ -45,6 +46,8 @@ public:
     FBOShader      *motionBlurShader;
     FBOShader      *ghostShader;
     FBOShader      *woozyShader;
+
+    ReflectShader  *reflectionShader;
     
     FBOShader      *currFBOShader;
     

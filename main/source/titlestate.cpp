@@ -23,7 +23,7 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
 /**
  * Draw the scene from the user's perspective
  */
-void TitleState::renderScene() {
+void TitleState::renderScene(bool isMirror) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
@@ -45,6 +45,8 @@ void TitleState::renderScene() {
     lamp->draw(light);
     tv->draw(light);
     door->draw(light);
+    
+    shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);

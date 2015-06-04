@@ -30,6 +30,7 @@ set(HEADERS
    shaders/ShadowShader.h
 
    BillboardActor.h
+   shaders/ReflectShader.h
 )
 
 # List all .c / .cpp files here
@@ -63,4 +64,5 @@ set(SOURCES
    shaders/ShadowShader.cpp
 
    BillboardActor.cpp
+   shaders/ReflectShader.cpp
 )

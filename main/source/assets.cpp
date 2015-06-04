@@ -32,6 +32,7 @@ Assets::Assets() {
     collectibleShader = new BaseMVPShader("Collectible_Vert.glsl", "Collectible_Frag.glsl");
     
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
+    reflectionShader  = new ReflectShader("Reflection_Vert.glsl", "Reflection_Frag.glsl");
     
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     readLevelData(levelDataName);

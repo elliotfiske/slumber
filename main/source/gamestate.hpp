@@ -26,16 +26,18 @@ public:
 
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
+    Framebuffer *reflectbuffer;
     
     virtual void update();
     void draw();
     virtual void drawHUD();
     
-    GLuint quad_vertexbuffer;
+    GLuint quad_vertexbuffer, quad_vertexbuffer_mirror;
     
     mat4 perspectiveMat;
     mat4 viewMat;
 	mat4 highlightVPMat;
+    mat4 mirrorViewMat;
     
     ViewFrustum *vf;
     
@@ -47,6 +49,7 @@ public:
     
 protected:
     Camera *camera;
+    Camera *mirrorCamera;
     GLFWwindow *window;
     
     double prevTime, elapsedTime;
@@ -54,9 +57,10 @@ protected:
     void updatePerspectiveMat();
     void updateViewMat();
 	void updateHighlightMat();
-    virtual void renderScene() {}
+    virtual void renderScene(bool isMirror) {}
     void renderShadowBuffer();
     void renderFrameBuffer();
+    void renderReflectBuffer();
     
     virtual void checkCollisions() {}
     
