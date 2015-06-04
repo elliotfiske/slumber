@@ -9,6 +9,7 @@
 #include "shaders/FBOShader.h"
 #include <map>
 #include "actor.hpp"
+#include "Octree.hpp"
 
 using namespace std;
 
@@ -39,6 +40,8 @@ public:
     FBOShader      *motionBlurShader;
     FBOShader      *ghostShader;
     FBOShader      *woozyShader;
+
+    Octree *octree;
     
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
     

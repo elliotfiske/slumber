@@ -6,6 +6,7 @@
 #include "Light.h"
 #include "tiny_obj_loader.h"
 #include "Texture.h"
+#include "BoundingBox.hpp"
 
 using namespace glm;
 using namespace std;
@@ -19,6 +20,7 @@ public:
     vec3 direction;
     float velocityScalar;
     float boundSphereRad;
+    BoundingBox box;
     
     int numShapes;
     

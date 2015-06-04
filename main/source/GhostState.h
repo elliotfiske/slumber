@@ -21,6 +21,9 @@ protected:
     void renderScene();
     
     void update();
+
+private:
+    std::vector<Actor *> collisions;
 };
 
 #endif /* defined(__slumber__GhostState__) */

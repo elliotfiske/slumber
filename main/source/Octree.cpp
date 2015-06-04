@@ -1,10 +1,6 @@
-#include <Octree.hpp>
+#include "Octree.hpp"
+#include <GLFW/glfw3.h>
 #include <stdlib.h>
-
-Octree::Octree() {
-    for (int i = 0; i < NUM_CHILDREN; i++)
-        children[i] = NULL;
-}
 
 Octree::Octree(vec3 mid, vec3 size) {
     this->mid = mid;
@@ -16,7 +12,7 @@ Octree::Octree(vec3 mid, vec3 size) {
 
 Octree::~Octree() {
     for (int i = 0; i < NUM_CHILDREN; i++)
-        delete chidren[i];
+        delete children[i];
 }
 
 // no need to be accurate, only consistent
@@ -30,24 +26,38 @@ int Octree::getOctant(vec3 point) {
     return octant;
 }
 
-void Octree::insert(Actor actor) {
-    if (abs(actor.center.x - mid.x) > actor.boundSphereRad &&
-        abs(actor.center.y - mid.y) > actor.boundSphereRad &&
-        abs(actor.center.z - mid.z) > actor.boundSphereRad) {
+void Octree::insert(Actor *actor) {
+    if (abs(actor->center.x - mid.x) > actor->boundSphereRad &&
+        abs(actor->center.y - mid.y) > actor->boundSphereRad &&
+        abs(actor->center.z - mid.z) > actor->boundSphereRad) {
         if (this->isLeaf()) this->split();
 
-        children[this->getOctant(actor.center)]->insert(actor);
+        children[this->getOctant(actor->center)]->insert(actor);
     }
     else
         this->actors.push_back(actor);
 }
 
-std::vector<Actor> Octree::getCollisions(Actor toCheck) {
-    
+std::vector<Actor *> Octree::getCollisions(Actor *toCheck) {
+    std::vector<Actor *> colliding;
+    for (size_t i = 0; i < actors.size(); i++) {
+        if (toCheck->detectIntersect(*actors[i], false))
+            colliding.push_back(actors[i]);
+
+        if (!isLeaf())
+	    for (int j = 0; j < NUM_CHILDREN; j++)
+	        if (children[j]->containsPart(toCheck)) {
+	            std::vector<Actor *> tmp = children[j]->getCollisions(toCheck);
+                    for (size_t k = 0; k < tmp.size(); k++)
+                        colliding.push_back(tmp[k]);
+	        }
+    }
+
+    return colliding;
 }
 
 void Octree::split() {
-    for (int i = 0; i < NUM_CHILDREN; i++) 
+    for (int i = 0; i < NUM_CHILDREN; i++) {
         vec3 tmp = size / 4.0f;
 
         if (!(i & 4)) tmp.x *= -1;
@@ -58,8 +68,31 @@ void Octree::split() {
     }
 }
 
+bool Octree::containsPart(Actor *toCheck) {
+    float dist = toCheck->boundSphereRad * toCheck->boundSphereRad;
+    vec3 distCorner1 = toCheck->center - (mid - size / 2.0f),
+         distCorner2 = toCheck->center - (mid + size / 2.0f);
+
+    if (distCorner1.x < 0)
+        dist -= distCorner1.x * distCorner1.x;
+    else if (distCorner2.x > 0)
+        dist -= distCorner2.x * distCorner2.x;
+
+    if (distCorner1.y < 0)
+        dist -= distCorner1.y * distCorner1.y;
+    else if (distCorner2.y > 0)
+        dist -= distCorner2.y * distCorner2.y;
+
+    if (distCorner1.z < 0)
+        dist -= distCorner1.z * distCorner1.z;
+    else if (distCorner2.z > 0)
+        dist -= distCorner2.z * distCorner2.z;
+
+    return dist > 0;
+}
+
 void Octree::draw() {
-    glMatrixMode(GL_PROJECTION);
+    /*glMatrixMode(GL_PROJECTION);
     glPushMatrix();
     glLoadIdentity();
     glMultMatrixf(P.topMatrix().data());
@@ -113,5 +146,5 @@ void Octree::draw() {
     glPopMatrix();
     glMatrixMode(GL_PROJECTION);
     glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);*/
 }

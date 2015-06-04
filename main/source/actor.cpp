@@ -33,8 +33,9 @@ void Actor::step(double dt) {
 }
 
 bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
-    // TODO: this
-    return false;
+    // TODO: what am I supposed to do with override cooldown?
+
+    return box.collides(target.box);
 }
 
 void Actor::setModel() {
@@ -79,6 +80,8 @@ void Actor::draw(Light *light) {
             texture[ndx]->unbind(0);
         }
     }
+
+    box.draw();
 }
 
 void Actor::setLightMVP(Light *light, bool isShadowShader) {

@@ -17,7 +17,7 @@ GhostState::GhostState(GLFWwindow *window) :
 }
 
 void GhostState::checkCollisions() {
-	// TODO: make sure ghost can't go through stuff
+	this->collisions = CurrAssets->octree->getCollisions(camera);
 }
 
 /**
@@ -61,6 +61,13 @@ void GhostState::update() {
 	GameState::update();
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
+
+	checkCollisions();
+
+	// TODO: this doesn't work
+	if (collisions.size() > 0)
+		camera->step(elapsedTime, -getForwardVelocity(), -getStrafeVelocity());
+
 	tellClientWhereGhostIs();
 }
 

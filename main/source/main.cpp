@@ -42,9 +42,9 @@ int main(int argc, const char* argv[]) {
 #endif
     
     bool isGhost = true;
-    if (argc > 1) {
-        isGhost = false;
-    }
+    //if (argc > 1) {
+    //    isGhost = false;
+    //}
     
     gameState = new GhostState(window);
     while(window) {
