@@ -61,7 +61,7 @@ void BillboardActor::draw(Light *light, bool tv) {
             CurrAssets->billboardShader->setUVArray(uvID[ndx]);
             texture[ndx]->bind(CurrAssets->billboardShader->diffuseTexture_UniformID, 0);
             while ((err = glGetError()) != GL_NO_ERROR) {
-                cerr << "5 OpenGL error from Title state: " << err << endl;
+//                cerr << "5 OpenGL error from Title state: " << err << endl;
             }
             
         }

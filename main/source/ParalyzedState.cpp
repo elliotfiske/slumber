@@ -109,6 +109,7 @@ void ParalyzedState::update() {
 	    explodeDuration = 6.0;
 	    lightExplode = true;
 	    CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+            checkHurt(lamp, 25);
 	}
     }
     
@@ -151,8 +152,11 @@ void ParalyzedState::renderScene(bool isMirror) {
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
-
-	if (flickerDuration > 0.0) {
+    
+    if (lampExplode) {
+        lightExplode();
+    }
+	else if (flickerDuration > 0.0) {
 		lightFlicker();
 	}
 	else {
