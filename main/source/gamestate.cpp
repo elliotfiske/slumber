@@ -109,7 +109,6 @@ void GameState::update() {
     if (shouldWeReset()) {
         playerHealth = 1.2;
     }
-    
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
