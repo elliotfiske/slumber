@@ -222,7 +222,7 @@ printf("This stuff happened");
     }
 }
 void ParalyzedState::lowerHealth(int severity){
-   if(playerSensitivity = false){
+   if(playerSensitivity = false) {
       playerHealth -= severity;
    }
    else {

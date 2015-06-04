@@ -33,6 +33,8 @@ public:
     void draw();
     virtual void drawHUD();
     
+    float playerHealth;
+    
     GLuint quad_vertexbuffer, quad_vertexbuffer_mirror;
     
     mat4 perspectiveMat;
