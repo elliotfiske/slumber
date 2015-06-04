@@ -15,7 +15,7 @@ HUDShader::HUDShader(string vertexShaderFile, string fragmentShaderFile) {
     // Make handles to attribute data
     position_AttributeID = GLSL::getAttribLocation(programID, "aPosition");
     uv_AttributeID = GLSL::getAttribLocation(programID, "aUV");
-    hudTexture_UniformID = GLSL::getAttribLocation(programID, "diffuseTextureSampler");
+    hudTexture_UniformID = GLSL::getAttribLocation(programID, "uTex");
 }
 
 void HUDShader::startUsingShader() {
