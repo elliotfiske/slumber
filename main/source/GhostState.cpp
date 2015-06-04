@@ -12,8 +12,8 @@
 
 GhostState::GhostState(GLFWwindow *window) :
 	GameState(window, true) {
-	camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-	mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+	camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+	mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, -1.0), 0.0, 0.0);
 }
 
 void GhostState::checkCollisions() {
@@ -22,7 +22,7 @@ void GhostState::checkCollisions() {
 
 /**
  * Draw the scene from the user's perspective
- */
+*/
 void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
@@ -50,14 +50,9 @@ void GhostState::renderScene(bool isMirror) {
 	collectible->draw(light);
 	//clock->draw(light);
 
-	CurrAssets->reflectionShader->startUsingShader();
-	CurrAssets->reflectionShader->setViewMatrix(viewMat);
-    
-    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
-    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
-	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
+
 	
-//	mirror->draw(light);
+	//mirror->draw(light);
 	
 	
 	shadowfbo->unbindTexture();
@@ -80,7 +75,7 @@ float lastX, lastY, lastZ;
 
 /**
  * Send a packet to the paralyzed player with the current
- *  location of the ghost
+   location of the ghost
  */
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS

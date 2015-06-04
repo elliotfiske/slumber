@@ -13,8 +13,10 @@ varying vec2 UV;
 void main()
 {
    mat4 MVP = uProjMatrix * uViewMatrix * uModelMatrix;
+                  
   
-    gl_Position = vec4(vertPos.xy, 0., 1.0);//MVP * vertPos;
+    gl_Position =  //vec4(vertPos.xy, 0.0, 1.0);
+    uViewMatrix * vec4(vertPos, 1.0);
 	
 	vPos = vertPos.xyz;
 
