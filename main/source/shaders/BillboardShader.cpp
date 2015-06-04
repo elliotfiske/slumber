@@ -23,6 +23,8 @@ BaseMVPShader(vertexShaderFile, fragmentShaderFile) {
     while ((err = glGetError()) != GL_NO_ERROR) {
         std::cerr << "OpenGL error from Lighting Shader: " << err << std::endl;
     }
+	
+	
 }
 
 

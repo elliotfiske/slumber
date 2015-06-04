@@ -21,7 +21,7 @@ protected:
     BillboardActor *lampText;
     float ghostHealth;
     
-    HUDElement *testHUD;
+    HUDElement *ghostHUD, *ghostBar, *playerBar;
     
     void checkCollisions();
 

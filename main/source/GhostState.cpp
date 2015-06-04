@@ -26,7 +26,9 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
     
-    testHUD = new HUDElement(MODELS_FOLDER + "billboards/lamp_tooltip.png", 0.5, 0.5);
+    ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
+    ghostBar = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
+    playerBar = new HUDElement(RESOURCE_FOLDER + "hud/player_health_hud.png", 0.5, 0.5);
     
 #ifdef THREADS
     thread *t1;
@@ -238,8 +240,11 @@ void GameState::tellClientWhereGhostIs() {
 
 void GhostState::drawHUD() {
     GameState::drawHUD();
-    
+
+	ghostHUD->drawElement();    
 	CurrAssets->billboardShader->setPercentShown(ghostHealth);
-    testHUD->drawElement();
-	CurrAssets->billboardShader->setPercentShown(100.0f);
+    ghostBar->drawElement();
+    playerBar->drawElement();
+	CurrAssets->billboardShader->setPercentShown(1000.0f);
+
 }
