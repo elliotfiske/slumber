@@ -33,12 +33,6 @@ void ReflectShader::startUsingShader() {
     glUseProgram(reflection_ProgramID);
 }
 
-void ReflectShader::setPositionArray(GLuint arrayID) {
-    GLSL::enableVertexAttribArray(position_AttributeID);
-    glBindBuffer(GL_ARRAY_BUFFER, arrayID);
-    glVertexAttribPointer(position_AttributeID, 3, GL_FLOAT, GL_FALSE, 0, 0);
-}
-
 void ReflectShader::setMirrorViewMatrix(mat4 camViewMat) {
     glUniformMatrix4fv(mirror_UniformID, 1, GL_FALSE, value_ptr(camViewMat));
 }

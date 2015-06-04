@@ -9,7 +9,6 @@
 #include "ParalyzedState.h"
 #include "network.h"
 #include "control.hpp"
-#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -18,8 +17,8 @@
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-    camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
@@ -65,19 +64,6 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     }
 }
 
-void ParalyzedState::lightFlicker() {
-	if (attenFactor > 0.02f) {
-		flickerDirection = -1.0;
-	}
-	else if (attenFactor < 0.001) {
-		flickerDirection = 1.0;
-	}
-	attenFactor = std::max(0.0002, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-	CurrAssets->lightingShader->setAttenuation(attenFactor);
-
-	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
-}
-
 
 bool creakOne = true;
 
@@ -104,6 +90,13 @@ void ParalyzedState::update() {
             
             flickerDuration = 2.0;
             checkHurt(lamp, 20);
+        }
+
+		if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+            
+            lampExplode = true;
+			explodeDuration = 6.0;
         }
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
@@ -185,9 +178,12 @@ void ParalyzedState::renderScene(bool isMirror) {
     collectible->draw(light);
     //clock->draw(light);
     
-    CurrAssets->reflectionShader->startUsingShader();
-    CurrAssets->reflectionShader->setViewMatrix(viewMat);
-    CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
+   CurrAssets->reflectionShader->startUsingShader();
+   CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+   glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, 100));
+   CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
+   CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     
     // check OpenGL error TODO: remove
     GLenum err;

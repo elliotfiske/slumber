@@ -51,7 +51,9 @@ void TitleState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
-    
+	CurrAssets->billboardShader->setPercentShown(1000.0f);    
+
+
     title->draw(light);
     playGhost->draw(light);
     play->draw(light);

@@ -26,3 +26,4 @@ bool shouldStartGhost();
 bool shouldStartParalyzed();
 
 bool getItemAction();
+bool getItemAltAction();
