@@ -16,7 +16,9 @@
 #endif
 
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
-    camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    ghostHealth = 100.0f;
+    playerHealth = 100.0f;
+	 camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
@@ -26,37 +28,24 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
     
     ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
-    ghostHealth = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
-    playerHealth = new HUDElement(RESOURCE_FOLDER + "hud/player_health_hud.png", 0.5, 0.5);
+    ghostBar = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
+    playerBar = new HUDElement(RESOURCE_FOLDER + "hud/player_health_hud.png", 0.5, 0.5);
     
 #ifdef THREADS
     thread *t1;
     
     t1 = new thread(doGhostNetworking);
 #endif
-	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
+	itemUseBounds = glm::vec3(30.0f, 30.0f, 30.0f);
 }
 
 void GhostState::checkCollisions() {
 	// TODO: make sure ghost can't go through stuff
 }
 
-void GhostState::lightFlicker() {
-	if (attenFactor > 0.02f) {
-		flickerDirection = -1.0;
-	}
-	else if (attenFactor < 0.001) {
-		flickerDirection = 1.0;
-	}
-	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-	CurrAssets->lightingShader->setAttenuation(attenFactor);
-
-	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
-}
-
 /**
  * Draw the scene from the user's perspective
- */
+*/
 void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
@@ -72,12 +61,16 @@ void GhostState::renderScene(bool isMirror) {
 
 	shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
 
-	if (flickerDuration > 0.0) {
+	if (lampExplode) {
+		lightExplode();
+	}
+	else if (flickerDuration > 0.0) {
 		lightFlicker();
 	}
 	else {
-		CurrAssets->lightingShader->setAttenuation(0.0002f);
+		attenFactor = 0.0002f;
 	}
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
     bed->draw(light);
 	room->draw(light);
@@ -100,14 +93,11 @@ void GhostState::renderScene(bool isMirror) {
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 //	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
+
 //	collectible->draw(light);
 
 	CurrAssets->reflectionShader->startUsingShader();
 	CurrAssets->reflectionShader->setViewMatrix(viewMat);
-    
-    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
-    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
-	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
 	
 	shadowfbo->unbindTexture();
 
@@ -131,8 +121,18 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 
 bool creak1 = true;
 
+void GhostState::updateCameraShake() {
+	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+
+	ghostHealth = fmaxf(0.0, ghostHealth - 10.0 * elapsedTime);
+}
+
 void GhostState::update() {
 	GameState::update();
+    viewFrustumCulling();
+
+	if (shakeCamera) updateCameraShake();
 
 	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
 	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
@@ -148,6 +148,14 @@ void GhostState::update() {
             
             CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
 		}
+
+		if (getItemAltAction()) {
+			lampExplode = true;
+			explodeDuration = 6.0;
+			sendGhostAction(GHOST_ACTION_EXPLODE_LAMP);
+
+			CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
 		// Set billboard here!!
@@ -158,6 +166,9 @@ void GhostState::update() {
             string two = creak1 ? "" : "2";
             CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
             creak1 = !creak1;
+		}
+
+		if (getItemAltAction()) {
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
@@ -187,11 +198,31 @@ void GhostState::update() {
 	tellClientWhereGhostIs();
 }
 
+// check to see if ghost in inside the player's view 
+void GhostState::viewFrustumCulling(){
+    mat4 comboMatrix;
+    
+    comboMatrix = highlightVPMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 6.0));
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(camera->center, 0.1f);
+    if (inView != OUTSIDE) {
+		shakeCamera = true;
+    }
+	else {
+		shakeCamera = false;
+	}
+}
+
+void GhostState::damageGhost() {
+
+}
+
 float lastX, lastY, lastZ;
 
 /**
  * Send a packet to the paralyzed player with the current
- *  location of the ghost
+   location of the ghost
  */
 void GameState::tellClientWhereGhostIs() {
 #ifdef THREADS
@@ -210,8 +241,12 @@ void GameState::tellClientWhereGhostIs() {
 
 void GhostState::drawHUD() {
     GameState::drawHUD();
-    
-    ghostHUD->drawElement();
-    ghostHealth->drawElement();
-    playerHealth->drawElement();
+
+	ghostHUD->drawElement();    
+	CurrAssets->billboardShader->setPercentShown(ghostHealth);
+    ghostBar->drawElement();
+	CurrAssets->billboardShader->setPercentShown(playerHealth);
+    playerBar->drawElement();
+	CurrAssets->billboardShader->setPercentShown(1000.0f);
+
 }

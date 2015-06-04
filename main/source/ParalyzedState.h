@@ -29,7 +29,6 @@ protected:
     void checkCollisions();
     int playerHealth;
     bool playerSensitivity;
-	void lightFlicker();
     
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);

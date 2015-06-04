@@ -20,6 +20,7 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
+
     billboardShader   = new BillboardShader("Billboard_Vert.glsl", "Billboard_Frag.glsl");
     hudShader         = new HUDShader("HUD_Vert.glsl", "HUD_Frag.glsl");
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");

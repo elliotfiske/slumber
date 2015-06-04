@@ -3,6 +3,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
+#include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
 
@@ -54,12 +55,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.5f, -0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f,
-        -0.5f, 0.5f,  0.0f,
-        -0.5f, 0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f, 
-        0.5f,  0.5f,   0.0f,
+        -0.75f, .25f,  0.0f,
+        0.75f,  .25f,   0.0f,
+        -0.75f, 1.75f,  0.0f,
+        -0.75f, 1.75f,  0.0f,
+        0.75f,  .25f,   0.0f, 
+        0.75f,  1.75f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -70,7 +71,10 @@ void GameState::initAssets() {
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
 	doorToggle = false;
+	explodeDuration = 0.0;
+	lampExplode = false;
 	doorDirection = -1;
+	shakeCamera = false;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
@@ -81,7 +85,7 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
     isGhost = isGhost_;
     
-    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    mirrorCamera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 0.0);
     
     setupCallbacks(window);
     initAssets();
@@ -153,8 +157,8 @@ void GameState::updateViewMat() {
                                 mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
-//    mirrorViewMat = mirrorCam;
-    mirrorViewMat = cam;
+    mirrorViewMat = mirrorCam;
+    //mirrorViewMat = cam;
 }
 
 void GameState::updateDoorSwing() {
@@ -171,6 +175,30 @@ void GameState::updateDoorSwing() {
 			doorDirection = 1;
 		}
 	}
+}
+
+void GameState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+}
+
+void GameState::lightExplode() {
+	if (attenFactor > -0.0001) {
+		attenFactor -= elapsedTime * glm::compRand1(0.0001f, 0.002f);
+	}
+	else {
+		attenFactor = -1.0;
+	}
+
+	explodeDuration = std::max(0.0, (explodeDuration - elapsedTime));
+	if (explodeDuration == 0.0) lampExplode = false;
 }
 
 /**
@@ -307,7 +335,7 @@ void GameState::renderReflectBuffer() {
 
 
 void GameState::draw() {
-	glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
@@ -316,12 +344,14 @@ void GameState::draw() {
     renderScene(false);
     framebuffer->unbind();
     
-//    reflectbuffer->bind();
-//    renderScene(true);
-//    reflectbuffer->unbind();
+    reflectbuffer->bind();
+    renderScene(true);
+    reflectbuffer->unbind();
     
     renderFrameBuffer();
-//    renderReflectBuffer();
+
+    glDisable(GL_DEPTH_TEST);
+    renderReflectBuffer();
     
     drawHUD();
     

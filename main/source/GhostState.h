@@ -19,17 +19,21 @@ public:
     
 protected:
     BillboardActor *lampText;
+    float ghostHealth;
+	float playerHealth;
     
-    HUDElement *ghostHUD, *ghostHealth, *playerHealth;
+    HUDElement *ghostHUD, *ghostBar, *playerBar;
     
     void checkCollisions();
+
     void drawHUD();
     void renderScene(bool isMirror);
-    
-	void lightFlicker();
 
     void update();
 	bool checkBounds(glm::vec3 min, glm::vec3 max);
+	void viewFrustumCulling();
+	void damageGhost();
+	void updateCameraShake();
 
 	glm::vec3 itemUseBounds;
 };

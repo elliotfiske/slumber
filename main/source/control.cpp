@@ -16,7 +16,7 @@ float forwardAccel;
 float strafeAccel;
 
 float mouseX, mouseY;
-bool startParalyzed = false, startGhost = false, itemAction = false;
+bool startParalyzed = false, startGhost = false, itemAction = false, itemAltAction = false;
 
 #define ACCEL 8.0
 #define FRICTION 1.2
@@ -167,6 +167,16 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             itemAction = false;
         }
     }
+
+	if (key == GLFW_KEY_R) {
+        if (action == GLFW_PRESS) {
+            itemAltAction = true;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            itemAltAction = false;
+        }
+    }
     
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
@@ -254,4 +264,8 @@ bool getItemAction() {
     bool result = itemAction;
     itemAction = false;
 	return result;
+}
+
+bool getItemAltAction() {
+	return itemAltAction;
 }

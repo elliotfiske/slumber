@@ -17,7 +17,6 @@ public:
     
     
     void startUsingShader();
-    void setPositionArray(GLuint arrayID);
     void setIndexArray(GLuint arrayID);
     void setMirrorViewMatrix(glm::mat4 camViewMat);
        

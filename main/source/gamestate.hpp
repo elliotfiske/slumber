@@ -69,13 +69,21 @@ protected:
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
 	void updateDoorSwing();
+	void lightFlicker();
+	void lightExplode();
 
 	double flickerDuration;
 	double flickerDirection;
 	float attenFactor;
 
+	double explodeDuration;
+	bool lampExplode;
+
 	bool doorToggle;
 	int doorDirection;
+
+	bool shakeCamera;
+
     float clockShakeDuration;
     float tvStaticDuration;
 };
