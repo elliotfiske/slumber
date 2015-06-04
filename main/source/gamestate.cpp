@@ -9,7 +9,6 @@
 
 using namespace glm;
 
-float playerHealth = 1.2;
 
 GameState* GameState::newState() {
     printf("THIS SHOULD NOT BE CALLED LIKE EVER");
@@ -27,6 +26,8 @@ void GameState::initAssets() {
     enemy = assets->actorDictionary["enemy"];
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
+    
+    playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);

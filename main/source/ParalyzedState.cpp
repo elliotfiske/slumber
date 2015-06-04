@@ -211,7 +211,7 @@ void ParalyzedState::increaseHealth(int healthValue){
     }
 }
 void ParalyzedState::lowerHealth(int severity){
-   if(playerSensitivity = false){
+   if(playerSensitivity = false) {
       playerHealth -= severity;
    }
    else {
