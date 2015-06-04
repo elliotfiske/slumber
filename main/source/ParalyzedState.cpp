@@ -43,8 +43,14 @@ void ParalyzedState::checkCollisions() {
     }
 }
 
+float hurtCooldown;
+
 void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
-    mat4 comboMatrix;
+    if (hurtCooldown > 0.0) {
+    	return;
+    }
+
+	mat4 comboMatrix;
     
     comboMatrix = perspectiveMat * GameState::viewMat * danger->modelMat;
     vf->extractPlanes(comboMatrix);
@@ -52,6 +58,7 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
     if (inView != OUTSIDE) {
         lowerHealth(howMuch);
+        hurtCooldown = 5.0;
     }
 }
 
@@ -75,6 +82,8 @@ bool creakOne = true;
 void ParalyzedState::update() {
     GameState::update();
     
+    hurtCooldown -= 0.17;
+
     int currAction = actionReady();
     if (currAction) {
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
