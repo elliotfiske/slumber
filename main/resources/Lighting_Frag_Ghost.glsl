@@ -4,6 +4,7 @@ uniform vec3 UdColor;
 uniform vec3 UsColor;
 uniform float Ushine;
 uniform sampler2D shadowMap;
+uniform float attenFactor;
 
 uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
@@ -45,7 +46,7 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + attenFactor * distToLight + attenFactor * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb * 0.8 + 0.2;
     textureColor += UdColor;
@@ -54,7 +55,7 @@ void main() {
     cd = cd * 0.5 + 0.5;
     
     vec3 lAmbientColor  = UaColor * attenuation;
-    vec3 lDiffuseColor  = cd * textureColor;
+    vec3 lDiffuseColor  = cd * textureColor * attenuation;
     vec3 lSpecularColor = cs * UsColor * attenuation;
 
     // Shadowing
@@ -84,6 +85,8 @@ void main() {
         }
     }
 
+
+	// Project the other player's vision on the wall
 	vec4 hCoords = highlightCoords;
 	hCoords = hCoords / hCoords.w;
 	hCoords.xyz = 0.5 * hCoords.xyz + 0.5;
@@ -98,9 +101,10 @@ void main() {
 
     // Make everything lighter and blue
     vec4 currColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
-	if (amountHighlight > 0.0) {
-		float color = (currColor.x + currColor.y + currColor.z) / 3;
-		currColor = vec4(color, color, color, 1.0);
+    if (amountHighlight > 0.0) {
+        currColor.x = (currColor.x + currColor.y + currColor.z) / 3.0 * 1.9;
+        currColor.z /= 1.8;
+        currColor.y /= 1.4;
 	}
 	else {
 		currColor.z = (currColor.x + currColor.y + currColor.z) / 3.0 * 2.1;

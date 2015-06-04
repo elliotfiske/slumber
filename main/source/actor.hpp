@@ -17,10 +17,8 @@ public:
     Actor(vec3 center_);
     vec3 center;
     vec3 direction;
-    float velocityScalar;
     float boundSphereRad;
-    
-    int numShapes;
+    float scale;
     
     tinyobj::material_t material[NUM_SHAPES];
     Texture *texture[NUM_SHAPES];
@@ -29,9 +27,10 @@ public:
     void step(double dt);
     
     bool detectIntersect(Actor target, bool oc);
-    void draw(Light *light);
+    void draw(Light *light, bool tv = false);
     void drawShadows(Light *light);
     
+    int numShapes;
     GLuint posID[NUM_SHAPES], norID[NUM_SHAPES], indID[NUM_SHAPES], uvID[NUM_SHAPES];
     int numVerts[NUM_SHAPES];
     
@@ -39,6 +38,9 @@ public:
     
     void setModel();
     void setMaterial(tinyobj::material_t material);
+    
+    /** Hack: which index, if any, is the TV screen?  We want to apply static to it. */
+    int tvScreenIndex;
     
 private:
     void setLightMVP(Light *light, bool isShadowShader);

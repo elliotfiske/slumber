@@ -23,6 +23,10 @@ int partnersSocket = 0;
 
 // These correspond to properties in GameState
 float ghostPosX, ghostPosY, ghostPosZ;
+
+// These correspond to properties in GhostState
+float playerLookYaw, playerLookPitch;
+
 bool shouldShowGhost;
 
 void doGhostNetworking() {
@@ -44,18 +48,19 @@ void doGhostNetworking() {
         exit(-1);
     }
     
+    printf("CLIENT HAS CONNECTED!\n");
+    
     partnersSocket = clientSocket;
     
     while (1) {
         receiveData(clientSocket);
-        printf(" from the poor guy I'm haunting!\n");
     }
 }
 
 void doClientNetworking() {
     int serverSocket = 0;
     
-    char *host = (char *)"192.168.0.2";
+    char *host = (char *) SERVER_ADDRESS;
     char *port = (char *)"4444";
     
     serverSocket = tcpClientSetup(host, port);
@@ -84,6 +89,28 @@ void sendGhostPosition(float x, float y, float z) {
     sendData(dataString);
 }
 
+/**
+ * Pack the client's camera angle into a bootiful string and
+ *  zap it over to the ghost
+ */
+void sendPlayerLook(float pitch, float yaw) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, 0.0);
+
+    sendData(dataString);
+}
+
+/**
+ * Send one of the predefined constants over to the player.
+ *  That'll spook em!
+ */
+void sendGhostAction(int action) {
+    char dataString[256];
+    sprintf(dataString, "%d %f %f %f", action, 0.0, 0.0, 0.0);
+    
+    sendData(dataString);
+}
+
 void receiveData(int serverSocket) {
     char buf[BUFF_SIZE]; // Buffer for receiving data from the other guy
     
@@ -100,20 +127,63 @@ void receiveData(int serverSocket) {
     }
 }
 
+int currAction = 0;
+
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
 //    cout << "Received packet: " << entirePacket << endl;
     int flag;
     float x, y, z;
     sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);
     
+    if (flag == GHOST_ACTION_FLICKER_LAMP) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_CREAK_DOOR) {
+        currAction = flag;
+    }
+
+    if (flag == GHOST_ACTION_POSSESS_CLOCK) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_TV_STATIC) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_BOO) {
+        currAction = flag;
+    }
+    
     if (flag == GHOST_POSITION_UPDATE_FLAG) {
         ghostPosX = x;
         ghostPosY = y;
         ghostPosZ = z;
     }
+    
+    if (flag == USER_LOOK_UPDATE_FLAG) {
+        playerLookPitch = x;
+        playerLookYaw = y;
+    }
 }
+
+int actionReady() {
+    if (currAction) {
+        int result = currAction;
+        currAction = 0;
+        return result;
+    }
+    return currAction;
+}
+
 
 Position getGhostPosition() {
     Position result = {ghostPosX, ghostPosY, ghostPosZ};
     return result;
 }
+
+Position getPlayerLook() {
+	Position result = {playerLookPitch, playerLookYaw, 0.0};
+	return result;
+}
+

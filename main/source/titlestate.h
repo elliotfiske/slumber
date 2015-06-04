@@ -17,11 +17,10 @@ class TitleState : public GameState {
 public:
     TitleState(GLFWwindow *window);
     
-    void renderScene();
+    void renderScene(bool isMirror);
     void update();
     
-    Collectible *button1, *button2;
-    BillboardActor *title;
+    BillboardActor *title, *play, *playGhost;
     
     GameState* newState();
 };

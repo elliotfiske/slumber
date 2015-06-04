@@ -1,4 +1,5 @@
 #include "Framebuffer.h"
+#include <vector>
 
 Framebuffer::Framebuffer() :
 	id(0),
@@ -29,6 +30,7 @@ bool Framebuffer::generateShadowTexture(GLuint width, GLuint height, bool clamp)
 	glGenTextures(1, &tex_id);
 	glBindTexture(GL_TEXTURE_2D, tex_id);
     
+	std::vector<GLubyte> emptyData(width * height * 4, 0);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, width, height, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -36,6 +38,7 @@ bool Framebuffer::generateShadowTexture(GLuint width, GLuint height, bool clamp)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, tex_id, 0);
+
 	glDrawBuffer(GL_NONE);
     glReadBuffer(GL_NONE);
 
@@ -57,7 +60,7 @@ bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {
     glBindTexture(GL_TEXTURE_2D, tex_id);
     
     // Give an empty image to OpenGL ( the last "0" means "empty" )
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 1024, 768, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, WINDOW_WIDTH, WINDOW_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, 0);
     
     // Poor filtering
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -68,7 +71,7 @@ bool Framebuffer::generateTexture(GLuint width, GLuint height, bool clamp) {
     GLuint depthrenderbuffer;
     glGenRenderbuffers(1, &depthrenderbuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, depthrenderbuffer);
-    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, 1024, 768);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT, WINDOW_WIDTH, WINDOW_HEIGHT);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthrenderbuffer);
     
     // Set "renderedTexture" as our colour attachement #0

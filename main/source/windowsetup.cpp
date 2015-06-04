@@ -1,6 +1,11 @@
 #include "windowsetup.hpp"
 
-GLFWwindow* setupWindow(){
+void doHints() {
+    glfwDefaultWindowHints();
+    glfwWindowHint(GLFW_RESIZABLE, false);
+}
+
+GLFWwindow* setupWindow(bool fullscreen) {
     GLFWwindow* window;
     
     if (!glfwInit()){
@@ -8,11 +13,17 @@ GLFWwindow* setupWindow(){
         return NULL;
     }
     
-    glfwDefaultWindowHints();
-    glfwWindowHint(GLFW_RESIZABLE, false);
-    glfwWindowHint(GLFW_SAMPLES, 4);
+    doHints();
     
-    window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", NULL, NULL);
+    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    
+    if (fullscreen) {
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+    }
+    else {
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", NULL, NULL);
+    }
+    
     if(window == NULL){
         fprintf(stderr, "Failed to initialize window\n");
         glfwTerminate();
@@ -24,19 +35,18 @@ GLFWwindow* setupWindow(){
     // Initialize GLAD
     if (!gladLoadGL()) {
         printf("Couldn't initialize GLAD\n");
-        glfwDestroyWindow(window);
+        glfwDestroyWindow(window); 
         glfwTerminate();
         return NULL;
     }
     
-//    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_MULTISAMPLE);
     glEnable (GL_BLEND);
     glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 //    glClearColor(.051f, .447f, .60f, 0.0f);
-    glClearColor(.0f, .0, .0f, 0.0f);
+    glClearColor(.1f, .0, .0f, 0.0f);
     
     return window;
 }

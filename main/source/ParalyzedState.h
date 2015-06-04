@@ -23,11 +23,16 @@ public:
     int getHealth();
     bool getSensitivity();
     
+    void tellGhostWhereImLooking();
+
 protected:
     void checkCollisions();
-    void renderScene();
     int playerHealth;
     bool playerSensitivity;
+	void lightFlicker();
+    
+    void checkHurt(Actor *danger, int howMuch);
+    void renderScene(bool isMirror);
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

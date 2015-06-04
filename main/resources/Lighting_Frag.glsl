@@ -4,6 +4,7 @@ uniform vec3 UdColor;
 uniform vec3 UsColor;
 uniform float Ushine;
 uniform sampler2D shadowMap;
+uniform float attenFactor;
 
 uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
@@ -45,7 +46,7 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + 0.001 * distToLight + 0.001 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + attenFactor * distToLight + attenFactor * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;
@@ -69,19 +70,16 @@ void main() {
         shadowCoords.x > 0.0 && shadowCoords.x < 1.0 &&
         shadowCoords.y > 0.0 && shadowCoords.y < 1.0 &&
         shadowCoords.z > 0.0 && shadowCoords.z < 1.0) {
-		visibility -= .5;
         for(int i = 0; i < 4; i++) {
             // Get the distance to light stored in the shadow map.
             // This value is in NDC between 0 and 1.
             // (Note: distToLight we computed for Blinn-Phong is in camera space.)
             float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
             if(distToLightStored < shadowCoords.z + bias) {
-                visibility -= 0.25;
+                visibility -= 0.20;
             }
         }
     }
-
-
 
     gl_FragColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
 }

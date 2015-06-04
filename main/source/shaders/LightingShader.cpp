@@ -20,7 +20,7 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     
     // Make handles to attribute data
     uv_AttributeID       = GLSL::getAttribLocation(programID, "aUV");
-    textureToDisplay_ID  = GLSL::getUniformLocation(programID, "shadowMap");
+    shadowMap_ID  = GLSL::getUniformLocation(programID, "shadowMap");
     
     // Make handles to uniforms
     lightPos_UniformID         = GLSL::getUniformLocation(programID, "lightPos");
@@ -29,10 +29,11 @@ LightingShader::LightingShader(string vertexShaderFile, string fragmentShaderFil
     specularMaterial_UniformID = GLSL::getUniformLocation(programID, "UsColor");
     shininess_UniformID        = GLSL::getUniformLocation(programID, "Ushine");
     lightMVP_UniformID         = GLSL::getUniformLocation(programID, "lightMVP");
-    highlightVP_UniformID         = GLSL::getUniformLocation(programID, "highlightVP");
+    highlightVP_UniformID      = GLSL::getUniformLocation(programID, "highlightVP");
+    attenuation_UniformID      = GLSL::getUniformLocation(programID, "attenFactor");
     
     diffuseTexture_UniformID   = GLSL::getUniformLocation(programID, "diffuseTextureSampler");
-    
+
     // check OpenGL error
     GLenum err;
     while ((err = glGetError()) != GL_NO_ERROR) {
@@ -76,4 +77,8 @@ void LightingShader::setLightMVP(mat4 lightMVP) {
 
 void LightingShader::setHighlightVP(mat4 VP) {
     glUniformMatrix4fv(highlightVP_UniformID, 1, GL_FALSE, value_ptr(VP));
+}
+
+void LightingShader::setAttenuation(float attenuation) {
+    glUniform1f(attenuation_UniformID, attenuation);
 }

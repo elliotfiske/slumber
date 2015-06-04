@@ -76,16 +76,15 @@ int tcpClientSetup(char *hostName, char *port) {
         exit(-1);
     }
 
-    printf("Connecting to server...\n");
+    printf("Looking for server at %s...\n", SERVER_ADDRESS);
     
     memcpy((char*)&remote.sin_addr, (char*)hp->h_addr, hp->h_length);
     
     // get the port used on the remote side and store
-    remote.sin_port= htons(atoi(port));
+    remote.sin_port = htons(atoi(port));
     
-    if (connect(socketNum, (struct sockaddr*)&remote, sizeof(struct sockaddr_in)) < 0) {
+    while (connect(socketNum, (struct sockaddr*)&remote, sizeof(struct sockaddr_in)) < 0) {
         perror("connect call");
-        exit(-1);
     }
     
     printf("SUCCESSFULLY CONNECTED\n");

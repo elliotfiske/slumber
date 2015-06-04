@@ -48,17 +48,15 @@ void Collectible::setModel() {
  * Simpler draw b/c we only have 1 shape and don't care about lighting.
  */
 void Collectible::draw(Light *light) {
-//    if (!visible) {
-//        return;
-//    }
+    if (!visible) {
+        return;
+    }
    
     setModel();
 
     CurrAssets->collectibleShader->setPositionArray(posID[0]);
     CurrAssets->collectibleShader->setNormalArray(norID[0]);
     CurrAssets->collectibleShader->setIndexArray(indID[0]);
-    
-    glUniform1i(CurrAssets->collectibleShader->red_UniformID, red);
     
     glDrawElements(GL_TRIANGLES, numVerts[0], GL_UNSIGNED_INT, (void*) 0);
     
@@ -74,6 +72,7 @@ void Collectible::collected() {
     }
     
     visible = false;
+    center = vec3(500, 500, 500);
     
-    timeToAppear = 0.1; // TODO: randomize.  maybe.
+    timeToAppear = 2.1; // TODO: randomize.  maybe.
 }
