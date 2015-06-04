@@ -125,7 +125,7 @@ void GhostState::updateCameraShake() {
 	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 
-	ghostHealth = fmaxf(0.0, ghostHealth - 10.0 * elapsedTime);
+	ghostHealth = fmaxf(-10.0, ghostHealth - 10.0 * elapsedTime);
 }
 
 void GhostState::update() {
@@ -264,6 +264,7 @@ void GhostState::drawHUD() {
 	CurrAssets->billboardShader->setPercentShown(ghostHealth);
     ghostBar->drawElement();
 	CurrAssets->billboardShader->setPercentShown(getPlayerHealth());
+    playerHealth = getPlayerHealth();
     playerBar->drawElement();
 	CurrAssets->billboardShader->setPercentShown(1000.0f);
 
