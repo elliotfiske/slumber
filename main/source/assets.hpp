@@ -14,7 +14,7 @@
 #include "actor.hpp"
 #include "BillboardActor.h"
 
-#include <SFML/Audio.hpp>
+//#include <SFML/Audio.hpp>
 
 using namespace std;
 
@@ -74,8 +74,8 @@ private:
     void generateBillboards(string filename);
 //    void loadSoundBuffer(string filename);
     
-    map<string, sf::SoundBuffer> soundBuffers;
-    vector<sf::Sound> sounds;
+//    map<string, sf::SoundBuffer> soundBuffers;
+//    vector<sf::Sound> sounds;
 };
 
 

@@ -167,14 +167,14 @@ void Assets::sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material
     actor->material[shapeNdx] = material;
 }
 
-using namespace sf;
+//using namespace sf;
 
-SoundBuffer loadSoundBuffer(string filename) {
+/*SoundBuffer loadSoundBuffer(string filename) {
     sf::SoundBuffer buf;
     buf.loadFromFile(filename);
     //    soundBuffers[filename] = buf;
     return buf;
-}
+}*/
 
 string filename;
 #ifdef THREADS
@@ -187,14 +187,14 @@ void doPlay() {
 //    if (soundBuffers.find(filename) == soundBuffers.end())
 //        this->loadSoundBuffer(filename);
     
-    sf::SoundBuffer buf = loadSoundBuffer(filename);
+/*    sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
 //    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
     sound.play();
     killSound = false;
     
-    while (sound.getStatus() == sf::Sound::Playing && !killSound) { }
+    while (sound.getStatus() == sf::Sound::Playing && !killSound) { }*/
 }
 
 
