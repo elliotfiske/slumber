@@ -20,10 +20,10 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
-    lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
-    ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag_Ghost.glsl");
     billboardShader   = new LightingShader("Billboard_Vert.glsl", "Billboard_Frag.glsl");
     hudShader         = new LightingShader("HUD_Vert.glsl", "HUD_Frag.glsl");
+    lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_PCSS_Frag.glsl");
+    ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_PCSS_Frag_Ghost.glsl");
     
     ghostShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Ghost_Vision.glsl");
     currShader        = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Darken.glsl");

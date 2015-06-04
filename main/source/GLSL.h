@@ -17,8 +17,8 @@
 #define __GLSL__
 
 
-#define WINDOW_WIDTH  (glfwGetVideoMode(glfwGetPrimaryMonitor())->width)
-#define WINDOW_HEIGHT (glfwGetVideoMode(glfwGetPrimaryMonitor())->height)
+#define WINDOW_WIDTH  1440
+#define WINDOW_HEIGHT 800
 
 
 namespace GLSL {

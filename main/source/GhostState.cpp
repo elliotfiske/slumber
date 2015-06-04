@@ -63,12 +63,12 @@ void GhostState::renderScene(bool isMirror) {
 	updateViewMat();
 	updateHighlightMat();
 
-	CurrAssets->ghostLightingShader->startUsingShader();
-	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
-	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
-	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
+	CurrAssets->lightingShader->startUsingShader();
+	CurrAssets->lightingShader->setViewMatrix(viewMat);
+	CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 1);
+	shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
 
 	if (flickerDuration > 0.0) {
 		lightFlicker();
@@ -91,11 +91,11 @@ void GhostState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
     
-    lampText->draw(light);
+//    lampText->draw(light);
     
-	CurrAssets->collectibleShader->startUsingShader();
-	CurrAssets->collectibleShader->setViewMatrix(viewMat);
-	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
+//	CurrAssets->collectibleShader->startUsingShader();
+//	CurrAssets->collectibleShader->setViewMatrix(viewMat);
+//	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 	collectible->draw(light);
 

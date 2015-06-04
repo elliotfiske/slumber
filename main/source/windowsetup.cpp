@@ -18,10 +18,10 @@ GLFWwindow* setupWindow(bool fullscreen) {
     const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
     if (fullscreen) {
-        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+        window = glfwCreateWindow( mode->width / 4.0, mode->height / 4.0, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
     }
     else {
-        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", NULL, NULL);
+        window = glfwCreateWindow( mode->width / 4.0, mode->height / 4.0, "SLUMBER", NULL, NULL);
     }
     
     if(window == NULL){
