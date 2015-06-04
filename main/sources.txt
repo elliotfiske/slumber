@@ -28,6 +28,8 @@ set(HEADERS
    shaders/LightingShader.h
    shaders/FBOShader.h
    shaders/ShadowShader.h
+   shaders/HUDShader.h
+   shaders/BillboardShader.h
 
    BillboardActor.h
    shaders/ReflectShader.h
@@ -63,6 +65,8 @@ set(SOURCES
    shaders/LightingShader.cpp
    shaders/FBOShader.cpp
    shaders/ShadowShader.cpp
+   shaders/HUDShader.cpp
+   shaders/BillboardShader.cpp
 
    BillboardActor.cpp
    shaders/ReflectShader.cpp

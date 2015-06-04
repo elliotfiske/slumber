@@ -18,7 +18,7 @@
 
 
 #define WINDOW_WIDTH  1440
-#define WINDOW_HEIGHT 800
+#define WINDOW_HEIGHT 900
 
 
 namespace GLSL {

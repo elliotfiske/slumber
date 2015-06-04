@@ -8,6 +8,8 @@
 #include "shaders/ShadowShader.h"
 #include "shaders/FBOShader.h"
 #include "shaders/ReflectShader.h"
+#include "shaders/HUDShader.h"
+#include "shaders/BillboardShader.h"
 #include <map>
 #include "actor.hpp"
 #include "BillboardActor.h"
@@ -40,8 +42,8 @@ public:
     LightingShader *lightingShader;
     LightingShader *ghostLightingShader;
     BaseMVPShader  *collectibleShader;
-    LightingShader *billboardShader;
-    LightingShader *hudShader;
+    BillboardShader *billboardShader;
+    HUDShader *hudShader;
     
     FBOShader      *currShader;
     FBOShader      *motionBlurShader;

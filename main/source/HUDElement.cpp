@@ -24,23 +24,13 @@ void HUDElement::drawElement() {
     glDisable(GL_DEPTH_TEST);
     
     CurrAssets->hudShader->startUsingShader();
-    
-    GLuint posID = CurrAssets->masterBillboard->posID[0];
-    GLuint norID = CurrAssets->masterBillboard->norID[0];
-    GLuint indID = CurrAssets->masterBillboard->indID[0];
     GLuint uvID = CurrAssets->masterBillboard->uvID[0];
     
-    CurrAssets->hudShader->setPositionArray(posID);
-    CurrAssets->hudShader->setNormalArray(norID);
-    CurrAssets->hudShader->setIndexArray(indID);
     CurrAssets->hudShader->setUVArray(uvID);
     
-    CurrAssets->hudShader->setViewMatrix(mat4(1.0f));
-    CurrAssets->hudShader->setModelMatrix(mat4(1.0f));
-    CurrAssets->hudShader->setProjectionMatrix(mat4(1.0f));
+    texture->bind(CurrAssets->hudShader->hudTexture_UniformID, 0);
     
-    texture->bind(CurrAssets->hudShader->diffuseTexture_UniformID, 0);
-    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, CurrAssets->masterBillboard->indID[0]);
     glDrawElements(GL_TRIANGLES, CurrAssets->masterBillboard->numVerts[0], GL_UNSIGNED_INT, (void*) 0);
     
     texture->unbind(0);
