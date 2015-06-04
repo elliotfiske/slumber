@@ -185,7 +185,6 @@ void GameState::lightFlicker() {
 		flickerDirection = 1.0;
 	}
 	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-printf("FLICKER IT UP FURRBALL\n");
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
