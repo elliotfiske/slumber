@@ -155,6 +155,10 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
         currAction = flag;
     }
     
+    if (flag == GHOST_ACTION_EXPLODE_LAMP) {
+        currAction = flag;
+    }
+    
     if (flag == GHOST_POSITION_UPDATE_FLAG) {
         ghostPosX = x;
         ghostPosY = y;

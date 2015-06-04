@@ -81,7 +81,7 @@ void ParalyzedState::update() {
             string two = creakOne ? "" : "2";
             CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
             creakOne = !creakOne;
-
+            
             checkHurt(door, 10);
         }
         
@@ -91,11 +91,11 @@ void ParalyzedState::update() {
             flickerDuration = 2.0;
             checkHurt(lamp, 20);
         }
-
+        
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
-
+            
             checkHurt(clock, 15);
         }
         
@@ -104,13 +104,13 @@ void ParalyzedState::update() {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
             checkHurt(tv, 20);
         }
-
-	if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
-	    explodeDuration = 6.0;
-	    lampExplode = true;
-	    CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+        
+        if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
+            explodeDuration = 6.0;
+            lampExplode = true;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
             checkHurt(lamp, 25);
-	}
+        }
     }
     
 //    Position ghostPos = getGhostPosition();
