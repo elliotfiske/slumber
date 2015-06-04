@@ -15,16 +15,19 @@
     #include <thread>
 #endif
 
-GhostState::GhostState(GLFWwindow *window) :
-GameState(window, true) {
+GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     camera = new Camera(vec3(0.0, 5.0, -15.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
-//    CurrAssets->ghostShader = CurrAssets->motionBlurShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
+    
+    ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
+    ghostHealth = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
+    playerHealth = new HUDElement(RESOURCE_FOLDER + "hud/player_health_hud.png", 0.5, 0.5);
     
 #ifdef THREADS
     thread *t1;
@@ -54,7 +57,7 @@ void GhostState::lightFlicker() {
 /**
  * Draw the scene from the user's perspective
  */
-void GhostState::renderScene() {
+void GhostState::renderScene(bool isMirror) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glDisable(GL_CULL_FACE);
@@ -62,12 +65,12 @@ void GhostState::renderScene() {
 	updateViewMat();
 	updateHighlightMat();
 
-	CurrAssets->ghostLightingShader->startUsingShader();
-	CurrAssets->ghostLightingShader->setViewMatrix(viewMat);
-	CurrAssets->ghostLightingShader->setProjectionMatrix(perspectiveMat);
-	CurrAssets->ghostLightingShader->setHighlightVP(highlightVPMat);
+	CurrAssets->lightingShader->startUsingShader();
+	CurrAssets->lightingShader->setViewMatrix(viewMat);
+	CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
+	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
 
-	shadowfbo->bindTexture(CurrAssets->ghostLightingShader->shadowMap_ID, 1);
+	shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
 
 	if (flickerDuration > 0.0) {
 		lightFlicker();
@@ -82,20 +85,31 @@ void GhostState::renderScene() {
     tv->draw(light, tvStaticDuration > 0.0);
 	lamp->draw(light);
     door->draw(light);
+    fan->draw(light);
+
 
 	shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
-    
+
     lampText->draw(light);
     
-	CurrAssets->collectibleShader->startUsingShader();
-	CurrAssets->collectibleShader->setViewMatrix(viewMat);
-	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
+//	CurrAssets->collectibleShader->startUsingShader();
+//	CurrAssets->collectibleShader->setViewMatrix(viewMat);
+//	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 //	collectible->draw(light);
+
+	CurrAssets->reflectionShader->startUsingShader();
+	CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, -1));
+    CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0f));
+	CurrAssets->reflectionShader->setProjectionMatrix(glm::mat4(1.0f));
+	
+	shadowfbo->unbindTexture();
 
 	// check OpenGL error
 	GLenum err;
@@ -192,4 +206,12 @@ void GameState::tellClientWhereGhostIs() {
 		sendGhostPosition(lastX, lastY, lastZ);
 	}
 #endif
+}
+
+void GhostState::drawHUD() {
+    GameState::drawHUD();
+    
+    ghostHUD->drawElement();
+    ghostHealth->drawElement();
+    playerHealth->drawElement();
 }
