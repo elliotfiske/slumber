@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include "ViewFrustum.hpp"
 #include "collectible.h"
+#include "HUDElement.h"
 
 #ifndef GameState_h
 #define GameState_h
@@ -46,6 +47,9 @@ public:
     /* Swapping game states */
     bool shouldSwitch;
     virtual GameState* newState();
+    
+    HUDElement *ghostWins, *playerWins;
+    bool ghost_beat_player, player_beat_ghost;
     
 protected:
     Camera *camera;

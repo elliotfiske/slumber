@@ -28,6 +28,8 @@
 #define GHOST_ACTION_BOO 15
 #define GHOST_ACTION_EXPLODE_LAMP 16
 
+#define GHOST_ACTION_LOST_HORRIBLY 69
+
 // Client->ghost packets
 #define USER_LOOK_UPDATE_FLAG 4
 

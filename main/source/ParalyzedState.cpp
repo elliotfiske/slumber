@@ -39,7 +39,7 @@ void ParalyzedState::checkCollisions() {
     comboMatrix = perspectiveMat * viewMat * collectible->modelMat;
     vf->extractPlanes(comboMatrix);
     
-    if (vf->gotLight(collectible->center, 5.0)) {
+    if (vf->gotLight(collectible->center, 5.0) && !ghost_beat_player) {
         collectible->collected();
         increaseHealth(10);
     }
@@ -110,6 +110,10 @@ void ParalyzedState::update() {
             lampExplode = true;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
             checkHurt(lamp, 25);
+        }
+        
+        if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
+            player_beat_ghost = true;
         }
     }
     

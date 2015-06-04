@@ -157,6 +157,9 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     }
     
     if (flag == GHOST_ACTION_EXPLODE_LAMP) {
+        currAction = flag;    }
+    
+    if (flag == GHOST_ACTION_LOST_HORRIBLY) {
         currAction = flag;
     }
     
