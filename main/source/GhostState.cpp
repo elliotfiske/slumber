@@ -245,7 +245,7 @@ void GhostState::drawHUD() {
 	ghostHUD->drawElement();    
 	CurrAssets->billboardShader->setPercentShown(ghostHealth);
     ghostBar->drawElement();
-	CurrAssets->billboardShader->setPercentShown(playerHealth);
+	CurrAssets->billboardShader->setPercentShown(getPlayerHealth());
     playerBar->drawElement();
 	CurrAssets->billboardShader->setPercentShown(1000.0f);
 

@@ -132,7 +132,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 	float pitch = getPitch();
 	float yaw = getYaw();
 
-    sendPlayerLook(pitch, yaw);
+    sendPlayerLook(pitch, yaw, (float) playerHealth);
 #endif
 }
 
