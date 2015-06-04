@@ -123,7 +123,7 @@ void ParalyzedState::update() {
     
     
     if (shouldWeReset()) {
-        playerHealth = 100.0;
+        playerHealth = 100.0; 
     }
 }
 
