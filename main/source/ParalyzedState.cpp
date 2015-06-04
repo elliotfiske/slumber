@@ -19,7 +19,7 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    mirrorCamera = new Camera(vec3(0.0, 0.0, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(0.0, -10.0, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
