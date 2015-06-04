@@ -51,6 +51,10 @@ void main() {
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;
     
+    // when we're ghostly (OR DEMOING), we want to brighten the dark parts
+    cd = cd * 0.5 + 0.5;
+    
+    
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * textureColor * attenuation;
     vec3 lSpecularColor = cs * UsColor * attenuation;

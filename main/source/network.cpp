@@ -26,6 +26,7 @@ float ghostPosX, ghostPosY, ghostPosZ;
 
 // These correspond to properties in GhostState
 float playerLookYaw, playerLookPitch;
+float recvPlayerHealth;
 
 bool shouldShowGhost;
 
@@ -93,9 +94,9 @@ void sendGhostPosition(float x, float y, float z) {
  * Pack the client's camera angle into a bootiful string and
  *  zap it over to the ghost
  */
-void sendPlayerLook(float pitch, float yaw) {
+void sendPlayerLook(float pitch, float yaw, float health) {
     char dataString[256];
-    sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, 0.0);
+    sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, health);
 
     sendData(dataString);
 }
@@ -168,6 +169,7 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     if (flag == USER_LOOK_UPDATE_FLAG) {
         playerLookPitch = x;
         playerLookYaw = y;
+        recvPlayerHealth = z;
     }
 }
 
@@ -189,5 +191,9 @@ Position getGhostPosition() {
 Position getPlayerLook() {
 	Position result = {playerLookPitch, playerLookYaw, 0.0};
 	return result;
+}
+
+float getPlayerHealth() {
+    return recvPlayerHealth;
 }
 
