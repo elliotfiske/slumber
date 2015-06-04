@@ -30,7 +30,7 @@ int tcpSetup() {
     
     local.sin_family = AF_INET;         //internet family
     local.sin_addr.s_addr = INADDR_ANY; //wild card machine address
-    local.sin_port = htons(4444);          //use port 4444
+    local.sin_port = htons(SERVER_PORT_NUM);          //use port 22
     
     // Uncomment to use a specific port forever
     int yeah = 1;

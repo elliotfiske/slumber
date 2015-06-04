@@ -61,7 +61,7 @@ void doClientNetworking() {
     int serverSocket = 0;
     
     char *host = (char *) SERVER_ADDRESS;
-    char *port = (char *)"4444";
+    char *port = (char *) SERVER_PORT;
     
     serverSocket = tcpClientSetup(host, port);
     
