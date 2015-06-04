@@ -16,10 +16,10 @@ void main()
                   
   
     gl_Position =  //vec4(vertPos.xy, 0.0, 1.0);
-    uViewMatrix * vec4(vertPos, 1.0);
+    MVP * vec4(vertPos, 1.0);
 	
-	vPos = vertPos.xyz;
+	 vPos = vertPos.xyz;
 
-    UV = (gl_Position.xy + vec2(1, 1)) /1.0;
+    UV = (gl_Position.xy + vec2(4, 4.5)) / 8.2;
 
 }

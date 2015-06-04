@@ -18,8 +18,8 @@
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-    camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    mirrorCamera = new Camera(vec3(0.0, 0.0, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
@@ -176,9 +176,12 @@ void ParalyzedState::renderScene(bool isMirror) {
     collectible->draw(light);
     //clock->draw(light);
     
-    CurrAssets->reflectionShader->startUsingShader();
-    CurrAssets->reflectionShader->setViewMatrix(viewMat);
-    CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
+   CurrAssets->reflectionShader->startUsingShader();
+   CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    
+   glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(0, 0, 100));
+   CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
+   CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     
     // check OpenGL error TODO: remove
     GLenum err;

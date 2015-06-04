@@ -45,21 +45,21 @@ void GameState::initAssets() {
     light = new Light();
     
     static const GLfloat g_quad_vertex_buffer_data[] = {
-        -10.0f, -10.0f,  -10.0f,
-        10.0f, -10.0f,   -10.0f,
-        -10.0f,  10.0f,  -10.0f,
-        -10.0f,  10.0f,  -10.0f,
-        10.0f, -10.0f,   -10.0f,
-        10.0f,  10.0f,   -10.0f,
+        -10.0f, -10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        -10.0f,  10.0f,  0.0f,
+        -10.0f,  10.0f,  0.0f,
+        10.0f, -10.0f,   0.0f,
+        10.0f,  10.0f,   0.0f,
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.5f, -0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f,
-        -0.5f, 0.5f,  0.0f,
-        -0.5f, 0.5f,  0.0f,
-        0.5f, -0.5f,   0.0f, 
-        0.5f,  0.5f,   0.0f,
+        -0.75f, -0.75f,  0.0f,
+        0.75f, -0.75f,   0.0f,
+        -0.75f, 0.75f,  0.0f,
+        -0.75f, 0.75f,  0.0f,
+        0.75f, -0.75f,   0.0f, 
+        0.75f,  0.75f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -81,7 +81,7 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
     window = window_;
     isGhost = isGhost_;
     
-    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    mirrorCamera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 0.0);
     
     setupCallbacks(window);
     initAssets();
@@ -149,8 +149,8 @@ void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
-    mat4 mirrorCam = lookAt(vec3(0.0),
-                                camera->direction, vec3(0.0, 1.0, 0.0));
+    mat4 mirrorCam = lookAt(mirrorCamera->center, mirrorCamera->center +
+                                mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
     mirrorViewMat = mirrorCam;
@@ -285,15 +285,6 @@ void GameState::renderReflectBuffer() {
     glDisable(GL_DEPTH_TEST);
     
     glUseProgram(CurrAssets->reflectionShader->reflection_ProgramID);
-    
-    mat4 staticViewMat = lookAt(vec3(0.0, 0.0, 0.0), vec3(0.52, .27, -.8), vec3(0.0, 1.0, 0.0));
-    
-    	CurrAssets->reflectionShader->startUsingShader();
-	CurrAssets->reflectionShader->setViewMatrix(viewMat);
-    
-    glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(4, 0, -1));
-    CurrAssets->reflectionShader->setModelMatrix(mirror_translation);
-	CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     reflectbuffer->bindTexture(CurrAssets->reflectionShader->reflection_sampler_ID);
     
     glEnableVertexAttribArray(0);
@@ -316,7 +307,7 @@ void GameState::renderReflectBuffer() {
 
 
 void GameState::draw() {
-//glEnable(GL_DEPTH_TEST);
+   glEnable(GL_DEPTH_TEST);
 	glDisable(GL_CULL_FACE); // TODO: Turn this back on
 
     renderShadowBuffer();
@@ -330,6 +321,7 @@ void GameState::draw() {
     reflectbuffer->unbind();
     
     renderFrameBuffer();
+    glDisable(GL_DEPTH_TEST);
     renderReflectBuffer();
     
     drawHUD();

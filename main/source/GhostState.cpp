@@ -96,6 +96,16 @@ void GhostState::renderScene(bool isMirror) {
 	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
 	collectible->draw(light);
+	    
+   mat4 staticViewMat = lookAt(vec3(0.0, 0.0, 0.0), vec3(0.52, .27, -.8), vec3(0.0, 1.0, 0.0));
+    
+   //CurrAssets->reflectionShader->startUsingShader();
+   //CurrAssets->reflectionShader->setViewMatrix(mirrorViewMat);
+    
+   //glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(4, 0, -1));
+   //CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
+   //CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
+	
 	
 	shadowfbo->unbindTexture();
 
