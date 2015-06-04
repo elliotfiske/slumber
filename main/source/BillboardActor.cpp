@@ -49,42 +49,24 @@ void BillboardActor::setModel() {
 void BillboardActor::draw(Light *light, bool tv) {
     setModel();
     GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error from Title state: " << err << endl;
-    }
     
     for (int ndx = 0; ndx < numShapes; ndx++) {
         
 //        setMaterial(material[ndx]); TODO: stick the material back on and use it for ui hilighting
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            cerr << "OpenGL error from Title state: " << err << endl;
-        }
         CurrAssets->billboardShader->setPositionArray(posID[ndx]);
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            cerr << "OpenGL error from Title state: " << err << endl;
-        }
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            cerr << "OpenGL error from Title state: " << err << endl;
-        }
         CurrAssets->billboardShader->setIndexArray(indID[ndx]);
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            cerr << "OpenGL error from Title state: " << err << endl;
-        }
         
         // Texture stuff
         if (material[ndx].diffuse_texname.size() > 0) {
             CurrAssets->billboardShader->setUVArray(uvID[ndx]);
             texture[ndx]->bind(CurrAssets->billboardShader->diffuseTexture_UniformID, 0);
             while ((err = glGetError()) != GL_NO_ERROR) {
-                cerr << "OpenGL error from Title state: " << err << endl;
+                cerr << "5 OpenGL error from Title state: " << err << endl;
             }
             
         }
         
         glDrawElements(GL_TRIANGLES, numVerts[ndx], GL_UNSIGNED_INT, (void*) 0);
-        while ((err = glGetError()) != GL_NO_ERROR) {
-            cerr << "OpenGL error from Title state: " << err << endl;
-        }
         
         if (material[ndx].diffuse_texname.size() > 0) {
             texture[ndx]->unbind(0);

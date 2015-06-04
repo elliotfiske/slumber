@@ -85,19 +85,20 @@ void GhostState::renderScene(bool isMirror) {
     door->draw(light);
     fan->draw(light);
 
+
 	shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
-    
-//    lampText->draw(light);
+
+    lampText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 //	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-	collectible->draw(light);
+//	collectible->draw(light);
 
 	CurrAssets->reflectionShader->startUsingShader();
 	CurrAssets->reflectionShader->setViewMatrix(viewMat);
