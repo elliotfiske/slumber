@@ -1,13 +1,17 @@
-clock 13.5 -11 -85
+clock 40.0 -13 -106 0
 
-room 0 0 0
+room 0 0 0 0
 
-bed 0 -1 -4
+bed 0 -2.5 10 0
 
-enemy 0 4 -15
+enemy 0 4 -15 0
 
-lamp-table -15 0 -85
+lamp-table 45 0 10 180
 
-collect 0 0 -5
+collect 0 1 -5 0
 
+tv 0 3.0 -108 0
 
+door  -41.5732  6.272  -113.67917 -10
+
+fan 0 37.06 -58.427 0

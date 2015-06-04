@@ -18,10 +18,10 @@
 #define POSSIBLE_COLLECTIBLE_POSITIONS 5
 
 const glm::vec3 collectibleCoords[POSSIBLE_COLLECTIBLE_POSITIONS] = {
-    glm::vec3(-40.6, 28.7, -103.52),
+    glm::vec3(40.6, 28.7, -103.52),
     glm::vec3(36.57, 26.8, -39.52),
-    glm::vec3(-15.98, 9.77, -82.9),
-    glm::vec3(-45.7, 8, -30.5),
+    glm::vec3(15.98, 9.77, -82.9),
+    glm::vec3(45.7, 8, -30.5),
     glm::vec3(21.7, 18.5, 0.5),
 };
 
@@ -36,6 +36,8 @@ public:
     void collected();
     
     double timeToAppear;
+    
+    bool red;
     
 private:
     int positionIndex;

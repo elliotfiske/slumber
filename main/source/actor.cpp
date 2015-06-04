@@ -5,31 +5,14 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 
-void printMat(const glm::mat4 &M, const char *name = 0)
-{
-	if(name) {
-		printf("%s=[\n", name);
-	}
-	for(int i = 0; i < 4; ++i) {
-		for(int j = 0; j < 4; ++j) {
-			printf("%- 5.2f ", M[j][i]);
-		}
-		printf("\n");
-	}
-	if(name) {
-		printf("];");
-	}
-	printf("\n");
-}
-
 Actor::Actor(vec3 center_) {
     center = center_;
+    scale = 1.0;
+    tvScreenIndex = -1;
 }
 
 void Actor::step(double dt) {
-    vec3 curChange;
-    curChange = (velocityScalar * (float) dt) * direction;
-    center += curChange;
+    
 }
 
 bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
@@ -38,12 +21,13 @@ bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
 }
 
 void Actor::setModel() {
+    glm::mat4 Scale  = glm::scale(glm::mat4(1.0f), vec3(scale, scale, scale));
     glm::mat4 Trans  = glm::translate(glm::mat4(1.0f), center);
     glm::mat4 RotX   = glm::rotate(glm::mat4(1.0f), direction.x, vec3(1, 0, 0));
     glm::mat4 RotY   = glm::rotate(glm::mat4(1.0f), direction.y, vec3(0, 1, 0));
     glm::mat4 RotZ   = glm::rotate(glm::mat4(1.0f), direction.z, vec3(0, 0, 1));
     
-    glm::mat4 Composite = Trans * RotX * RotY * RotZ;
+    glm::mat4 Composite = Trans * RotX * RotY * RotZ * Scale;
 
     modelMat = Composite;
     
@@ -54,14 +38,20 @@ void Actor::setMaterial(tinyobj::material_t material) {
     CurrAssets->lightingShader->setAmbientColor(material.ambient);
     CurrAssets->lightingShader->setDiffuseColor(material.diffuse);
     CurrAssets->lightingShader->setSpecularColor(material.specular);
-    CurrAssets->lightingShader->setShininess(10.0);
+    CurrAssets->lightingShader->setShininess(material.shininess);
 }
 
-void Actor::draw(Light *light) {
+void Actor::draw(Light *light, bool tv) {
     setModel();
     setLightMVP(light, false);
     
     for (int ndx = 0; ndx < numShapes; ndx++) {
+        if (tv && ndx == tvScreenIndex) {
+            material[ndx].ambient[0] = 255.0;
+            material[ndx].ambient[1] = 255.0;
+            material[ndx].ambient[2] = 255.0;
+        }
+        
         setMaterial(material[ndx]);
         CurrAssets->lightingShader->setPositionArray(posID[ndx]);
         CurrAssets->lightingShader->setNormalArray(norID[ndx]);
@@ -70,13 +60,13 @@ void Actor::draw(Light *light) {
         // Texture stuff
         if (material[ndx].diffuse_texname.size() > 0) {
             CurrAssets->lightingShader->setUVArray(uvID[ndx]);
-            texture[ndx]->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 0);//textureUnit[ndx]);
+            texture[ndx]->bind(CurrAssets->lightingShader->diffuseTexture_UniformID, 0);
         }
         
         glDrawElements(GL_TRIANGLES, numVerts[ndx], GL_UNSIGNED_INT, (void*) 0);
         
         if (material[ndx].diffuse_texname.size() > 0) {
-            texture[ndx]->unbind(0);//textureUnit[ndx]);
+            texture[ndx]->unbind(0);
         }
     }
 }

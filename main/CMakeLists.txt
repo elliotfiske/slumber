@@ -63,16 +63,30 @@ list(APPEND LIBS
 )
 
 # SFML
-# set(SFML_DIR "${DEP_DIR}/SFML-2.0")
-# list(APPEND INCLUDES
-#    ${SFML_DIR}/include
-# )
-# list(APPEND LIBS
-#    ${SFML_DIR}/lib/libsfml-system.so
-# )
-# list(APPEND LIBS
-#    ${SFML_DIR}/lib/libsfml-audio.so
-# )
+if (${CMAKE_GENERATOR} MATCHES "Xcode" )
+    set(SFML_DIR "${DEP_DIR}/SFML-2.3-osx")
+    list(APPEND INCLUDES
+       ${SFML_DIR}/include
+    )
+    list(APPEND LIBS
+       ${SFML_DIR}/lib/libsfml-system.dylib
+    )
+    list(APPEND LIBS
+        ${SFML_DIR}/lib/libsfml-audio.dylib
+    )
+else()
+    set(SFML_DIR "${DEP_DIR}/SFML-2.0")
+    list(APPEND INCLUDES
+        ${SFML_DIR}/include
+    )
+    list(APPEND LIBS
+        ${SFML_DIR}/lib/libsfml-system.so.2
+    )
+    list(APPEND LIBS
+        ${SFML_DIR}/lib/libsfml-audio.so.2
+    )
+endif (${CMAKE_GENERATOR} MATCHES "Xcode" )
+
 
 # pthread libs
 find_package (Threads)

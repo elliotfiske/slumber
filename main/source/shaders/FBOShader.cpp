@@ -23,6 +23,8 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     // Make handles to uniforms
     textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
     intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
+
+    time_UniformID = glGetUniformLocation(fbo_ProgramID, "time");
     
     // check OpenGL error
     GLenum err;

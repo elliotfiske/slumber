@@ -8,10 +8,12 @@ uniform mat4 uViewMatrix;
 uniform mat4 uModelMatrix;
 uniform mat4 lightMVP;
 uniform vec3 lightPos;
+uniform mat4 highlightVP;
 
 varying vec3 vPos;
 varying vec3 vNor;
 varying vec4 shadowClip;
+varying vec4 highlightCoords;
 varying vec3 vLight;
 
 varying vec2 UV;
@@ -28,6 +30,8 @@ void main() {
     vNor = normalize((MV * vec4(aNormal, 0.0)).xyz);
 
     shadowClip = lightMVP * aPosition;
+    highlightCoords = highlightVP * uModelMatrix * aPosition;
     
     UV = aUV;
+    UV.y *= -1.0;
 }

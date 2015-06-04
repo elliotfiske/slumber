@@ -17,10 +17,18 @@ public:
     GhostState(GLFWwindow *window);
     
 protected:
+    BillboardActor *lampText;
+    
     void checkCollisions();
+    void drawHUD();
     void renderScene(bool isMirror);
     
+	void lightFlicker();
+
     void update();
+	bool checkBounds(glm::vec3 min, glm::vec3 max);
+
+	glm::vec3 itemUseBounds;
 };
 
 #endif /* defined(__slumber__GhostState__) */
