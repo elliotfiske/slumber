@@ -113,6 +113,12 @@ void ParalyzedState::update() {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
             checkHurt(tv, 20);
         }
+
+	if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
+	    explodeDuration = 6.0;
+	    lightExplode = true;
+	    CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+	}
     }
     
 //    Position ghostPos = getGhostPosition();
