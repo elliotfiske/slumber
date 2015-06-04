@@ -104,7 +104,7 @@ void GhostState::renderScene(bool isMirror) {
 	// check OpenGL error
 	GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR) {
-		cerr << "OpenGL error from Ghost state: " << err << endl;
+//		cerr << "OpenGL error from Ghost state: " << err << endl;
 	}
 }
 
