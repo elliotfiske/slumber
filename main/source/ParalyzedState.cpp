@@ -162,6 +162,7 @@ void ParalyzedState::renderScene() {
     tv->draw(light, true);
     lamp->draw(light);
     door->draw(light);
+    fan->draw(light);
     
     shadowfbo->unbindTexture();
 

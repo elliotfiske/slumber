@@ -82,6 +82,7 @@ void GhostState::renderScene() {
     tv->draw(light, tvStaticDuration > 0.0);
 	lamp->draw(light);
     door->draw(light);
+    fan->draw(light);
 
 	shadowfbo->unbindTexture();
     
