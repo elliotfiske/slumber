@@ -16,8 +16,8 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
-    lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
-    ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag_Ghost.glsl");
+    lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_PCSS_Frag.glsl");
+    ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_PCSS_Frag_Ghost.glsl");
     billboardShader   = new LightingShader("Lighting_Vert.glsl", "Billboard_Frag.glsl");
     
     ghostShader       = new FBOShader("FBO_Vert.glsl", "FBO_Frag_Ghost_Vision.glsl");
