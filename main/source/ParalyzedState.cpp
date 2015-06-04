@@ -107,7 +107,7 @@ void ParalyzedState::update() {
 
 	if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
 	    explodeDuration = 6.0;
-	    lightExplode = true;
+	    lampExplode = true;
 	    CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
             checkHurt(lamp, 25);
 	}
