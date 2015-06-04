@@ -21,7 +21,6 @@ protected:
     
     void checkCollisions();
     void renderScene();
-	void lightFlicker();
 
     void update();
 	bool checkBounds(glm::vec3 min, glm::vec3 max);

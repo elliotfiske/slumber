@@ -3,6 +3,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
+#include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
 
@@ -57,7 +58,10 @@ void GameState::initAssets() {
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
 	doorToggle = false;
+	explodeDuration = 0.0;
+	lampExplode = false;
 	doorDirection = -1;
+	shakeCamera = false;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -122,6 +126,36 @@ void GameState::updateDoorSwing() {
 			doorDirection = 1;
 		}
 	}
+}
+
+void GameState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+}
+
+void GameState::lightExplode() {
+	if (attenFactor > -0.0001) {
+		attenFactor -= elapsedTime * glm::compRand1(0.0001f, 0.002f);
+	}
+	else {
+		attenFactor = -1.0;
+	}
+
+	explodeDuration = std::max(0.0, (explodeDuration - elapsedTime));
+	if (explodeDuration == 0.0) lampExplode = false;
+}
+
+void GameState::updateCameraShake() {
+	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
+	shakeCamera = false;
 }
 
 /**

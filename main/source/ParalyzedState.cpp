@@ -9,7 +9,6 @@
 #include "ParalyzedState.h"
 #include "network.h"
 #include "control.hpp"
-#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -40,19 +39,6 @@ void ParalyzedState::checkCollisions() {
     if (vf->gotLight(collectible->center, 5.0)) {
         collectible->collected();
     }
-}
-
-void ParalyzedState::lightFlicker() {
-	if (attenFactor > 0.02f) {
-		flickerDirection = -1.0;
-	}
-	else if (attenFactor < 0.001) {
-		flickerDirection = 1.0;
-	}
-	attenFactor = std::max(0.0002, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-	CurrAssets->lightingShader->setAttenuation(attenFactor);
-
-	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
 
 void ParalyzedState::update() {

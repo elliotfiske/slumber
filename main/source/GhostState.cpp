@@ -9,7 +9,6 @@
 #include "GhostState.h"
 #include "control.hpp"
 #include "network.h"
-#include "glm/gtx/random.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -31,24 +30,11 @@ GameState(window, true) {
     
     t1 = new thread(doGhostNetworking);
 #endif
-	itemUseBounds = glm::vec3(25.0f, 25.0f, 25.0f);
+	itemUseBounds = glm::vec3(30.0f, 30.0f, 30.0f);
 }
 
 void GhostState::checkCollisions() {
 	// TODO: make sure ghost can't go through stuff
-}
-
-void GhostState::lightFlicker() {
-	if (attenFactor > 0.02f) {
-		flickerDirection = -1.0;
-	}
-	else if (attenFactor < 0.001) {
-		flickerDirection = 1.0;
-	}
-	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-	CurrAssets->lightingShader->setAttenuation(attenFactor);
-
-	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
 
 /**
@@ -69,12 +55,16 @@ void GhostState::renderScene() {
 
 	shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
 
-	if (flickerDuration > 0.0) {
+	if (lampExplode) {
+		lightExplode();
+	}
+	else if (flickerDuration > 0.0) {
 		lightFlicker();
 	}
 	else {
-		CurrAssets->lightingShader->setAttenuation(0.0002f);
+		attenFactor = 0.0002f;
 	}
+	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
     bed->draw(light);
 	room->draw(light);
@@ -118,16 +108,22 @@ bool GhostState::checkBounds(glm::vec3 min, glm::vec3 max) {
 void GhostState::update() {
 	GameState::update();
 
+	if (shakeCamera) updateCameraShake();
+
 	glm::vec3 lamppos = CurrAssets->actorDictionary["lamp-table"]->center;
 	glm::vec3 doorpos = CurrAssets->actorDictionary["door"]->center;
 	glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
-		printf("in checkBounds\n");
 		// Set billboard here!!
 
 		if (getItemAction()) { // Flicker the light
 			flickerDuration = 2.0;
+		}
+
+		if (getItemAltAction()) {
+			lampExplode = true;
+			explodeDuration = 8.0;
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
@@ -135,6 +131,10 @@ void GhostState::update() {
 
 		if (getItemAction()) { // Close/open door
 			doorToggle = true;
+		}
+
+		if (getItemAltAction()) {
+			shakeCamera = true;
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
