@@ -77,23 +77,24 @@ void GhostState::renderScene(bool isMirror) {
     door->draw(light);
     fan->draw(light);
 
+
 	shadowfbo->unbindTexture();
     
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
-    
-//    lampText->draw(light);
+
+    lampText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
 //	CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
 
-	collectible->draw(light);
-	    
-   mat4 staticViewMat = lookAt(vec3(0.0, 0.0, 0.0), vec3(0.52, .27, -.8), vec3(0.0, 1.0, 0.0));
-    
-	
+
+//	collectible->draw(light);
+
+	CurrAssets->reflectionShader->startUsingShader();
+	CurrAssets->reflectionShader->setViewMatrix(viewMat);
 	
 	shadowfbo->unbindTexture();
 
@@ -238,5 +239,7 @@ void GameState::tellClientWhereGhostIs() {
 void GhostState::drawHUD() {
     GameState::drawHUD();
     
+	CurrAssets->billboardShader->setPercentShown(ghostHealth);
     testHUD->drawElement();
+	CurrAssets->billboardShader->setPercentShown(100.0f);
 }
