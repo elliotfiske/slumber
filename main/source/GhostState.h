@@ -20,7 +20,7 @@ public:
 protected:
     BillboardActor *lampText;
     
-    HUDElement *testHUD;
+    HUDElement *ghostHUD, *ghostHealth, *playerHealth;
     
     void checkCollisions();
     void drawHUD();

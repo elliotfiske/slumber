@@ -177,7 +177,9 @@ SoundBuffer loadSoundBuffer(string filename) {
 }
 
 string filename;
+#ifdef THREADS
 thread *wut;
+#endif
 bool killSound = false;
 
 

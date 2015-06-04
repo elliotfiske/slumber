@@ -15,6 +15,9 @@
 class BillboardActor : public Actor {
 public:
     BillboardActor(vec3 center_, float scale, float angle, Actor *masterBillboard);
+    
+    void draw(Light *light, bool tv = false);
+    void setModel();
   
     float angle;
 };

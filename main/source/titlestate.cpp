@@ -57,10 +57,6 @@ void TitleState::renderScene(bool isMirror) {
     play->draw(light);
     
     // check OpenGL error
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error from Title state: " << err << endl;
-    }
 }
 
 /**

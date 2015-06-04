@@ -7,7 +7,6 @@ uniform mat4 uViewMatrix;
 uniform mat4 uModelMatrix;
 
 varying vec3 vPos;
-varying vec3 vNor;
 
 varying vec2 UV;
 
