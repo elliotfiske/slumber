@@ -84,8 +84,6 @@ BaseMVPShader::BaseMVPShader(string vertexShaderFile, string fragmentShaderFile)
     projectionMatrix_UniformID = GLSL::getUniformLocation(programID, "uProjMatrix");
     viewMatrix_UniformID       = GLSL::getUniformLocation(programID, "uViewMatrix");
     modelMatrix_UniformID      = GLSL::getUniformLocation(programID, "uModelMatrix");
-    
-    red_UniformID = GLSL::getUniformLocation(programID, "red");
 }
 
 // --------- BASE MVP SHADER SHADER SETTERS -----------

@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "gamestate.hpp"
+#include "HUDElement.h"
 
 class GhostState : public GameState {
 public:
@@ -18,6 +19,8 @@ public:
     
 protected:
     BillboardActor *lampText;
+    
+    HUDElement *testHUD;
     
     void checkCollisions();
     void drawHUD();
