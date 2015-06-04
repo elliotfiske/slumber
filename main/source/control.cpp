@@ -187,7 +187,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         sendData(num);
     }
     
-    if (key == GLFW_KEY_R) {
+    if (key == GLFW_KEY_P) {
         shouldReset = true;
     }
     else {
