@@ -163,6 +163,8 @@ void ParalyzedState::renderScene(bool isMirror) {
 	else {
 		CurrAssets->lightingShader->setAttenuation(0.0002f);
 	}
+
+CurrAssets->lightingShader->setAttenuation(attenFactor);
     
     //    viewFrustumCulling(*bed);
     bed->draw(light);
