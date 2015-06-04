@@ -75,10 +75,16 @@ void GameState::initAssets() {
 	lampExplode = false;
 	doorDirection = -1;
 	shakeCamera = false;
+    ghost_beat_player = false;
+    player_beat_ghost = false;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
+    
+    
+    ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
+    playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -107,7 +113,10 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  */
 void GameState::update() {
     if (shouldWeReset()) {
-        playerHealth = 1.2;
+        playerHealth = 100.0;
+        
+        player_beat_ghost = false;
+        ghost_beat_player = false;
     }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
@@ -363,4 +372,12 @@ void GameState::draw() {
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
+    
+    if (ghost_beat_player) {
+        ghostWins->drawElement();
+    }
+    
+    if (player_beat_ghost) {
+        playerWins->drawElement();
+    }
 }

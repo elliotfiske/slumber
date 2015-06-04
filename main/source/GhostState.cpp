@@ -129,6 +129,15 @@ void GhostState::updateCameraShake() {
 }
 
 void GhostState::update() {
+    
+    if (!player_beat_ghost) {
+        ghostHealth += 0.017;
+    }
+    
+    if (ghostHealth > 100.0) {
+        ghostHealth = 100.;
+    }
+    
 	GameState::update();
     viewFrustumCulling();
 
@@ -193,7 +202,15 @@ void GhostState::update() {
         ghostHealth = 100.0f;
         playerHealth = 100.0f;
     }
+    
+    if (playerHealth < 0.0) {
+        ghost_beat_player = true;
+    }
 
+    if (ghostHealth < 0.0 && !player_beat_ghost) {
+        player_beat_ghost = true;
+        sendGhostAction(GHOST_ACTION_LOST_HORRIBLY);
+    }
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();
