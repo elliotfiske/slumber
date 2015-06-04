@@ -16,7 +16,8 @@
 #endif
 
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
-	camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+    ghostHealth = 100;
+	 camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
@@ -99,12 +100,6 @@ void GhostState::renderScene(bool isMirror) {
 	    
    mat4 staticViewMat = lookAt(vec3(0.0, 0.0, 0.0), vec3(0.52, .27, -.8), vec3(0.0, 1.0, 0.0));
     
-   //CurrAssets->reflectionShader->startUsingShader();
-   //CurrAssets->reflectionShader->setViewMatrix(mirrorViewMat);
-    
-   //glm::mat4 mirror_translation = glm::translate(glm::mat4(1.0f), vec3(4, 0, -1));
-   //CurrAssets->reflectionShader->setModelMatrix(glm::mat4(1.0));
-   //CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
 	
 	
 	shadowfbo->unbindTexture();
@@ -183,6 +178,24 @@ void GhostState::update() {
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();
+}
+
+// check to see if ghost in inside the player's view 
+void GhostState::viewFrustumCulling(Actor curActor){
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
+    if (inView != OUTSIDE) {
+//        damageGhost();
+        
+    }
+}
+
+void GhostState::damageGhost() {
+
 }
 
 float lastX, lastY, lastZ;

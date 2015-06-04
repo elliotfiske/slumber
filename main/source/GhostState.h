@@ -18,6 +18,7 @@ public:
     
 protected:
     BillboardActor *lampText;
+    int ghostHealth;
     
     void checkCollisions();
     void drawHUD();
@@ -27,6 +28,8 @@ protected:
 
     void update();
 	bool checkBounds(glm::vec3 min, glm::vec3 max);
+	void viewFrustumCulling(Actor curActor);
+	void damageGhost();
 
 	glm::vec3 itemUseBounds;
 };
