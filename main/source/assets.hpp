@@ -40,7 +40,8 @@ public:
     LightingShader *lightingShader;
     LightingShader *ghostLightingShader;
     BaseMVPShader  *collectibleShader;
-    LightingShader  *billboardShader;
+    LightingShader *billboardShader;
+    LightingShader *hudShader;
     
     FBOShader      *currShader;
     FBOShader      *motionBlurShader;
@@ -61,6 +62,8 @@ public:
     std::map<string, Actor*>  actorDictionary;
     
     std::map<string, BillboardActor*> billboardDictionary;
+    
+    Actor *masterBillboard;
     
 private:
     Assets();

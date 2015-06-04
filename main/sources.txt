@@ -31,6 +31,7 @@ set(HEADERS
 
    BillboardActor.h
    shaders/ReflectShader.h
+   HUDElement.h
 )
 
 # List all .c / .cpp files here
@@ -65,4 +66,5 @@ set(SOURCES
 
    BillboardActor.cpp
    shaders/ReflectShader.cpp
+   HUDElement.cpp
 )

@@ -316,12 +316,12 @@ void GameState::draw() {
     renderScene(false);
     framebuffer->unbind();
     
-    reflectbuffer->bind();
-    renderScene(true);
-    reflectbuffer->unbind();
+//    reflectbuffer->bind();
+//    renderScene(true);
+//    reflectbuffer->unbind();
     
     renderFrameBuffer();
-    renderReflectBuffer();
+//    renderReflectBuffer();
     
     drawHUD();
     

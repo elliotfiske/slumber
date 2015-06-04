@@ -25,6 +25,8 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
     
+    testHUD = new HUDElement(MODELS_FOLDER + "billboards/lamp_tooltip.png", 0.5, 0.5);
+    
 #ifdef THREADS
     thread *t1;
     
@@ -206,5 +208,5 @@ void GameState::tellClientWhereGhostIs() {
 void GhostState::drawHUD() {
     GameState::drawHUD();
     
-    
+    testHUD->drawElement();
 }
