@@ -17,8 +17,8 @@
 #define __GLSL__
 
 
-#define WINDOW_WIDTH  1440
-#define WINDOW_HEIGHT 900
+#define WINDOW_WIDTH  1920
+#define WINDOW_HEIGHT 1080
 
 
 namespace GLSL {

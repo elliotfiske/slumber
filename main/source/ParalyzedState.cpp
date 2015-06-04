@@ -41,7 +41,7 @@ void ParalyzedState::checkCollisions() {
     
     if (vf->gotLight(collectible->center, 5.0)) {
         collectible->collected();
-        increaseHealth(20);
+        increaseHealth(10);
     }
 }
 
