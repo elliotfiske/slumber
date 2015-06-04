@@ -20,6 +20,14 @@
 #define GHOST_APPEARS_FLAG 2
 #define GHOST_DISAPPEARS_FLAG 3
 
+#define GHOST_ACTION_NONE 0
+#define GHOST_ACTION_CREAK_DOOR 11
+#define GHOST_ACTION_FLICKER_LAMP 12
+#define GHOST_ACTION_POSSESS_CLOCK 13
+#define GHOST_ACTION_TV_STATIC 14
+#define GHOST_ACTION_BOO 15
+#define GHOST_ACTION_EXPLODE_LAMP 16
+
 // Client->ghost packets
 #define USER_LOOK_UPDATE_FLAG 4
 
@@ -51,6 +59,9 @@ void sendGhostPosition(float x, float y, float z);
 void sendPlayerLook(float pitch, float yaw);
 Position getGhostPosition();
 Position getPlayerLook();
+
+void sendGhostAction(int action);
+int actionReady();
 
 
 #endif /* defined(__slumber__network__) */

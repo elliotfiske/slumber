@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include "gamestate.hpp"
+#include "HUDElement.h"
 
 class GhostState : public GameState {
 public:
@@ -19,8 +20,12 @@ public:
 protected:
     BillboardActor *lampText;
     
+    HUDElement *testHUD;
+    
     void checkCollisions();
-    void renderScene();
+
+    void drawHUD();
+    void renderScene(bool isMirror);
 
     void update();
 	bool checkBounds(glm::vec3 min, glm::vec3 max);

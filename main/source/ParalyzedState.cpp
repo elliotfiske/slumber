@@ -18,7 +18,8 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 10.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
-    CurrAssets->currFBOShader = CurrAssets->currShader;
+    mirrorCamera = new Camera(vec3(-13.5, 0.0, -46.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+//    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -28,6 +29,8 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     
     t1 = new thread(doClientNetworking);
 #endif
+    
+    
 }
 
 void ParalyzedState::checkCollisions() {
@@ -38,16 +41,76 @@ void ParalyzedState::checkCollisions() {
     
     if (vf->gotLight(collectible->center, 5.0)) {
         collectible->collected();
+        increaseHealth(20);
     }
 }
 
+void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * GameState::viewMat * danger->modelMat;
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
+    if (inView != OUTSIDE) {
+        lowerHealth(howMuch);
+    }
+}
+
+
+bool creakOne = true;
+
+
 void ParalyzedState::update() {
     GameState::update();
+    
+    int currAction = actionReady();
+    if (currAction) {
+        if (currAction == GHOST_ACTION_CREAK_DOOR) {
+            doorToggle = true;
+            
+            string two = creakOne ? "" : "2";
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            creakOne = !creakOne;
+
+            checkHurt(door, 10);
+        }
+        
+        if (currAction == GHOST_ACTION_FLICKER_LAMP) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            
+            flickerDuration = 2.0;
+            checkHurt(lamp, 20);
+        }
+
+		if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+            
+            lampExplode = true;
+			explodeDuration = 6.0;
+        }
+        
+        if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
+            clockShakeDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+
+            checkHurt(clock, 15);
+        }
+        
+        if (currAction == GHOST_ACTION_TV_STATIC) {
+            tvStaticDuration = 1.8;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            checkHurt(tv, 20);
+        }
+    }
     
 //    Position ghostPos = getGhostPosition();
 //    enemy->center.x = ghostPos.x;
 //    enemy->center.y = ghostPos.y;
 //    enemy->center.z = ghostPos.z;
+    tellGhostWhereImLooking();
+    float darkness = (100 - playerHealth) * 4 / 100;
+    CurrAssets->currShader->setIntensity(darkness);
 }
 
 
@@ -67,7 +130,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 /**
  * Draw the scene from the user's perspective
  */
-void ParalyzedState::renderScene() {
+void ParalyzedState::renderScene(bool isMirror) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT); // Render on the whole framebuffer, complete from the lower left corner to the upper right
     glCullFace(GL_BACK);
@@ -75,7 +138,7 @@ void ParalyzedState::renderScene() {
     updateViewMat();
 
     CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
@@ -92,9 +155,10 @@ void ParalyzedState::renderScene() {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
-    tv->draw(light);
+    tv->draw(light, true);
     lamp->draw(light);
     door->draw(light);
+    fan->draw(light);
     
     shadowfbo->unbindTexture();
 
@@ -103,6 +167,11 @@ void ParalyzedState::renderScene() {
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
     collectible->draw(light);
+    //clock->draw(light);
+    
+    CurrAssets->reflectionShader->startUsingShader();
+    CurrAssets->reflectionShader->setViewMatrix(viewMat);
+    CurrAssets->reflectionShader->setProjectionMatrix(perspectiveMat);
     
     // check OpenGL error TODO: remove
     GLenum err;
@@ -111,12 +180,10 @@ void ParalyzedState::renderScene() {
     }
 }
 void ParalyzedState::increaseHealth(int healthValue){
-   if(playerHealth < 100){
-      playerHealth += healthValue;
-   }
-   else {
-      playerHealth = 100;
-   }
+    playerHealth += healthValue;
+    if (playerHealth > 100) {
+        playerHealth = 100;
+    }
 }
 void ParalyzedState::lowerHealth(int severity){
    if(playerSensitivity = false){

@@ -27,9 +27,11 @@ public:
 
 protected:
     void checkCollisions();
-    void renderScene();
     int playerHealth;
     bool playerSensitivity;
+    
+    void checkHurt(Actor *danger, int howMuch);
+    void renderScene(bool isMirror);
 };
 
 #endif /* defined(__slumber__ParalyzedState__) */

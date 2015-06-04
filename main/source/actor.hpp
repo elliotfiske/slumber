@@ -27,7 +27,7 @@ public:
     void step(double dt);
     
     bool detectIntersect(Actor target, bool oc);
-    void draw(Light *light);
+    void draw(Light *light, bool tv = false);
     void drawShadows(Light *light);
     
     int numShapes;

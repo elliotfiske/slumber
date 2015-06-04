@@ -33,7 +33,6 @@ public:
     
     // Clean-up
     void disableAttribArrays();
-    GLuint red_UniformID;
 
 protected:
     GLuint position_AttributeID;

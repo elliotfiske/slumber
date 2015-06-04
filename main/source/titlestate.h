@@ -17,7 +17,7 @@ class TitleState : public GameState {
 public:
     TitleState(GLFWwindow *window);
     
-    void renderScene();
+    void renderScene(bool isMirror);
     void update();
     
     BillboardActor *title, *play, *playGhost;

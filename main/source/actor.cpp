@@ -38,14 +38,20 @@ void Actor::setMaterial(tinyobj::material_t material) {
     CurrAssets->lightingShader->setAmbientColor(material.ambient);
     CurrAssets->lightingShader->setDiffuseColor(material.diffuse);
     CurrAssets->lightingShader->setSpecularColor(material.specular);
-    CurrAssets->lightingShader->setShininess(10.0);
+    CurrAssets->lightingShader->setShininess(material.shininess);
 }
 
-void Actor::draw(Light *light) {
+void Actor::draw(Light *light, bool tv) {
     setModel();
     setLightMVP(light, false);
     
     for (int ndx = 0; ndx < numShapes; ndx++) {
+        if (tv && ndx == tvScreenIndex) {
+            material[ndx].ambient[0] = 255.0;
+            material[ndx].ambient[1] = 255.0;
+            material[ndx].ambient[2] = 255.0;
+        }
+        
         setMaterial(material[ndx]);
         CurrAssets->lightingShader->setPositionArray(posID[ndx]);
         CurrAssets->lightingShader->setNormalArray(norID[ndx]);
