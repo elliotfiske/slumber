@@ -198,6 +198,11 @@ void GhostState::damageGhost() {
 
 }
 
+
+void GhostState::gainHealth() {
+
+}
+
 float lastX, lastY, lastZ;
 
 /**

@@ -54,12 +54,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.75f, .25f,  0.0f,
-        0.75f,  .25f,   0.0f,
-        -0.75f, 1.75f,  0.0f,
-        -0.75f, 1.75f,  0.0f,
-        0.75f,  .25f,   0.0f, 
-        0.75f,  1.75f,   0.0f,
+        -0.5f, .25f,  0.0f,
+        0.5f,  .25f,   0.0f,
+        -0.5f, 1.75f,  0.0f,
+        -0.5f, 1.75f,  0.0f,
+        0.5f,  .25f,   0.0f, 
+        0.5f,  1.75f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);

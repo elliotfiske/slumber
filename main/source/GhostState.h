@@ -30,6 +30,7 @@ protected:
 	bool checkBounds(glm::vec3 min, glm::vec3 max);
 	void viewFrustumCulling(Actor curActor);
 	void damageGhost();
+	void gainHealth();
 
 	glm::vec3 itemUseBounds;
 };
