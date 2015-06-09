@@ -22,9 +22,10 @@ public:
     void unbind(GLint unit);
     std::string filename;
     
-private:
     int width;
     int height;
+    
+private:
     GLuint tid;
     
 };

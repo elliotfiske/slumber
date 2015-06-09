@@ -113,12 +113,9 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  * Called every frame yo
  */
 void GameState::update() {
-    if (shouldWeReset()) {
-        playerHealth = 100.0;
-        
-        player_beat_ghost = false;
-        ghost_beat_player = false;
-    }
+//    if (shouldWeReset()) {
+//        playerHealth = 100.0;
+//    }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
@@ -375,11 +372,14 @@ void GameState::draw() {
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
     
+    CurrAssets->hudShader->startUsingShader();
+    CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    
     if (ghost_beat_player) {
-        ghostWins->drawElement();
+        ghostWins->drawElement(false);
     }
     
     if (player_beat_ghost) {
-        playerWins->drawElement();
+        playerWins->drawElement(false);
     }
 }

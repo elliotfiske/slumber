@@ -14,18 +14,19 @@
 
 using namespace std;
 
-class HUDShader {
+class HUDShader : public BaseMVPShader {
 public:
-    HUDShader(string vertexShaderFile, string fragmentShaderFile);
-    
-    GLuint programID;
-    GLuint position_AttributeID;
+    HUDShader(std::string vertexShaderFile, std::string fragmentShaderFile);
     GLuint uv_AttributeID;
-    GLuint hudTexture_UniformID;
+    GLuint diffuseTexture_UniformID;
+    GLuint percentShown_UniformID;
+    GLuint screenSize_UniformID;
+    GLuint imageSize_UniformID;
     
-    void startUsingShader();
-    void setPositionArray(GLuint arrayID);
     void setUVArray(GLuint arrayID);
+    void setPercentShown(float percent);
+    void setScreenSize(float width, float height);
+    void setImageSize(float width, float height);
 };
 
 #endif /* defined(__slumber__HUDShader__) */

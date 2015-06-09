@@ -131,7 +131,7 @@ void GhostState::updateCameraShake() {
 void GhostState::update() {
     
     if (!player_beat_ghost) {
-        ghostHealth += 0.017;
+        ghostHealth += 0.027;
     }
     
     if (ghostHealth > 100.0) {
@@ -201,6 +201,9 @@ void GhostState::update() {
     if (shouldWeReset()) {
         ghostHealth = 100.0f;
         playerHealth = 100.0f;
+        
+        player_beat_ghost = false;
+        ghost_beat_player = false;
     }
     
     if (playerHealth < 0.0) {
@@ -259,13 +262,14 @@ void GameState::tellClientWhereGhostIs() {
 
 void GhostState::drawHUD() {
     GameState::drawHUD();
-
-	ghostHUD->drawElement();    
-	CurrAssets->billboardShader->setPercentShown(ghostHealth);
-    ghostBar->drawElement();
-	CurrAssets->billboardShader->setPercentShown(getPlayerHealth());
+    
+	ghostHUD->drawElement(true);
+    
+    CurrAssets->hudShader->setPercentShown(ghostHealth);
+    ghostBar->drawElement(true);
+    CurrAssets->hudShader->setPercentShown(getPlayerHealth());
     playerHealth = getPlayerHealth();
-    playerBar->drawElement();
-	CurrAssets->billboardShader->setPercentShown(1000.0f);
-
+    playerBar->drawElement(true);
+    
+	CurrAssets->hudShader->setPercentShown(1000.0f);
 }

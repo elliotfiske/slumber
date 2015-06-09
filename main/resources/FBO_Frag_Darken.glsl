@@ -13,7 +13,7 @@ float tunnelVision() {
 }
 
 vec2 woozyUV() {
-    vec2 modifiedUV = UV;
+    vec2 modifiedUV;
     
     float dx = sin(UV.x * 3 * PI) * cos(time / 18.2) * 0.046;
     float dy = sin(UV.y * 4 * PI) * sin(time / 18.2) * 0.046;
@@ -30,7 +30,7 @@ vec2 woozyUV() {
 }
 
 void main() {
-    vec2 distortedUV = woozyUV();
+    vec2 distortedUV = (intensity < 2.  ? UV : woozyUV());
     
     vec4 currColor = texture2D(uTex, distortedUV);
     

@@ -1,9 +1,24 @@
 #version 120
-uniform sampler2D uTex;
+
+uniform float percentShown;
+uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
 
 void main() {
-    vec4 textureColor = texture2D( uTex, UV );
+    // Blinn-Phong
 
-    gl_FragColor = textureColor;
+	float level = -(0.2 + percentShown / 100.0 * .52);
+	// .20
+
+	vec4 color;
+
+	if (UV.y < level) {
+        discard;
+	}
+	else {
+		color = texture2D( diffuseTextureSampler, UV );
+	}
+
+    gl_FragColor = color;
 }
+

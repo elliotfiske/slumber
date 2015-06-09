@@ -23,6 +23,7 @@ Assets::Assets() {
 
     billboardShader   = new BillboardShader("Billboard_Vert.glsl", "Billboard_Frag.glsl");
     hudShader         = new HUDShader("HUD_Vert.glsl", "HUD_Frag.glsl");
+    
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag_Ghost.glsl");
     
