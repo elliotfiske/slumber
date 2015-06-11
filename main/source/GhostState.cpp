@@ -147,7 +147,7 @@ void GhostState::updateCameraShake() {
 	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 
-	ghostHealth = fmaxf(-10.0, ghostHealth - 10.0 * elapsedTime);
+	ghostHealth = fmaxf(-10.0, ghostHealth - 4.0 * elapsedTime);
 }
 
 void GhostState::update() {
