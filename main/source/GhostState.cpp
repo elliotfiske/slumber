@@ -150,12 +150,13 @@ void GhostState::update() {
 	GameState::update();
     viewFrustumCulling();
 
-	if (shakeCamera) updateCameraShake();
+//	if (shakeCamera) updateCameraShake();
 
 	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
 	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
     glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
     glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
+	glm::vec3 fanpos   = CurrAssets->actorDictionary["fan"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
 		// Set billboard here!!
@@ -186,7 +187,10 @@ void GhostState::update() {
             creak1 = !creak1;
 		}
 
-		if (getItemAltAction()) {
+		if (getItemAltAction()) { // Slam door
+			doorSlam = true;
+            sendGhostAction(GHOST_ACTION_SLAM_DOOR);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav", door->center);
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
@@ -218,6 +222,19 @@ void GhostState::update() {
     if (playerHealth < 0.0) {
         ghost_beat_player = true;
     }
+	else if (checkBounds(fanpos - itemUseBounds, fanpos + itemUseBounds)) { /// Fan action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Spin the fan
+			fanSpinDuration = 9.0;
+            sendGhostAction(GHOST_ACTION_SPIN_FAN);
+            
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
+		}
+
+		if (getItemAltAction()) {
+		}
+	}
 
     if (ghostHealth < 0.0 && !player_beat_ghost) {
         player_beat_ghost = true;

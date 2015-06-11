@@ -22,11 +22,13 @@ public:
     GLuint intensity_UniformID;
     GLuint position_AttributeID;
     GLuint textureToDisplay_ID;
+	GLuint darknessModifier_UniformID;
     
     /** OPTIONAL PARAMETERS */
     GLuint time_UniformID;
     
     void setIntensity(float intensity);
+	void setDarknessModifier(float darknessModifier);
     void animateIntensity(float min, float max, double currTime, float slowFactor);
 };
 

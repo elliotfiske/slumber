@@ -74,17 +74,7 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     }
 }
 
-
-bool creakOne = true;
-
-
-void ParalyzedState::update() {
-    GameState::update();
-    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
-    printf("Cam: %f %f %f\n", camera->direction.x, camera->direction.y, camera->direction.z);
-    
-    hurtCooldown -= 0.17;
-
+void ParalyzedState::checkZoom() {
 	if (getParalyzedZoom() == true) {
 		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
 		updatePerspectiveMat();
@@ -93,8 +83,22 @@ void ParalyzedState::update() {
 		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
 		updatePerspectiveMat();
 	}
+
+	float redness = (30.0f - FOV) / (30.0f - 15.0f);
+    CurrAssets->currShader->setDarknessModifier(redness);
+}
+
+bool creakOne = true;
+
+
+void ParalyzedState::update() {
+    GameState::update();
+    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
+    
+    hurtCooldown -= 0.17;
     
     CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
+	checkZoom();
 
     int currAction = actionReady();
     if (currAction) {
@@ -137,6 +141,20 @@ void ParalyzedState::update() {
         
         if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
             player_beat_ghost = true;
+        }
+        
+        if (currAction == GHOST_ACTION_SLAM_DOOR) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav", door->center);
+            
+            doorSlam = true;
+            checkHurt(door, 25);
+        }
+        
+        if (currAction == GHOST_ACTION_SPIN_FAN) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
+            
+            fanSpinDuration = 9.0;
+            checkHurt(fan, 10);
         }
     }
     
@@ -249,14 +267,11 @@ void ParalyzedState::renderScene(bool isMirror) {
     while ((err = glGetError()) != GL_NO_ERROR) {
       //  cerr << "OpenGL error: " << err << endl;
     }
-
-    printf("player stuff %f\n", playerHealth);
 }
 void ParalyzedState::increaseHealth(int healthValue){
     playerHealth += healthValue;
     if (playerHealth > 100) {
         playerHealth = 100;
-printf("This stuff happened");
     }
 }
 void ParalyzedState::lowerHealth(int severity){
