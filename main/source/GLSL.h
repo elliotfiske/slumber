@@ -16,9 +16,14 @@
 #ifndef __GLSL__
 #define __GLSL__
 
+#define WINDOW_WIDTH  get_window_width()
+#define WINDOW_HEIGHT get_window_height()
 
-#define WINDOW_WIDTH  1440
-#define WINDOW_HEIGHT 900
+void set_window_width(float new_window_width);
+float get_window_width();
+
+void set_window_height(float new_window_height);
+float get_window_height();
 
 
 namespace GLSL {

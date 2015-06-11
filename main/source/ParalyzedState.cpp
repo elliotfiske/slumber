@@ -14,15 +14,23 @@
     #include <thread>
 #endif
 
+float fadeInWordsTime = 0;
+
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
+	FOV = 30.0f;
+	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+    introText = new HUDElement(RESOURCE_FOLDER + "hud/intro_text.png", 0.5, 0.5);
+    
+    numTimesPressedSpace = 0;
     
 #ifdef THREADS
     thread *t1;
@@ -39,7 +47,7 @@ void ParalyzedState::checkCollisions() {
     comboMatrix = perspectiveMat * viewMat * collectible->modelMat;
     vf->extractPlanes(comboMatrix);
     
-    if (vf->gotLight(collectible->center, 5.0)) {
+    if (vf->gotLight(collectible->center, 5.0) && !ghost_beat_player) {
         collectible->collected();
         increaseHealth(20);
     }
@@ -72,6 +80,15 @@ void ParalyzedState::update() {
     GameState::update();
     
     hurtCooldown -= 0.17;
+
+	if (getParalyzedZoom() == true) {
+		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
+		updatePerspectiveMat();
+	}
+	else if (FOV < 30.0f) {
+		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
+		updatePerspectiveMat();
+	}
 
     int currAction = actionReady();
     if (currAction) {
@@ -111,6 +128,22 @@ void ParalyzedState::update() {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
             checkHurt(lamp, 25);
         }
+        
+        if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
+            player_beat_ghost = true;
+        }
+    }
+    
+    int newSpaces = numSpaces();
+    if (newSpaces > numTimesPressedSpace) {
+        numTimesPressedSpace = newSpaces;
+        
+        fadeInWordsTime = 100.0;
+    }
+    
+    fadeInWordsTime -= 1.0;
+    if (fadeInWordsTime < 0) {
+        fadeInWordsTime = 0;
     }
     
 //    Position ghostPos = getGhostPosition();
@@ -137,7 +170,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 	float pitch = getPitch();
 	float yaw = getYaw();
 
-    sendPlayerLook(pitch, yaw, (float) playerHealth);
+    sendPlayerLook(pitch, yaw, FOV, (float) playerHealth);
 #endif
 }
 
@@ -207,7 +240,7 @@ void ParalyzedState::increaseHealth(int healthValue){
     }
 }
 void ParalyzedState::lowerHealth(int severity){
-   if(playerSensitivity = false){
+   if(playerSensitivity == false) {
       playerHealth -= severity;
    }
    else {
@@ -225,6 +258,13 @@ int ParalyzedState::getHealth(){
    return playerHealth;
 }
     
-bool ParalyzedState::getSensitivity(){
+bool ParalyzedState::getSensitivity() {
    return playerSensitivity;
+}
+
+void ParalyzedState::drawHUD() {
+    GameState::drawHUD();
+    
+    introText->drawElement(false);
+    CurrAssets->hudShader->setPercentShown(1000.0f);
 }

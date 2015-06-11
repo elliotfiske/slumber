@@ -7,6 +7,7 @@
 #include "Texture.h"
 #include "ViewFrustum.hpp"
 #include "collectible.h"
+#include "HUDElement.h"
 
 #ifndef GameState_h
 #define GameState_h
@@ -20,6 +21,7 @@ public:
     std::vector<Actor> actors;
     Actor *room, *bed, *clock, *enemy, *tv, *door, *fan;
     Actor *lamp;
+    Actor *nightstand, *doll, *mirror, *chair;
     Collectible *collectible;
     
     Light *light;
@@ -31,6 +33,8 @@ public:
     virtual void update();
     void draw();
     virtual void drawHUD();
+    
+    float playerHealth;
     
     GLuint quad_vertexbuffer, quad_vertexbuffer_mirror;
     
@@ -46,6 +50,9 @@ public:
     /* Swapping game states */
     bool shouldSwitch;
     virtual GameState* newState();
+    
+    HUDElement *ghostWins, *playerWins;
+    bool ghost_beat_player, player_beat_ghost;
     
 protected:
     Camera *camera;
@@ -86,6 +93,8 @@ protected:
 
     float clockShakeDuration;
     float tvStaticDuration;
+
+	float FOV;
 };
 
 #endif

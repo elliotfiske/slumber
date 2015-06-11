@@ -23,11 +23,15 @@ public:
     int getHealth();
     bool getSensitivity();
     
+    HUDElement *introText;
+    int numTimesPressedSpace;
+    
     void tellGhostWhereImLooking();
+    
+    void drawHUD();
 
 protected:
     void checkCollisions();
-    int playerHealth;
     bool playerSensitivity;
     
     void checkHurt(Actor *danger, int howMuch);

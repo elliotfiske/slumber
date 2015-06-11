@@ -18,7 +18,11 @@
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     ghostHealth = 100.0f;
     playerHealth = 100.0f;
-	 camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+
+	FOV = 35.0f;
+	updatePerspectiveMat();
+    camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
@@ -79,6 +83,11 @@ void GhostState::renderScene(bool isMirror) {
 	lamp->draw(light);
     door->draw(light);
     fan->draw(light);
+    
+    nightstand->draw(light);
+    doll->draw(light);
+    mirror->draw(light);
+    chair->draw(light);
 
 
 	shadowfbo->unbindTexture();
@@ -125,10 +134,19 @@ void GhostState::updateCameraShake() {
 	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 
-	ghostHealth = fmaxf(0.0, ghostHealth - 10.0 * elapsedTime);
+	ghostHealth = fmaxf(-10.0, ghostHealth - 10.0 * elapsedTime);
 }
 
 void GhostState::update() {
+    
+    if (!player_beat_ghost) {
+        ghostHealth += 0.027;
+    }
+    
+    if (ghostHealth > 100.0) {
+        ghostHealth = 100.;
+    }
+    
 	GameState::update();
     viewFrustumCulling();
 
@@ -192,8 +210,19 @@ void GhostState::update() {
     if (shouldWeReset()) {
         ghostHealth = 100.0f;
         playerHealth = 100.0f;
+        
+        player_beat_ghost = false;
+        ghost_beat_player = false;
+    }
+    
+    if (playerHealth < 0.0) {
+        ghost_beat_player = true;
     }
 
+    if (ghostHealth < 0.0 && !player_beat_ghost) {
+        player_beat_ghost = true;
+        sendGhostAction(GHOST_ACTION_LOST_HORRIBLY);
+    }
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 	tellClientWhereGhostIs();
@@ -242,12 +271,14 @@ void GameState::tellClientWhereGhostIs() {
 
 void GhostState::drawHUD() {
     GameState::drawHUD();
-
-	ghostHUD->drawElement();    
-	CurrAssets->billboardShader->setPercentShown(ghostHealth);
-    ghostBar->drawElement();
-	CurrAssets->billboardShader->setPercentShown(getPlayerHealth());
-    playerBar->drawElement();
-	CurrAssets->billboardShader->setPercentShown(1000.0f);
-
+    
+	ghostHUD->drawElement(true);
+    
+    CurrAssets->hudShader->setPercentShown(ghostHealth);
+    ghostBar->drawElement(true);
+    CurrAssets->hudShader->setPercentShown(getPlayerHealth());
+    playerHealth = getPlayerHealth();
+    playerBar->drawElement(true);
+    
+	CurrAssets->hudShader->setPercentShown(1000.0f);
 }

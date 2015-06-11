@@ -9,7 +9,6 @@
 
 using namespace glm;
 
-float playerHealth = 1.2;
 
 GameState* GameState::newState() {
     printf("THIS SHOULD NOT BE CALLED LIKE EVER");
@@ -27,6 +26,13 @@ void GameState::initAssets() {
     enemy = assets->actorDictionary["enemy"];
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
+    
+    nightstand = assets->actorDictionary["nightstand"];
+    doll = assets->actorDictionary["doll"];
+    mirror = assets->actorDictionary["mirror"];
+    chair = assets->actorDictionary["chair"];
+    
+    playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -75,10 +81,16 @@ void GameState::initAssets() {
 	lampExplode = false;
 	doorDirection = -1;
 	shakeCamera = false;
+    ghost_beat_player = false;
+    player_beat_ghost = false;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
+    
+    
+    ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
+    playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -106,12 +118,13 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  * Called every frame yo
  */
 void GameState::update() {
-    if (shouldWeReset()) {
-        playerHealth = 1.2;
-    }
+//    if (shouldWeReset()) {
+//        playerHealth = 100.0;
+//    }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
+    
     
     updateControl(window);
     updateCamDirection(camera);
@@ -184,7 +197,6 @@ void GameState::lightFlicker() {
 		flickerDirection = 1.0;
 	}
 	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-printf("FLICKER IT UP FURRBALL\n");
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
@@ -206,14 +218,14 @@ void GameState::lightExplode() {
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(FOV, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
 
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
-	float yaw = playerLook.y, pitch = playerLook.x;
+	float yaw = playerLook.y, pitch = playerLook.x, hfov = playerLook.z;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     
@@ -229,7 +241,7 @@ void GameState::updateHighlightMat() {
 	glm::mat4 V = glm::inverse(Transform);
     
     // HACKY HACK HACK
-	mat4 P = perspective(35.0f, (float) (1920.0
+	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
 }
@@ -364,4 +376,15 @@ void GameState::draw() {
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
+    
+    CurrAssets->hudShader->startUsingShader();
+    CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    
+    if (ghost_beat_player) {
+        ghostWins->drawElement(false);
+    }
+    
+    if (player_beat_ghost) {
+        playerWins->drawElement(false);
+    }
 }
