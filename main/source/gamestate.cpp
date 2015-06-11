@@ -218,14 +218,14 @@ void GameState::lightExplode() {
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(FOV, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
 
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
-	float yaw = playerLook.y, pitch = playerLook.x;
+	float yaw = playerLook.y, pitch = playerLook.x, hfov = playerLook.z;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     
@@ -241,7 +241,7 @@ void GameState::updateHighlightMat() {
 	glm::mat4 V = glm::inverse(Transform);
     
     // HACKY HACK HACK
-	mat4 P = perspective(35.0f, (float) (1920.0
+	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
 }

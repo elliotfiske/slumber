@@ -16,7 +16,8 @@ float forwardAccel;
 float strafeAccel;
 
 float mouseX, mouseY;
-bool startParalyzed = false, startGhost = false, itemAction = false, itemAltAction = false;
+bool startParalyzed = false, startGhost = false, itemAction = false, \
+     itemAltAction = false, zoom = false;
 
 int space_pressed_times = 0;
 
@@ -51,7 +52,7 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
 
 bool coordsOverPlay(float x, float y) {
     float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
-    if (midDiffX < 200 && mouseY < 520.2 && mouseY > 407.6) {
+    if (midDiffX < 200 && mouseY < 0.60 * WINDOW_HEIGHT && mouseY > 0.45 * WINDOW_HEIGHT) {
         return true;
     }
     return false;
@@ -59,7 +60,7 @@ bool coordsOverPlay(float x, float y) {
 
 bool coordsOverGhost(float x, float y) {
     float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
-    if (midDiffX < 200 && mouseY < 825.8 && mouseY > 606.5) {
+    if (midDiffX < 200 && mouseY < 0.92 * WINDOW_HEIGHT && mouseY > 0.68 * WINDOW_HEIGHT) {
         return true;
     }
     return false;
@@ -179,6 +180,16 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             itemAltAction = false;
         }
     }
+
+	if (key == GLFW_KEY_SPACE) {
+        if (action == GLFW_PRESS) {
+            zoom = true;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            zoom = false;
+        }
+    }
     
     if (key == GLFW_KEY_SPACE) {
         if (action == GLFW_PRESS) {
@@ -282,4 +293,8 @@ bool getItemAltAction() {
 
 int numSpaces() {
     return space_pressed_times;
+}
+
+bool getParalyzedZoom() {
+	return zoom;
 }

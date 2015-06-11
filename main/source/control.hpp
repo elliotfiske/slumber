@@ -24,6 +24,7 @@ bool coordsOverGhost(float x, float y);
 bool coordsOverPlay(float x, float y);
 bool shouldStartGhost();
 bool shouldStartParalyzed();
+bool getParalyzedZoom();
 
 bool getItemAction();
 bool getItemAltAction();

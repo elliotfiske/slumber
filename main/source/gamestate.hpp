@@ -93,6 +93,8 @@ protected:
 
     float clockShakeDuration;
     float tvStaticDuration;
+
+	float FOV;
 };
 
 #endif

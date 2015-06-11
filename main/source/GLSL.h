@@ -16,7 +16,6 @@
 #ifndef __GLSL__
 #define __GLSL__
 
-
 #define WINDOW_WIDTH  get_window_width()
 #define WINDOW_HEIGHT get_window_height()
 
