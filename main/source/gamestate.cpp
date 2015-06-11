@@ -106,7 +106,6 @@ void GameState::initAssets() {
     doll->cps.push_back(vec4(20.0f, 0.0f, -6.0f, 1.0f));
     doll->cps.push_back(vec4(30.0f, -3.0f, 0.0f, 1.0f));
     doll->cps.push_back(vec4(40.0f, -5.0f, 0.0f, 1.0f));
-    lamp->animate = false;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -162,6 +161,7 @@ void GameState::update() {
     
     lamp->step(elapsedTime);
     collectible->step(elapsedTime);
+    doll->step(elapsedTime);
     
     Actor *teevee = CurrAssets->actorDictionary["tv"];
     if (tvStaticDuration > 0) {
@@ -203,6 +203,7 @@ void GameState::update() {
     }
     
     if (dollMoveDuration > 0) {
+        dollMoveDuration -= elapsedTime;
         doll->animate = true;
     }
     else {
