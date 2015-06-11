@@ -15,12 +15,12 @@ void main()
 	vec2 vDeviceReflection = reflectionVertex.xy / reflectionVertex.w;
 	vec2 vTextureReflection = vec2(0.5, 0.5) + 0.5 * vDeviceReflection;
 
-	vec4 reflectionTextureColor = texture (reflection_sampler, UV);
+	vec4 reflectionTextureColor = texture(reflection_sampler, UV);
 	
 	
 
 	// Framebuffer reflection can have alpha > 1
-	reflectionTextureColor.x += 0.1;
+	reflectionTextureColor.x += 0.0;
 
 	gl_FragColor = reflectionTextureColor;
 }

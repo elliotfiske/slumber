@@ -34,11 +34,8 @@ protected:
 	bool checkBounds(glm::vec3 min, glm::vec3 max);
 	void viewFrustumCulling();
 	void damageGhost();
-<<<<<<< HEAD
 	void gainHealth();
-=======
 	void updateCameraShake();
->>>>>>> master
 
 	glm::vec3 itemUseBounds;
 };

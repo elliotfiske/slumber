@@ -20,6 +20,6 @@ void main()
 	
 	 vPos = vertPos.xyz;
 
-    UV = (gl_Position.xy + vec2(5.3, 4.5)) / 11.5;
+    UV = (gl_Position.xy + vec2(5.6, 4.5)) / 11.5;
 
 }

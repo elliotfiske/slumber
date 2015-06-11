@@ -33,12 +33,7 @@ public:
 protected:
     void checkCollisions();
     bool playerSensitivity;
-<<<<<<< HEAD
-    sf::Listener listener;
-	void lightFlicker();
-=======
->>>>>>> master
-    
+
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);
 };
