@@ -40,7 +40,7 @@ public:
     void setMaterial(tinyobj::material_t material);
     
     /** Hack: which index, if any, is the TV screen?  We want to apply static to it. */
-    int tvScreenIndex;
+    std::vector<int> glowingShapeIndex;
     
 private:
     void setLightMVP(Light *light, bool isShadowShader);

@@ -100,6 +100,8 @@ protected:
 
     float clockShakeDuration;
     float tvStaticDuration;
+    float dollGlowDuration;
+    float dollMoveDuration;
 	float fanSpinDuration;
 
 	float FOV;

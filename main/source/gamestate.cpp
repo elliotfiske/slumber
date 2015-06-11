@@ -142,13 +142,18 @@ void GameState::update() {
     
     collectible->step(elapsedTime);
     
+    Actor *teevee = CurrAssets->actorDictionary["tv"];
     if (tvStaticDuration > 0) {
         tvStaticDuration -= elapsedTime;
         if (tvStaticDuration < 0) {
-            Actor *teevee = CurrAssets->actorDictionary["tv"];
-            teevee->material[teevee->tvScreenIndex].ambient[0] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[1] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[2] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 0;
+        }
+        else {
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 255;
         }
     }
     
@@ -161,6 +166,19 @@ void GameState::update() {
     }
     else {
         clocky->direction = vec3(0, 0, 0);
+    }
+    
+    Actor *doll = CurrAssets->actorDictionary["doll"];
+    if (dollGlowDuration > 0)     {
+        dollGlowDuration -= elapsedTime;
+        for (int glowNdx = 0; glowNdx < doll->glowingShapeIndex.size(); glowNdx++) {
+            if (dollGlowDuration > 0) {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 255.0;
+            }
+            else {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 0.0;
+            }
+        }
     }
 }
 

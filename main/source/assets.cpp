@@ -239,7 +239,11 @@ void Assets::loadShape(string filename, Actor *actor) {
         // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
         if (shapes[ndx].name == "SCREEN") {
             printf("Gotcha\n");
-            actor->tvScreenIndex = ndx;
+            actor->glowingShapeIndex.push_back(ndx);
+        }
+        
+        if (shapes[ndx].name == "DOLLEYE" || shapes[ndx].name == "DOLLEYE1" || shapes[ndx].name == "DOLLMOUTH") {
+            actor->glowingShapeIndex.push_back(ndx);
         }
     }
     

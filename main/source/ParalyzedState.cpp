@@ -238,7 +238,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
-    tv->draw(light, true);
+    tv->draw(light, tvStaticDuration > 0.0);
     lamp->draw(light);
     door->draw(light);
     fan->draw(light);

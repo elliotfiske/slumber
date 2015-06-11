@@ -8,7 +8,6 @@
 Actor::Actor(vec3 center_) {
     center = center_;
     scale = 1.0;
-    tvScreenIndex = -1;
 }
 
 void Actor::step(double dt) {
@@ -46,11 +45,11 @@ void Actor::draw(Light *light, bool tv) {
     setLightMVP(light, false);
     
     for (int ndx = 0; ndx < numShapes; ndx++) {
-        if (tv && ndx == tvScreenIndex) {
-            material[ndx].ambient[0] = 255.0;
-            material[ndx].ambient[1] = 255.0;
-            material[ndx].ambient[2] = 255.0;
-        }
+//        if (tv && ndx == glowingShapeIndex) {
+//            material[ndx].ambient[0] = 255.0;
+//            material[ndx].ambient[1] = 255.0;
+//            material[ndx].ambient[2] = 255.0;
+//        }
         
         setMaterial(material[ndx]);
         CurrAssets->lightingShader->setPositionArray(posID[ndx]);
