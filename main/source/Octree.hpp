@@ -2,8 +2,8 @@
 #define _OCTREE_H_
 
 #include <vector>
-#include "actor.hpp"
 #include "BoundingBox.hpp"
+#include "camera.hpp"
 
 #define NUM_CHILDREN 8
 
@@ -15,7 +15,7 @@ public:
     void draw();
     void updateBounds(BoundingBox box);
     void insert(BoundingBox *box);
-    std::vector<BoundingBox *> getCollisions(Actor *toCheck);
+    std::vector<BoundingBox *> getCollisions(Camera *camera);
     std::vector<BoundingBox *> getCollisions(BoundingBox *toCheck);
 
 private:

@@ -171,13 +171,13 @@ void ParalyzedState::renderScene(bool isMirror) {
 	CurrAssets->lightingShader->setAttenuation(attenFactor);
     
     //    viewFrustumCulling(*bed);
-    bed->draw(light);
-    room->draw(light);
-    clock->draw(light);
-    tv->draw(light, true);
-    lamp->draw(light);
-    door->draw(light);
-    fan->draw(light);
+    bed->draw(light, viewMat, perspectiveMat);
+    room->draw(light, viewMat, perspectiveMat);
+    clock->draw(light, viewMat, perspectiveMat);
+    tv->draw(light, viewMat, perspectiveMat, true);
+    lamp->draw(light, viewMat, perspectiveMat);
+    door->draw(light, viewMat, perspectiveMat);
+    fan->draw(light, viewMat, perspectiveMat);
     
     shadowfbo->unbindTexture();
 

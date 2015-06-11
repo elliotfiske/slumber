@@ -39,12 +39,12 @@ void TitleState::renderScene(bool isMirror) {
 	CurrAssets->lightingShader->setAttenuation(0.0002f);
 
     //	viewFrustumCulling(*bed);
-    bed->draw(light);
-    room->draw(light);
-    clock->draw(light);
-    lamp->draw(light);
-    tv->draw(light);
-    door->draw(light);
+    bed->draw(light, viewMat, perspectiveMat);
+    room->draw(light, viewMat, perspectiveMat);
+    clock->draw(light, viewMat, perspectiveMat);
+    lamp->draw(light, viewMat, perspectiveMat);
+    tv->draw(light, viewMat, perspectiveMat);
+    door->draw(light, viewMat, perspectiveMat);
     
     shadowfbo->unbindTexture();
     

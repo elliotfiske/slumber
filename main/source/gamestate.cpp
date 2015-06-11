@@ -19,7 +19,7 @@ GameState* GameState::newState() {
 
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-std::cout << "Test1" << std::endl;
+
     bed =   assets->actorDictionary["bed"];
     clock = assets->actorDictionary["clock"];
     tv = assets->actorDictionary["tv"];

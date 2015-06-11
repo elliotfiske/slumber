@@ -30,7 +30,7 @@ public:
     void step(double dt);
     
     bool detectIntersect(Actor target, bool oc);
-    void draw(Light *light, bool tv = false);
+    void draw(Light *light, mat4 viewMat, mat4 perspectiveMat, bool tv = false);
     void drawShadows(Light *light);
     
     int numShapes;

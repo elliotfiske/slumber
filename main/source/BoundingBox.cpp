@@ -9,17 +9,23 @@ bool overlap(float min1, float max1, float min2, float max2) {
 }
 
 BoundingBox::BoundingBox() {
+    min = vec3(0);
+    size = vec3(0);
 }
 
 BoundingBox::~BoundingBox() {
 }
 
-void BoundingBox::insert(std::vector<float> points) {
-	for (size_t i = 0; i < points.size(); i += 3)
-		this->insert(vec3(points[i], points[i + 1], points[i + 2]));
+void BoundingBox::insert(std::vector<float> points, mat4 modelMat) {
+    min = vec3(modelMat * vec4(points[0], points[1], points[2], 1.0f));
+    size = vec3(0.0f, 0.0f, 0.0f);
+    for (size_t i = 0; i < points.size(); i += 3)
+        this->insert(vec3(modelMat * vec4(points[i], points[i + 1], points[i + 2], 1.0f)));
 }
 
 void BoundingBox::insert(vec3 point) {
+if (point.x < -50 || point.x > 50 || point.y > 40 || point.z  < -150 || point.z > 10)
+std::cout << point.x << "," << point.y << "," << point.z << std::endl;
 	vec3 max = min + size;
 
 	min.x = std::min(min.x, point.x);
@@ -43,7 +49,7 @@ bool BoundingBox::collides(BoundingBox other) {
         && overlap(min.z, max1.z, other.min.z, max2.z);
 }
 
-void BoundingBox::draw() {
+void BoundingBox::draw(mat4 MVP) {
 	vec3 max = min + size;
 	GLfloat vertices[] = {
 		min.x, min.y, min.z, 1.0,
@@ -64,15 +70,26 @@ void BoundingBox::draw() {
 
 	glGenBuffers(1, &vertId);
 	
-//	glBindBuffer(GL_ARRAY_BUFFER, vertId);
-//	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-//	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ARRAY_BUFFER, vertId);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &indId);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indId);
-//	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-	CurrAssets->lightingShader->setPositionArray(vertId);
-	CurrAssets->lightingShader->setIndexArray(indId);
-	glDrawElements(GL_LINES, 8, GL_UNSIGNED_INT, (void*) 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	GLint tmp;
+	glGetIntegerv(GL_CURRENT_PROGRAM, &tmp);
+
+	CurrAssets->simpleShader->startUsingShader();
+	CurrAssets->simpleShader->setPositionArray(vertId);
+	CurrAssets->simpleShader->setIndexArray(indId);
+	CurrAssets->simpleShader->setMVPmatrix(MVP);
+	CurrAssets->simpleShader->setColorVector(vec4(1.0f, 0.0f, 0.0f, 1.0f));
+
+	glDrawElements(GL_LINES, 12, GL_UNSIGNED_INT, (void*) 0);
+
+	CurrAssets->simpleShader->disableAttribArrays();
+	glUseProgram(tmp);
 }

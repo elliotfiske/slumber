@@ -10,6 +10,8 @@
 #include <cassert>
 #include <iostream>
 #include <algorithm>
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -22,7 +24,7 @@ using namespace std;
  *  for our game
  */
 Assets::Assets() {
-
+    simpleShader      = new SimpleShader("simple_vert.glsl", "simple_frag.glsl");
     billboardShader   = new BillboardShader("Billboard_Vert.glsl", "Billboard_Frag.glsl");
     hudShader         = new HUDShader("HUD_Vert.glsl", "HUD_Frag.glsl");
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
@@ -71,6 +73,8 @@ void Assets::readLevelData(string filename) {
         
         actorDictionary[currActorName] = new Actor(newActorCenter);
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
+printf("For actor %s @ <%f,%f,%f>\n", currActorName.c_str(), newActorCenter.x, newActorCenter.y, newActorCenter.z); 
+
         loadShape(objFilename, actorDictionary[currActorName]);
         tmp.push_back(actorDictionary[currActorName]);
         
@@ -238,7 +242,16 @@ void Assets::loadShape(string filename, Actor *actor) {
     for (int ndx = 0; ndx < shapes.size(); ndx++) {
         tinyobj::material_t currMaterial = materials[shapes[ndx].mesh.material_ids[0]];
         sendShapeToGPU(shapes[ndx], currMaterial, actor, ndx);
-	actor->boxes[ndx].insert(shapes[ndx].mesh.positions);
+
+	glm::mat4 Trans  = glm::translate(glm::mat4(1.0f), actor->center);
+	glm::mat4 RotX   = glm::rotate(glm::mat4(1.0f), actor->direction.x, vec3(1, 0, 0));
+	glm::mat4 RotY   = glm::rotate(glm::mat4(1.0f), actor->direction.y, vec3(0, 1, 0));
+	glm::mat4 RotZ   = glm::rotate(glm::mat4(1.0f), actor->direction.z, vec3(0, 0, 1));
+    
+	actor->boxes[ndx].insert(shapes[ndx].mesh.positions, Trans * RotX * RotY * RotZ);
+
+printf("\tBox at <%f,%f,%f> with size <%f,%f,%f>\n", actor->boxes[ndx].min.x, actor->boxes[ndx].min.y, actor->boxes[ndx].min.z, actor->boxes[ndx].size.x, actor->boxes[ndx].size.y, actor->boxes[ndx].size.z);
+
         octree->updateBounds(actor->boxes[ndx]);
         // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
         if (shapes[ndx].name == "SCREEN") {

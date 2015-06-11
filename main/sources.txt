@@ -25,6 +25,7 @@ set(HEADERS
    Octree.hpp
    BoundingBox.hpp
 
+   shaders/SimpleShader.h
    shaders/Framebuffer.h
    shaders/shader.h
    shaders/LightingShader.h
@@ -64,6 +65,7 @@ set(SOURCES
    Octree.cpp
    BoundingBox.cpp
 
+   shaders/SimpleShader.cpp
    shaders/Framebuffer.cpp
    shaders/shader.cpp
    shaders/LightingShader.cpp

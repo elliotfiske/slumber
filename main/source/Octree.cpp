@@ -1,6 +1,7 @@
 #include "Octree.hpp"
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 Octree::Octree() {
     this->mid.x = this->mid.y = this->mid.z = 0;
@@ -60,15 +61,12 @@ void Octree::insert(BoundingBox *box) {
         this->boxes.push_back(box);
 }
 
-std::vector<BoundingBox *> Octree::getCollisions(Actor *toCheck) {
-    std::vector<BoundingBox *> colliding;
+std::vector<BoundingBox *> Octree::getCollisions(Camera *toCheck) {
+    BoundingBox *camBox = new BoundingBox();
+    camBox->min = toCheck->center;
+    camBox->size = vec3(0.0f, 0.0f, 0.0f);
 
-    for (int i = 0; i < toCheck->numShapes; i++) {
-        std::vector<BoundingBox *> subcollisions = getCollisions(&toCheck->boxes[i]);
-        colliding.insert(colliding.end(), subcollisions.begin(), subcollisions.end());
-    }
-
-    return colliding;
+    return getCollisions(camBox);
 }
 
 std::vector<BoundingBox *> Octree::getCollisions(BoundingBox *toCheck) {

@@ -10,6 +10,7 @@
 #include "shaders/ReflectShader.h"
 #include "shaders/HUDShader.h"
 #include "shaders/BillboardShader.h"
+#include "shaders/SimpleShader.h"
 #include <map>
 #include "actor.hpp"
 #include "Octree.hpp"
@@ -39,6 +40,7 @@ public:
         return instance;
     }
     
+    SimpleShader   *simpleShader;
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
     LightingShader *ghostLightingShader;

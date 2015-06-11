@@ -45,7 +45,7 @@ void Actor::setMaterial(tinyobj::material_t material) {
     CurrAssets->lightingShader->setShininess(material.shininess);
 }
 
-void Actor::draw(Light *light, bool tv) {
+void Actor::draw(Light *light, mat4 viewMat, mat4 perspectiveMat, bool tv) {
     setModel();
     setLightMVP(light, false);
     
@@ -73,7 +73,8 @@ void Actor::draw(Light *light, bool tv) {
             texture[ndx]->unbind(0);
         }
 
-        boxes[ndx].draw();
+	if (tv)
+	        boxes[ndx].draw(perspectiveMat * viewMat);
     }
 }
 

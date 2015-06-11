@@ -43,7 +43,7 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
 void GhostState::checkCollisions() {
 	this->collisions = CurrAssets->octree->getCollisions(camera);
 
-    printf("Camera collides with %d objects\n", this->collisions.size());
+    //printf("%d @ <%f,%f,%f>\n", this->collisions.size(), camera->center.x, camera->center.y, camera->center.z);
 }
 
 /**
@@ -75,13 +75,13 @@ void GhostState::renderScene(bool isMirror) {
 	}
 	CurrAssets->lightingShader->setAttenuation(attenFactor);
 
-    bed->draw(light);
-	room->draw(light);
-	clock->draw(light);
-    tv->draw(light, tvStaticDuration > 0.0);
-	lamp->draw(light);
-    door->draw(light);
-    fan->draw(light);
+    bed->draw(light, viewMat, perspectiveMat);
+	room->draw(light, viewMat, perspectiveMat);
+	clock->draw(light, viewMat, perspectiveMat);
+    tv->draw(light, viewMat, perspectiveMat, tvStaticDuration > 0.0);
+	lamp->draw(light, viewMat, perspectiveMat);
+    door->draw(light, viewMat, perspectiveMat);
+    fan->draw(light, viewMat, perspectiveMat);
 
 
 	shadowfbo->unbindTexture();
@@ -196,14 +196,13 @@ void GhostState::update() {
         ghostHealth = 100.0f;
         playerHealth = 100.0f;
     }
-
+	checkCollisions();
+	int tmp = collisions.size();
 
 	camera->step(elapsedTime, getForwardVelocity(), getStrafeVelocity());
 
 	checkCollisions();
-
-	// TODO: this doesn't work
-	if (collisions.size() > 0)
+	if (tmp < collisions.size())
 		camera->step(elapsedTime, -getForwardVelocity(), -getStrafeVelocity());
 
 	tellClientWhereGhostIs();

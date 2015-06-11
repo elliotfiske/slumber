@@ -10,10 +10,10 @@ class BoundingBox {
 public:
 	BoundingBox();
 	~BoundingBox();
-	void insert(std::vector<float> points);
+	void insert(std::vector<float> points, mat4 modelMat);
 	void insert(vec3 point);
 	bool collides(BoundingBox other);
-	void draw();
+	void draw(mat4 MVP);
 
 	vec3 min, size;
 };
