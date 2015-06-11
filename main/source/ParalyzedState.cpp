@@ -159,7 +159,7 @@ void ParalyzedState::update() {
         
         if (currAction == GHOST_ACTION_GLOW_DOLL) {
             dollGlowDuration = 3.0;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", doll->center);
         }
     }
     
@@ -321,10 +321,6 @@ void ParalyzedState::viewFrustumCulling(){
     
     int inView = vf->sphereIsInside(enemy->center, 0.1f);
     if (inView != OUTSIDE && playerFOV < 28.0) {
-      printf("Enemy in sight\n");
 	   CurrAssets->play(RESOURCE_FOLDER + "sounds/gross-static.wav", enemy->center);
-    }
-    else{
-      printf("Enemy not in sight\n");
     }
 }
