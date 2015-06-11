@@ -170,14 +170,14 @@ void ParalyzedState::update() {
             dollGlowDuration = 3.0;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", tv->center);
             
-            checkHurt(doll, 20);
+            checkHurt(doll, 10);
         }
         
         if (currAction == GHOST_ACTION_MOVE_DOLL) {
             dollMoveDuration = 3.9;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", tv->center);
             
-            checkHurt(doll, 20);
+            checkHurt(doll, 10);
         }
 
 		if (currAction == GHOST_ACTION_SHORT_FAN) {
