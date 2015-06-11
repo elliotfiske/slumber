@@ -188,13 +188,13 @@ bool killSound = false;
 
 
 void doPlay() {
-//    if (soundBuffers.find(filename) == soundBuffers.end())
-//        this->loadSoundBuffer(filename);
+    //    if (soundBuffers.find(filename) == soundBuffers.end())
+    //        this->loadSoundBuffer(filename);
     
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
-    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+//    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
     sound.setRelativeToListener(true);
     sound.play();
     killSound = false;
@@ -239,7 +239,11 @@ void Assets::loadShape(string filename, Actor *actor) {
         // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
         if (shapes[ndx].name == "SCREEN") {
             printf("Gotcha\n");
-            actor->tvScreenIndex = ndx;
+            actor->glowingShapeIndex.push_back(ndx);
+        }
+        
+        if (shapes[ndx].name == "DOLLEYE" || shapes[ndx].name == "DOLLEYE1" || shapes[ndx].name == "DOLLMOUTH") {
+            actor->glowingShapeIndex.push_back(ndx);
         }
     }
     

@@ -30,6 +30,12 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
+    clockText = CurrAssets->billboardDictionary["clock_tooltip.png"];
+    doorText = CurrAssets->billboardDictionary["door_tooltip.png"];
+    dollText = CurrAssets->billboardDictionary["doll_tooltip.png"];
+    fanText = CurrAssets->billboardDictionary["fan_tooltip.png"];
+    tvText = CurrAssets->billboardDictionary["tv_tooltip.png"];
+    windowText = CurrAssets->billboardDictionary["window_tooltip.png"];
     
     ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
     ghostBar = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
@@ -97,6 +103,12 @@ void GhostState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
 
     lampText->draw(light);
+    clockText->draw(light);
+    doorText->draw(light);
+    dollText->draw(light);
+    fanText->draw(light);
+    tvText->draw(light);
+    windowText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
@@ -157,6 +169,7 @@ void GhostState::update() {
     glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
     glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
 	glm::vec3 fanpos   = CurrAssets->actorDictionary["fan"]->center;
+    glm::vec3 dollpos  = CurrAssets->actorDictionary["doll"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
 		// Set billboard here!!
@@ -208,6 +221,20 @@ void GhostState::update() {
             tvStaticDuration = 1.8;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             sendGhostAction(GHOST_ACTION_TV_STATIC);
+        }
+    }
+    else if (checkBounds(dollpos - itemUseBounds, dollpos + itemUseBounds)) {
+        
+        if (getItemAction()) {
+            dollGlowDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
+            // TODO: laugh?
+            sendGhostAction(GHOST_ACTION_GLOW_DOLL);
+        }
+        
+        if (getItemAltAction()) {
+            dollMoveDuration = 10.0;
+            sendGhostAction(GHOST_ACTION_MOVE_DOLL);
         }
     }
     

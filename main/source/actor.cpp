@@ -4,15 +4,44 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
+#include <cmath>
+#include <iostream>
+
+float catmull[] = {
+    0.0f, -1.0f,  2.0f, -1.0f,
+    2.0f,  0.0f, -5.0f,  3.0f,
+    0.0f,  1.0f,  4.0f, -3.0f,
+    0.0f,  0.0f, -1.0f,  1.0f
+};
 
 Actor::Actor(vec3 center_) {
-    center = center_;
+    orig_center = center = center_;
     scale = 1.0;
-    tvScreenIndex = -1;
+    
+    animate = false;
+    animation_time = 0;
 }
 
 void Actor::step(double dt) {
-    
+    mat4 B = 0.5f * glm::transpose(glm::make_mat4(catmull));
+    if (animate && cps.size() >= 4) {
+        animation_time += dt;
+        float kfloat;
+	float u = std::modf(std::fmod(animation_time, cps.size() - 3.0f), &kfloat);
+	int k = (int)std::floor(kfloat);
+
+	mat4 G;
+	vec4 centerPt = vec4(orig_center.x, orig_center.y, orig_center.z, 0.0);
+	for (int i = 0; i < 4; i++)
+	    G[i] = cps[k + i] + centerPt;
+
+	// u in [0,1]
+	// k in [1,ncps-3]
+	vec4 uVec(1.0f, u, u * u, u * u * u);
+	vec4 pos = G * B * uVec;
+
+	this->center = vec3(pos);
+    }
 }
 
 bool Actor::detectIntersect(Actor target, bool overrideCooldown) {
@@ -46,11 +75,11 @@ void Actor::draw(Light *light, bool tv) {
     setLightMVP(light, false);
     
     for (int ndx = 0; ndx < numShapes; ndx++) {
-        if (tv && ndx == tvScreenIndex) {
-            material[ndx].ambient[0] = 255.0;
-            material[ndx].ambient[1] = 255.0;
-            material[ndx].ambient[2] = 255.0;
-        }
+//        if (tv && ndx == glowingShapeIndex) {
+//            material[ndx].ambient[0] = 255.0;
+//            material[ndx].ambient[1] = 255.0;
+//            material[ndx].ambient[2] = 255.0;
+//        }
         
         setMaterial(material[ndx]);
         CurrAssets->lightingShader->setPositionArray(posID[ndx]);
