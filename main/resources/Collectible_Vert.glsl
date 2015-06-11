@@ -19,9 +19,9 @@ void main() {
     vec4 pos_cam = MV * aPosition;
     vPos = pos_cam.xyz;
     
-    float diffX = rand(pos_cam.xy) * 0.5;
-    float diffY = rand(vec2(pos_cam.y, pos_cam.z)) * 0.5;
-    float diffZ = rand(vec2(pos_cam.z, pos_cam.x)) * 0.5;
+    float diffX = rand(pos_cam.xy) * 0.3;
+    float diffY = rand(vec2(pos_cam.y, pos_cam.z)) * 0.3;
+    float diffZ = rand(vec2(pos_cam.z, pos_cam.x)) * 0.3;
 
 	gl_Position = uProjMatrix * pos_cam;
 	gl_Position += vec4(aNormal, 0.0) * 0.0001; // NOTE: this is a horrible hack so that aNormal is FORCED to be used.  But I don't care.
