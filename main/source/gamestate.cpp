@@ -243,6 +243,8 @@ void GameState::updateHighlightMat() {
 	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
+    
+    playerFOV = hfov;
 }
 
 void GameState::renderShadowBuffer() {

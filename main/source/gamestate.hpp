@@ -98,6 +98,8 @@ protected:
     float tvStaticDuration;
 
 	float FOV;
+    
+    float playerFOV;
 };
 
 #endif

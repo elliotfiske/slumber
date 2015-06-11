@@ -19,7 +19,7 @@ TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
     play = CurrAssets->billboardDictionary["play.png"];
     playGhost = CurrAssets->billboardDictionary["play_ghost.png"];
     
-    CurrAssets->play(RESOURCE_FOLDER + "sounds/musicbox.flac");
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/musicbox.flac", vec3(0));
 }
 
 /**

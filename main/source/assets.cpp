@@ -67,8 +67,6 @@ void Assets::readLevelData(string filename) {
         levelFile >> newActorCenter.y;
         levelFile >> newActorCenter.z;
         levelFile >> actorAngle;
-
-	pos = vec3(newActorCenter.x, newActorCenter.y, newActorCenter.z);
         
         actorDictionary[currActorName] = new Actor(newActorCenter);
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
@@ -205,13 +203,15 @@ void doPlay() {
 }
 
 
-void Assets::play(string filename_) {
+void Assets::play(string filename_, vec3 position) {
 #ifdef THREADS
     
     filename = filename_;
     killSound = true;
     wut = new thread(doPlay);
 
+    
+    pos = position;
 #endif
 }
 

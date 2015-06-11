@@ -164,7 +164,7 @@ void GhostState::update() {
 			flickerDuration = 2.0;
             sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
             
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav", lamp->center);
 		}
 
 		if (getItemAltAction()) {
@@ -172,7 +172,7 @@ void GhostState::update() {
 			explodeDuration = 6.0;
 			sendGhostAction(GHOST_ACTION_EXPLODE_LAMP);
 
-			CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+			CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav", vec3(50, 0, -70));
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
@@ -182,7 +182,7 @@ void GhostState::update() {
 			doorToggle = true;
             sendGhostAction(GHOST_ACTION_CREAK_DOOR);
             string two = creak1 ? "" : "2";
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav", door->center);
             creak1 = !creak1;
 		}
 
@@ -195,14 +195,14 @@ void GhostState::update() {
 		if (getItemAction()) { // Shake it
             clockShakeDuration = 3.0;
             sendGhostAction(GHOST_ACTION_POSSESS_CLOCK);
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", clock->center);
 		}
 	}
     else if (checkBounds(tvpos - itemUseBounds, tvpos + itemUseBounds)) {
         
         if (getItemAction()) {
             tvStaticDuration = 1.8;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             sendGhostAction(GHOST_ACTION_TV_STATIC);
         }
     }
@@ -236,7 +236,7 @@ void GhostState::viewFrustumCulling(){
     vf->extractPlanes(comboMatrix);
     
     int inView = vf->sphereIsInside(camera->center, 0.1f);
-    if (inView != OUTSIDE) {
+    if (inView != OUTSIDE && playerFOV < 28.0) {
 		shakeCamera = true;
     }
 	else {

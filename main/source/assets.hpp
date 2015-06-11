@@ -57,7 +57,7 @@ public:
     FBOShader      *currFBOShader;
 //    void doPlay(string filename);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
-    void play(string filename);
+    void play(string filename, glm::vec3 position);
     void stopSounds();
     
     // A simple dictionary where the key is the OBJ name and the

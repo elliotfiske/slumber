@@ -23,9 +23,10 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
 	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
-    listener.setPosition(camera->center.x, camera->center.y, camera->center.z);
-    listener.setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
-//    CurrAssets->currFBOShader = 
+    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+//    sf::Listener::setDirection(10,0,0);
+    sf::Listener::setUpVector(0, 1, 0);
+//    CurrAssets->currFBOShader =
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -80,7 +81,8 @@ bool creakOne = true;
 
 void ParalyzedState::update() {
     GameState::update();
-    listener.setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
+    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
+    printf("Cam: %f %f %f\n", camera->direction.x, camera->direction.y, camera->direction.z);
     
     hurtCooldown -= 0.17;
 
@@ -92,6 +94,8 @@ void ParalyzedState::update() {
 		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
 		updatePerspectiveMat();
 	}
+    
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
 
     int currAction = actionReady();
     if (currAction) {
@@ -99,14 +103,14 @@ void ParalyzedState::update() {
             doorToggle = true;
             
             string two = creakOne ? "" : "2";
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav", door->center);
             creakOne = !creakOne;
             
             checkHurt(door, 10);
         }
         
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav", lamp->center);
             
             flickerDuration = 2.0;
             checkHurt(lamp, 20);
@@ -114,21 +118,21 @@ void ParalyzedState::update() {
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", clock->center);
             
             checkHurt(clock, 15);
         }
         
         if (currAction == GHOST_ACTION_TV_STATIC) {
             tvStaticDuration = 1.8;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             checkHurt(tv, 20);
         }
         
         if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
             explodeDuration = 6.0;
             lampExplode = true;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav", vec3(50, 0, -70));
             checkHurt(lamp, 25);
         }
         
@@ -149,10 +153,11 @@ void ParalyzedState::update() {
         fadeInWordsTime = 0;
     }
     
-//    Position ghostPos = getGhostPosition();
-//    enemy->center.x = ghostPos.x;
-//    enemy->center.y = ghostPos.y;
-//    enemy->center.z = ghostPos.z;
+    Position ghostPos = getGhostPosition();
+    enemy->center.x = ghostPos.x;
+    enemy->center.y = ghostPos.y;
+    enemy->center.z = ghostPos.z;
+    
     tellGhostWhereImLooking();
     float darkness = (100 - playerHealth) * 4 / 100;
     CurrAssets->currShader->setIntensity(darkness);
@@ -213,6 +218,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     lamp->draw(light);
     door->draw(light);
     fan->draw(light);
+    enemy->draw(light);
     
     shadowfbo->unbindTexture();
 
