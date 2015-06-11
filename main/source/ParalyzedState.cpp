@@ -34,6 +34,8 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     
     numTimesPressedSpace = 0;
     
+    timeToShowIntro = 10.0;
+    
 #ifdef THREADS
     thread *t1;
     
@@ -98,6 +100,10 @@ void ParalyzedState::update() {
     sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     
     hurtCooldown -= 0.17;
+    timeToShowIntro -= 0.02;
+    if (getParalyzedZoom()) {
+        timeToShowIntro -= 0.1;
+    }
     
 //    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
 	checkZoom();
@@ -310,6 +316,9 @@ bool ParalyzedState::getSensitivity() {
 void ParalyzedState::drawHUD() {
     GameState::drawHUD();
     
-    introText->drawElement(false);
+    if (timeToShowIntro > 0.0) {
+        introText->drawElement(false);
+    }
+    
     CurrAssets->hudShader->setPercentShown(1000.0f);
 }

@@ -27,6 +27,8 @@ public:
     HUDElement *introText;
     int numTimesPressedSpace;
     
+    float timeToShowIntro;
+    
     void tellGhostWhereImLooking();
     
     void drawHUD();

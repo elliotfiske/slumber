@@ -43,8 +43,6 @@ public:
     mat4 viewMat;
     mat4 highlightVPMat;
     mat4 mirrorViewMat;
-
-    
     
     ViewFrustum *vf;
     

@@ -84,6 +84,10 @@ void GameState::initAssets() {
 	shakeCamera = false;
     ghost_beat_player = false;
     player_beat_ghost = false;
+    dollGlowDuration = 0.0;
+    dollMoveDuration = 0.0;
+    fanSpinDuration = 0.0;
+    tvStaticDuration = 0.0;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
