@@ -17,6 +17,7 @@
 #include <SFML/Audio.hpp>
 
 using namespace std;
+using namespace sf;
 
 #define CurrAssets Assets::instance()
 
@@ -29,6 +30,7 @@ using namespace std;
     #define MODELS_FOLDER string("resources/models/")
     #define SOUND_FOLDER string("resources/sounds")
 #endif
+
 
 class Assets {
 public:
@@ -53,10 +55,9 @@ public:
     ReflectShader  *reflectionShader;
     
     FBOShader      *currFBOShader;
-    
 //    void doPlay(string filename);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
-    void play(string filename, vec3 pos = vec3(0.0f, 0.0f, 0.0f));
+    void play(string filename);
     void stopSounds();
     
     // A simple dictionary where the key is the OBJ name and the
