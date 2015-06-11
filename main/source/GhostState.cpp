@@ -250,7 +250,7 @@ void GhostState::update() {
         }
         
         if (getItemAltAction()) {
-            dollMoveDuration = 10.0;
+            dollMoveDuration = 3.9;
             sendGhostAction(GHOST_ACTION_MOVE_DOLL);
         }
     }

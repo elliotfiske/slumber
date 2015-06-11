@@ -172,6 +172,13 @@ void ParalyzedState::update() {
             
             checkHurt(doll, 20);
         }
+        
+        if (currAction == GHOST_ACTION_MOVE_DOLL) {
+            dollMoveDuration = 3.9;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
+            
+            checkHurt(doll, 20);
+        }
 
 		if (currAction == GHOST_ACTION_SHORT_FAN) {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);

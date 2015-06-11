@@ -43,6 +43,10 @@ void Actor::step(double dt) {
 
 	this->center = vec3(pos);
     }
+    else {
+        animation_time = 0;
+        this->center = orig_center;
+    }
 }
 
 bool Actor::detectIntersect(Actor target, bool overrideCooldown) {

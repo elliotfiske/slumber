@@ -101,11 +101,11 @@ void GameState::initAssets() {
 
     // set up spline pathing for lamp
 //    std::cout << lamp->center.x << ", " << lamp->center.y << ", " << lamp->center.z << std::endl;
-    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
-    lamp->cps.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
-    lamp->cps.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
-    lamp->cps.push_back(vec4(1.0f, 1.0f, 1.0f, 1.0f));
-    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    doll->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    doll->cps.push_back(vec4(10.0f, 3.0f, -3.0f, 1.0f));
+    doll->cps.push_back(vec4(20.0f, 0.0f, -6.0f, 1.0f));
+    doll->cps.push_back(vec4(30.0f, -3.0f, 0.0f, 1.0f));
+    doll->cps.push_back(vec4(40.0f, -5.0f, 0.0f, 1.0f));
     lamp->animate = false;
 }
 
