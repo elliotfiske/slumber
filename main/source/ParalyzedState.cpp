@@ -19,7 +19,7 @@ float fadeInWordsTime = 0;
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-	FOV = 30.0f;
+	FOV = 27.0f;
 	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
@@ -76,15 +76,17 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
 
 void ParalyzedState::checkZoom() {
 	if (getParalyzedZoom() == true) {
-		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
+		float diff = 15.0f - FOV;
+		FOV += diff / 3;
+	//	FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
 		updatePerspectiveMat();
 	}
-	else if (FOV < 30.0f) {
-		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
+	else if (FOV < 27.0f) {
+		FOV = fminf(27.0f, FOV + elapsedTime * 15.0f * 4.0);
 		updatePerspectiveMat();
 	}
 
-	float redness = (30.0f - FOV) / (30.0f - 15.0f);
+	float redness = (27.0f - FOV) / (27.0f - 15.0f);
     CurrAssets->currShader->setDarknessModifier(redness);
 }
 
@@ -259,7 +261,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
-    if (FOV < 30.0) {
+    if (FOV < 26.0) {
     	enemy->draw(light);
     }
     
