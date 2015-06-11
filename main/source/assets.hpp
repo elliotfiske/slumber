@@ -3,18 +3,31 @@
 
 #include "GLSL.h"
 #include <string>
-#include "shader.h"
+#include "shaders/shader.h"
+#include "shaders/LightingShader.h"
+#include "shaders/ShadowShader.h"
+#include "shaders/FBOShader.h"
+#include "shaders/ReflectShader.h"
+#include "shaders/HUDShader.h"
+#include "shaders/BillboardShader.h"
 #include <map>
 #include "actor.hpp"
+#include "BillboardActor.h"
+
+#include <SFML/Audio.hpp>
 
 using namespace std;
 
 #define CurrAssets Assets::instance()
 
 #ifdef XCODE_IS_TERRIBLE
-    #define RESOURCE_FOLDER "../resources/models/"
+    #define RESOURCE_FOLDER string("../resources/")
+    #define MODELS_FOLDER string("../resources/models/")
+    #define SOUND_FOLDER string("../resources/sounds")
 #else
-    #define RESOURCE_FOLDER "resources/models/"
+    #define RESOURCE_FOLDER string("resources/")
+    #define MODELS_FOLDER string("resources/models/")
+    #define SOUND_FOLDER string("resources/sounds")
 #endif
 
 class Assets {
@@ -27,20 +40,42 @@ public:
     
     ShadowShader   *shadowShader;
     LightingShader *lightingShader;
-    FBOShader      *darkeningShader;
-    FBOShader      *motionBlurShader;
+    LightingShader *ghostLightingShader;
+    BaseMVPShader  *collectibleShader;
+    BillboardShader *billboardShader;
+    HUDShader *hudShader;
     
-    Actor* actorFromName(string actorName);
+    FBOShader      *currShader;
+    FBOShader      *motionBlurShader;
+    FBOShader      *ghostShader;
+    FBOShader      *woozyShader;
+
+    ReflectShader  *reflectionShader;
+    
+    FBOShader      *currFBOShader;
+    
+//    void doPlay(string filename);
     void sendShapeToGPU(tinyobj::shape_t shape, tinyobj::material_t material, Actor *actor, int shapeNdx);
+    void play(string filename, vec3 pos = vec3(0.0f, 0.0f, 0.0f));
+    void stopSounds();
+    
+    // A simple dictionary where the key is the OBJ name and the
+    //  value is the Actor instance that uses that model.
+    std::map<string, Actor*>  actorDictionary;
+    
+    std::map<string, BillboardActor*> billboardDictionary;
+    
+    Actor *masterBillboard;
     
 private:
     Assets();
     void loadShape(string filename, Actor *actor);
     void readLevelData(string filename);
+    void generateBillboards(string filename);
+//    void loadSoundBuffer(string filename);
     
-    // A simple dictionary where the key is the OBJ name and the
-    //  value is the position of that model.
-    std::map<string, glm::vec3>  levelDict;
+    map<string, sf::SoundBuffer> soundBuffers;
+    vector<sf::Sound> sounds;
 };
 
 

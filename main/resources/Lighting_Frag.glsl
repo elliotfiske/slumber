@@ -4,6 +4,7 @@ uniform vec3 UdColor;
 uniform vec3 UsColor;
 uniform float Ushine;
 uniform sampler2D shadowMap;
+uniform float attenFactor;
 
 uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
@@ -11,6 +12,7 @@ varying vec2 UV;
 varying vec3 vPos;
 varying vec3 vNor;
 varying vec4 shadowClip;
+varying vec4 highlightCoords;
 varying vec3 vLight;
 
 vec2 poissonDisk[] = vec2[](
@@ -44,10 +46,14 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0;// / (1.0 + 0.02 * distToLight + 0.02 * distToLight * distToLight);
+    float attenuation = 1.0 / (1.0 + attenFactor * distToLight + attenFactor * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb;
     textureColor += UdColor;
+    
+    // when we're ghostly (OR DEMOING), we want to brighten the dark parts
+    cd = cd * 0.5 + 0.5;
+    
     
     vec3 lAmbientColor  = UaColor * attenuation;
     vec3 lDiffuseColor  = cd * textureColor * attenuation;
@@ -59,11 +65,11 @@ void main() {
     shadowCoords = shadowCoords / shadowCoords.w;
     // Go from [-1,1] to [0,1]
     shadowCoords.xyz = 0.5 * shadowCoords.xyz + 0.5;
-
-    // Sample the shadow map N times
-    float bias = 0.005 * tan(acos(dot(n, l)));
-    float blur = 0.001;
+    
+    float bias = 0.000001;
+    float blur = 0.0001;
     float visibility = 1.0;
+    
     if(shadowCoords.w > 0.0 &&
         shadowCoords.x > 0.0 && shadowCoords.x < 1.0 &&
         shadowCoords.y > 0.0 && shadowCoords.y < 1.0 &&
@@ -74,12 +80,10 @@ void main() {
             // (Note: distToLight we computed for Blinn-Phong is in camera space.)
             float distToLightStored = texture2D(shadowMap, shadowCoords.xy + poissonDisk[i]*blur).z;
             if(distToLightStored < shadowCoords.z + bias) {
-                visibility -= 0.25;
+                visibility -= 0.20;
             }
         }
     }
-
-
 
     gl_FragColor = vec4(lAmbientColor + visibility * (lDiffuseColor + lSpecularColor), 1.0);
 }

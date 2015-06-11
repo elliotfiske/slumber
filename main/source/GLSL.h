@@ -10,13 +10,16 @@
 //    Created by zwood on 2/21/10.
 
 #include "GLIncludes.h"
+#include <iostream>
 
 #pragma once
 #ifndef __GLSL__
 #define __GLSL__
 
-#define WINDOW_WIDTH  1024
-#define WINDOW_HEIGHT 768
+
+#define WINDOW_WIDTH  1440
+#define WINDOW_HEIGHT 900
+
 
 namespace GLSL {
 	

@@ -15,13 +15,14 @@ float strafeVel;
 float forwardAccel;
 float strafeAccel;
 
-float xLightVel, yLightVel, zLightVel;
+float mouseX, mouseY;
+bool startParalyzed = false, startGhost = false, itemAction = false, itemAltAction = false;
 
-#define ACCEL 5.0
+#define ACCEL 8.0
 #define FRICTION 1.2
 
 void handleMouse(GLFWwindow* window, double currX, double currY) {
-    yaw += (WINDOW_WIDTH / 2 - currX) / 1000.0;
+    yaw   += (WINDOW_WIDTH  / 2 - currX) / 1000.0;
     pitch += (WINDOW_HEIGHT / 2 - currY) / 1000.0;
     
     if (pitch < glm::radians(-80.0)) {
@@ -30,6 +31,47 @@ void handleMouse(GLFWwindow* window, double currX, double currY) {
     
     if (pitch > glm::radians(80.0)) {
         pitch = glm::radians(80.0);
+    }
+    
+    if (startParalyzed) {
+    	if (yaw < 1.58) {
+    		yaw = 1.58;
+    	}
+
+    	if (yaw > 4.65) {
+    		yaw = 4.65;
+    	}
+    }
+
+    mouseX = currX;
+    mouseY = currY;
+}
+
+bool coordsOverPlay(float x, float y) {
+    float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
+    if (midDiffX < 200 && mouseY < 520.2 && mouseY > 407.6) {
+        return true;
+    }
+    return false;
+}
+
+bool coordsOverGhost(float x, float y) {
+    float midDiffX = fabs(mouseX - WINDOW_WIDTH / 2);
+    if (midDiffX < 200 && mouseY < 825.8 && mouseY > 606.5) {
+        return true;
+    }
+    return false;
+}
+
+void doClick(GLFWwindow* window, int button, int action, int mods) {
+    if (action == GLFW_PRESS) {
+        if (coordsOverPlay(mouseX, mouseY) && !startParalyzed && !startGhost) {
+            startParalyzed = true;
+        }
+        
+        if (coordsOverGhost(mouseX, mouseY) && !startParalyzed && !startGhost) {
+            startGhost = true;
+        }
     }
 }
 
@@ -44,7 +86,19 @@ void handleScroll(GLFWwindow *window, double scrollX, double scrollY) {
     if (pitch > glm::radians(80.0)) {
         pitch = glm::radians(80.0);
     }
+    
+    if (startParalyzed) {
+        if (yaw < 1.58) {
+            yaw = 1.58;
+        }
+        
+        if (yaw > 4.65) {
+            yaw = 4.65;
+        }
+    }
 }
+
+bool shouldReset = false;
 
 void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
                     int mods) {
@@ -93,6 +147,36 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             strafeAccel = 0;
         }
     }
+
+	if (key == GLFW_KEY_D) {
+        if (action == GLFW_PRESS) {
+            strafeAccel = ACCEL;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            strafeAccel = 0;
+        }
+    }
+
+	if (key == GLFW_KEY_E) {
+        if (action == GLFW_PRESS) {
+            itemAction = true;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            itemAction = false;
+        }
+    }
+
+	if (key == GLFW_KEY_R) {
+        if (action == GLFW_PRESS) {
+            itemAltAction = true;
+        }
+        
+        if (action == GLFW_RELEASE) {
+            itemAltAction = false;
+        }
+    }
     
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
@@ -102,39 +186,23 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         
         sendData(num);
     }
+    
+    if (key == GLFW_KEY_P) {
+        shouldReset = true;
+    }
+    else {
+        shouldReset =false;
+    }
+}
 
-    if (key == GLFW_KEY_X) {
-        if (action == GLFW_PRESS) {
-            xLightVel = 0.1f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            xLightVel = 0.0f;
-        }
-    }
-    if (key == GLFW_KEY_Z) {
-        if (action == GLFW_PRESS) {
-            zLightVel = 0.1f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            zLightVel = 0.0f;
-        }
-    }
-    if (key == GLFW_KEY_Y) {
-        if (action == GLFW_PRESS) {
-            yLightVel = 0.1f;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            yLightVel = 0.0f;
-        }
-    }
+bool shouldWeReset() {
+    return shouldReset;
 }
 
 void setupCallbacks(GLFWwindow *window) {
     glfwSetCursorPos(window, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
     glfwSetCursorPosCallback(window, handleMouse);
+    glfwSetMouseButtonCallback(window, doClick);
     glfwSetScrollCallback(window, handleScroll);
     
     glfwSetKeyCallback(window, handleKeypress);
@@ -164,13 +232,8 @@ void updateCamDirection(Camera *camera) {
     camera->direction = direction;
 }
 
-void updateLightPosition(Light *light) {
-    glm::vec3 lightPos = light->getPosition();
-    lightPos.x += xLightVel;
-    lightPos.y += yLightVel;
-    lightPos.z -= zLightVel;
-//    printf("%f %f %f\n", lightPos.x, lightPos.y, lightPos.z);
-    light->setPosition(lightPos);
+vec2 titleControl() {
+    return vec2(mouseX, mouseY);
 }
 
 float getForwardVelocity() {
@@ -181,3 +244,28 @@ float getStrafeVelocity() {
     return strafeVel;
 }
 
+
+float getYaw() {
+    return yaw;
+}
+float getPitch() {
+    return pitch;
+}
+
+bool shouldStartParalyzed() {
+    return startParalyzed;
+}
+
+bool shouldStartGhost() {
+    return startGhost;
+}
+
+bool getItemAction() {
+    bool result = itemAction;
+    itemAction = false;
+	return result;
+}
+
+bool getItemAltAction() {
+	return itemAltAction;
+}

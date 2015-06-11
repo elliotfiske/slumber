@@ -1,56 +1,42 @@
 #include "windowsetup.hpp"
 #include "gamestate.hpp"
-#include "network.h"
+#include "ParalyzedState.h"
+#include "GhostState.h"
+#include "titlestate.h"
 #include <iostream>
-
-#ifdef THREADS
-    #include <thread>
-#endif
 
 using namespace std;
 
 GameState *gameState;
 
-void doNetworking() {
-    
-}
-
 int main(int argc, const char* argv[]) {
     GLFWwindow* window;
     
     // Print out executable location 'cuz it often gets put in a weird place
-    printf("It's at %s btw\n", *argv);
+    cout << "It's at " << *argv << " btw\n";
     
-    window = setupWindow();
+    bool fullscreen = false;
+    if (argc == 2) {
+        fullscreen = true;
+    }
+    
+    window = setupWindow(fullscreen);
     
     if (window == NULL) {
         printf("Window was null\n");
         return 1;
     }
     
-#ifdef THREADS
-    thread *t1;
+    gameState = new TitleState(window);
     
-    if (argc > 1) {
-        t1 = new thread(doClientNetworking);
-    }
-    else {
-        t1 = new thread(doGhostNetworking);
-    }
-#endif
-    
-    bool isGhost = true;
-    if (argc > 1) {
-        isGhost = false;
-    }
-    
-    gameState = new GameState(window, isGhost);
     while(window) {
         gameState->update();
         gameState->draw();
+        
+        if (gameState->shouldSwitch) {
+            gameState = gameState->newState();
+        }
+        
+        
     }
-    
-#ifdef THREADS
-    t1->join();
-#endif
 }

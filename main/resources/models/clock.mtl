@@ -1,20 +1,15 @@
 newmtl blinn4SG
 illum 4
-Kd 0.96 0.98 1.00
+Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd clockface.jpg
 Ni 1.00
 Ks 0.50 0.50 0.50
 newmtl lambert2SG
 illum 4
 Kd 0.00 0.00 0.00
-Ka 0.29 0.29 0.29
-Tf 1.00 1.00 1.00
-map_Kd NureenHouseStock_0016.JPG
-Ni 1.00
-newmtl lambert3SG
-illum 4
-Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
+map_Kd wood.jpg
 Ni 1.00
