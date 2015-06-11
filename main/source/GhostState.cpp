@@ -157,6 +157,7 @@ void GhostState::update() {
     glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
     glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
 	glm::vec3 fanpos   = CurrAssets->actorDictionary["fan"]->center;
+    glm::vec3 dollpos  = CurrAssets->actorDictionary["doll"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
 		// Set billboard here!!
@@ -208,6 +209,20 @@ void GhostState::update() {
             tvStaticDuration = 1.8;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             sendGhostAction(GHOST_ACTION_TV_STATIC);
+        }
+    }
+    else if (checkBounds(dollpos - itemUseBounds, dollpos + itemUseBounds)) {
+        
+        if (getItemAction()) {
+            dollGlowDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.wav", tv->center);
+            // TODO: laugh?
+            sendGhostAction(GHOST_ACTION_GLOW_DOLL);
+        }
+        
+        if (getItemAltAction()) {
+            dollMoveDuration = 10.0;
+            sendGhostAction(GHOST_ACTION_MOVE_DOLL);
         }
     }
     

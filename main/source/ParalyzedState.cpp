@@ -97,7 +97,7 @@ void ParalyzedState::update() {
     
     hurtCooldown -= 0.17;
     
-    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
+//    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
 	checkZoom();
 
     int currAction = actionReady();
@@ -155,6 +155,11 @@ void ParalyzedState::update() {
             
             fanSpinDuration = 9.0;
             checkHurt(fan, 10);
+        }
+        
+        if (currAction == GHOST_ACTION_GLOW_DOLL) {
+            dollGlowDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.wav", tv->center);
         }
     }
     
@@ -238,10 +243,15 @@ void ParalyzedState::renderScene(bool isMirror) {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
-    tv->draw(light, true);
+    tv->draw(light, tvStaticDuration > 0.0);
     lamp->draw(light);
     door->draw(light);
     fan->draw(light);
+    
+    nightstand->draw(light);
+    doll->draw(light);
+    mirror->draw(light);
+    chair->draw(light);
     
     shadowfbo->unbindTexture();
 
