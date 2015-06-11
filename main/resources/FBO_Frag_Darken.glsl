@@ -6,6 +6,7 @@ const float PI = 3.1415926535897932;
 varying vec2 UV;
 uniform sampler2D uTex;
 uniform float intensity;
+uniform float darknessMod; // alters the color of darkness when zoomed
 
 float tunnelVision() {
     float darkening = length(0.5 - UV) * intensity;
@@ -39,6 +40,6 @@ void main() {
         gl_FragColor = vec4(0.6, 0.6, 0.6, 1);
     }
     else {
-        gl_FragColor = mix(currColor, vec4(0, 0, 0, 1), tunnelVision());
+        gl_FragColor = mix(currColor, vec4(0.2 * darknessMod, 0, 0, 1), tunnelVision());
     }
 }
