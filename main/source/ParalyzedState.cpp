@@ -51,7 +51,7 @@ void ParalyzedState::checkCollisions() {
     
     if (vf->gotLight(collectible->center, 5.0) && !ghost_beat_player) {
         collectible->collected();
-        increaseHealth(20);
+        increaseHealth(10);
     }
 }
 
@@ -163,7 +163,10 @@ void ParalyzedState::update() {
     
     
     if (shouldWeReset()) {
-        playerHealth = 100.0; 
+        playerHealth = 100.0;
+    printf("resetting lol\n"); 
+        player_beat_ghost = false;
+        ghost_beat_player = false;
     }
 }
 
@@ -198,6 +201,11 @@ void ParalyzedState::renderScene(bool isMirror) {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
+    if (playerHealth < 0.0) {
+	ghost_beat_player = true;
+    }
+
+
     if (lampExplode) {
         lightExplode();
     }
@@ -240,11 +248,14 @@ void ParalyzedState::renderScene(bool isMirror) {
     while ((err = glGetError()) != GL_NO_ERROR) {
       //  cerr << "OpenGL error: " << err << endl;
     }
+
+    printf("player stuff %f\n", playerHealth);
 }
 void ParalyzedState::increaseHealth(int healthValue){
     playerHealth += healthValue;
     if (playerHealth > 100) {
         playerHealth = 100;
+printf("This stuff happened");
     }
 }
 void ParalyzedState::lowerHealth(int severity){

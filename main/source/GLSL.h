@@ -25,7 +25,6 @@ float get_window_width();
 void set_window_height(float new_window_height);
 float get_window_height();
 
-
 namespace GLSL {
 	
 	int printError();
