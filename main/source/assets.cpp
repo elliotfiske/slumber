@@ -15,6 +15,8 @@
 
 using namespace std;
 
+vec3 pos;
+
 /**
  * Init all the shapes, materials (TODO), and shaders we need
  *  for our game
@@ -62,6 +64,8 @@ void Assets::readLevelData(string filename) {
         levelFile >> newActorCenter.y;
         levelFile >> newActorCenter.z;
         levelFile >> actorAngle;
+
+	pos = vec3(newActorCenter.x, newActorCenter.y, newActorCenter.z);
         
         actorDictionary[currActorName] = new Actor(newActorCenter);
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
@@ -189,7 +193,8 @@ void doPlay() {
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
-//    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.setRelativeToListener(true);
     sound.play();
     killSound = false;
     
@@ -197,9 +202,9 @@ void doPlay() {
 }
 
 
-void Assets::play(string filename_, vec3 pos) {
+void Assets::play(string filename_) {
 #ifdef THREADS
-
+    
     filename = filename_;
     killSound = true;
     wut = new thread(doPlay);

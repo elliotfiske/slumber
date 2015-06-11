@@ -8,6 +8,7 @@
 
 using namespace glm;
 
+
 float playerHealth = 1.2;
 
 GameState* GameState::newState() {

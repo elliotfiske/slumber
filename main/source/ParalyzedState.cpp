@@ -20,6 +20,8 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerSensitivity = false;
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
+    listener.setPosition(camera->center.x, camera->center.y, camera->center.z);
+    listener.setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
 //    CurrAssets->currFBOShader = 
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
@@ -77,6 +79,7 @@ bool creakOne = true;
 
 void ParalyzedState::update() {
     GameState::update();
+    listener.setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     
     int currAction = actionReady();
     if (currAction) {

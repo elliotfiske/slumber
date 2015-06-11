@@ -11,6 +11,7 @@
 #ifndef GameState_h
 #define GameState_h
 
+
 class GameState {
 public:
     GameState(GLFWwindow *window, bool isGhost);
@@ -36,8 +37,10 @@ public:
     
     mat4 perspectiveMat;
     mat4 viewMat;
-	mat4 highlightVPMat;
+    mat4 highlightVPMat;
     mat4 mirrorViewMat;
+
+    
     
     ViewFrustum *vf;
     
