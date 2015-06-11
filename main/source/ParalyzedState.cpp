@@ -143,6 +143,13 @@ printf("DOING ACTION %d\n", currAction);
 			fanSpinDuration = 9.0;
 			checkHurt(fan, 10);
         }
+
+		if (currAction == GHOST_ACTION_SHORT_FAN) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav");
+            
+			fanShakeDuration = 3.0;
+			checkHurt(fan, 15);
+        }
     }
     
 //    Position ghostPos = getGhostPosition();

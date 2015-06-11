@@ -72,7 +72,7 @@ protected:
 	void updateDoorSlam();
 	void lightFlicker();
 	void lightExplode();
-
+	void shakeFan();
 	void spinFan();
 
 	double flickerDuration;
@@ -91,6 +91,7 @@ protected:
     float clockShakeDuration;
     float tvStaticDuration;
 	float fanSpinDuration;
+	float fanShakeDuration;
 
 	float FOV;
 };
