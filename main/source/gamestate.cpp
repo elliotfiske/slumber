@@ -349,6 +349,9 @@ void GameState::renderShadowBuffer() {
     room->drawShadows(light);
     clock->drawShadows(light);
     tv->drawShadows(light);
+    chair->drawShadows(light);
+    nightstand->drawShadows(light);
+    doll->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
