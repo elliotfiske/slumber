@@ -71,6 +71,11 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     
     int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
     if (inView != OUTSIDE) {
+        
+        if (getParalyzedZoom()) {
+            howMuch *= 2;
+        }
+        
         lowerHealth(howMuch);
         hurtCooldown = 5.0;
     }
@@ -117,34 +122,34 @@ void ParalyzedState::update() {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav", door->center);
             creakOne = !creakOne;
             
-            checkHurt(door, 10);
+            checkHurt(door, 5);
         }
         
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav", lamp->center);
             
             flickerDuration = 2.0;
-            checkHurt(lamp, 20);
+            checkHurt(lamp, 7);
         }
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", clock->center);
             
-            checkHurt(clock, 15);
+            checkHurt(clock, 5);
         }
         
         if (currAction == GHOST_ACTION_TV_STATIC) {
             tvStaticDuration = 1.8;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
-            checkHurt(tv, 20);
+            checkHurt(tv, 8);
         }
         
         if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
             explodeDuration = 6.0;
             lampExplode = true;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav", vec3(50, 0, -70));
-            checkHurt(lamp, 25);
+            checkHurt(lamp, 10);
         }
         
         if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
@@ -155,19 +160,21 @@ void ParalyzedState::update() {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav", door->center);
             
             doorSlam = true;
-            checkHurt(door, 25);
+            checkHurt(door, 9);
         }
         
         if (currAction == GHOST_ACTION_SPIN_FAN) {
             CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
             
             fanSpinDuration = 9.0;
-            checkHurt(fan, 10);
+            checkHurt(fan, 7);
         }
         
         if (currAction == GHOST_ACTION_GLOW_DOLL) {
             dollGlowDuration = 3.0;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
+            
+            checkHurt(doll, 20);
         }
     }
     

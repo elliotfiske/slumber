@@ -47,6 +47,7 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     t1 = new thread(doGhostNetworking);
 #endif
 	itemUseBounds = glm::vec3(30.0f, 30.0f, 30.0f);
+    shakeCamera = false;
 }
 
 void GhostState::checkCollisions() {
@@ -151,10 +152,6 @@ void GhostState::updateCameraShake() {
 
 void GhostState::update() {
     
-    if (!player_beat_ghost) {
-        ghostHealth += 0.027;
-    }
-    
     if (ghostHealth > 100.0) {
         ghostHealth = 100.;
     }
@@ -162,7 +159,7 @@ void GhostState::update() {
 	GameState::update();
     viewFrustumCulling();
 
-//	if (shakeCamera) updateCameraShake();
+	if (shakeCamera) updateCameraShake();
 
 	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
 	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
@@ -272,15 +269,19 @@ void GhostState::update() {
 	tellClientWhereGhostIs();
 }
 
+float start_cooldown = 20;
+
 // check to see if ghost in inside the player's view 
 void GhostState::viewFrustumCulling(){
+    start_cooldown -= 0.17;
+    
     mat4 comboMatrix;
     
     comboMatrix = highlightVPMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 6.0));
     vf->extractPlanes(comboMatrix);
     
     int inView = vf->sphereIsInside(camera->center, 0.1f);
-    if (inView != OUTSIDE && playerFOV < 28.0) {
+    if (inView != OUTSIDE && playerFOV < 26.0 && start_cooldown < 0) {
 		shakeCamera = true;
     }
 	else {
