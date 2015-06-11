@@ -66,7 +66,7 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     comboMatrix = perspectiveMat * GameState::viewMat * danger->modelMat;
     vf->extractPlanes(comboMatrix);
     
-    int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
+    int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad * 3.0);
     if (inView != OUTSIDE) {
         
         if (getParalyzedZoom()) {

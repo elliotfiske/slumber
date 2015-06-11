@@ -20,6 +20,7 @@ Actor::Actor(vec3 center_) {
     
     animate = false;
     animation_time = 0;
+    boundSphereRad = 5.0;
 }
 
 void Actor::step(double dt) {
