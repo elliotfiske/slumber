@@ -87,6 +87,9 @@ protected:
 	double flickerDirection;
 	float attenFactor;
 
+	float darkness;
+	float redness;
+
 	double explodeDuration;
 	bool lampExplode;
 

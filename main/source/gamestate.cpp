@@ -89,6 +89,8 @@ void GameState::initAssets() {
     dollMoveDuration = 0.0;
     fanSpinDuration = 0.0;
     tvStaticDuration = 0.0;
+	darkness = 0.0;
+	redness = 0.0;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
@@ -378,11 +380,11 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
-    
+    CurrAssets->currShader->setDarknessModifier(redness);
 //    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
-    
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(

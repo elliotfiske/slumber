@@ -31,7 +31,7 @@ vec2 woozyUV() {
 }
 
 void main() {
-    vec2 distortedUV = (intensity < 2. ? UV : woozyUV());
+    vec2 distortedUV = (intensity / 2 < 2. ? UV : woozyUV());
     
     vec4 currColor = texture2D(uTex, distortedUV);
     

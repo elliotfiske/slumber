@@ -106,7 +106,6 @@ void ParalyzedState::update() {
     }
     
 //    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
-	checkZoom();
 
     int currAction = actionReady();
     if (currAction) {
@@ -196,10 +195,13 @@ void ParalyzedState::update() {
     enemy->center.z = ghostPos.z;
     
     tellGhostWhereImLooking();
-    float darkness = (100 - playerHealth) * 4 / 100;
-    CurrAssets->currShader->setIntensity(darkness);
-    
-    
+    darkness = (100 - playerHealth) * 4 / 100;
+	darkness = 2.0;
+    CurrAssets->currShader->setIntensity(darkness);    
+
+
+	checkZoom();
+
     if (shouldWeReset()) {
         playerHealth = 100.0;
     printf("resetting lol\n"); 
