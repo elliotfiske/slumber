@@ -80,12 +80,15 @@ protected:
 	void updateDoorSlam();
 	void lightFlicker();
 	void lightExplode();
-
+	void shakeFan();
 	void spinFan();
 
 	double flickerDuration;
 	double flickerDirection;
 	float attenFactor;
+
+	float darkness;
+	float redness;
 
 	double explodeDuration;
 	bool lampExplode;
@@ -101,6 +104,7 @@ protected:
     float dollGlowDuration;
     float dollMoveDuration;
 	float fanSpinDuration;
+	float fanShakeDuration;
 
 	float FOV;
     

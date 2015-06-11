@@ -82,12 +82,15 @@ void GameState::initAssets() {
 	lampExplode = false;
 	doorDirection = -1;
 	shakeCamera = false;
+	fanShakeDuration = 0.0;
     ghost_beat_player = false;
     player_beat_ghost = false;
     dollGlowDuration = 0.0;
     dollMoveDuration = 0.0;
     fanSpinDuration = 0.0;
     tvStaticDuration = 0.0;
+	darkness = 0.0;
+	redness = 0.0;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
@@ -151,6 +154,10 @@ void GameState::update() {
 	}
 	if (fanSpinDuration > 0.0f) {
 		spinFan();
+	}
+	if (fanShakeDuration > 0.0f) {
+		std::cout << "shake fan" << std::endl;
+		shakeFan();
 	}
     
     lamp->step(elapsedTime);
@@ -253,6 +260,19 @@ void GameState::updateDoorSlam() {
 void GameState::spinFan() {
 	CurrAssets->actorDictionary["fan"]->direction.y += 150.0f * elapsedTime;
 	fanSpinDuration -= elapsedTime;
+}
+
+void GameState::shakeFan() {
+    Actor *fanny = CurrAssets->actorDictionary["fan"];
+	fanShakeDuration -= elapsedTime;
+	if (fanShakeDuration <= 0.0f) {
+		fanny->direction = vec3(0, 0, 0);
+	}
+	else {
+		fanny->direction.x = glm::linearRand(-0.3, 0.3);
+		fanny->direction.y = glm::linearRand(-0.3, 0.3);
+		fanny->direction.z = glm::linearRand(-0.3, 0.3);
+	}
 }
 
 void GameState::lightFlicker() {
@@ -363,11 +383,11 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
-    
+    CurrAssets->currShader->setDarknessModifier(redness);
 //    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
-    
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(

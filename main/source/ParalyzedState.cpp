@@ -108,7 +108,6 @@ void ParalyzedState::update() {
     }
     
 //    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
-	checkZoom();
 
     int currAction = actionReady();
     if (currAction) {
@@ -173,6 +172,13 @@ void ParalyzedState::update() {
             
             checkHurt(doll, 20);
         }
+
+		if (currAction == GHOST_ACTION_SHORT_FAN) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
+            
+			fanShakeDuration = 3.0;
+			checkHurt(fan, 15);
+        }
     }
     
     int newSpaces = numSpaces();
@@ -194,10 +200,13 @@ void ParalyzedState::update() {
     
     viewFrustumCulling();
     tellGhostWhereImLooking();
-    float darkness = (100 - playerHealth) * 4 / 100;
-    CurrAssets->currShader->setIntensity(darkness);
-    
-    
+    darkness = (100 - playerHealth) * 4 / 100;
+	darkness = 2.0;
+    CurrAssets->currShader->setIntensity(darkness);    
+
+
+	checkZoom();
+
     if (shouldWeReset()) {
         playerHealth = 100.0;
     printf("resetting lol\n"); 
