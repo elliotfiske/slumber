@@ -14,6 +14,8 @@
     #include <thread>
 #endif
 
+float fadeInWordsTime = 0;
+
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
@@ -23,6 +25,10 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+    introText = new HUDElement(RESOURCE_FOLDER + "hud/intro_text.png", 0.5, 0.5);
+    
+    numTimesPressedSpace = 0;
     
 #ifdef THREADS
     thread *t1;
@@ -115,6 +121,18 @@ void ParalyzedState::update() {
         if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
             player_beat_ghost = true;
         }
+    }
+    
+    int newSpaces = numSpaces();
+    if (newSpaces > numTimesPressedSpace) {
+        numTimesPressedSpace = newSpaces;
+        
+        fadeInWordsTime = 100.0;
+    }
+    
+    fadeInWordsTime -= 1.0;
+    if (fadeInWordsTime < 0) {
+        fadeInWordsTime = 0;
     }
     
 //    Position ghostPos = getGhostPosition();
@@ -229,6 +247,13 @@ int ParalyzedState::getHealth(){
    return playerHealth;
 }
     
-bool ParalyzedState::getSensitivity(){
+bool ParalyzedState::getSensitivity() {
    return playerSensitivity;
+}
+
+void ParalyzedState::drawHUD() {
+    GameState::drawHUD();
+    
+    introText->drawElement(false);
+    CurrAssets->hudShader->setPercentShown(1000.0f);
 }

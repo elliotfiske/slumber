@@ -18,6 +18,8 @@ float strafeAccel;
 float mouseX, mouseY;
 bool startParalyzed = false, startGhost = false, itemAction = false, itemAltAction = false;
 
+int space_pressed_times = 0;
+
 #define ACCEL 8.0
 #define FRICTION 1.2
 
@@ -178,6 +180,12 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         }
     }
     
+    if (key == GLFW_KEY_SPACE) {
+        if (action == GLFW_PRESS) {
+            space_pressed_times++;
+        }
+    }
+    
     if (key >= GLFW_KEY_0 && key <= GLFW_KEY_9 && action == GLFW_PRESS) {
         int keyVal = key - GLFW_KEY_0;
         char num[5];
@@ -270,4 +278,8 @@ bool getItemAction() {
 
 bool getItemAltAction() {
 	return itemAltAction;
+}
+
+int numSpaces() {
+    return space_pressed_times;
 }

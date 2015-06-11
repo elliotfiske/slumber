@@ -27,3 +27,5 @@ bool shouldStartParalyzed();
 
 bool getItemAction();
 bool getItemAltAction();
+
+int numSpaces();

@@ -4,6 +4,10 @@ uniform float percentShown;
 uniform sampler2D diffuseTextureSampler;
 varying vec2 UV;
 
+uniform float fadiness;       // Denotes how much we should fade in the HUD
+uniform float fadeTopPercentage;    // Denotes what part of the text to fade
+uniform float fadeBottomPercentage;
+
 void main() {
     // Blinn-Phong
 
