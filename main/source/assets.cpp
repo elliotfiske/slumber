@@ -8,6 +8,8 @@
 #include <fstream>
 #include <cassert>
 #include <iostream>
+#include <cmath>
+#include "control.hpp"
 
 #ifdef THREADS
     #include <thread>
@@ -16,6 +18,7 @@
 using namespace std;
 
 vec3 pos;
+Camera *cam;
 
 /**
  * Init all the shapes, materials (TODO), and shaders we need
@@ -36,6 +39,7 @@ Assets::Assets() {
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     reflectionShader  = new ReflectShader("Reflection_Vert.glsl", "Reflection_Frag.glsl");
     
+    cam = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     readLevelData(levelDataName);
     
@@ -193,8 +197,9 @@ void doPlay() {
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
-    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
-    sound.setRelativeToListener(true);
+    updateCamDirection(cam);
+    float volume = cam->direction.x - pos.x;
+    sound.setVolume(100.0f/abs(1-volume));
     sound.play();
     killSound = false;
     
