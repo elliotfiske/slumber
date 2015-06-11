@@ -18,7 +18,7 @@ public:
     /** NOTE that center coords are done with UV coordinates */
     HUDElement(std::string textureName, float centerX_, float centerY_);
     
-    void drawElement();
+    void drawElement(bool stretchy);
     
     Texture *texture;
     float percentCutoff;

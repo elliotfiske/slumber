@@ -20,24 +20,30 @@ HUDElement::HUDElement(string textureName, float centerX_, float centerY_) {
     centerY = centerY_;
 }
 
-void HUDElement::drawElement() {
+void HUDElement::drawElement(bool stretchy) {
     glDisable(GL_DEPTH_TEST);
     
-    CurrAssets->billboardShader->startUsingShader();
+    if (stretchy) {
+        CurrAssets->hudShader->setImageSize(0, 0);
+    }
+    else {
+        CurrAssets->hudShader->setImageSize(texture->width, texture->height);
+    }
+    
     GLuint uvID = CurrAssets->masterBillboard->uvID[0];
     GLuint posID = CurrAssets->masterBillboard->posID[0];
     GLuint norID = CurrAssets->masterBillboard->norID[0];
     GLuint indID = CurrAssets->masterBillboard->indID[0];
     
-    CurrAssets->billboardShader->setPositionArray(posID);
-    CurrAssets->billboardShader->setIndexArray(indID);
-    CurrAssets->billboardShader->setUVArray(uvID);
+    CurrAssets->hudShader->setPositionArray(posID);
+    CurrAssets->hudShader->setIndexArray(indID);
+    CurrAssets->hudShader->setUVArray(uvID);
     
-    CurrAssets->billboardShader->setModelMatrix(mat4(1.0f));
-    CurrAssets->billboardShader->setViewMatrix(mat4(1.0f));
-    CurrAssets->billboardShader->setProjectionMatrix(mat4(1.0f));
+    CurrAssets->hudShader->setModelMatrix(mat4(1.0f));
+    CurrAssets->hudShader->setViewMatrix(mat4(1.0f));
+    CurrAssets->hudShader->setProjectionMatrix(mat4(1.0f));
     
-    texture->bind(CurrAssets->billboardShader->diffuseTexture_UniformID, 0);
+    texture->bind(CurrAssets->hudShader->diffuseTexture_UniformID, 0);
     
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, CurrAssets->masterBillboard->indID[0]);
     glDrawElements(GL_TRIANGLES, CurrAssets->masterBillboard->numVerts[0], GL_UNSIGNED_INT, (void*) 0);

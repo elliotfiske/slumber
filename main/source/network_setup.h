@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 
-#define SERVER_ADDRESS "192.168.0.2"
+#define SERVER_ADDRESS "192.168.1.16"
 #define SERVER_PORT "4444"
 #define SERVER_PORT_NUM 4444
 

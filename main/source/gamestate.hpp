@@ -21,6 +21,7 @@ public:
     std::vector<Actor> actors;
     Actor *room, *bed, *clock, *enemy, *tv, *door, *fan;
     Actor *lamp;
+    Actor *nightstand, *doll, *mirror, *chair;
     Collectible *collectible;
     
     Light *light;
@@ -92,6 +93,8 @@ protected:
 
     float clockShakeDuration;
     float tvStaticDuration;
+
+	float FOV;
 };
 
 #endif

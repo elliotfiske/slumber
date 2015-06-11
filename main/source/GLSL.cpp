@@ -15,6 +15,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+float window_width;
+float window_height;
+
+void set_window_width(float new_window_width) {
+    window_width = new_window_width;
+}
+float get_window_width() {
+    return window_width;
+}
+
+void set_window_height(float new_window_height) {
+    window_height = new_window_height;
+}
+float get_window_height() {
+    return window_height;
+}
+
 namespace GLSL {
 
 int printError()

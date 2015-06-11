@@ -27,6 +27,11 @@ void GameState::initAssets() {
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
     
+    nightstand = assets->actorDictionary["nightstand"];
+    doll = assets->actorDictionary["doll"];
+    mirror = assets->actorDictionary["mirror"];
+    chair = assets->actorDictionary["chair"];
+    
     playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
@@ -113,12 +118,9 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  * Called every frame yo
  */
 void GameState::update() {
-    if (shouldWeReset()) {
-        playerHealth = 100.0;
-        
-        player_beat_ghost = false;
-        ghost_beat_player = false;
-    }
+//    if (shouldWeReset()) {
+//        playerHealth = 100.0;
+//    }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
@@ -216,14 +218,14 @@ void GameState::lightExplode() {
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(FOV, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
 
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
-	float yaw = playerLook.y, pitch = playerLook.x;
+	float yaw = playerLook.y, pitch = playerLook.x, hfov = playerLook.z;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     
@@ -239,7 +241,7 @@ void GameState::updateHighlightMat() {
 	glm::mat4 V = glm::inverse(Transform);
     
     // HACKY HACK HACK
-	mat4 P = perspective(35.0f, (float) (1920.0
+	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
 }
@@ -375,11 +377,14 @@ void GameState::draw() {
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
     
+    CurrAssets->hudShader->startUsingShader();
+    CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    
     if (ghost_beat_player) {
-        ghostWins->drawElement();
+        ghostWins->drawElement(false);
     }
     
     if (player_beat_ghost) {
-        playerWins->drawElement();
+        playerWins->drawElement(false);
     }
 }

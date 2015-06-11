@@ -23,7 +23,12 @@ public:
     int getHealth();
     bool getSensitivity();
     
+    HUDElement *introText;
+    int numTimesPressedSpace;
+    
     void tellGhostWhereImLooking();
+    
+    void drawHUD();
 
 protected:
     void checkCollisions();
