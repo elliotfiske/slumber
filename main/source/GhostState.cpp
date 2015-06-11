@@ -30,6 +30,12 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
+    clockText = CurrAssets->billboardDictionary["clock_tooltip.png"];
+    doorText = CurrAssets->billboardDictionary["door_tooltip.png"];
+    dollText = CurrAssets->billboardDictionary["doll_tooltip.png"];
+    fanText = CurrAssets->billboardDictionary["fan_tooltip.png"];
+    tvText = CurrAssets->billboardDictionary["tv_tooltip.png"];
+    windowText = CurrAssets->billboardDictionary["window_tooltip.png"];
     
     ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
     ghostBar = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
@@ -97,6 +103,12 @@ void GhostState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
 
     lampText->draw(light);
+    clockText->draw(light);
+    doorText->draw(light);
+    dollText->draw(light);
+    fanText->draw(light);
+    tvText->draw(light);
+    windowText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
