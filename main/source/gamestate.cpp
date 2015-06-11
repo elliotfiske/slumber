@@ -99,7 +99,7 @@ void GameState::initAssets() {
     lamp->cps.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
     lamp->cps.push_back(vec4(1.0f, 1.0f, 1.0f, 1.0f));
     lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
-    lamp->animate = true;
+    lamp->animate = false;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
