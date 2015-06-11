@@ -26,6 +26,9 @@
 #define GHOST_ACTION_POSSESS_CLOCK 13
 #define GHOST_ACTION_TV_STATIC 14
 #define GHOST_ACTION_BOO 15
+#define GHOST_ACTION_EXPLODE_LAMP 16
+
+#define GHOST_ACTION_LOST_HORRIBLY 69
 
 // Client->ghost packets
 #define USER_LOOK_UPDATE_FLAG 4
@@ -55,9 +58,10 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket);
 
 // Methods for external use
 void sendGhostPosition(float x, float y, float z);
-void sendPlayerLook(float pitch, float yaw);
+void sendPlayerLook(float pitch, float yaw, float FOV, float health);
 Position getGhostPosition();
 Position getPlayerLook();
+float getPlayerHealth();
 
 void sendGhostAction(int action);
 int actionReady();

@@ -11,11 +11,14 @@
 
 #include <stdio.h>
 #include "Texture.h"
+#include <string>
 
 class HUDElement {
 public:
     /** NOTE that center coords are done with UV coordinates */
-    HUDElement(Texture *texture, float centerX, float centerY);
+    HUDElement(std::string textureName, float centerX_, float centerY_);
+    
+    void drawElement(bool stretchy);
     
     Texture *texture;
     float percentCutoff;

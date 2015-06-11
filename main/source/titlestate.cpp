@@ -12,6 +12,8 @@
 #include "ParalyzedState.h"
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
+	FOV = 35.0f;
+	updatePerspectiveMat();
     camera = new Camera(vec3(-7.5, 5.0, -69.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     title = CurrAssets->billboardDictionary["title.png"];
     play = CurrAssets->billboardDictionary["play.png"];
@@ -51,16 +53,14 @@ void TitleState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->startUsingShader();
     CurrAssets->billboardShader->setViewMatrix(viewMat);
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
-    
+	CurrAssets->billboardShader->setPercentShown(1000.0f);    
+
+
     title->draw(light);
     playGhost->draw(light);
     play->draw(light);
     
     // check OpenGL error
-    GLenum err;
-    while ((err = glGetError()) != GL_NO_ERROR) {
-        cerr << "OpenGL error from Title state: " << err << endl;
-    }
 }
 
 /**

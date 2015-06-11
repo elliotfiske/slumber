@@ -3,13 +3,13 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp" //value_ptr
 #include "glm/gtc/random.hpp"
+#include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
 
 using namespace glm;
 
 
-float playerHealth = 1.2;
 
 GameState* GameState::newState() {
     printf("THIS SHOULD NOT BE CALLED LIKE EVER");
@@ -27,6 +27,13 @@ void GameState::initAssets() {
     enemy = assets->actorDictionary["enemy"];
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
+    
+    nightstand = assets->actorDictionary["nightstand"];
+    doll = assets->actorDictionary["doll"];
+    mirror = assets->actorDictionary["mirror"];
+    chair = assets->actorDictionary["chair"];
+    
+    playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -71,11 +78,20 @@ void GameState::initAssets() {
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
 	doorToggle = false;
+	explodeDuration = 0.0;
+	lampExplode = false;
 	doorDirection = -1;
+	shakeCamera = false;
+    ghost_beat_player = false;
+    player_beat_ghost = false;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
+    
+    
+    ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
+    playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -103,13 +119,13 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  * Called every frame yo
  */
 void GameState::update() {
-    if (shouldWeReset()) {
-        playerHealth = 1.2;
-    }
-    
+//    if (shouldWeReset()) {
+//        playerHealth = 100.0;
+//    }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
+    
     
     updateControl(window);
     updateCamDirection(camera);
@@ -174,19 +190,43 @@ void GameState::updateDoorSwing() {
 	}
 }
 
+void GameState::lightFlicker() {
+	if (attenFactor > 0.02f) {
+		flickerDirection = -1.0;
+	}
+	else if (attenFactor < 0.001) {
+		flickerDirection = 1.0;
+	}
+	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
+
+	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
+}
+
+void GameState::lightExplode() {
+	if (attenFactor > -0.0001) {
+		attenFactor -= elapsedTime * glm::compRand1(0.0001f, 0.002f);
+	}
+	else {
+		attenFactor = -1.0;
+	}
+
+	explodeDuration = std::max(0.0, (explodeDuration - elapsedTime));
+	if (explodeDuration == 0.0) lampExplode = false;
+}
+
 /**
  * Update the instance variable with the current perspective
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(FOV, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
 
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
-	float yaw = playerLook.y, pitch = playerLook.x;
+	float yaw = playerLook.y, pitch = playerLook.x, hfov = playerLook.z;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     
@@ -202,7 +242,7 @@ void GameState::updateHighlightMat() {
 	glm::mat4 V = glm::inverse(Transform);
     
     // HACKY HACK HACK
-	mat4 P = perspective(35.0f, (float) (1920.0
+	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
 }
@@ -322,6 +362,7 @@ void GameState::draw() {
     reflectbuffer->unbind();
     
     renderFrameBuffer();
+
     glDisable(GL_DEPTH_TEST);
     renderReflectBuffer();
     
@@ -336,4 +377,15 @@ void GameState::draw() {
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
+    
+    CurrAssets->hudShader->startUsingShader();
+    CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    
+    if (ghost_beat_player) {
+        ghostWins->drawElement(false);
+    }
+    
+    if (player_beat_ghost) {
+        playerWins->drawElement(false);
+    }
 }

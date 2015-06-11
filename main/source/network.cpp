@@ -25,7 +25,8 @@ int partnersSocket = 0;
 float ghostPosX, ghostPosY, ghostPosZ;
 
 // These correspond to properties in GhostState
-float playerLookYaw, playerLookPitch;
+float playerLookYaw, playerLookPitch, playerLookFOV;
+float recvPlayerHealth;
 
 bool shouldShowGhost;
 
@@ -61,7 +62,7 @@ void doClientNetworking() {
     int serverSocket = 0;
     
     char *host = (char *) SERVER_ADDRESS;
-    char *port = (char *)"4444";
+    char *port = (char *) SERVER_PORT;
     
     serverSocket = tcpClientSetup(host, port);
     
@@ -84,7 +85,7 @@ void sendData(char *data) {
  */
 void sendGhostPosition(float x, float y, float z) {
     char dataString[256];
-    sprintf(dataString, "%d %f %f %f", GHOST_POSITION_UPDATE_FLAG, x, y, z);
+    sprintf(dataString, "%d %f %f %f %f", GHOST_POSITION_UPDATE_FLAG, x, y, z, 0.0);
     
     sendData(dataString);
 }
@@ -93,9 +94,9 @@ void sendGhostPosition(float x, float y, float z) {
  * Pack the client's camera angle into a bootiful string and
  *  zap it over to the ghost
  */
-void sendPlayerLook(float pitch, float yaw) {
+void sendPlayerLook(float pitch, float yaw, float FOV, float health) {
     char dataString[256];
-    sprintf(dataString, "%d %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, 0.0);
+    sprintf(dataString, "%d %f %f %f %f", USER_LOOK_UPDATE_FLAG, pitch, yaw, FOV, health);
 
     sendData(dataString);
 }
@@ -106,7 +107,7 @@ void sendPlayerLook(float pitch, float yaw) {
  */
 void sendGhostAction(int action) {
     char dataString[256];
-    sprintf(dataString, "%d %f %f %f", action, 0.0, 0.0, 0.0);
+    sprintf(dataString, "%d %f %f %f %f", action, 0.0, 0.0, 0.0, 0.0);
     
     sendData(dataString);
 }
@@ -132,8 +133,8 @@ int currAction = 0;
 void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
 //    cout << "Received packet: " << entirePacket << endl;
     int flag;
-    float x, y, z;
-    sscanf(entirePacket, "%d %f %f %f", &flag, &x, &y, &z);
+    float x, y, z, w;
+    sscanf(entirePacket, "%d %f %f %f %f", &flag, &x, &y, &z, &w);
     
     if (flag == GHOST_ACTION_FLICKER_LAMP) {
         currAction = flag;
@@ -155,6 +156,13 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
         currAction = flag;
     }
     
+    if (flag == GHOST_ACTION_EXPLODE_LAMP) {
+        currAction = flag;    }
+    
+    if (flag == GHOST_ACTION_LOST_HORRIBLY) {
+        currAction = flag;
+    }
+    
     if (flag == GHOST_POSITION_UPDATE_FLAG) {
         ghostPosX = x;
         ghostPosY = y;
@@ -164,6 +172,8 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     if (flag == USER_LOOK_UPDATE_FLAG) {
         playerLookPitch = x;
         playerLookYaw = y;
+		playerLookFOV = z;
+        recvPlayerHealth = w;
     }
 }
 
@@ -183,7 +193,11 @@ Position getGhostPosition() {
 }
 
 Position getPlayerLook() {
-	Position result = {playerLookPitch, playerLookYaw, 0.0};
+	Position result = {playerLookPitch, playerLookYaw, playerLookFOV};
 	return result;
+}
+
+float getPlayerHealth() {
+    return recvPlayerHealth;
 }
 

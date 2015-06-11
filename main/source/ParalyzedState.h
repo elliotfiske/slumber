@@ -23,14 +23,21 @@ public:
     int getHealth();
     bool getSensitivity();
     
+    HUDElement *introText;
+    int numTimesPressedSpace;
+    
     void tellGhostWhereImLooking();
+    
+    void drawHUD();
 
 protected:
     void checkCollisions();
-    int playerHealth;
     bool playerSensitivity;
+<<<<<<< HEAD
     sf::Listener listener;
 	void lightFlicker();
+=======
+>>>>>>> master
     
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);
