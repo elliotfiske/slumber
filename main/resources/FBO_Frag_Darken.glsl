@@ -39,8 +39,9 @@ void main() {
     moddedIntensity = intensity;
     
     if (darknessMod > 0.5) {
-        moddedIntensity += 1.0;
-        moddedIntensity *= 1.7;
+        if (intensity < 2.5) {
+            moddedIntensity = 2.5;
+        }
     }
     
     vec4 currColor = texture2D(uTex, distortedUV);
