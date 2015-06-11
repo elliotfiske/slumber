@@ -33,6 +33,7 @@ protected:
 	void viewFrustumCulling();
 	void damageGhost();
 	void updateCameraShake();
+	void gainHealth();
 
 	glm::vec3 itemUseBounds;
 };
