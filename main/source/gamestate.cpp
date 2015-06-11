@@ -27,6 +27,11 @@ void GameState::initAssets() {
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
     
+    nightstand = assets->actorDictionary["nightstand"];
+    doll = assets->actorDictionary["doll"];
+    mirror = assets->actorDictionary["mirror"];
+    chair = assets->actorDictionary["chair"];
+    
     playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];

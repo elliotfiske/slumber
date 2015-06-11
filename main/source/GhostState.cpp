@@ -79,6 +79,11 @@ void GhostState::renderScene(bool isMirror) {
 	lamp->draw(light);
     door->draw(light);
     fan->draw(light);
+    
+    nightstand->draw(light);
+    doll->draw(light);
+    mirror->draw(light);
+    chair->draw(light);
 
 
 	shadowfbo->unbindTexture();
