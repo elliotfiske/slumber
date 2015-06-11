@@ -192,6 +192,7 @@ void ParalyzedState::update() {
     enemy->center.y = ghostPos.y;
     enemy->center.z = ghostPos.z;
     
+    viewFrustumCulling();
     tellGhostWhereImLooking();
     float darkness = (100 - playerHealth) * 4 / 100;
     CurrAssets->currShader->setIntensity(darkness);
@@ -325,4 +326,20 @@ void ParalyzedState::drawHUD() {
     }
     
     CurrAssets->hudShader->setPercentShown(1000.0f);
+}
+
+void ParalyzedState::viewFrustumCulling(){
+    mat4 comboMatrix;
+    
+    comboMatrix = perspectiveMat * viewMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 0.0));
+    vf->extractPlanes(comboMatrix);
+    
+    int inView = vf->sphereIsInside(enemy->center, 0.1f);
+    if (inView != OUTSIDE && playerFOV < 28.0) {
+      printf("Enemy in sight\n");
+	   CurrAssets->play(RESOURCE_FOLDER + "sounds/gross-static.wav", enemy->center);
+    }
+    else{
+      printf("Enemy not in sight\n");
+    }
 }

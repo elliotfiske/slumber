@@ -23,6 +23,7 @@ public:
     int getHealth();
     bool getSensitivity();
 	void checkZoom();
+	void viewFrustumCulling();
     
     HUDElement *introText;
     int numTimesPressedSpace;

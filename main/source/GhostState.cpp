@@ -229,7 +229,8 @@ void GhostState::update() {
         
         if (getItemAction()) {
             dollGlowDuration = 3.0;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
+
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", doll->center);
             // TODO: laugh?
             sendGhostAction(GHOST_ACTION_GLOW_DOLL);
         }
