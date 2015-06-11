@@ -6,6 +6,7 @@
 #include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include <iostream>
 
 using namespace glm;
 
@@ -88,9 +89,17 @@ void GameState::initAssets() {
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
     
-    
     ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
     playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
+
+    // set up spline pathing for lamp
+//    std::cout << lamp->center.x << ", " << lamp->center.y << ", " << lamp->center.z << std::endl;
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->animate = true;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -140,6 +149,7 @@ void GameState::update() {
 		spinFan();
 	}
     
+    lamp->step(elapsedTime);
     collectible->step(elapsedTime);
     
     Actor *teevee = CurrAssets->actorDictionary["tv"];
@@ -179,6 +189,13 @@ void GameState::update() {
                 doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 0.0;
             }
         }
+    }
+    
+    if (dollMoveDuration > 0) {
+        doll->animate = true;
+    }
+    else {
+        doll->animate = false;
     }
 }
 

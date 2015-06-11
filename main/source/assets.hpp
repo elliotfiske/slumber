@@ -75,8 +75,8 @@ private:
     void generateBillboards(string filename);
 //    void loadSoundBuffer(string filename);
     
-    map<string, sf::SoundBuffer> soundBuffers;
-    vector<sf::Sound> sounds;
+//    map<string, sf::SoundBuffer> soundBuffers;
+//    vector<sf::Sound> sounds;
 };
 
 
