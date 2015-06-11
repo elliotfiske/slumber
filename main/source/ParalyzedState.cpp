@@ -263,7 +263,6 @@ void ParalyzedState::renderScene(bool isMirror) {
     
     nightstand->draw(light);
     doll->draw(light);
-    mirror->draw(light);
     chair->draw(light);
     
     shadowfbo->unbindTexture();
@@ -335,7 +334,7 @@ void ParalyzedState::viewFrustumCulling(){
     vf->extractPlanes(comboMatrix);
     
     int inView = vf->sphereIsInside(enemy->center, 0.1f);
-    if (inView != OUTSIDE && playerFOV < 28.0) {
+    if (inView != OUTSIDE && playerFOV < 26.0) {
       printf("Enemy in sight\n");
 	   CurrAssets->play(RESOURCE_FOLDER + "sounds/gross-static.wav", enemy->center);
     }

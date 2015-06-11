@@ -111,7 +111,7 @@ void GhostState::renderScene(bool isMirror) {
     dollText->draw(light);
     fanText->draw(light);
     tvText->draw(light);
-    windowText->draw(light);
+//    windowText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
