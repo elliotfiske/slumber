@@ -41,6 +41,7 @@ protected:
     GLuint projectionMatrix_UniformID;
     GLuint viewMatrix_UniformID;
     GLuint modelMatrix_UniformID;
+
 };
 
 #endif /* defined(__slumber__shader__) */

@@ -6,14 +6,15 @@
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
 #include <stdio.h>
-#include "../libraries/CollisionBox.h"
-#include "../libraries/WorldObject.h"
+#include "CollisionBox.h"
+#include "WorldObject.h"
+#include "Octree.h"
 
 class Player {
 public:
 	Player();
 	virtual ~Player();
-	void update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::Vector2f &center, float dt, std::vector<WorldObject> &objects);
+	void update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::Vector2f &center, float dt, std::vector<WorldObject> objects, Octree *octree);
 	float getYaw() const { return yawRotation; }
 	float getPitch() const { return pitchRotation; }
 	Eigen::Vector3f getPosition() const { return position; }

@@ -11,19 +11,33 @@
 
 #include <stdio.h>
 #include "gamestate.hpp"
+#include "HUDElement.h"
 
 class GhostState : public GameState {
 public:
     GhostState(GLFWwindow *window);
     
 protected:
-    void checkCollisions();
-    void renderScene();
+    BillboardActor *lampText;
+    float ghostHealth;
+	float playerHealth;
     
+    HUDElement *ghostHUD, *ghostBar, *playerBar;
+    
+    void checkCollisions();
+
+    void drawHUD();
+    void renderScene(bool isMirror);
+
     void update();
 
-private:
     std::vector<BoundingBox *> collisions;
+    bool checkBounds(glm::vec3 min, glm::vec3 max);
+    void viewFrustumCulling();
+    void damageGhost();
+    void updateCameraShake();
+
+    glm::vec3 itemUseBounds;
 };
 
 #endif /* defined(__slumber__GhostState__) */

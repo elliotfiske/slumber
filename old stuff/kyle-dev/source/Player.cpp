@@ -21,13 +21,14 @@ Player::~Player()
 	
 }
 
-void Player::update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::Vector2f &center, 
-	float dt, std::vector<WorldObject> &objects)
+void Player::update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen::Vector2f &center, float dt, std::vector<WorldObject> objects, Octree *octree)
 {
+	std::vector<WorldObject> colliding = octree->checkCollisions(this->box);
+
 	// check collisions against other objects
-	for (int i = 1; i < (int)objects.size(); i++) {
-		if (!objects.at(i).getIsCollected() && box->isXZCollision(*objects.at(i).getBox())) {
-			objects.at(i).collect();
+	for (int i = 0; i < (int)colliding.size(); i++) {
+		if (!colliding[i].getIsCollected()) {
+			objects[i].collect();
 			numCollided++;
 		}
 	}
@@ -63,11 +64,11 @@ void Player::update(const bool *keys, const Eigen::Vector2f &mouse, const Eigen:
    }
 
 	CollisionBox arena = *objects.at(0).getBox();
-	if (newPosition(0) < arena.getMaxX() && newPosition(0) > arena.getMinX() && 
-		 newPosition(2) < arena.getMaxZ() && newPosition(2) > arena.getMinZ()) {
+//	if (newPosition(0) < arena.getMaxX() && newPosition(0) > arena.getMinX() && 
+//		 newPosition(2) < arena.getMaxZ() && newPosition(2) > arena.getMinZ()) {
 		position = newPosition;
 		box->setBounds(position - Eigen::Vector3f(1.0f, 1.0f, 1.0f), position + Eigen::Vector3f(1.0f, 1.0f, 1.0f));
-	}
+//	}
 
 	// Save last mouse
 	//mousePrev = mouse;

@@ -2,6 +2,8 @@
 #ifndef __WorldObject__
 #define __WorldObject__
 
+class Octree;
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #endif
@@ -16,6 +18,7 @@
 #include "../libraries/Program.h"
 #include "../libraries/CollisionBox.h"
 #include "../libraries/Light.h"
+#include "Octree.h"
 
 class WorldObject {
 public:
@@ -24,8 +27,8 @@ public:
 
 	void init(void);
 	void checkBounds(CollisionBox arena);
-	void draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1) const;
-	void update(float dt, std::vector<WorldObject> &objects);
+	void draw(MatrixStack &MV, Program *prog, Light &light, bool isShadowPass1, bool drawSphere = false) const;
+	void update(float dt, Octree *octree, CollisionBox arena);
 	void buildTexMatrix(float, float);
 	Eigen::Matrix3f &getTexMatrix() { return texMat; }
 	void setShape(Shape *s) { shape = s; }

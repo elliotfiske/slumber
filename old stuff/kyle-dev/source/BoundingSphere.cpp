@@ -69,8 +69,12 @@ void BoundingSphere::init(vector<float> positions) {
 }
 
 void BoundingSphere::drawOutline() {
+	float currentColor[4];
+	glGetFloatv(GL_CURRENT_COLOR, currentColor);
+
 	int discretization = 30;
 
+	glColor4f(0.0f, 1.0f, 0.0f, 1.0f);
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i <= discretization; i++) {
 		Eigen::Matrix3f M = Eigen::AngleAxisf(2.0f * (float)M_PI * (float) i / (float) discretization, Eigen::Vector3f::UnitZ()).toRotationMatrix();
@@ -97,4 +101,5 @@ void BoundingSphere::drawOutline() {
 		glVertex3fv(tmp.data());
 	}
 	glEnd();
+	glColor4f(currentColor[0], currentColor[1], currentColor[2], currentColor[3]);
 }

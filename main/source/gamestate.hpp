@@ -18,7 +18,7 @@ public:
     bool isGhost;
     
     std::vector<Actor> actors;
-    Actor *room, *bed, *clock, *enemy;
+    Actor *room, *bed, *clock, *enemy, *tv, *door, *fan;
     Actor *lamp;
     Collectible *collectible;
     
@@ -26,28 +26,41 @@ public:
 
     Framebuffer *framebuffer;
     Framebuffer *shadowfbo;
+    Framebuffer *reflectbuffer;
     
     virtual void update();
     void draw();
+    virtual void drawHUD();
     
-    GLuint quad_vertexbuffer;
+    GLuint quad_vertexbuffer, quad_vertexbuffer_mirror;
     
     mat4 perspectiveMat;
     mat4 viewMat;
+	mat4 highlightVPMat;
+    mat4 mirrorViewMat;
     
     ViewFrustum *vf;
     
+    GLuint antialiasTexture, intermediateFBO;
+    
+    /* Swapping game states */
+    bool shouldSwitch;
+    virtual GameState* newState();
+    
 protected:
     Camera *camera;
+    Camera *mirrorCamera;
     GLFWwindow *window;
     
     double prevTime, elapsedTime;
     
     void updatePerspectiveMat();
     void updateViewMat();
-    virtual void renderScene() {}
+	void updateHighlightMat();
+    virtual void renderScene(bool isMirror) {}
     void renderShadowBuffer();
     void renderFrameBuffer();
+    void renderReflectBuffer();
     
     virtual void checkCollisions() {}
     
@@ -55,8 +68,24 @@ protected:
     
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
-    void billboardCheatSphericalBegin();
-    void billboardEnd();
+	void updateDoorSwing();
+	void lightFlicker();
+	void lightExplode();
+
+	double flickerDuration;
+	double flickerDirection;
+	float attenFactor;
+
+	double explodeDuration;
+	bool lampExplode;
+
+	bool doorToggle;
+	int doorDirection;
+
+	bool shakeCamera;
+
+    float clockShakeDuration;
+    float tvStaticDuration;
 };
 
 #endif

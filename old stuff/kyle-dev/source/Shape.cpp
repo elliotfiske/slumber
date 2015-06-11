@@ -98,7 +98,7 @@ void Shape::init()
 	assert(glGetError() == GL_NO_ERROR);
 }
 
-void Shape::draw(GLint h_pos, GLint h_nor, GLint h_tex)
+void Shape::draw(GLint h_pos, GLint h_nor, GLint h_tex, bool draw_bounds)
 {
 	// Enable and bind position array for drawing
 	GLSL::enableVertexAttribArray(h_pos);
@@ -125,7 +125,9 @@ void Shape::draw(GLint h_pos, GLint h_nor, GLint h_tex)
 	
 	// Draw
 	glDrawElements(GL_TRIANGLES, nIndices, GL_UNSIGNED_INT, 0);
-	bounds.drawOutline();
+
+	if (draw_bounds)
+		bounds.drawOutline();
 	
 	// Disable and unbind
 	if(texBufID && h_tex >= 0) {
