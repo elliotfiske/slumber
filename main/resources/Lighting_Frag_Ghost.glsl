@@ -46,7 +46,8 @@ void main() {
     vec3 h = normalize(l + e);
     float cd = max(0.0, dot(n, l));
     float cs = pow(max(0.0, dot(n, h)), Ushine);
-    float attenuation = 1.0 / (1.0 + attenFactor * distToLight + attenFactor * distToLight * distToLight);
+    float atten = clamp(abs(attenFactor), 0.0002, 0.001);
+    float attenuation = 1.0 / (1.0 + atten * distToLight + atten * distToLight * distToLight);
 
     vec3 textureColor = texture2D( diffuseTextureSampler, UV ).rgb * 0.8 + 0.2;
     textureColor += UdColor;

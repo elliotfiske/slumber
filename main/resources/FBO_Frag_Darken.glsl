@@ -8,8 +8,10 @@ uniform sampler2D uTex;
 uniform float intensity;
 uniform float darknessMod; // alters the color of darkness when zoomed
 
+float moddedIntensity;
+
 float tunnelVision() {
-    float darkening = length(0.5 - UV) * intensity;
+    float darkening = length(0.5 - UV) * moddedIntensity;
     return darkening;
 }
 
@@ -34,6 +36,12 @@ void main() {
 
     vec2 distortedUV = (intensity < 4. ? UV : woozyUV());
 
+    moddedIntensity = intensity;
+    
+    if (darknessMod > 0.5) {
+        moddedIntensity += 1.0;
+        moddedIntensity *= 1.7;
+    }
     
     vec4 currColor = texture2D(uTex, distortedUV);
     
