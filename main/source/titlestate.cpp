@@ -12,6 +12,8 @@
 #include "ParalyzedState.h"
 
 TitleState::TitleState(GLFWwindow *window): GameState(window, false) {
+	FOV = 35.0f;
+	updatePerspectiveMat();
     camera = new Camera(vec3(-7.5, 5.0, -69.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     title = CurrAssets->billboardDictionary["title.png"];
     play = CurrAssets->billboardDictionary["play.png"];

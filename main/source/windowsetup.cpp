@@ -1,4 +1,5 @@
 #include "windowsetup.hpp"
+#include "GLSL.h"
 
 void doHints() {
     glfwDefaultWindowHints();
@@ -18,10 +19,10 @@ GLFWwindow* setupWindow(bool fullscreen) {
     const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
     if (fullscreen) {
-        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+        window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
     }
     else {
-        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", NULL, NULL);
+        window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", NULL, NULL);
     }
     
     if(window == NULL){

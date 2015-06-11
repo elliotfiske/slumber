@@ -18,6 +18,8 @@
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     ghostHealth = 100.0f;
     playerHealth = 100.0f;
+	FOV = 35.0f;
+	updatePerspectiveMat();
 	 camera = new Camera(vec3(0.0, 0.0, 0.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;

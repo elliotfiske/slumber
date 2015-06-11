@@ -17,6 +17,8 @@
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
+	FOV = 30.0f;
+	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
 //    CurrAssets->currFBOShader = 
@@ -72,6 +74,15 @@ void ParalyzedState::update() {
     GameState::update();
     
     hurtCooldown -= 0.17;
+
+	if (getParalyzedZoom() == true) {
+		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
+		updatePerspectiveMat();
+	}
+	else if (FOV < 30.0f) {
+		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
+		updatePerspectiveMat();
+	}
 
     int currAction = actionReady();
     if (currAction) {
@@ -133,7 +144,7 @@ void ParalyzedState::tellGhostWhereImLooking() {
 	float pitch = getPitch();
 	float yaw = getYaw();
 
-    sendPlayerLook(pitch, yaw, (float) playerHealth);
+    sendPlayerLook(pitch, yaw, FOV, (float) playerHealth);
 #endif
 }
 
