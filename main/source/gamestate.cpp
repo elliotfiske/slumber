@@ -384,7 +384,7 @@ void GameState::renderFrameBuffer() {
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
     CurrAssets->currShader->setDarknessModifier(redness);
-//    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
+    glUniform1f(CurrAssets->currShader->intensity_UniformID, darkness);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
 

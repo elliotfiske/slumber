@@ -200,8 +200,7 @@ void ParalyzedState::update() {
     
     viewFrustumCulling();
     tellGhostWhereImLooking();
-    darkness = (100 - playerHealth) * 4 / 100;
-	darkness = 2.0;
+    darkness = (100 - playerHealth) * 2.0 / 100;
     CurrAssets->currShader->setIntensity(darkness);    
 
 
