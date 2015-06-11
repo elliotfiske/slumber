@@ -90,7 +90,7 @@ void ParalyzedState::checkZoom() {
 		updatePerspectiveMat();
 	}
 
-	float redness = (27.0f - FOV) / (27.0f - 15.0f);
+	redness = (27.0f - FOV) / (27.0f - 15.0f);
     CurrAssets->currShader->setDarknessModifier(redness);
 }
 
@@ -200,7 +200,7 @@ void ParalyzedState::update() {
     
     viewFrustumCulling();
     tellGhostWhereImLooking();
-    darkness = (100 - playerHealth) * 2.0 / 100;
+    darkness = (100 - playerHealth) * 4.0 / 100;
     CurrAssets->currShader->setIntensity(darkness);    
 
 
