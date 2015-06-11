@@ -19,6 +19,7 @@ public:
 protected:
     BillboardActor *lampText;
     int ghostHealth;
+    sf::Listener listener;
     
     void checkCollisions();
     void drawHUD();
