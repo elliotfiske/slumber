@@ -470,19 +470,24 @@ void GameState::draw() {
 
 float resetCooldown = 5.0;
 
+bool ghost_wins_override = false;
+bool player_wins_override = false;
+
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
     
     CurrAssets->hudShader->startUsingShader();
     CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     
-    if (ghost_beat_player) {
+    if (player_wins_override || player_beat_ghost) {
+        resetCooldown -= 0.17;
+        player_wins_override = true;
+    }
+    
+    if (ghost_wins_override || ghost_beat_player) {
         resetCooldown -= 0.17;
         ghostWins->drawElement(false);
-    }
-    else if (player_beat_ghost) {
-        resetCooldown -= 0.17;
-        playerWins->drawElement(false);
+        ghost_wins_override = true;
     }
     
     if (resetCooldown < 0) {
