@@ -23,6 +23,7 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
     // Make handles to uniforms
     textureToDisplay_ID = GLSL::getUniformLocation(fbo_ProgramID, "uTex");
     intensity_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "intensity");
+    darknessModifier_UniformID = GLSL::getUniformLocation(fbo_ProgramID, "darknessMod");
 
     time_UniformID = glGetUniformLocation(fbo_ProgramID, "time");
     
@@ -35,6 +36,10 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
 
 void FBOShader::setIntensity(float intensity) {
     glUniform1f(intensity_UniformID, intensity);
+}
+
+void FBOShader::setDarknessModifier(float darknessModifier) {
+    glUniform1f(darknessModifier_UniformID, darknessModifier);
 }
 
 void FBOShader::animateIntensity(float min, float max, double currTime, float slowFactor) {

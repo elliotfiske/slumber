@@ -66,6 +66,19 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     }
 }
 
+void ParalyzedState::checkZoom() {
+	if (getParalyzedZoom() == true) {
+		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
+		updatePerspectiveMat();
+	}
+	else if (FOV < 30.0f) {
+		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
+		updatePerspectiveMat();
+	}
+
+	float redness = (30.0f - FOV) / (30.0f - 15.0f);
+    CurrAssets->currShader->setDarknessModifier(redness);
+}
 
 bool creakOne = true;
 
@@ -75,14 +88,7 @@ void ParalyzedState::update() {
     
     hurtCooldown -= 0.17;
 
-	if (getParalyzedZoom() == true) {
-		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
-		updatePerspectiveMat();
-	}
-	else if (FOV < 30.0f) {
-		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
-		updatePerspectiveMat();
-	}
+	checkZoom();
 
     int currAction = actionReady();
     if (currAction) {
@@ -122,6 +128,20 @@ printf("DOING ACTION %d\n", currAction);
             lampExplode = true;
             CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
             checkHurt(lamp, 25);
+        }
+
+		if (currAction == GHOST_ACTION_SLAM_DOOR) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav");
+            
+			doorSlam = true;
+			checkHurt(door, 25);
+        }
+
+		if (currAction == GHOST_ACTION_SPIN_FAN) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav");
+            
+			fanSpinDuration = 9.0;
+			checkHurt(fan, 10);
         }
     }
     

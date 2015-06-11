@@ -22,6 +22,7 @@ public:
     void lowerSensitive();
     int getHealth();
     bool getSensitivity();
+	void checkZoom();
     
     void tellGhostWhereImLooking();
 

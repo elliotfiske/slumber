@@ -71,6 +71,7 @@ void GameState::initAssets() {
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
 	doorToggle = false;
+	doorSlam = false;
 	explodeDuration = 0.0;
 	lampExplode = false;
 	doorDirection = -1;
@@ -117,8 +118,15 @@ void GameState::update() {
     updateControl(window);
     updateCamDirection(camera);
 
+	// interaction updates
 	if (doorToggle) {
 		updateDoorSwing();
+	}
+	if (doorSlam) {
+		updateDoorSlam();
+	}
+	if (fanSpinDuration > 0.0f) {
+		spinFan();
 	}
     
     collectible->step(elapsedTime);
@@ -162,7 +170,7 @@ void GameState::updateViewMat() {
 }
 
 void GameState::updateDoorSwing() {
-	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 0.25f;
+	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 30.0f * elapsedTime * 0.30f;
     if (doorDirection > 0) {
 		if (CurrAssets->actorDictionary["door"]->direction.y >= -10) {
 			doorToggle = false;
@@ -175,6 +183,23 @@ void GameState::updateDoorSwing() {
 			doorDirection = 1;
 		}
 	}
+}
+
+void GameState::updateDoorSlam() {
+    if (CurrAssets->actorDictionary["door"]->direction.y >= 0.0f) {
+		CurrAssets->actorDictionary["door"]->direction.y = 0.0f;
+		doorSlam = false;
+		doorDirection = -1;
+	}
+	else {
+		doorDirection = 1;
+		CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 200.0f * elapsedTime;
+	}
+}
+
+void GameState::spinFan() {
+	CurrAssets->actorDictionary["fan"]->direction.y += 150.0f * elapsedTime;
+	fanSpinDuration -= elapsedTime;
 }
 
 void GameState::lightFlicker() {
