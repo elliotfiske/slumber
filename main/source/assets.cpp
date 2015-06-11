@@ -3,7 +3,6 @@
 #include "assets.hpp"
 #include "actor.hpp"
 #include "BoundingBox.hpp"
-#include "BoundingSphere.hpp"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
@@ -46,8 +45,8 @@ void Assets::readLevelData(string filename) {
     }
     
     string currActorName;
-    vec3 min(INFINITY, INFINITY, INFINITY), max(-INFINITY, -INFINITY, -INFINITY);
     std::vector<Actor*> tmp;
+    octree = new Octree();
     while (levelFile >> currActorName) {
         vec3 newActorCenter;
         levelFile >> newActorCenter.x;
@@ -58,20 +57,12 @@ void Assets::readLevelData(string filename) {
         string objFilename(MODELS_FOLDER + currActorName + ".obj");
         loadShape(objFilename, actorDictionary[currActorName]);
 
-        Actor *actor = actorDictionary[currActorName];
-        min.x = std::min(min.x, actor->box.min.x);
-        min.y = std::min(min.y, actor->box.min.y);
-        min.z = std::min(min.z, actor->box.min.z);
-
-        max.x = std::max(max.x, actor->box.min.x + actor->box.size.x);
-        max.y = std::max(max.y, actor->box.min.y + actor->box.size.y);
-        max.z = std::max(max.z, actor->box.min.z + actor->box.size.z);
-        tmp.push_back(actor);
+        tmp.push_back(actorDictionary[currActorName]);
     }
 
-    octree = new Octree((max + min) / 2.0f, max - min);
     for (size_t i = 0; i < tmp.size(); i++)
-        octree->insert(tmp[i]);
+        for (int j = 0; j < tmp[i]->numShapes; j++)
+            octree->insert(&tmp[i]->boxes[j]);
 }
 
 vector<Texture *> existingTextures;
@@ -145,19 +136,13 @@ void Assets::loadShape(string filename, Actor *actor) {
         printf("OBJ error: %s\n", err.c_str());
     }
     
-    std::vector<float> positions;
     for (int ndx = 0; ndx < shapes.size(); ndx++) {
         tinyobj::material_t currMaterial = materials[shapes[ndx].mesh.material_ids[0]];
         sendShapeToGPU(shapes[ndx], currMaterial, actor, ndx);
-
-        positions.insert(positions.end(), shapes[ndx].mesh.positions.begin(), shapes[ndx].mesh.positions.end());
-    }
+	actor->boxes[ndx].insert(shapes[ndx].mesh.positions);
+        octree->updateBounds(actor->boxes[ndx]);
+    } 
     
     actor->numShapes = shapes.size();
-    actor->box.insert(positions);
-
-    BoundingSphere sphere;
-    sphere.init(positions);
-    actor->boundSphereRad = sphere.getRadius();
 }
 

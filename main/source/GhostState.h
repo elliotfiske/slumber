@@ -23,7 +23,7 @@ protected:
     void update();
 
 private:
-    std::vector<Actor *> collisions;
+    std::vector<BoundingBox *> collisions;
 };
 
 #endif /* defined(__slumber__GhostState__) */

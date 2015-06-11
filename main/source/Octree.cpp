@@ -2,9 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <stdlib.h>
 
-Octree::Octree(vec3 mid, vec3 size) {
-    this->mid = mid;
-    this->size = size;
+Octree::Octree() {
+    this->mid.x = this->mid.y = this->mid.z = 0;
+    this->size.x = this->size.y = this->size.z = 0;
 
     for (int i = 0; i < NUM_CHILDREN; i++)
         children[i] = NULL;
@@ -26,28 +26,61 @@ int Octree::getOctant(vec3 point) {
     return octant;
 }
 
-void Octree::insert(Actor *actor) {
-    if (abs(actor->center.x - mid.x) > actor->boundSphereRad &&
-        abs(actor->center.y - mid.y) > actor->boundSphereRad &&
-        abs(actor->center.z - mid.z) > actor->boundSphereRad) {
-        if (this->isLeaf()) this->split();
-
-        children[this->getOctant(actor->center)]->insert(actor);
-    }
-    else
-        this->actors.push_back(actor);
+void Octree::updateBounds(BoundingBox box) {
+    this->updateBounds(box.min + box.size);
+    this->updateBounds(box.min);
 }
 
-std::vector<Actor *> Octree::getCollisions(Actor *toCheck) {
-    std::vector<Actor *> colliding;
-    for (size_t i = 0; i < actors.size(); i++) {
-        if (toCheck->detectIntersect(*actors[i], false))
-            colliding.push_back(actors[i]);
+void Octree::updateBounds(vec3 point) {
+    vec3 min, max;
+
+    min = mid - size;
+    max = mid + size;
+
+    min.x = std::min(min.x, point.x);
+    min.y = std::min(min.y, point.y);
+    min.z = std::min(min.z, point.z);
+
+    max.x = std::max(max.x, point.x);
+    max.y = std::max(max.y, point.y);
+    max.z = std::max(max.z, point.z);
+
+
+    mid = (max + min) / 2.0f;
+    size = (max - min) / 2.0f;
+}
+
+void Octree::insert(BoundingBox *box) {
+    if (getOctant(box->min) == getOctant(box->min + box->size)) {
+        if (this->isLeaf()) this->split();
+
+        children[this->getOctant(box->min)]->insert(box);
+    }
+    else
+        this->boxes.push_back(box);
+}
+
+std::vector<BoundingBox *> Octree::getCollisions(Actor *toCheck) {
+    std::vector<BoundingBox *> colliding;
+
+    for (int i = 0; i < toCheck->numShapes; i++) {
+        std::vector<BoundingBox *> subcollisions = getCollisions(&toCheck->boxes[i]);
+        colliding.insert(colliding.end(), subcollisions.begin(), subcollisions.end());
+    }
+
+    return colliding;
+}
+
+std::vector<BoundingBox *> Octree::getCollisions(BoundingBox *toCheck) {
+    std::vector<BoundingBox *> colliding;
+    for (size_t i = 0; i < boxes.size(); i++) {
+        if (toCheck->collides(*boxes[i]))
+            colliding.push_back(boxes[i]);
 
         if (!isLeaf())
 	    for (int j = 0; j < NUM_CHILDREN; j++)
 	        if (children[j]->containsPart(toCheck)) {
-	            std::vector<Actor *> tmp = children[j]->getCollisions(toCheck);
+	            std::vector<BoundingBox *> tmp = children[j]->getCollisions(toCheck);
                     for (size_t k = 0; k < tmp.size(); k++)
                         colliding.push_back(tmp[k]);
 	        }
@@ -64,31 +97,19 @@ void Octree::split() {
         if (!(i & 2)) tmp.y *= -1;
         if (!(i & 1)) tmp.z *= -1;
 
-        children[i] = new Octree(tmp + mid, size / 2.0f);
+        children[i] = new Octree();
+        children[i]->mid = tmp + mid;
+        children[i]->size = size / 2.0f;
     }
 }
 
-bool Octree::containsPart(Actor *toCheck) {
-    float dist = toCheck->boundSphereRad * toCheck->boundSphereRad;
-    vec3 distCorner1 = toCheck->center - (mid - size / 2.0f),
-         distCorner2 = toCheck->center - (mid + size / 2.0f);
+bool Octree::containsPart(BoundingBox *toCheck) {
+    BoundingBox tmp;
 
-    if (distCorner1.x < 0)
-        dist -= distCorner1.x * distCorner1.x;
-    else if (distCorner2.x > 0)
-        dist -= distCorner2.x * distCorner2.x;
+    tmp.insert(mid - size);
+    tmp.insert(mid + size);
 
-    if (distCorner1.y < 0)
-        dist -= distCorner1.y * distCorner1.y;
-    else if (distCorner2.y > 0)
-        dist -= distCorner2.y * distCorner2.y;
-
-    if (distCorner1.z < 0)
-        dist -= distCorner1.z * distCorner1.z;
-    else if (distCorner2.z > 0)
-        dist -= distCorner2.z * distCorner2.z;
-
-    return dist > 0;
+    return toCheck->collides(tmp);
 }
 
 void Octree::draw() {

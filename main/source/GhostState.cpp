@@ -9,6 +9,7 @@
 #include "GhostState.h"
 #include "control.hpp"
 #include "network.h"
+#include <stdio.h>
 
 GhostState::GhostState(GLFWwindow *window) :
 	GameState(window, true) {
@@ -18,6 +19,8 @@ GhostState::GhostState(GLFWwindow *window) :
 
 void GhostState::checkCollisions() {
 	this->collisions = CurrAssets->octree->getCollisions(camera);
+
+    printf("Camera collides with %d objects\n", this->collisions.size());
 }
 
 /**

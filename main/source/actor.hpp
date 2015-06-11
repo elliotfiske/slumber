@@ -19,7 +19,6 @@ public:
     vec3 center;
     vec3 direction;
     float velocityScalar;
-    float boundSphereRad;
     BoundingBox boxes[NUM_SHAPES];
     
     int numShapes;

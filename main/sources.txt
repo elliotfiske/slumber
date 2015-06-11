@@ -23,7 +23,6 @@ set(HEADERS
    ParalyzedState.h
    GhostState.h
    Octree.hpp
-   BoundingSphere.hpp
    BoundingBox.hpp
 
    shaders/Framebuffer.h
@@ -57,7 +56,6 @@ set(SOURCES
    ParalyzedState.cpp
    GhostState.cpp
    Octree.cpp
-   BoundingSphere.cpp
    BoundingBox.cpp
 
    shaders/Framebuffer.cpp

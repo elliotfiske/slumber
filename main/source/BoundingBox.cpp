@@ -4,6 +4,10 @@
 #include <cmath>
 #include <cstdio>
 
+bool overlap(float min1, float max1, float min2, float max2) {
+    return (min1 <= min2 && min2 <= max1) || (min2 <= min1 && min1 <= max2);
+}
+
 BoundingBox::BoundingBox() {
 }
 
@@ -30,9 +34,13 @@ void BoundingBox::insert(vec3 point) {
 }
 
 bool BoundingBox::collides(BoundingBox other) {
-	return std::abs(min.x - other.min.x) && (size.x + other.size.x)
-	    && std::abs(min.y - other.min.y) && (size.y + other.size.y)
-	    && std::abs(min.z - other.min.z) && (size.z + other.size.z);
+    vec3 max1, max2;
+    max1 = min + size;
+    max2 = other.min + other.size;
+
+    return overlap(min.x, max1.x, other.min.x, max2.x)
+        && overlap(min.y, max1.y, other.min.y, max2.y)
+        && overlap(min.z, max1.z, other.min.z, max2.z);
 }
 
 void BoundingBox::draw() {
@@ -52,7 +60,7 @@ void BoundingBox::draw() {
 	};
 	GLuint vertId, indId;
 
-	printf("<%f, %f, %f>\n", min.x, min.y, min.z);
+	//printf("<%f, %f, %f>\n", min.x, min.y, min.z);
 
 	glGenBuffers(1, &vertId);
 	

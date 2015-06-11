@@ -5,6 +5,7 @@
 #include "glm/gtc/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include <iostream>
 
 using namespace glm;
 
@@ -12,7 +13,7 @@ float playerHealth = 1.2;
 
 void GameState::initAssets() {
     Assets *assets = Assets::instance();
-    
+std::cout << "Test1" << std::endl;
     bed =   assets->actorDictionary["bed"];
     clock = assets->actorDictionary["clock"];
     lamp =  assets->actorDictionary["lamp-table"];
@@ -127,7 +128,8 @@ void GameState::viewFrustumCulling(Actor curActor){
     comboMatrix = perspectiveMat * viewMat * curActor.modelMat;
     vf->extractPlanes(comboMatrix);
     
-    int inView = vf->sphereIsInside(curActor.center, curActor.boundSphereRad);
+    // TODO: update this to use boundingbox around all shapes
+    int inView = vf->sphereIsInside(curActor.center, glm::length(curActor.boxes[0].size));
     if (inView != OUTSIDE) {
         curActor.draw(light);
     }

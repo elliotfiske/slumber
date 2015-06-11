@@ -82,9 +82,9 @@ void Actor::draw(Light *light) {
         if (material[ndx].diffuse_texname.size() > 0) {
             texture[ndx]->unbind(0);
         }
-    }
 
-    box.draw();
+        boxes[ndx].draw();
+    }
 }
 
 void Actor::setLightMVP(Light *light, bool isShadowShader) {
