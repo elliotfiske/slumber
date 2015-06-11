@@ -159,7 +159,7 @@ void ParalyzedState::update() {
         
         if (currAction == GHOST_ACTION_GLOW_DOLL) {
             dollGlowDuration = 3.0;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.wav", tv->center);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
         }
     }
     
