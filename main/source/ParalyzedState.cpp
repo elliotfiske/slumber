@@ -25,7 +25,6 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
     sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
 //    sf::Listener::setDirection(10,0,0);
-    sf::Listener::setUpVector(0, 1, 0);
 //    CurrAssets->currFBOShader =
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
