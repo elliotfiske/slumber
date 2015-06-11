@@ -28,3 +28,5 @@ bool getParalyzedZoom();
 
 bool getItemAction();
 bool getItemAltAction();
+
+int numSpaces();

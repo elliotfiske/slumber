@@ -6,10 +6,9 @@
 #include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include <iostream>
 
 using namespace glm;
-
-float playerHealth = 1.2;
 
 GameState* GameState::newState() {
     printf("THIS SHOULD NOT BE CALLED LIKE EVER");
@@ -27,6 +26,13 @@ void GameState::initAssets() {
     enemy = assets->actorDictionary["enemy"];
     door = assets->actorDictionary["door"];
     fan = assets->actorDictionary["fan"];
+    
+    nightstand = assets->actorDictionary["nightstand"];
+    doll = assets->actorDictionary["doll"];
+    mirror = assets->actorDictionary["mirror"];
+    chair = assets->actorDictionary["chair"];
+    
+    playerHealth = 100.0;
     
     Actor *tempCollectible = assets->actorDictionary["collect"];
     collectible = new Collectible(*tempCollectible);
@@ -55,12 +61,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.75f, .25f,  0.0f,
-        0.75f,  .25f,   0.0f,
-        -0.75f, 1.75f,  0.0f,
-        -0.75f, 1.75f,  0.0f,
-        0.75f,  .25f,   0.0f, 
-        0.75f,  1.75f,   0.0f,
+        -0.5f, .25f,  0.0f,
+        0.5f,  .25f,   0.0f,
+        -0.5f, 1.75f,  0.0f,
+        -0.5f, 1.75f,  0.0f,
+        0.5f,  .25f,   0.0f, 
+        0.5f,  1.75f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -77,10 +83,28 @@ void GameState::initAssets() {
 	doorDirection = -1;
 	shakeCamera = false;
 	fanShakeDuration = 0.0;
+    ghost_beat_player = false;
+    player_beat_ghost = false;
+    dollGlowDuration = 0.0;
+    dollMoveDuration = 0.0;
+    fanSpinDuration = 0.0;
+    tvStaticDuration = 0.0;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
+    
+    ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
+    playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
+
+    // set up spline pathing for lamp
+//    std::cout << lamp->center.x << ", " << lamp->center.y << ", " << lamp->center.z << std::endl;
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 0.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(1.0f, 1.0f, 1.0f, 1.0f));
+    lamp->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    lamp->animate = true;
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -108,13 +132,13 @@ GameState::GameState(GLFWwindow *window_, bool isGhost_) {
  * Called every frame yo
  */
 void GameState::update() {
-    if (shouldWeReset()) {
-        playerHealth = 1.2;
-    }
-    
+//    if (shouldWeReset()) {
+//        playerHealth = 100.0;
+//    }
     double currTime = glfwGetTime();
     elapsedTime = currTime - prevTime;
     prevTime = currTime;
+    
     
     updateControl(window);
     updateCamDirection(camera);
@@ -134,15 +158,21 @@ void GameState::update() {
 		shakeFan();
 	}
     
+    lamp->step(elapsedTime);
     collectible->step(elapsedTime);
     
+    Actor *teevee = CurrAssets->actorDictionary["tv"];
     if (tvStaticDuration > 0) {
         tvStaticDuration -= elapsedTime;
         if (tvStaticDuration < 0) {
-            Actor *teevee = CurrAssets->actorDictionary["tv"];
-            teevee->material[teevee->tvScreenIndex].ambient[0] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[1] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[2] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 0;
+        }
+        else {
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 255;
         }
     }
     
@@ -155,6 +185,26 @@ void GameState::update() {
     }
     else {
         clocky->direction = vec3(0, 0, 0);
+    }
+    
+    Actor *doll = CurrAssets->actorDictionary["doll"];
+    if (dollGlowDuration > 0)     {
+        dollGlowDuration -= elapsedTime;
+        for (int glowNdx = 0; glowNdx < doll->glowingShapeIndex.size(); glowNdx++) {
+            if (dollGlowDuration > 0) {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 255.0;
+            }
+            else {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 0.0;
+            }
+        }
+    }
+    
+    if (dollMoveDuration > 0) {
+        doll->animate = true;
+    }
+    else {
+        doll->animate = false;
     }
 }
 
@@ -228,7 +278,6 @@ void GameState::lightFlicker() {
 		flickerDirection = 1.0;
 	}
 	attenFactor = std::max(0.0005, attenFactor + flickerDirection * glm::compRand1(0.002f, 0.01f));
-printf("FLICKER IT UP FURRBALL\n");
 
 	flickerDuration = std::max(0.0, (flickerDuration - elapsedTime));
 }
@@ -276,6 +325,8 @@ void GameState::updateHighlightMat() {
 	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
+    
+    playerFOV = hfov;
 }
 
 void GameState::renderShadowBuffer() {
@@ -408,4 +459,15 @@ void GameState::draw() {
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
+    
+    CurrAssets->hudShader->startUsingShader();
+    CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+    
+    if (ghost_beat_player) {
+        ghostWins->drawElement(false);
+    }
+    
+    if (player_beat_ghost) {
+        playerWins->drawElement(false);
+    }
 }

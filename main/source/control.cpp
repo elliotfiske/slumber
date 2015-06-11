@@ -19,6 +19,8 @@ float mouseX, mouseY;
 bool startParalyzed = false, startGhost = false, itemAction = false, \
      itemAltAction = false, zoom = false;
 
+int space_pressed_times = 0;
+
 #define ACCEL 8.0
 #define FRICTION 1.2
 
@@ -73,6 +75,11 @@ void doClick(GLFWwindow* window, int button, int action, int mods) {
         if (coordsOverGhost(mouseX, mouseY) && !startParalyzed && !startGhost) {
             startGhost = true;
         }
+
+        zoom = true;
+    }
+    else {
+    	zoom = false;
     }
 }
 
@@ -178,14 +185,10 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
             itemAltAction = false;
         }
     }
-
-	if (key == GLFW_KEY_SPACE) {
+    
+    if (key == GLFW_KEY_SPACE) {
         if (action == GLFW_PRESS) {
-            zoom = true;
-        }
-        
-        if (action == GLFW_RELEASE) {
-            zoom = false;
+            space_pressed_times++;
         }
     }
     
@@ -198,7 +201,7 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
         sendData(num);
     }
     
-    if (key == GLFW_KEY_R) {
+    if (key == GLFW_KEY_P) {
         shouldReset = true;
     }
     else {
@@ -207,7 +210,9 @@ void handleKeypress(GLFWwindow* window, int key, int scanCode, int action,
 }
 
 bool shouldWeReset() {
-    return shouldReset;
+    bool result = shouldReset;
+    shouldReset = false;
+    return result;
 }
 
 void setupCallbacks(GLFWwindow *window) {
@@ -279,6 +284,10 @@ bool getItemAction() {
 
 bool getItemAltAction() {
 	return itemAltAction;
+}
+
+int numSpaces() {
+    return space_pressed_times;
 }
 
 bool getParalyzedZoom() {

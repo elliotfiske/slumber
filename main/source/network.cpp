@@ -143,6 +143,10 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     if (flag == GHOST_ACTION_CREAK_DOOR) {
         currAction = flag;
     }
+    
+    if (flag == GHOST_ACTION_SLAM_DOOR) {
+        currAction = flag;
+    }
 
     if (flag == GHOST_ACTION_POSSESS_CLOCK) {
         currAction = flag;
@@ -157,6 +161,21 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket) {
     }
     
     if (flag == GHOST_ACTION_EXPLODE_LAMP) {
+        currAction = flag;    }
+    
+    if (flag == GHOST_ACTION_LOST_HORRIBLY) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_GLOW_DOLL) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_MOVE_DOLL) {
+        currAction = flag;
+    }
+    
+    if (flag == GHOST_ACTION_SPIN_FAN) {
         currAction = flag;
     }
     

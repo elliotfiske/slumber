@@ -35,6 +35,7 @@ FBOShader::FBOShader(std::string vertexShaderFile, std::string fragmentShaderFil
 }
 
 void FBOShader::setIntensity(float intensity) {
+
     glUniform1f(intensity_UniformID, intensity);
 }
 

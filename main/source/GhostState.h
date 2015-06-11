@@ -18,9 +18,8 @@ public:
     GhostState(GLFWwindow *window);
     
 protected:
-    BillboardActor *lampText;
+    BillboardActor *lampText, *clockText, *doorText, *dollText, *fanText, *tvText, *windowText;
     float ghostHealth;
-	float playerHealth;
     
     HUDElement *ghostHUD, *ghostBar, *playerBar;
     
@@ -34,6 +33,7 @@ protected:
 	void viewFrustumCulling();
 	void damageGhost();
 	void updateCameraShake();
+	void gainHealth();
 
 	glm::vec3 itemUseBounds;
 };

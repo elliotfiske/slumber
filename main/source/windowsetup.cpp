@@ -19,11 +19,14 @@ GLFWwindow* setupWindow(bool fullscreen) {
     const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
     if (fullscreen) {
-        window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", glfwGetPrimaryMonitor(), NULL);
     }
     else {
-        window = glfwCreateWindow( WINDOW_WIDTH, WINDOW_HEIGHT, "SLUMBER", NULL, NULL);
+        window = glfwCreateWindow( mode->width, mode->height, "SLUMBER", NULL, NULL);
     }
+    
+    set_window_width(mode->width);
+    set_window_height(mode->height);
     
     if(window == NULL){
         fprintf(stderr, "Failed to initialize window\n");

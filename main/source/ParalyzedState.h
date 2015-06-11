@@ -24,12 +24,20 @@ public:
     bool getSensitivity();
 	void checkZoom();
     
+    HUDElement *introText;
+    int numTimesPressedSpace;
+    
+    float timeToShowIntro;
+    
     void tellGhostWhereImLooking();
+    
+    void drawHUD();
 
 protected:
     void checkCollisions();
-    int playerHealth;
     bool playerSensitivity;
+
+    sf::Listener listener;
     
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);

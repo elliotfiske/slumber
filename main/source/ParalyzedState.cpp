@@ -14,17 +14,27 @@
     #include <thread>
 #endif
 
+float fadeInWordsTime = 0;
+
 ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
     playerHealth = 100;
     playerSensitivity = false;
-	FOV = 30.0f;
+	FOV = 27.0f;
 	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
-//    CurrAssets->currFBOShader = 
+    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+//    sf::Listener::setDirection(10,0,0);
+//    CurrAssets->currFBOShader =
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    
+    introText = new HUDElement(RESOURCE_FOLDER + "hud/intro_text.png", 0.5, 0.5);
+    
+    numTimesPressedSpace = 0;
+    
+    timeToShowIntro = 10.0;
     
 #ifdef THREADS
     thread *t1;
@@ -41,9 +51,9 @@ void ParalyzedState::checkCollisions() {
     comboMatrix = perspectiveMat * viewMat * collectible->modelMat;
     vf->extractPlanes(comboMatrix);
     
-    if (vf->gotLight(collectible->center, 5.0)) {
+    if (vf->gotLight(collectible->center, 5.0) && !ghost_beat_player) {
         collectible->collected();
-        increaseHealth(20);
+        increaseHealth(10);
     }
 }
 
@@ -68,15 +78,17 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
 
 void ParalyzedState::checkZoom() {
 	if (getParalyzedZoom() == true) {
-		FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
+		float diff = 15.0f - FOV;
+		FOV += diff / 3;
+	//	FOV = fmaxf(15.0f, FOV - elapsedTime * 15.0f * 4.0f);
 		updatePerspectiveMat();
 	}
-	else if (FOV < 30.0f) {
-		FOV = fminf(30.0f, FOV + elapsedTime * 15.0f * 4.0);
+	else if (FOV < 27.0f) {
+		FOV = fminf(27.0f, FOV + elapsedTime * 15.0f * 4.0);
 		updatePerspectiveMat();
 	}
 
-	float redness = (30.0f - FOV) / (30.0f - 15.0f);
+	float redness = (27.0f - FOV) / (27.0f - 15.0f);
     CurrAssets->currShader->setDarknessModifier(redness);
 }
 
@@ -85,26 +97,31 @@ bool creakOne = true;
 
 void ParalyzedState::update() {
     GameState::update();
+    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     
     hurtCooldown -= 0.17;
-
+    timeToShowIntro -= 0.02;
+    if (getParalyzedZoom()) {
+        timeToShowIntro -= 0.1;
+    }
+    
+//    CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", vec3(10, 0, 0)); // TODO: DELETE
 	checkZoom();
 
     int currAction = actionReady();
     if (currAction) {
-printf("DOING ACTION %d\n", currAction);
         if (currAction == GHOST_ACTION_CREAK_DOOR) {
             doorToggle = true;
             
             string two = creakOne ? "" : "2";
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav", door->center);
             creakOne = !creakOne;
             
             checkHurt(door, 10);
         }
         
         if (currAction == GHOST_ACTION_FLICKER_LAMP) {
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav", lamp->center);
             
             flickerDuration = 2.0;
             checkHurt(lamp, 20);
@@ -112,53 +129,83 @@ printf("DOING ACTION %d\n", currAction);
         
         if (currAction == GHOST_ACTION_POSSESS_CLOCK) {
             clockShakeDuration = 3.0;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", clock->center);
             
             checkHurt(clock, 15);
         }
         
         if (currAction == GHOST_ACTION_TV_STATIC) {
             tvStaticDuration = 1.8;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             checkHurt(tv, 20);
         }
         
         if (currAction == GHOST_ACTION_EXPLODE_LAMP) {
             explodeDuration = 6.0;
             lampExplode = true;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav", vec3(50, 0, -70));
             checkHurt(lamp, 25);
         }
-
-		if (currAction == GHOST_ACTION_SLAM_DOOR) {
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav");
-            
-			doorSlam = true;
-			checkHurt(door, 25);
+        
+        if (currAction == GHOST_ACTION_LOST_HORRIBLY) {
+            player_beat_ghost = true;
         }
-
-		if (currAction == GHOST_ACTION_SPIN_FAN) {
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav");
+        
+        if (currAction == GHOST_ACTION_SLAM_DOOR) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav", door->center);
             
-			fanSpinDuration = 9.0;
-			checkHurt(fan, 10);
+            doorSlam = true;
+            checkHurt(door, 25);
+        }
+        
+        if (currAction == GHOST_ACTION_SPIN_FAN) {
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
+            
+            fanSpinDuration = 9.0;
+            checkHurt(fan, 10);
+        }
+        
+        if (currAction == GHOST_ACTION_GLOW_DOLL) {
+            dollGlowDuration = 3.0;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_sing.m4a", tv->center);
         }
 
 		if (currAction == GHOST_ACTION_SHORT_FAN) {
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fan->center);
             
 			fanShakeDuration = 3.0;
 			checkHurt(fan, 15);
         }
     }
     
-//    Position ghostPos = getGhostPosition();
-//    enemy->center.x = ghostPos.x;
-//    enemy->center.y = ghostPos.y;
-//    enemy->center.z = ghostPos.z;
+    int newSpaces = numSpaces();
+    if (newSpaces > numTimesPressedSpace) {
+        numTimesPressedSpace = newSpaces;
+        
+        fadeInWordsTime = 100.0;
+    }
+    
+    fadeInWordsTime -= 1.0;
+    if (fadeInWordsTime < 0) {
+        fadeInWordsTime = 0;
+    }
+    
+    Position ghostPos = getGhostPosition();
+    enemy->center.x = ghostPos.x;
+    enemy->center.y = ghostPos.y;
+    enemy->center.z = ghostPos.z;
+    
     tellGhostWhereImLooking();
     float darkness = (100 - playerHealth) * 4 / 100;
     CurrAssets->currShader->setIntensity(darkness);
+    
+    
+    if (shouldWeReset()) {
+        playerHealth = 100.0;
+    printf("resetting lol\n"); 
+        player_beat_ghost = false;
+        ghost_beat_player = false;
+    }
 }
 
 
@@ -192,6 +239,10 @@ void ParalyzedState::renderScene(bool isMirror) {
     
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
+    if (playerHealth < 0.0) {
+        ghost_beat_player = true;
+    }
+
     if (lampExplode) {
         lightExplode();
     }
@@ -207,10 +258,15 @@ void ParalyzedState::renderScene(bool isMirror) {
     bed->draw(light);
     room->draw(light);
     clock->draw(light);
-    tv->draw(light, true);
+    tv->draw(light, tvStaticDuration > 0.0);
     lamp->draw(light);
     door->draw(light);
     fan->draw(light);
+    
+    nightstand->draw(light);
+    doll->draw(light);
+    mirror->draw(light);
+    chair->draw(light);
     
     shadowfbo->unbindTexture();
 
@@ -218,8 +274,9 @@ void ParalyzedState::renderScene(bool isMirror) {
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
-    collectible->draw(light);
-    //clock->draw(light);
+    if (FOV < 26.0) {
+    	enemy->draw(light);
+    }
     
    CurrAssets->reflectionShader->startUsingShader();
    CurrAssets->reflectionShader->setViewMatrix(viewMat);
@@ -241,7 +298,7 @@ void ParalyzedState::increaseHealth(int healthValue){
     }
 }
 void ParalyzedState::lowerHealth(int severity){
-   if(playerSensitivity = false){
+   if(playerSensitivity == false) {
       playerHealth -= severity;
    }
    else {
@@ -259,6 +316,16 @@ int ParalyzedState::getHealth(){
    return playerHealth;
 }
     
-bool ParalyzedState::getSensitivity(){
+bool ParalyzedState::getSensitivity() {
    return playerSensitivity;
+}
+
+void ParalyzedState::drawHUD() {
+    GameState::drawHUD();
+    
+    if (timeToShowIntro > 0.0) {
+        introText->drawElement(false);
+    }
+    
+    CurrAssets->hudShader->setPercentShown(1000.0f);
 }

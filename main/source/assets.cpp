@@ -15,6 +15,8 @@
 
 using namespace std;
 
+vec3 pos;
+
 /**
  * Init all the shapes, materials (TODO), and shaders we need
  *  for our game
@@ -23,6 +25,7 @@ Assets::Assets() {
 
     billboardShader   = new BillboardShader("Billboard_Vert.glsl", "Billboard_Frag.glsl");
     hudShader         = new HUDShader("HUD_Vert.glsl", "HUD_Frag.glsl");
+    
     lightingShader    = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag.glsl");
     ghostLightingShader = new LightingShader("Lighting_Vert.glsl", "Lighting_Frag_Ghost.glsl");
     
@@ -185,13 +188,14 @@ bool killSound = false;
 
 
 void doPlay() {
-//    if (soundBuffers.find(filename) == soundBuffers.end())
-//        this->loadSoundBuffer(filename);
+    //    if (soundBuffers.find(filename) == soundBuffers.end())
+    //        this->loadSoundBuffer(filename);
     
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
 //    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.setRelativeToListener(true);
     sound.play();
     killSound = false;
     
@@ -199,13 +203,15 @@ void doPlay() {
 }
 
 
-void Assets::play(string filename_, vec3 pos) {
+void Assets::play(string filename_, vec3 position) {
 #ifdef THREADS
-
+    
     filename = filename_;
     killSound = true;
     wut = new thread(doPlay);
 
+    
+    pos = position;
 #endif
 }
 
@@ -233,7 +239,11 @@ void Assets::loadShape(string filename, Actor *actor) {
         // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
         if (shapes[ndx].name == "SCREEN") {
             printf("Gotcha\n");
-            actor->tvScreenIndex = ndx;
+            actor->glowingShapeIndex.push_back(ndx);
+        }
+        
+        if (shapes[ndx].name == "DOLLEYE" || shapes[ndx].name == "DOLLEYE1" || shapes[ndx].name == "DOLLMOUTH") {
+            actor->glowingShapeIndex.push_back(ndx);
         }
     }
     
