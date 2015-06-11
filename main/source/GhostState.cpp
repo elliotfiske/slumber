@@ -24,6 +24,8 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
 
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
     
@@ -160,6 +162,9 @@ void GhostState::update() {
     viewFrustumCulling();
 
 	if (shakeCamera) updateCameraShake();
+
+	sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+	sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
 
 	glm::vec3 lamppos  = CurrAssets->actorDictionary["lamp-table"]->center;
 	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;

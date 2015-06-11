@@ -38,7 +38,6 @@ protected:
     bool playerSensitivity;
 
     sf::Listener listener;
-    
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);
 };

@@ -61,12 +61,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.5f, .25f,  0.0f,
-        0.5f,  .25f,   0.0f,
-        -0.5f, 1.75f,  0.0f,
-        -0.5f, 1.75f,  0.0f,
-        0.5f,  .25f,   0.0f, 
-        0.5f,  1.75f,   0.0f,
+        -0.2f, 0.2f,  0.0f,
+        0.4f,  0.2f,   0.0f,
+        -0.2f, 1.1f,  0.0f,
+        -0.2f, 1.1f,  0.0f,
+        0.4f,  0.2f,   0.0f, 
+        0.4f,  1.1f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -211,8 +211,11 @@ void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
+    vec3 mirrorDirection = camera->direction;
+    mirrorDirection.y = -mirrorDirection.y;
+    mirrorDirection.z = -mirrorDirection.z;
     mat4 mirrorCam = lookAt(mirrorCamera->center, mirrorCamera->center +
-                                mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
+                                mirrorDirection, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
     mirrorViewMat = mirrorCam;

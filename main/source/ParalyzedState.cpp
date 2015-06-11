@@ -23,9 +23,6 @@ ParalyzedState::ParalyzedState(GLFWwindow *window): GameState(window, false) {
 	updatePerspectiveMat();
     camera = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     mirrorCamera = new Camera(vec3(0.0, -2.2, -80.0), vec3(0.0, 0.0, 1.0), 0.0, 1.0);
-    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
-//    sf::Listener::setDirection(10,0,0);
-//    CurrAssets->currFBOShader =
 	CurrAssets->lightingShader = CurrAssets->lightingShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
@@ -233,7 +230,7 @@ void ParalyzedState::renderScene(bool isMirror) {
     updateViewMat();
 
     CurrAssets->lightingShader->startUsingShader();
-    CurrAssets->lightingShader->setViewMatrix(viewMat);
+    CurrAssets->lightingShader->setViewMatrix(isMirror ? mirrorViewMat : viewMat);
     CurrAssets->lightingShader->setProjectionMatrix(perspectiveMat);
 	CurrAssets->lightingShader->setHighlightVP(highlightVPMat);
     
