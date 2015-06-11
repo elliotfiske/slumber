@@ -480,8 +480,7 @@ void GameState::drawHUD() {
         resetCooldown -= 0.17;
         ghostWins->drawElement(false);
     }
-    
-    if (player_beat_ghost) {
+    else if (player_beat_ghost) {
         resetCooldown -= 0.17;
         playerWins->drawElement(false);
     }

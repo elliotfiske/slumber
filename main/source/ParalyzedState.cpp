@@ -99,7 +99,7 @@ bool creakOne = true;
 
 void ParalyzedState::update() {
     GameState::update();
-    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
+//    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     
     hurtCooldown -= 0.17;
     timeToShowIntro -= 0.02;

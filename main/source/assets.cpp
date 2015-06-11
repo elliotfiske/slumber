@@ -198,11 +198,11 @@ void doPlay() {
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
-//    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
-    sound.setRelativeToListener(true);
+    sound.setPosition(sf::Vector3f(0, 0, 0));
+//    sound.setRelativeToListener(true);
     updateCamDirection(cam);
     float volume = cam->direction.x - pos.x;
-    sound.setVolume(100.0f/abs(1-volume));
+    sound.setVolume(100.0f);
     
     sound.play();
     killSound = false;

@@ -24,8 +24,8 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
 
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
-    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
-    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
+//    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+//    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
     
@@ -149,7 +149,9 @@ void GhostState::updateCameraShake() {
 	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 
-	ghostHealth = fmaxf(-10.0, ghostHealth - 4.0 * elapsedTime);
+	ghostHealth = fmaxf(-10.0, ghostHealth - 12.0 * elapsedTime);
+    
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/bugs2.wav", vec3(0));
 }
 
 void GhostState::update() {
@@ -251,6 +253,7 @@ void GhostState::update() {
         
         if (getItemAltAction()) {
             dollMoveDuration = 3.9;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", doll->center);
             sendGhostAction(GHOST_ACTION_MOVE_DOLL);
         }
     }
