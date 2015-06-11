@@ -21,7 +21,6 @@ public:
     float velocityScalar;
     BoundingBox boxes[NUM_SHAPES];
     
-    int numShapes;
     float scale;
     
     tinyobj::material_t material[NUM_SHAPES];

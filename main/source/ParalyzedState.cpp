@@ -57,7 +57,8 @@ void ParalyzedState::checkHurt(Actor *danger, int howMuch) {
     comboMatrix = perspectiveMat * GameState::viewMat * danger->modelMat;
     vf->extractPlanes(comboMatrix);
     
-    int inView = vf->sphereIsInside(danger->center, danger->boundSphereRad);
+    // TODO: larger bounding box
+    int inView = vf->sphereIsInside(danger->center, glm::length(danger->boxes[0].size / 2.0f));
     if (inView != OUTSIDE) {
         lowerHealth(howMuch);
         hurtCooldown = 5.0;
