@@ -39,13 +39,13 @@ int tcpSetup() {
     /* bind the name (address) to a port */
     if (bind(server_socket, (struct sockaddr *) &local, sizeof(local)) < 0) {
         perror("bind call");
-        exit(-1);
+//        exit(-1);
     }
     
     //get the port name and print it out
     if (getsockname(server_socket, (struct sockaddr*) &local, &len) < 0) {
         perror("getsockname call");
-        exit(-1);
+//        exit(-1);
     }
     
     printf("Server is using port %d\n", ntohs(local.sin_port));

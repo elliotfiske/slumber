@@ -6,13 +6,15 @@
 #include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include "titlestate.h"
 #include <iostream>
 
 using namespace glm;
 
+TitleState *resetState;
+
 GameState* GameState::newState() {
-    printf("THIS SHOULD NOT BE CALLED LIKE EVER");
-    return new GameState(window, false);
+    return resetState;
 }
 
 void GameState::initAssets() {
@@ -463,8 +465,10 @@ void GameState::draw() {
     glfwPollEvents();
     
     checkCollisions();
+    
 }
 
+float resetCooldown = 5.0;
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
@@ -473,10 +477,19 @@ void GameState::drawHUD() {
     CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     
     if (ghost_beat_player) {
+        resetCooldown -= 0.17;
         ghostWins->drawElement(false);
     }
     
     if (player_beat_ghost) {
+        resetCooldown -= 0.17;
         playerWins->drawElement(false);
     }
+    
+    if (resetCooldown < 0) {
+//        resetState = new TitleState(window);
+//        shouldSwitch = true;
+    }
 }
+
+
