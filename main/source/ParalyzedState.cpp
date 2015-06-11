@@ -220,9 +220,8 @@ void ParalyzedState::renderScene(bool isMirror) {
     shadowfbo->bindTexture(CurrAssets->lightingShader->shadowMap_ID, 1);
     
     if (playerHealth < 0.0) {
-	ghost_beat_player = true;
+        ghost_beat_player = true;
     }
-
 
     if (lampExplode) {
         lightExplode();
