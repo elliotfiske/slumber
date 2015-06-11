@@ -18,7 +18,7 @@ public:
     GhostState(GLFWwindow *window);
     
 protected:
-    BillboardActor *lampText;
+    BillboardActor *lampText, *clockText, *doorText, *dollText, *fanText, *tvText, *windowText;
     float ghostHealth;
     
     HUDElement *ghostHUD, *ghostBar, *playerBar;
