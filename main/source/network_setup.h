@@ -18,4 +18,4 @@
 int tcpSetup();
 int tcpClientSetup(char *host_name, char *port);
 
-#endif /* defined(__slumber__network_setup__) */
+#endif /* defined(__slumber__netwt puork_setup__) */
