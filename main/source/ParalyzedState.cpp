@@ -243,7 +243,6 @@ void ParalyzedState::renderScene(bool isMirror) {
     lamp->draw(light);
     door->draw(light);
     fan->draw(light);
-
     
     shadowfbo->unbindTexture();
 
@@ -251,9 +250,9 @@ void ParalyzedState::renderScene(bool isMirror) {
     CurrAssets->collectibleShader->setViewMatrix(viewMat);
     CurrAssets->collectibleShader->setProjectionMatrix(perspectiveMat);
     
-    if (FOV < 30.0) {
+//    if (FOV < 30.0) {
     	enemy->draw(light);
-    }
+//    }
     
    CurrAssets->reflectionShader->startUsingShader();
    CurrAssets->reflectionShader->setViewMatrix(viewMat);
