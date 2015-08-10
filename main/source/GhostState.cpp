@@ -18,14 +18,26 @@
 GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     ghostHealth = 100.0f;
     playerHealth = 100.0f;
-	 camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+
+	FOV = 35.0f;
+	updatePerspectiveMat();
+    camera = new Camera(vec3(0.0, 10.0, -6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
+
     mirrorCamera = new Camera(vec3(13.5, 0.0, -85.0), vec3(0.0, 1.0, 0.0), 0.0, 0.0);
+//    sf::Listener::setPosition(camera->center.x, camera->center.y, camera->center.z);
+//    sf::Listener::setDirection(camera->direction.x, camera->direction.y, camera->direction.z);
     CurrAssets->lightingShader = CurrAssets->ghostLightingShader;
     CurrAssets->currFBOShader = CurrAssets->ghostShader;
     
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     
     lampText = CurrAssets->billboardDictionary["lamp_tooltip.png"];
+    clockText = CurrAssets->billboardDictionary["clock_tooltip.png"];
+    doorText = CurrAssets->billboardDictionary["door_tooltip.png"];
+    dollText = CurrAssets->billboardDictionary["doll_tooltip.png"];
+    fanText = CurrAssets->billboardDictionary["fan_tooltip.png"];
+    tvText = CurrAssets->billboardDictionary["tv_tooltip.png"];
+    windowText = CurrAssets->billboardDictionary["window_tooltip.png"];
     
     ghostHUD = new HUDElement(RESOURCE_FOLDER + "hud/ghost_hud.png", 0.5, 0.5);
     ghostBar = new HUDElement(RESOURCE_FOLDER + "hud/ghost_health_hud.png", 0.5, 0.5);
@@ -37,6 +49,7 @@ GhostState::GhostState(GLFWwindow *window) : GameState(window, true) {
     t1 = new thread(doGhostNetworking);
 #endif
 	itemUseBounds = glm::vec3(30.0f, 30.0f, 30.0f);
+    shakeCamera = false;
 }
 
 void GhostState::checkCollisions() {
@@ -93,6 +106,12 @@ void GhostState::renderScene(bool isMirror) {
     CurrAssets->billboardShader->setProjectionMatrix(perspectiveMat);
 
     lampText->draw(light);
+    clockText->draw(light);
+    doorText->draw(light);
+    dollText->draw(light);
+    fanText->draw(light);
+    tvText->draw(light);
+//    windowText->draw(light);
     
 //	CurrAssets->collectibleShader->startUsingShader();
 //	CurrAssets->collectibleShader->setViewMatrix(viewMat);
@@ -130,14 +149,12 @@ void GhostState::updateCameraShake() {
 	camera->direction.x += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 	camera->direction.y += glm::compRand1(-0.5f, 0.5f) * elapsedTime;
 
-	ghostHealth = fmaxf(-10.0, ghostHealth - 10.0 * elapsedTime);
+	ghostHealth = fmaxf(-10.0, ghostHealth - 12.0 * elapsedTime);
+    
+    CurrAssets->play(RESOURCE_FOLDER + "sounds/bugs2.wav", vec3(0));
 }
 
 void GhostState::update() {
-    
-    if (!player_beat_ghost) {
-        ghostHealth += 0.027;
-    }
     
     if (ghostHealth > 100.0) {
         ghostHealth = 100.;
@@ -152,6 +169,8 @@ void GhostState::update() {
 	glm::vec3 doorpos  = CurrAssets->actorDictionary["door"]->center;
     glm::vec3 clockpos = CurrAssets->actorDictionary["clock"]->center;
     glm::vec3 tvpos    = CurrAssets->actorDictionary["tv"]->center;
+	glm::vec3 fanpos   = CurrAssets->actorDictionary["fan"]->center;
+    glm::vec3 dollpos  = CurrAssets->actorDictionary["doll"]->center;
 
 	if (checkBounds(lamppos - itemUseBounds, lamppos + itemUseBounds)) { /// Lamp action
 		// Set billboard here!!
@@ -160,7 +179,7 @@ void GhostState::update() {
 			flickerDuration = 2.0;
             sendGhostAction(GHOST_ACTION_FLICKER_LAMP);
             
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/heartbeat.wav", lamp->center);
 		}
 
 		if (getItemAltAction()) {
@@ -168,7 +187,7 @@ void GhostState::update() {
 			explodeDuration = 6.0;
 			sendGhostAction(GHOST_ACTION_EXPLODE_LAMP);
 
-			CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav");
+			CurrAssets->play(RESOURCE_FOLDER + "sounds/glass-shatter.wav", vec3(50, 0, -70));
 		}
 	}
 	else if (checkBounds(doorpos - itemUseBounds, doorpos + itemUseBounds)) { /// Door action
@@ -178,11 +197,31 @@ void GhostState::update() {
 			doorToggle = true;
             sendGhostAction(GHOST_ACTION_CREAK_DOOR);
             string two = creak1 ? "" : "2";
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/new_creak" + two + ".wav", door->center);
             creak1 = !creak1;
 		}
 
-		if (getItemAltAction()) {
+		if (getItemAltAction()) { // Slam door
+			doorSlam = true;
+            sendGhostAction(GHOST_ACTION_SLAM_DOOR);
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/door-slam.wav", door->center);
+		}
+	}
+	else if (checkBounds(fanpos - itemUseBounds, fanpos + itemUseBounds)) { /// Fan action
+		// Set billboard here!!
+
+		if (getItemAction()) { // Spin the fan
+			fanSpinDuration = 9.0;
+            sendGhostAction(GHOST_ACTION_SPIN_FAN);
+            
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/spinning.wav", fanpos);
+		}
+
+		if (getItemAltAction()) { // Short the fan
+			fanShakeDuration = 3.0;
+            sendGhostAction(GHOST_ACTION_SHORT_FAN);
+            
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", fanpos);
 		}
 	}
 	else if (checkBounds(clockpos - itemUseBounds, clockpos + itemUseBounds)) { /// Clock action
@@ -191,15 +230,31 @@ void GhostState::update() {
 		if (getItemAction()) { // Shake it
             clockShakeDuration = 3.0;
             sendGhostAction(GHOST_ACTION_POSSESS_CLOCK);
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/thump1.wav", clock->center);
 		}
 	}
     else if (checkBounds(tvpos - itemUseBounds, tvpos + itemUseBounds)) {
         
         if (getItemAction()) {
             tvStaticDuration = 1.8;
-            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav");
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/tv_static.wav", tv->center);
             sendGhostAction(GHOST_ACTION_TV_STATIC);
+        }
+    }
+    else if (checkBounds(dollpos - itemUseBounds, dollpos + itemUseBounds)) {
+        
+        if (getItemAction()) {
+            dollGlowDuration = 3.0;
+
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", doll->center);
+            // TODO: laugh?
+            sendGhostAction(GHOST_ACTION_GLOW_DOLL);
+        }
+        
+        if (getItemAltAction()) {
+            dollMoveDuration = 3.9;
+            CurrAssets->play(RESOURCE_FOLDER + "sounds/doll_laugh.wav", doll->center);
+            sendGhostAction(GHOST_ACTION_MOVE_DOLL);
         }
     }
     
@@ -224,15 +279,19 @@ void GhostState::update() {
 	tellClientWhereGhostIs();
 }
 
+float start_cooldown = 20;
+
 // check to see if ghost in inside the player's view 
 void GhostState::viewFrustumCulling(){
+    start_cooldown -= 0.17;
+    
     mat4 comboMatrix;
     
     comboMatrix = highlightVPMat * glm::translate(mat4(1.0), vec3(0.0, 0.0, 6.0));
     vf->extractPlanes(comboMatrix);
     
     int inView = vf->sphereIsInside(camera->center, 0.1f);
-    if (inView != OUTSIDE) {
+    if (inView != OUTSIDE && playerFOV < 26.0 && start_cooldown < 0) {
 		shakeCamera = true;
     }
 	else {
@@ -241,6 +300,11 @@ void GhostState::viewFrustumCulling(){
 }
 
 void GhostState::damageGhost() {
+
+}
+
+
+void GhostState::gainHealth() {
 
 }
 

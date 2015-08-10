@@ -1,4 +1,5 @@
 #include "windowsetup.hpp"
+#include "GLSL.h"
 
 void doHints() {
     glfwDefaultWindowHints();

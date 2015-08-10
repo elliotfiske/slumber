@@ -8,12 +8,17 @@
 #include <fstream>
 #include <cassert>
 #include <iostream>
+#include <cmath>
+#include "control.hpp"
 
 #ifdef THREADS
     #include <thread>
 #endif
 
 using namespace std;
+
+vec3 pos;
+Camera *cam;
 
 /**
  * Init all the shapes, materials (TODO), and shaders we need
@@ -37,6 +42,7 @@ Assets::Assets() {
     shadowShader      = new ShadowShader("Shadow_Vert.glsl", "Shadow_Frag.glsl");
     reflectionShader  = new ReflectShader("Reflection_Vert.glsl", "Reflection_Frag.glsl");
     
+    cam = new Camera(vec3(0.0, 0.0, 6.0), vec3(0.0, 0.0, -1.0), 0.0, 1.0);
     string levelDataName = RESOURCE_FOLDER + string("level.txt");
     readLevelData(levelDataName);
     
@@ -186,13 +192,18 @@ bool killSound = false;
 
 
 void doPlay() {
-//    if (soundBuffers.find(filename) == soundBuffers.end())
-//        this->loadSoundBuffer(filename);
+    //    if (soundBuffers.find(filename) == soundBuffers.end())
+    //        this->loadSoundBuffer(filename);
     
     sf::SoundBuffer buf = loadSoundBuffer(filename);
     sf::Sound sound(buf);
     
-//    sound.setPosition(sf::Vector3f(pos.x, pos.y, pos.z));
+    sound.setPosition(sf::Vector3f(0, 0, 0));
+//    sound.setRelativeToListener(true);
+    updateCamDirection(cam);
+    float volume = cam->direction.x - pos.x;
+    sound.setVolume(100.0f);
+    
     sound.play();
     killSound = false;
     
@@ -200,13 +211,15 @@ void doPlay() {
 }
 
 
-void Assets::play(string filename_, vec3 pos) {
+void Assets::play(string filename_, vec3 position) {
 #ifdef THREADS
-
+    
     filename = filename_;
     killSound = true;
     wut = new thread(doPlay);
 
+    
+    pos = position;
 #endif
 }
 
@@ -234,7 +247,11 @@ void Assets::loadShape(string filename, Actor *actor) {
         // HACKITY HACK HACK: grab the tv screen so we can apply the special static texture to it
         if (shapes[ndx].name == "SCREEN") {
             printf("Gotcha\n");
-            actor->tvScreenIndex = ndx;
+            actor->glowingShapeIndex.push_back(ndx);
+        }
+        
+        if (shapes[ndx].name == "DOLLEYE" || shapes[ndx].name == "DOLLEYE1" || shapes[ndx].name == "DOLLMOUTH") {
+            actor->glowingShapeIndex.push_back(ndx);
         }
     }
     

@@ -7,6 +7,7 @@ uniform vec2 resolution;
 varying vec2 UV;
 uniform sampler2D uTex;
 uniform float intensity;
+uniform float darknessMod; // used in the darkening shader
 
 void main() {
     vec2 modifiedUV = UV;

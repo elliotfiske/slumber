@@ -10,6 +10,7 @@ uniform float time;
 varying vec2 UV;
 uniform sampler2D uTex;
 uniform float intensity;
+uniform float darknessMod; // used in the darkening shader
 
 vec2 wobble() {
     vec2 modifiedUV = UV;

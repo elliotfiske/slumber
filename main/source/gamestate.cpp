@@ -6,13 +6,15 @@
 #include "glm/gtx/random.hpp"
 #include "control.hpp"
 #include "network.h"
+#include "titlestate.h"
+#include <iostream>
 
 using namespace glm;
 
+TitleState *resetState;
 
 GameState* GameState::newState() {
-    printf("THIS SHOULD NOT BE CALLED LIKE EVER");
-    return new GameState(window, false);
+    return resetState;
 }
 
 void GameState::initAssets() {
@@ -61,12 +63,12 @@ void GameState::initAssets() {
     };
     
     static const GLfloat g_quad_vertex_buffer_data_MIRROR[] = {
-        -0.75f, .25f,  0.0f,
-        0.75f,  .25f,   0.0f,
-        -0.75f, 1.75f,  0.0f,
-        -0.75f, 1.75f,  0.0f,
-        0.75f,  .25f,   0.0f, 
-        0.75f,  1.75f,   0.0f,
+        -0.2f, 0.2f,  0.0f,
+        0.4f,  0.2f,   0.0f,
+        -0.2f, 1.1f,  0.0f,
+        -0.2f, 1.1f,  0.0f,
+        0.4f,  0.2f,   0.0f, 
+        0.4f,  1.1f,   0.0f,
     };
 
     glGenBuffers(1, &quad_vertexbuffer);
@@ -77,20 +79,35 @@ void GameState::initAssets() {
 	flickerDirection = 1.0;
 	attenFactor = 0.001;
 	doorToggle = false;
+	doorSlam = false;
 	explodeDuration = 0.0;
 	lampExplode = false;
 	doorDirection = -1;
 	shakeCamera = false;
+	fanShakeDuration = 0.0;
     ghost_beat_player = false;
     player_beat_ghost = false;
+    dollGlowDuration = 0.0;
+    dollMoveDuration = 0.0;
+    fanSpinDuration = 0.0;
+    tvStaticDuration = 0.0;
+	darkness = 0.0;
+	redness = 0.0;
     
     glGenBuffers(1, &quad_vertexbuffer_mirror);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer_mirror);
     glBufferData(GL_ARRAY_BUFFER, sizeof(g_quad_vertex_buffer_data_MIRROR), g_quad_vertex_buffer_data_MIRROR, GL_STATIC_DRAW);
     
-    
     ghostWins = new HUDElement(RESOURCE_FOLDER + "hud/ghost_wins.png", 0.5, 0.5);
     playerWins = new HUDElement(RESOURCE_FOLDER + "hud/player_wins.png", 0.5, 0.5);
+
+    // set up spline pathing for lamp
+//    std::cout << lamp->center.x << ", " << lamp->center.y << ", " << lamp->center.z << std::endl;
+    doll->cps.push_back(vec4(0.0f, 0.0f, 0.0f, 1.0f));
+    doll->cps.push_back(vec4(10.0f, 3.0f, -3.0f, 1.0f));
+    doll->cps.push_back(vec4(20.0f, 0.0f, -6.0f, 1.0f));
+    doll->cps.push_back(vec4(30.0f, -3.0f, 0.0f, 1.0f));
+    doll->cps.push_back(vec4(40.0f, -5.0f, 0.0f, 1.0f));
 }
 
 GameState::GameState(GLFWwindow *window_, bool isGhost_) {
@@ -129,19 +146,37 @@ void GameState::update() {
     updateControl(window);
     updateCamDirection(camera);
 
+	// interaction updates
 	if (doorToggle) {
 		updateDoorSwing();
 	}
+	if (doorSlam) {
+		updateDoorSlam();
+	}
+	if (fanSpinDuration > 0.0f) {
+		spinFan();
+	}
+	if (fanShakeDuration > 0.0f) {
+		std::cout << "shake fan" << std::endl;
+		shakeFan();
+	}
     
+    lamp->step(elapsedTime);
     collectible->step(elapsedTime);
+    doll->step(elapsedTime);
     
+    Actor *teevee = CurrAssets->actorDictionary["tv"];
     if (tvStaticDuration > 0) {
         tvStaticDuration -= elapsedTime;
         if (tvStaticDuration < 0) {
-            Actor *teevee = CurrAssets->actorDictionary["tv"];
-            teevee->material[teevee->tvScreenIndex].ambient[0] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[1] = 0;
-            teevee->material[teevee->tvScreenIndex].ambient[2] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 0;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 0;
+        }
+        else {
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[0] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[1] = 255;
+            teevee->material[teevee->glowingShapeIndex[0]].ambient[2] = 255;
         }
     }
     
@@ -155,6 +190,27 @@ void GameState::update() {
     else {
         clocky->direction = vec3(0, 0, 0);
     }
+    
+    Actor *doll = CurrAssets->actorDictionary["doll"];
+    if (dollGlowDuration > 0)     {
+        dollGlowDuration -= elapsedTime;
+        for (int glowNdx = 0; glowNdx < doll->glowingShapeIndex.size(); glowNdx++) {
+            if (dollGlowDuration > 0) {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 255.0;
+            }
+            else {
+                doll->material[doll->glowingShapeIndex[glowNdx]].ambient[0] = 0.0;
+            }
+        }
+    }
+    
+    if (dollMoveDuration > 0) {
+        dollMoveDuration -= elapsedTime;
+        doll->animate = true;
+    }
+    else {
+        doll->animate = false;
+    }
 }
 
 /**
@@ -165,8 +221,11 @@ void GameState::updateViewMat() {
     mat4 cam = lookAt(camera->center, camera->center
                                 + camera->direction, vec3(0.0, 1.0, 0.0));
     
+    vec3 mirrorDirection = camera->direction;
+    mirrorDirection.y = -mirrorDirection.y;
+    mirrorDirection.z = -mirrorDirection.z;
     mat4 mirrorCam = lookAt(mirrorCamera->center, mirrorCamera->center +
-                                mirrorCamera->direction, vec3(0.0, 1.0, 0.0));
+                                mirrorDirection, vec3(0.0, 1.0, 0.0));
     
     viewMat = cam;
     mirrorViewMat = mirrorCam;
@@ -174,7 +233,7 @@ void GameState::updateViewMat() {
 }
 
 void GameState::updateDoorSwing() {
-	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 0.25f;
+	CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 30.0f * elapsedTime * 0.30f;
     if (doorDirection > 0) {
 		if (CurrAssets->actorDictionary["door"]->direction.y >= -10) {
 			doorToggle = false;
@@ -186,6 +245,36 @@ void GameState::updateDoorSwing() {
 			doorToggle = false;
 			doorDirection = 1;
 		}
+	}
+}
+
+void GameState::updateDoorSlam() {
+    if (CurrAssets->actorDictionary["door"]->direction.y >= 0.0f) {
+		CurrAssets->actorDictionary["door"]->direction.y = 0.0f;
+		doorSlam = false;
+		doorDirection = -1;
+	}
+	else {
+		doorDirection = 1;
+		CurrAssets->actorDictionary["door"]->direction.y += doorDirection * 200.0f * elapsedTime;
+	}
+}
+
+void GameState::spinFan() {
+	CurrAssets->actorDictionary["fan"]->direction.y += 150.0f * elapsedTime;
+	fanSpinDuration -= elapsedTime;
+}
+
+void GameState::shakeFan() {
+    Actor *fanny = CurrAssets->actorDictionary["fan"];
+	fanShakeDuration -= elapsedTime;
+	if (fanShakeDuration <= 0.0f) {
+		fanny->direction = vec3(0, 0, 0);
+	}
+	else {
+		fanny->direction.x = glm::linearRand(-0.3, 0.3);
+		fanny->direction.y = glm::linearRand(-0.3, 0.3);
+		fanny->direction.z = glm::linearRand(-0.3, 0.3);
 	}
 }
 
@@ -218,14 +307,14 @@ void GameState::lightExplode() {
  *  matrix
  */
 void GameState::updatePerspectiveMat() {
-    mat4 Projection = perspective(35.0f, (float) WINDOW_WIDTH
+    mat4 Projection = perspective(FOV, (float) WINDOW_WIDTH
                                             / WINDOW_HEIGHT, 0.1f, 200.f);
     perspectiveMat = Projection;
 }
 
 void GameState::updateHighlightMat() {
     Position playerLook = getPlayerLook();
-	float yaw = playerLook.y, pitch = playerLook.x;
+	float yaw = playerLook.y, pitch = playerLook.x, hfov = playerLook.z;
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 
     
@@ -241,9 +330,11 @@ void GameState::updateHighlightMat() {
 	glm::mat4 V = glm::inverse(Transform);
     
     // HACKY HACK HACK
-	mat4 P = perspective(35.0f, (float) (1920.0
+	mat4 P = perspective(hfov, (float) (1920.0
                                             / 1080.0), 0.1f, 200.f);
 	highlightVPMat = P * V;
+    
+    playerFOV = hfov;
 }
 
 void GameState::renderShadowBuffer() {
@@ -261,6 +352,9 @@ void GameState::renderShadowBuffer() {
     room->drawShadows(light);
     clock->drawShadows(light);
     tv->drawShadows(light);
+    chair->drawShadows(light);
+    nightstand->drawShadows(light);
+    doll->drawShadows(light);
 
     CurrAssets->shadowShader->disableAttribArrays();
 
@@ -295,11 +389,11 @@ void GameState::renderFrameBuffer() {
     
     glUseProgram(CurrAssets->currShader->fbo_ProgramID);
     framebuffer->bindTexture(CurrAssets->currShader->textureToDisplay_ID);
-    
-//    glUniform1f(CurrAssets->currShader->intensity_UniformID, 0.2);
+    CurrAssets->currShader->setDarknessModifier(redness);
+    glUniform1f(CurrAssets->currShader->intensity_UniformID, darkness);
     glUniform1f(CurrAssets->currShader->time_UniformID, coolTime);
     coolTime += 0.17;
-    
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, quad_vertexbuffer);
     glVertexAttribPointer(
@@ -371,8 +465,13 @@ void GameState::draw() {
     glfwPollEvents();
     
     checkCollisions();
+    
 }
 
+float resetCooldown = 5.0;
+
+bool ghost_wins_override = false;
+bool player_wins_override = false;
 
 void GameState::drawHUD() {
     glDisable(GL_DEPTH_TEST);
@@ -380,11 +479,21 @@ void GameState::drawHUD() {
     CurrAssets->hudShader->startUsingShader();
     CurrAssets->hudShader->setScreenSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     
-    if (ghost_beat_player) {
-        ghostWins->drawElement(false);
+    if (player_wins_override || player_beat_ghost) {
+        resetCooldown -= 0.17;
+        player_wins_override = true;
     }
     
-    if (player_beat_ghost) {
-        playerWins->drawElement(false);
+    if (ghost_wins_override || ghost_beat_player) {
+        resetCooldown -= 0.17;
+        ghostWins->drawElement(false);
+        ghost_wins_override = true;
+    }
+    
+    if (resetCooldown < 0) {
+//        resetState = new TitleState(window);
+//        shouldSwitch = true;
     }
 }
+
+

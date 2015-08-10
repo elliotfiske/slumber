@@ -11,11 +11,11 @@
 
 #include <stdio.h>
 
-#define SERVER_ADDRESS "192.168.0.1"
+#define SERVER_ADDRESS "192.168.0.2"
 #define SERVER_PORT "4444"
 #define SERVER_PORT_NUM 4444
 
 int tcpSetup();
 int tcpClientSetup(char *host_name, char *port);
 
-#endif /* defined(__slumber__network_setup__) */
+#endif /* defined(__slumber__netwt puork_setup__) */

@@ -12,6 +12,7 @@
 #ifndef GameState_h
 #define GameState_h
 
+
 class GameState {
 public:
     GameState(GLFWwindow *window, bool isGhost);
@@ -40,7 +41,7 @@ public:
     
     mat4 perspectiveMat;
     mat4 viewMat;
-	mat4 highlightVPMat;
+    mat4 highlightVPMat;
     mat4 mirrorViewMat;
     
     ViewFrustum *vf;
@@ -76,23 +77,38 @@ protected:
     void viewFrustumCulling(Actor curActor);
     void tellClientWhereGhostIs();
 	void updateDoorSwing();
+	void updateDoorSlam();
 	void lightFlicker();
 	void lightExplode();
+	void shakeFan();
+	void spinFan();
 
 	double flickerDuration;
 	double flickerDirection;
 	float attenFactor;
 
+	float darkness;
+	float redness;
+
 	double explodeDuration;
 	bool lampExplode;
 
 	bool doorToggle;
+	bool doorSlam;
 	int doorDirection;
 
 	bool shakeCamera;
 
     float clockShakeDuration;
     float tvStaticDuration;
+    float dollGlowDuration;
+    float dollMoveDuration;
+	float fanSpinDuration;
+	float fanShakeDuration;
+
+	float FOV;
+    
+    float playerFOV;
 };
 
 #endif

@@ -3,6 +3,7 @@
 varying vec2 UV;
 uniform sampler2D uTex;
 uniform float intensity;
+uniform float darknessMod; // used in the darkening shader
 
 const float sampleDist = 0.007;
 

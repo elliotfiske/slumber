@@ -27,6 +27,11 @@
 #define GHOST_ACTION_TV_STATIC 14
 #define GHOST_ACTION_BOO 15
 #define GHOST_ACTION_EXPLODE_LAMP 16
+#define GHOST_ACTION_SLAM_DOOR 17
+#define GHOST_ACTION_SPIN_FAN 18
+#define GHOST_ACTION_SHORT_FAN 19
+#define GHOST_ACTION_GLOW_DOLL 20
+#define GHOST_ACTION_MOVE_DOLL 21
 
 #define GHOST_ACTION_LOST_HORRIBLY 69
 
@@ -58,7 +63,7 @@ void processIncomingPacket(char *entirePacket, long dataLen, int clientSocket);
 
 // Methods for external use
 void sendGhostPosition(float x, float y, float z);
-void sendPlayerLook(float pitch, float yaw, float health);
+void sendPlayerLook(float pitch, float yaw, float FOV, float health);
 Position getGhostPosition();
 Position getPlayerLook();
 float getPlayerHealth();

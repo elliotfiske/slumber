@@ -22,9 +22,13 @@ public:
     void lowerSensitive();
     int getHealth();
     bool getSensitivity();
+	void checkZoom();
+	void viewFrustumCulling();
     
     HUDElement *introText;
     int numTimesPressedSpace;
+    
+    float timeToShowIntro;
     
     void tellGhostWhereImLooking();
     
@@ -33,7 +37,8 @@ public:
 protected:
     void checkCollisions();
     bool playerSensitivity;
-    
+
+    sf::Listener listener;
     void checkHurt(Actor *danger, int howMuch);
     void renderScene(bool isMirror);
 };
