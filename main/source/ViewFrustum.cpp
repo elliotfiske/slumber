@@ -6,16 +6,6 @@ ViewFrustum::ViewFrustum() {}
 ViewFrustum::~ViewFrustum() {}
 
 void ViewFrustum::extractPlanes(glm::mat4 comboMatrix) {
-   // Left clipping plane
-//   leftPlane.setCoefficients(comboMatrix[3][0] + comboMatrix[0][0],
-//                             comboMatrix[3][1] + comboMatrix[0][1],
-//                             comboMatrix[3][2] + comboMatrix[0][2],
-//                             comboMatrix[3][3] + comboMatrix[0][3]);
-//   // Right clipping plane
-//   rightPlane.setCoefficients(comboMatrix[3][0] - comboMatrix[0][0],
-//                              comboMatrix[3][1] - comboMatrix[0][1],
-//                              comboMatrix[3][2] - comboMatrix[0][2],
-//                              comboMatrix[3][3] - comboMatrix[0][3]);
     
     leftPlane.setCoefficients(comboMatrix[0][3] + comboMatrix[0][0],
                               comboMatrix[1][3] + comboMatrix[1][0],
@@ -69,21 +59,10 @@ int ViewFrustum::sphereIsInside(glm::vec3 point, float radius){
     float bottomDistance = bottomPlane.distance(point);
     
     float diameter = -2 * radius;
-    
-    if (leftDistance < diameter) {
-        return OUTSIDE;
-    }
 
-    if (leftDistance < diameter) {
-        return OUTSIDE;
-    }
-    if (rightDistance < diameter) {
-        return OUTSIDE;
-    }
-    if (topDistance < diameter) {
-        return OUTSIDE;
-    }
-    if (bottomDistance < diameter) {
+    if (leftDistance < diameter || rightDistance  < diameter ||
+        topDistance  < diameter || bottomDistance < diameter ||
+        nearDistance < diameter || farDistance    < diameter) {
         return OUTSIDE;
     }
     return INSIDE;
